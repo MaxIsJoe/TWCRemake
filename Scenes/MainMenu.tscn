@@ -25,7 +25,6 @@ scale = Vector2( 1.34963, 1.17701 )
 texture = ExtResource( 2 )
 
 [node name="MainPage" type="Container" parent="."]
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
