@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flawless_victory.ogg-75796aa36a0945c4601ae8e2b62920a0.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/arena annoucer/flawless_victory.ogg"
+dest_files=[ "res://.import/flawless_victory.ogg-75796aa36a0945c4601ae8e2b62920a0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

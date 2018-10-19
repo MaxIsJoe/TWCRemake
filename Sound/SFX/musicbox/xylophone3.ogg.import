@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/xylophone3.ogg-53bcf8bfa49a51f134979ab67bbcf970.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/musicbox/xylophone3.ogg"
+dest_files=[ "res://.import/xylophone3.ogg-53bcf8bfa49a51f134979ab67bbcf970.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

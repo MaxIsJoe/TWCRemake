@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/round_2.ogg-076785bc2809e321fa9b2a3d12e283ea.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/arena annoucer/round_2.ogg"
+dest_files=[ "res://.import/round_2.ogg-076785bc2809e321fa9b2a3d12e283ea.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

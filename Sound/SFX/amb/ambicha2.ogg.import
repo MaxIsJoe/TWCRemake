@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ambicha2.ogg-cab887568359d7ffd9d6333709d7dadf.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/amb/ambicha2.ogg"
+dest_files=[ "res://.import/ambicha2.ogg-cab887568359d7ffd9d6333709d7dadf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

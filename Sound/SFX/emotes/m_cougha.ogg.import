@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/m_cougha.ogg-87bb04ecd254ecb18df0e11c957ddb04.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/emotes/m_cougha.ogg"
+dest_files=[ "res://.import/m_cougha.ogg-87bb04ecd254ecb18df0e11c957ddb04.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "walkright",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idledown",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idleright",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkleft",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkup",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idleleft",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idleup",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkdown",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[node name="Player" type="KinematicBody2D"]
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+motion/sync_to_physics = false
+script = ExtResource( 1 )
+_sections_unfolded = [ "house" ]
+heatlh = 100
+maxHealth = 100
+mana = 100
+maxMana = 100
+gold = 250
+level = 1
+levelcap = 1650
+speed = 3.0
+PlayerName = null
+PlayerRank = null
+PlayerYear = null
+PlayerHouse = null
+CanDrawWand = null
+MaxedLevel = null
+IsMale = null
+IsFemale = null
+house = [ false, false, false, false ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idledown"
+_sections_unfolded = [ "frames" ]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionArea" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[node name="Ray" type="RayCast2D" parent="."]
+enabled = false
+exclude_parent = true
+cast_to = Vector2( 0, 50 )
+collision_mask = 1
+collide_with_areas = false
+collide_with_bodies = true
+

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sudden_death.ogg-3d180fda7561d9c40497c25b8411e515.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/arena annoucer/sudden_death.ogg"
+dest_files=[ "res://.import/sudden_death.ogg-3d180fda7561d9c40497c25b8411e515.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

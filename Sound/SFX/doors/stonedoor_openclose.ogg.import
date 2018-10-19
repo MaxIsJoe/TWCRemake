@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/stonedoor_openclose.ogg-a4078520fac04c2269017fde05ca65c8.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/doors/stonedoor_openclose.ogg"
+dest_files=[ "res://.import/stonedoor_openclose.ogg-a4078520fac04c2269017fde05ca65c8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/m_coughc.ogg-a7503381794f8684a21638bf128c12c5.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/emotes/m_coughc.ogg"
+dest_files=[ "res://.import/m_coughc.ogg-a7503381794f8684a21638bf128c12c5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

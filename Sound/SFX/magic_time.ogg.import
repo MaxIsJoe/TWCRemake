@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/magic_time.ogg-7f61205d6de71ed352c7af082fc4c686.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/magic_time.ogg"
+dest_files=[ "res://.import/magic_time.ogg-7f61205d6de71ed352c7af082fc4c686.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

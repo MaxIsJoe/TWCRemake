@@ -1,0 +1,31 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/White Flower_0.png-21c79d858e8047669883d4575002d097.stex"
+
+[deps]
+
+source_file="res://Sprites/TWCSpritesCoverted/icons2/Plants/White Flower_0.png"
+dest_files=[ "res://.import/White Flower_0.png-21c79d858e8047669883d4575002d097.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

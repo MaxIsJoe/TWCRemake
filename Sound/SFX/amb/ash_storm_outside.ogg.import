@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ash_storm_outside.ogg-998649f4114e89cedc1fb4fd021cb190.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/amb/ash_storm_outside.ogg"
+dest_files=[ "res://.import/ash_storm_outside.ogg-998649f4114e89cedc1fb4fd021cb190.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

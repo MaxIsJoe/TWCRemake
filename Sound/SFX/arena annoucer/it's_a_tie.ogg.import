@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/it's_a_tie.ogg-8a16b902d9138c95543b7df867509405.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/arena annoucer/it's_a_tie.ogg"
+dest_files=[ "res://.import/it's_a_tie.ogg-8a16b902d9138c95543b7df867509405.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

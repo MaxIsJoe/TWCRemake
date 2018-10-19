@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/f_coughb.ogg-8a349ee341a7f2c705d657981afbbaff.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/emotes/f_coughb.ogg"
+dest_files=[ "res://.import/f_coughb.ogg-8a349ee341a7f2c705d657981afbbaff.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

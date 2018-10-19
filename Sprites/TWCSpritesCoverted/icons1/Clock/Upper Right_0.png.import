@@ -1,0 +1,31 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Upper Right_0.png-33a15a7e2efc79c1f2ba3635f4b1387f.stex"
+
+[deps]
+
+source_file="res://Sprites/TWCSpritesCoverted/icons1/Clock/Upper Right_0.png"
+dest_files=[ "res://.import/Upper Right_0.png-33a15a7e2efc79c1f2ba3635f4b1387f.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

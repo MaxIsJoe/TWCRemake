@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tie_breaker.ogg-9718e5dd5d0bae2659317746ab80a82a.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/arena annoucer/tie_breaker.ogg"
+dest_files=[ "res://.import/tie_breaker.ogg-9718e5dd5d0bae2659317746ab80a82a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
