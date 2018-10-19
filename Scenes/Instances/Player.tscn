@@ -7,22 +7,7 @@
 animations = [ {
 "frames": [  ],
 "loop": true,
-"name": "walkright",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "idledown",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "idleright",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "walkleft",
+"name": "idleleft",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -32,7 +17,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "idleleft",
+"name": "walkdown",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -42,7 +27,22 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "walkdown",
+"name": "walkleft",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idleright",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idledown",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkright",
 "speed": 5.0
 } ]
 
@@ -70,6 +70,8 @@ heatlh = 100
 maxHealth = 100
 mana = 100
 maxMana = 100
+damage = 25
+defense = 3
 gold = 250
 level = 1
 levelcap = 1650

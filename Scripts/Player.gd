@@ -4,6 +4,8 @@ export (int) var heatlh
 export (int) var maxHealth
 export (int) var mana
 export (int) var maxMana
+export (int) var damage
+export (int) var defense
 export (int) var gold
 export (int) var level
 export (int) var levelcap
