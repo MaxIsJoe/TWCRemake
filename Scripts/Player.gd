@@ -30,7 +30,7 @@ onready var InventoryUI = get_node("Inventory/Inventory")
 var EXP
 var lvlupEXP
 var gender
-var velocity = Vector2()
+#var velocity = Vector2()
 var alive = true
 var canmove = true
 var Karma = 100
@@ -57,9 +57,12 @@ func _ready():
 	if(IsFemale == true):
 		gender = "Female"
 	
-	
 
-func move(delta):
+	
+	
+func _physics_process(delta):
+	if canmove == false:
+		return
 	var rot_dir = 0
 	var velocity = Vector2()
 	if(Input.is_action_pressed("ui_up")):
@@ -75,11 +78,6 @@ func move(delta):
 		velocity.x -= 1
 		animstate.play("walkleft")
 	velocity = velocity.normalized() * speed
-	
-func _physics_process(delta):
-	if canmove == false:
-		return
-	move(delta)
 	move_and_slide(velocity)
 	
 func _input(event):
