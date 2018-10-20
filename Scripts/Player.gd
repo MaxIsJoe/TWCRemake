@@ -21,6 +21,7 @@ export (bool) var IsFemale
 export (Array) var house = ["Gryffindor","Slyth","Huff","Claw"]
 
 onready var animstate = get_node("AnimatedSprite")
+onready var InventoryUI = get_node("Inventory/Inventory")
 
 var EXP
 var lvlupEXP
@@ -75,3 +76,11 @@ func _physics_process(delta):
 		return
 	move(delta)
 	move_and_slide(velocity)
+	
+func _input(event):
+	if(Input.is_action_just_pressed("InventoryButton")):
+		if InventoryUI.visible == true:
+			InventoryUI.visible = false
+		else:
+			InventoryUI.visible = true 
+	pass
