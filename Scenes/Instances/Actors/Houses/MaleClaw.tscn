@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Scenes/Instances/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Instances/Actors/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/MaleRavenclaw/_2/0.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/MaleRavenclaw/_2/1.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/MaleRavenclaw/_2/2.png" type="Texture" id=4]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/MaleRavenclaw/_0/1.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/MaleRavenclaw/_0/2.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/MaleRavenclaw/_0/3.png" type="Texture" id=17]
+
+
 
 [sub_resource type="SpriteFrames" id=1]
 

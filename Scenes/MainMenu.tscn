@@ -144,6 +144,7 @@ max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
 
 [node name="CharacterPage" type="Container" parent="."]
+editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
