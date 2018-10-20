@@ -18,14 +18,18 @@ export (bool) var CanDrawWand
 export (bool) var MaxedLevel
 export (bool) var IsMale
 export (bool) var IsFemale
-export (Array) var house = ["Gryffindor","Slyth","Huff","Claw"]
+export (bool) var IsGryif
+export (bool) var IsSlyth
+export (bool) var IsHuff
+export (bool) var IsClaw
+export (bool) var IsNew
 
 onready var animstate = get_node("AnimatedSprite")
 onready var InventoryUI = get_node("Inventory/Inventory")
 
 var EXP
 var lvlupEXP
-var gender = ["Male","Female"]
+var gender
 var velocity = Vector2()
 var alive = true
 var canmove = true
@@ -37,21 +41,21 @@ signal mpupdate
 
 func _ready():
 	#Check what house the player is in at the moment
-	if(house == "Gryffindor"):
+	if(IsGryif == true):
 		PlayerHouse = "Gryffindor"
-	if(house == "Slyth"):
+	if(IsSlyth == true):
 		PlayerHouse = "Slytherin"
-	if(house == "Huff"):
+	if(IsHuff == true):
 		PlayerHouse = "Hufflepuff"
-	if(house == "Claw"):
+	if(IsClaw == true):
 		PlayerHouse = "Ravenclaw"
-	if(house == null):
+	if(IsNew == true):
 		PlayerHouse = "None"
 	#Check their gender
-	if(gender == "Male"):
-		IsMale = true
-	if(gender == "Female"):
-		IsFemale = true
+	if(IsMale == true):
+		gender = "Male"
+	if(IsFemale == true):
+		gender = "Female"
 	
 	
 

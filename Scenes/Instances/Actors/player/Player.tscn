@@ -86,7 +86,11 @@ CanDrawWand = null
 MaxedLevel = null
 IsMale = null
 IsFemale = null
-house = [ false, false, false, false ]
+IsGryif = null
+IsSlyth = null
+IsHuff = null
+IsClaw = null
+IsNew = null
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
