@@ -63,17 +63,18 @@ func move(delta):
 	var rot_dir = 0
 	var velocity = Vector2()
 	if(Input.is_action_pressed("ui_up")):
-		velocity = Vector2(speed,0)
+		velocity.y -= 1
 		animstate.play("walkup")
 	if(Input.is_action_pressed("ui_down")):
-		velocity = Vector2(-speed,0)
+		velocity.y += 1
 		animstate.play("walkdown")
 	if(Input.is_action_pressed("ui_right")):
-		velocity = Vector2(0,speed)
+		velocity.x += 1
 		animstate.play("walkright")
 	if(Input.is_action_pressed("ui_left")):
-		velocity = Vector2(0,-speed)
+		velocity.x -= 1
 		animstate.play("walkleft")
+	velocity = velocity.normalized() * speed
 	
 func _physics_process(delta):
 	if canmove == false:
@@ -86,5 +87,4 @@ func _input(event):
 		if InventoryUI.visible == true:
 			InventoryUI.visible = false
 		else:
-			InventoryUI.visible = true 
-	pass
+			InventoryUI.visible = true

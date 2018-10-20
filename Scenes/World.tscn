@@ -1,4 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Instances/Actors/Houses/FemaleClaw.tscn" type="PackedScene" id=1]
 
 [node name="World" type="Node2D"]
+
+[node name="FemaleClaw" parent="." instance=ExtResource( 1 )]
+position = Vector2( 38.0802, 52.7736 )
 
