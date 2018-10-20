@@ -1,23 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Inventoryplayer.gd" type="Script" id=2]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [  ],
 "loop": true,
-"name": "idleleft",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "walkup",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "walkdown",
+"name": "walkleft",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -27,7 +18,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "walkleft",
+"name": "idledown",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -37,12 +28,22 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "idledown",
+"name": "idleleft",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
 "name": "walkright",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkdown",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkup",
 "speed": 5.0
 } ]
 
@@ -113,4 +114,7 @@ cast_to = Vector2( 0, 50 )
 collision_mask = 1
 collide_with_areas = false
 collide_with_bodies = true
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource( 2 )
 
