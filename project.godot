@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Items",
 "language": "GDScript",
-"path": "res://ItemsClass.gd"
+"path": "res://Scripts/ItemsClass.gd"
 } ]
 _global_script_class_icons={
 "Items": ""
@@ -30,6 +30,14 @@ window/size/width=1280
 window/size/height=720
 window/vsync/use_vsync=false
 window/stretch/mode="viewport"
+
+[input]
+
+InventoryButton={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":73,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [rendering]
 
