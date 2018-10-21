@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Inventory.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.tscn" type="PackedScene" id=2]
 
 [node name="Inventory" type="Control"]
 anchor_left = 0.0
@@ -14,7 +15,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-ItemButton = null
+ItemButton = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_left = 1.0
@@ -69,7 +70,25 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Gold : 100"
+text = "Gold :"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="GoldNumber" type="Label" parent="ColorRect/Gold"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 41.0
+margin_right = 83.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

@@ -9,6 +9,8 @@ export (int) var defense
 export (int) var gold
 export (int) var level
 export (int) var levelcap
+export (float) var Weight
+export (float) var MaxWeight
 export (float) var speed
 export (String) var PlayerName
 export (String) var PlayerRank
@@ -25,7 +27,7 @@ export (bool) var IsClaw
 export (bool) var IsNew
 
 onready var animstate = get_node("AnimatedSprite")
-onready var InventoryUI = get_node("Inventory/Inventory")
+onready var InventoryUI = get_node("Inventory/InventoryUI")
 
 var EXP
 var lvlupEXP
