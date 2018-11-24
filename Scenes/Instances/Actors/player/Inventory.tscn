@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Inventory.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.tscn" type="PackedScene" id=2]
 
-[node name="Inventory" type="Control"]
+[node name="InventoryUI" type="Control"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -14,7 +15,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-ItemButton = null
+ItemButton = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_left = 1.0
@@ -89,33 +90,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/ItemsContainer"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 597.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-
-[node name="GridContainer" type="GridContainer" parent="ColorRect/ItemsContainer/MarginContainer"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 597.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-columns = 2
+_sections_unfolded = [ "Script" ]
 
 [node name="Panel" type="Panel" parent="ColorRect"]
 anchor_left = 0.5

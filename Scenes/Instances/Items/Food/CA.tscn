@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Instances/Items/Item.tscn" type="PackedScene" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+
+flags = 4
+load_path = "res://.import/_0.png-1ab52e80736d3144b02bb875ed358668.stex"
+
+[node name="Item" instance=ExtResource( 1 )]
+
+[node name="Sprite" parent="." index="0"]
+texture = SubResource( 1 )
+_sections_unfolded = [ "texture" ]
+

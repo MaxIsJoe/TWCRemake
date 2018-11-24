@@ -9,22 +9,17 @@
 animations = [ {
 "frames": [  ],
 "loop": true,
-"name": "walkup",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
 "name": "walkright",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
-"name": "idledown",
+"name": "idleup",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
-"name": "idleleft",
+"name": "idledown",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -44,7 +39,12 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "idleup",
+"name": "walkup",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idleleft",
 "speed": 5.0
 } ]
 
@@ -77,7 +77,7 @@ defense = 3
 gold = 250
 level = 1
 levelcap = 1650
-speed = 35.0
+speed = 55.0
 PlayerName = null
 PlayerRank = null
 PlayerYear = null
@@ -123,6 +123,6 @@ collide_with_bodies = true
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="Inventory" parent="Inventory" instance=ExtResource( 3 )]
+[node name="InventoryUI" parent="Inventory" instance=ExtResource( 3 )]
 visible = false
 

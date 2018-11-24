@@ -25,7 +25,7 @@ export (bool) var IsClaw
 export (bool) var IsNew
 
 onready var animstate = get_node("AnimatedSprite")
-onready var InventoryUI = get_node("Inventory/Inventory")
+onready var InventoryUI = get_node("Inventory/InventoryUI")
 
 var EXP
 var lvlupEXP
