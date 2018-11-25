@@ -9,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -834.0
 margin_bottom = -659.0
+rect_min_size = Vector2( 446, 61 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -22,6 +23,7 @@ shortcut = null
 group = null
 flat = false
 align = 1
+_sections_unfolded = [ "Rect" ]
 
 [node name="ItemLabel" type="Label" parent="."]
 anchor_left = 0.0
