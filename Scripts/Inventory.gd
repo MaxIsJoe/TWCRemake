@@ -9,6 +9,5 @@ export(PackedScene) var ItemButton
 
 func create_item_button(item):
 	var item_button = ItemButton.instance()
-	#item_button.initialize(item)
+	_ItemContainer.add_child(item_button)
 	return item_button
-	add_child_below_node(ItemButton, _ItemContainer)
