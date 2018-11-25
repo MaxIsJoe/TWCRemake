@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [node name="ItemButton" type="Button"]
 anchor_left = 0.0
@@ -23,6 +24,7 @@ shortcut = null
 group = null
 flat = false
 align = 1
+script = ExtResource( 1 )
 _sections_unfolded = [ "Rect" ]
 
 [node name="ItemLabel" type="Label" parent="."]
@@ -48,5 +50,5 @@ max_lines_visible = -1
 [node name="ItemIcon" type="Sprite" parent="."]
 position = Vector2( 32.133, 31.0249 )
 scale = Vector2( 0.82687, 0.792244 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 

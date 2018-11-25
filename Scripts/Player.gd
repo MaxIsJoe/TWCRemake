@@ -9,7 +9,7 @@ export (int) var defense
 export (int) var gold
 export (int) var level
 export (int) var levelcap
-export (float) var speed
+#export (float) var speed
 export (String) var PlayerName
 export (String) var PlayerRank
 export (String) var PlayerYear
@@ -38,6 +38,8 @@ var Karma = 100
 signal isdead
 signal hpupdate
 signal mpupdate
+
+const SPEED = 150
 
 func _ready():
 	#Check what house the player is in at the moment
@@ -77,7 +79,15 @@ func _physics_process(delta):
 	if(Input.is_action_pressed("ui_left")):
 		velocity.x -= 1
 		animstate.play("walkleft")
-	velocity = velocity.normalized() * speed
+	if(Input.is_action_just_released("ui_up")):
+		animstate.play("idleup")
+	if(Input.is_action_just_released("ui_down")):
+		animstate.play("idledown")
+	if(Input.is_action_just_released("ui_right")):
+		animstate.play("idleright")
+	if(Input.is_action_just_released("ui_left")):
+		animstate.play("idleleft")
+	velocity = velocity.normalized() * SPEED
 	move_and_slide(velocity)
 	
 func _input(event):

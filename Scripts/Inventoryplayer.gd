@@ -1,6 +1,7 @@
 extends Node
 
 var ItemsArray = []
+var OnPlayer = []
 onready var InvUI = $InventoryUI
 
 func has(item):
@@ -8,6 +9,9 @@ func has(item):
 
 func use(item, player):
 	item.use(player)
+
+func Equip(item):
+	OnPlayer.append(item)
 
 func grab(item):
 	ItemsArray.append(item)

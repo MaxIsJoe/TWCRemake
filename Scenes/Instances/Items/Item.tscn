@@ -18,10 +18,11 @@ audio_bus_name = "Master"
 script = ExtResource( 1 )
 IsImportant = null
 CanBeThrown = null
+CanEquip = null
 value = null
 Name = null
 desc = null
-icon = null
+Icon = null
 
 [node name="Sprite" type="Sprite" parent="."]
 

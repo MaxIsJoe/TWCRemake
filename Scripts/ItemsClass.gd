@@ -1,15 +1,11 @@
 extends Area2D
 export (bool) var IsImportant
 export (bool) var CanBeThrown
+export (bool) var CanEquip
 export (int) var value
 export (String) var Name
 export (String) var desc
-export (Image) var icon
-onready var ItemSprite = $Sprite
-
-
-func _ready():
-	ItemSprite.texture = icon
+export (Image) var Icon
 
 func _on_Item_body_entered(body):
 	if(body.has_node("Inventory")):
@@ -19,3 +15,6 @@ func _on_Item_body_entered(body):
 		queue_free()
 	else:
 		print("false")
+
+func Equip():
+	

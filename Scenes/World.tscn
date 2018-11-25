@@ -7,8 +7,7 @@
 
 [node name="FemaleClaw" parent="." instance=ExtResource( 1 )]
 position = Vector2( 38.0802, 52.7736 )
-speed = 35.0
 
 [node name="Item" parent="." instance=ExtResource( 2 )]
-position = Vector2( 38.7187, 74.1218 )
+position = Vector2( 60.2279, 74.1218 )
 

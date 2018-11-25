@@ -9,26 +9,6 @@
 animations = [ {
 "frames": [  ],
 "loop": true,
-"name": "walkright",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "idleup",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "idledown",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "walkdown",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
 "name": "idleright",
 "speed": 5.0
 }, {
@@ -45,6 +25,26 @@ animations = [ {
 "frames": [  ],
 "loop": true,
 "name": "idleleft",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkright",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idleup",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idledown",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkdown",
 "speed": 5.0
 } ]
 
@@ -77,7 +77,6 @@ defense = 3
 gold = 250
 level = 1
 levelcap = 1650
-speed = 55.0
 PlayerName = null
 PlayerRank = null
 PlayerYear = null
