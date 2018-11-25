@@ -2,6 +2,33 @@ extends Control
 
 var version = "0.0.1"
 var selecteditem
+var ForbiddenNames = ["robed figure",
+				"masked figure",
+				"deatheater",
+				"auror",
+				"harry",
+				"potter",
+				"albus",
+				"malfoy",
+				"snape",
+				"hermoine",
+				"voldemort",
+				"dumbledore",
+				"riddle",
+				"potter",
+				"granger",
+				"malfoy",
+				"weasley",
+				"lestrange",
+				"sirius",
+				"riddle",
+				"lestrange",
+				"black",
+				"marvello",
+				"ben copper",
+				"penny haywood",
+				"muller sydney",
+				"muller"]
 export (NodePath) var dropdown_path
 
 onready var versionlabel = get_node("MainPage/Version")
@@ -36,9 +63,16 @@ func _on_FinishCharSetup_pressed():
 	if(CharacterName.text.length() < 3):
 		warninglabel.text = "Please enter a name longer than three characters"
 		return
+	if(CharacterName.text.length() > 16):
+		warninglabel.text = "Please use a shorter name"
+		return
 	if(selecteditem == 0 or null):
 		warninglabel.text = "Please select your character's gender"
 		return
+	if(ForbiddenNames.has(CharacterName.text)):
+		warninglabel.text = "Please select another name"
+		return
+	
 	#Spawn the player with their name and gender assigned to them
 		
 
