@@ -51,8 +51,8 @@ func _ready():
 		PlayerHouse = "Hufflepuff"
 	if(IsClaw == true):
 		PlayerHouse = "Ravenclaw"
-	if(IsNew == true):
-		PlayerHouse = "None"
+	#if(IsNew == true):
+	#	PlayerHouse = "None"
 	#Check their gender
 	if(IsMale == true):
 		gender = "Male"
@@ -63,7 +63,7 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	if canmove == false:
+	if canmove == false: #Can the player move?
 		return
 	var rot_dir = 0
 	var velocity = Vector2()
