@@ -36,7 +36,6 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Anchor" ]
 
 [node name="StartButton" type="Button" parent="MainPage"]
 anchor_left = 0.0
@@ -85,7 +84,6 @@ group = null
 text = "Settings"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect" ]
 
 [node name="ExitButiion" type="Button" parent="MainPage"]
 anchor_left = 0.0
@@ -110,7 +108,6 @@ group = null
 text = "Quit"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect" ]
 
 [node name="logo" type="Sprite" parent="MainPage"]
 position = Vector2( 1017.89, 368.863 )
@@ -141,10 +138,8 @@ align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_colors" ]
 
 [node name="CharacterPage" type="Container" parent="."]
-editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -162,6 +157,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 2.0
+margin_right = 1.0
+margin_bottom = 2.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -175,10 +174,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -144.0
-margin_top = -32.0
-margin_right = 144.0
-margin_bottom = 32.0
+margin_left = -145.0
+margin_top = -71.0
+margin_right = 143.0
+margin_bottom = -7.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -197,17 +196,39 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -144.0
-margin_top = 64.0
-margin_right = 144.0
-margin_bottom = 128.0
+margin_left = -260.0
+margin_top = 33.0
+margin_right = 28.0
+margin_bottom = 97.0
 rect_pivot_offset = Vector2( 614, -204 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Your Character's Name"
+text = "Select your gender"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="YourHouse" type="Label" parent="CharacterPage"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2.0
+margin_top = 35.0
+margin_right = 286.0
+margin_bottom = 99.0
+rect_pivot_offset = Vector2( 614, -204 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Select your House"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -235,17 +256,16 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_colors" ]
 
 [node name="SelectName" type="LineEdit" parent="CharacterPage"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -144.0
-margin_top = 44.0
-margin_right = 144.0
-margin_bottom = 84.0
+margin_left = -138.0
+margin_top = -27.0
+margin_right = 150.0
+margin_bottom = 13.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -269,10 +289,36 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 568.0
-margin_top = 476.0
-margin_right = 708.0
-margin_bottom = 508.0
+margin_left = 453.0
+margin_top = 442.0
+margin_right = 593.0
+margin_bottom = 474.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+action_mode = 0
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+align = 0
+items = [  ]
+selected = -1
+
+[node name="SelectHouse" type="OptionButton" parent="CharacterPage"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 716.0
+margin_top = 439.0
+margin_right = 856.0
+margin_bottom = 471.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -317,4 +363,5 @@ align = 1
 [connection signal="pressed" from="MainPage/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainPage/ExitButiion" to="." method="_on_ExitButiion_pressed"]
 [connection signal="item_selected" from="CharacterPage/SelectGender" to="." method="_on_SelectGender_item_selected"]
+[connection signal="item_selected" from="CharacterPage/SelectHouse" to="." method="_on_SelectHouse_item_selected"]
 [connection signal="pressed" from="CharacterPage/FinishCharSetup" to="." method="_on_FinishCharSetup_pressed"]
