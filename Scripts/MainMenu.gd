@@ -76,7 +76,7 @@ func disable_items(id):
 func _on_FinishCharSetup_pressed():
 	warninglabel.text = ""
 	var CharacterName = get_node("CharacterPage/SelectName")
-	#print("The Character's name is" , CharacterName.text, "And their gender is" ,selecteditem)
+	print("The Character's name is" , CharacterName.text, "And their gender is" ,selecteditemG)
 	if(CharacterName.text.length() < 3):
 		warninglabel.text = "Please enter a name longer than three characters"
 		return
@@ -111,35 +111,43 @@ func CreateThePlayer(charname,gender,house):
 		if(house == 1):
 			var NewGrifMale = MaleGryffindor.instance()
 			add_child(NewGrifMale)
-			NewGrifMale.PlayerName = charname
+			NewGrifMale.PlayerName = charname.text
+			NewGrifMale.updatenamelabel()
 		if(house == 2):
 			var NewHuffMale = MaleHufflepuff.instance()
 			add_child(NewHuffMale)
-			NewHuffMale.PlayerName = charname
+			NewHuffMale.PlayerName = charname.text
+			NewHuffMale.updatenamelabel()
 		if(house == 3):
 			var NewClawfMale = MaleRavenclaw.instance()
 			add_child(NewClawfMale)
-			NewClawfMale.PlayerName = charname
+			NewClawfMale.PlayerName = charname.text
+			NewClawfMale.updatenamelabel()
 		if(house == 4):
 			var NewSlythMale = MaleSlytherin.instance()
 			add_child(NewSlythMale)
-			NewSlythMale.PlayerName = charname
+			NewSlythMale.PlayerName = charname.text
+			NewSlythMale.updatenamelabel()
 	if(gender == 2):
 		if(house == 1):
 			var NewGrifFemale = FemaleGryffindor.instance()
 			add_child(NewGrifFemale)
-			NewGrifFemale.PlayerName = charname
+			NewGrifFemale.PlayerName = charname.text
+			NewGrifFemale.updatenamelabel()
 		if(house == 2):
 			var NewHuffFemale = FemaleHufflepuff.instance()
 			add_child(NewHuffFemale)
-			NewHuffFemale.PlayerName = charname
+			NewHuffFemale.PlayerName = charname.text
+			NewHuffFemale.updatenamelabel()
 		if(house == 3):
 			var NewClawFemale = FemaleRavenclaw.instance()
 			add_child(NewClawFemale)
-			NewClawFemale.PlayerName = charname
+			NewClawFemale.PlayerName = charname.text
+			NewClawFemale.updatenamelabel()
 		if(house == 4):
 			var NewSlythFemale = FemaleSlytherin.instance()
 			add_child(NewSlythFemale)
-			NewSlythFemale.PlayerName = charname
+			NewSlythFemale.PlayerName = charname.text
+			NewSlythFemale.updatenamelabel()
 		#Players should spawn in diagon ally from here
 		#Finish map first so we can spawn them

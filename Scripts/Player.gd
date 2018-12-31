@@ -26,6 +26,7 @@ export (bool) var IsNew
 
 onready var animstate = get_node("AnimatedSprite")
 onready var InventoryUI = get_node("Inventory/InventoryUI")
+onready var PlayerNameUI = $PlayerName
 
 var EXP
 var lvlupEXP
@@ -58,7 +59,6 @@ func _ready():
 		gender = "Male"
 	if(IsFemale == true):
 		gender = "Female"
-	
 
 	
 	
@@ -96,3 +96,7 @@ func _input(event):
 			InventoryUI.visible = false
 		else:
 			InventoryUI.visible = true
+			
+func updatenamelabel():
+	PlayerNameUI.text = str(PlayerName)
+	PlayerNameUI.add_color_override("font_color", Color(0.86,0.08,0.24,1))
