@@ -62,8 +62,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="SlythMale" instance=ExtResource( 1 )]
+[node name="SlythMale" index="0" instance=ExtResource( 1 )]
+IsMale = true
+IsSlyth = true
 
-[node name="AnimatedSprite" parent="." index="0"]
+[node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
 

@@ -99,4 +99,11 @@ func _input(event):
 			
 func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
-	PlayerNameUI.add_color_override("font_color", Color(0.86,0.08,0.24,1))
+	if(IsGryif):
+		PlayerNameUI.add_color_override("font_color", Color(0.86,0.08,0.24,1))
+	if(IsHuff):
+		PlayerNameUI.add_color_override("font_color", Color(1,0.84,0,1))
+	if(IsSlyth):
+		PlayerNameUI.add_color_override("font_color", Color(0,1,0,1))
+	if(IsClaw):
+		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
