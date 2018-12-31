@@ -38,6 +38,14 @@ onready var mainpage = get_node("MainPage")
 onready var dropdownGender = get_node("CharacterPage/SelectGender")
 onready var dropdownHouse = get_node("CharacterPage/SelectHouse")
 onready var warninglabel = get_node("CharacterPage/Warning")
+onready var MaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifMale.tscn")
+onready var MaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/MaleHuff.tscn")
+onready var MaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/MaleClaw.tscn")
+onready var MaleSlytherin = preload("res://Scenes/Instances/Actors/Houses/SlythMale.tscn")
+onready var FemaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifFemale.tscn")
+onready var FemaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/FemaleHuff.tscn")
+onready var FemaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/FemaleClaw.tscn")
+onready var FemaleSlytherin = preload("res://Scenes/Instances/Actors/Houses/SlythFemale.tscn")
 
 func _ready():
 	versionlabel.text = version
@@ -101,19 +109,37 @@ func _on_SelectHouse_item_selected(ID):
 func CreateThePlayer(charname,gender,house):
 	if(gender == 1):
 		if(house == 1):
-			pass #add red bois
+			var NewGrifMale = MaleGryffindor.instance()
+			add_child(NewGrifMale)
+			NewGrifMale.PlayerName = charname
 		if(house == 2):
-			pass #yellow bois
+			var NewHuffMale = MaleHufflepuff.instance()
+			add_child(NewHuffMale)
+			NewHuffMale.PlayerName = charname
 		if(house == 3):
-			pass #bluebois
+			var NewClawfMale = MaleRavenclaw.instance()
+			add_child(NewClawfMale)
+			NewClawfMale.PlayerName = charname
 		if(house == 4):
-			pass #snak is fren
+			var NewSlythMale = MaleSlytherin.instance()
+			add_child(NewSlythMale)
+			NewSlythMale.PlayerName = charname
 	if(gender == 2):
 		if(house == 1):
-			pass #red grils
+			var NewGrifFemale = FemaleGryffindor.instance()
+			add_child(NewGrifFemale)
+			NewGrifFemale.PlayerName = charname
 		if(house == 2):
-			pass #yellow grils
+			var NewHuffFemale = FemaleHufflepuff.instance()
+			add_child(NewHuffFemale)
+			NewHuffFemale.PlayerName = charname
 		if(house == 3):
-			pass #bluegrils
+			var NewClawFemale = FemaleRavenclaw.instance()
+			add_child(NewClawFemale)
+			NewClawFemale.PlayerName = charname
 		if(house == 4):
-			pass #wait how does snakes lay eggs when they themselves eat eggs???
+			var NewSlythFemale = FemaleSlytherin.instance()
+			add_child(NewSlythFemale)
+			NewSlythFemale.PlayerName = charname
+		#Players should spawn in diagon ally from here
+		#Finish map first so we can spawn them

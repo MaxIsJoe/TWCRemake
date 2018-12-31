@@ -6,16 +6,8 @@
 [ext_resource path="res://Sprites/logo_banner.png" type="Texture" id=4]
 
 [node name="MainMenu" type="Control"]
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = ExtResource( 1 )
 dropdown_path = NodePath("CharacterPage/SelectGender")
 
@@ -26,88 +18,31 @@ texture = ExtResource( 2 )
 
 [node name="MainPage" type="Container" parent="."]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 
 [node name="StartButton" type="Button" parent="MainPage"]
-anchor_left = 0.0
 anchor_top = 0.5
-anchor_right = 0.0
 anchor_bottom = 0.5
 margin_top = -126.0
 margin_right = 360.0
 margin_bottom = -66.0
 rect_min_size = Vector2( 360, 60 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Start Game"
-flat = false
-align = 1
 
 [node name="SettingsButton" type="Button" parent="MainPage"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 320.0
 margin_right = 360.0
 margin_bottom = 380.0
 rect_min_size = Vector2( 360, 60 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Settings"
-flat = false
-align = 1
 
 [node name="ExitButiion" type="Button" parent="MainPage"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 416.0
 margin_right = 360.0
 margin_bottom = 476.0
 rect_min_size = Vector2( 360, 60 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Quit"
-flat = false
-align = 1
 
 [node name="logo" type="Sprite" parent="MainPage"]
 position = Vector2( 1017.89, 368.863 )
@@ -119,54 +54,25 @@ position = Vector2( 1011.69, 165.987 )
 texture = ExtResource( 4 )
 
 [node name="Version" type="Label" parent="MainPage"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 896.0
 margin_top = 672.0
 margin_right = 1256.0
 margin_bottom = 686.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="CharacterPage" type="Container" parent="."]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 
 [node name="ColorRect" type="ColorRect" parent="CharacterPage"]
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
 margin_top = 2.0
 margin_right = 1.0
 margin_bottom = 2.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 color = Color( 0.0588235, 0.0588235, 0.0588235, 0.780392 )
 
 [node name="YourName" type="Label" parent="CharacterPage"]
@@ -178,18 +84,9 @@ margin_left = -145.0
 margin_top = -71.0
 margin_right = 143.0
 margin_bottom = -7.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Your Character's Name"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="YourGender" type="Label" parent="CharacterPage"]
 anchor_left = 0.5
@@ -201,17 +98,9 @@ margin_top = 33.0
 margin_right = 28.0
 margin_bottom = 97.0
 rect_pivot_offset = Vector2( 614, -204 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Select your gender"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="YourHouse" type="Label" parent="CharacterPage"]
 anchor_left = 0.5
@@ -223,17 +112,9 @@ margin_top = 35.0
 margin_right = 286.0
 margin_bottom = 99.0
 rect_pivot_offset = Vector2( 614, -204 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Select your House"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="Warning" type="Label" parent="CharacterPage"]
 anchor_left = 0.5
@@ -245,17 +126,9 @@ margin_top = 200.0
 margin_right = 140.0
 margin_bottom = 264.0
 rect_pivot_offset = Vector2( 614, -204 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="SelectName" type="LineEdit" parent="CharacterPage"]
 anchor_left = 0.5
@@ -266,99 +139,27 @@ margin_left = -138.0
 margin_top = -27.0
 margin_right = 150.0
 margin_bottom = 13.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 1
-size_flags_horizontal = 1
-size_flags_vertical = 1
 text = "Enter your name here"
 align = 1
-secret_character = "*"
-focus_mode = 2
-context_menu_enabled = true
-clear_button_enabled = false
-placeholder_alpha = 0.6
-caret_blink = false
-caret_blink_speed = 0.65
-caret_position = 0
 
 [node name="SelectGender" type="OptionButton" parent="CharacterPage"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 453.0
 margin_top = 442.0
 margin_right = 593.0
 margin_bottom = 474.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-action_mode = 0
-enabled_focus_mode = 2
-shortcut = null
-group = null
-flat = false
-align = 0
-items = [  ]
-selected = -1
 
 [node name="SelectHouse" type="OptionButton" parent="CharacterPage"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 716.0
 margin_top = 439.0
 margin_right = 856.0
 margin_bottom = 471.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-action_mode = 0
-enabled_focus_mode = 2
-shortcut = null
-group = null
-flat = false
-align = 0
-items = [  ]
-selected = -1
 
 [node name="FinishCharSetup" type="Button" parent="CharacterPage"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 568.0
 margin_top = 608.0
 margin_right = 704.0
 margin_bottom = 640.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Start"
-flat = false
-align = 1
 
 [connection signal="pressed" from="MainPage/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainPage/ExitButiion" to="." method="_on_ExitButiion_pressed"]
