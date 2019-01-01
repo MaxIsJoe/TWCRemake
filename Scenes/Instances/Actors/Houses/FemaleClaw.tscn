@@ -62,7 +62,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="FemaleClaw" index="0" instance=ExtResource( 1 )]
+[node name="FemaleClaw" instance=ExtResource( 1 )]
 IsFemale = true
 IsClaw = true
 
