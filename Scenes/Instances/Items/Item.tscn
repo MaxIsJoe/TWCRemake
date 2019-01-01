@@ -4,25 +4,9 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
-custom_solver_bias = 0.0
-radius = 10.0
 
 [node name="Item" type="Area2D"]
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
 script = ExtResource( 1 )
-IsImportant = null
-CanBeThrown = null
-CanEquip = null
-value = null
-Name = null
-desc = null
-Icon = null
 
 [node name="Sprite" type="Sprite" parent="."]
 
