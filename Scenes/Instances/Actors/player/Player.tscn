@@ -71,11 +71,11 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=3]
 
+radius = 4.0
+height = 19.0
 
 [sub_resource type="DynamicFont" id=4]
 
-use_mipmaps = false
-use_filter = false
 font_data = ExtResource( 21 )
 
 [node name="Player" type="KinematicBody2D"]
