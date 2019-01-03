@@ -78,7 +78,9 @@ height = 19.0
 
 font_data = ExtResource( 21 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"Players",
+]]
 script = ExtResource( 1 )
 heatlh = 100
 maxHealth = 100
