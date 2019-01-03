@@ -19,6 +19,10 @@ config/name="TWC"
 run/main_scene="res://Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/fps/force_fps=60
+
 [display]
 
 window/size/width=1280
@@ -40,5 +44,8 @@ quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
+threads/thread_model=2
+quality/shadows/filter_mode=0
+quality/depth_prepass/enable=false
 environment/default_clear_color=Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 quality/depth/hdr=false
