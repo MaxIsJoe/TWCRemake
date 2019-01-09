@@ -1,19 +1,19 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/0.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/0.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/0.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/1.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/2.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/3.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/1.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/2.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/3.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/1.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/2.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/3.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/2.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/3.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/3.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/0.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/1.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/2.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/3.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/1.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/2.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/3.png" type="Texture" id=17]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Scripts/FPSLabel.gd" type="Script" id=19]
 [ext_resource path="res://Scenes/Instances/Actors/player/Inventory.tscn" type="PackedScene" id=20]
 [ext_resource path="res://fonts/Actor-Regular.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://Sprites/BlackTransparent.png" type="Texture" id=22]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -43,22 +44,22 @@ animations = [ {
 "name": "idleleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "walkup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "walkdown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "walkleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "walkup",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "idleup",
 "speed": 5.0
@@ -76,6 +77,7 @@ height = 19.0
 
 [sub_resource type="DynamicFont" id=4]
 
+use_mipmaps = false
 font_data = ExtResource( 21 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -143,4 +145,13 @@ drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 editor_draw_drag_margin = true
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 22 )
+texture_scale = 4.25
+color = Color( 0.976471, 0.972549, 0.972549, 1 )
+mode = 3
+shadow_enabled = true
+shadow_color = Color( 0.0117647, 0.0117647, 0.0117647, 0 )
+shadow_buffer_size = 100
 

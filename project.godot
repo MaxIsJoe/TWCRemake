@@ -40,12 +40,12 @@ InventoryButton={
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
 threads/thread_model=2
-quality/shadows/filter_mode=0
+quality/filters/anisotropic_filter_level=1
+quality/shadows/filter_mode=2
 quality/depth_prepass/enable=false
 environment/default_clear_color=Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 quality/depth/hdr=false
