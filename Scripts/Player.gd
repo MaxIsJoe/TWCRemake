@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var heatlh
+export (int) var health
 export (int) var maxHealth
 export (int) var mana
 export (int) var maxMana
@@ -37,7 +37,7 @@ var canmove = true
 var Karma = 100
 
 signal isdead
-signal hpupdate
+signal hpupdate(health)
 signal mpupdate
 
 const SPEED = 150
@@ -59,6 +59,7 @@ func _ready():
 		gender = "Male"
 	if(IsFemale == true):
 		gender = "Female"
+	emit_signal("hpupdate", health)
 
 	
 	
@@ -92,10 +93,13 @@ func _physics_process(delta):
 	
 func _input(event):
 	if(Input.is_action_just_pressed("InventoryButton")):
-		if InventoryUI.visible == true:
+		if InventoryUI.visible == true:   
 			InventoryUI.visible = false
 		else:
 			InventoryUI.visible = true
+	#DEBUG
+	if(Input.is_action_just_pressed("ui_page_down")):
+		takedamage(5)
 			
 func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
@@ -109,7 +113,9 @@ func updatenamelabel():
 		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
 
 func takedamage(dmg):
-	heatlh -= dmg
+	health -= dmg
+	emit_signal("hpupdate", health)
 	
 func healthregen(amount):
-	heatlh += amount
+	health += amount
+	emit_signal("hpupdate", health)
