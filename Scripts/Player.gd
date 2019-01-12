@@ -107,3 +107,9 @@ func updatenamelabel():
 		PlayerNameUI.add_color_override("font_color", Color(0,1,0,1))
 	if(IsClaw):
 		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
+
+func takedamage(dmg):
+	heatlh -= dmg
+	
+func healthregen(amount):
+	heatlh += amount
