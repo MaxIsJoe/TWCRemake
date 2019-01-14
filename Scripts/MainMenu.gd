@@ -30,7 +30,7 @@ var ForbiddenNames = ["robed figure",
 				"penny haywood",
 				"muller sydney",
 				"muller"]
-var TestWorld = load("res://Scenes/World.tscn")
+var TestWorld = "res://Scenes/World.tscn"
 export (NodePath) var dropdown_path
 
 onready var versionlabel = get_node("MainPage/Version")
@@ -150,4 +150,4 @@ func CreateThePlayer(charname,gender,house):
 			add_child(NewSlythFemale)
 			NewSlythFemale.PlayerName = charname.text
 			NewSlythFemale.updatenamelabel()
-			Teleport.Move_To_Scene(TestWorld, NewSlythFemale)
+			Teleport.Move_To_Scene(self, TestWorld, NewSlythFemale, Vector2(215,248))
