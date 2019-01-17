@@ -13,8 +13,11 @@ func Deffered_MoveToScene(thisscene,nextscene, player,spawnPos):
 	pl = player
 	spawnpos = spawnPos
 	thisscene.remove_child(player)
-	remove_child(player)
+	thisscene.queue_free()
 	get_tree().change_scene(scene)
 	#var newscene = get_tree().current_scene
 	get_tree().get_root().add_child(player)
+	#print(get_tree().get_nodes_in_group("WorldScenes"))
+	#print(get_tree().get_current_scene())
+	#get_tree().get_current_scene().add_child(player)
 	player.position = spawnPos
