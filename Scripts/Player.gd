@@ -7,6 +7,8 @@ export (int) var maxMana
 export (int) var damage
 export (int) var defense
 export (int) var gold
+export (int) var EXP
+export (int) var MaxEXP
 export (int) var level
 export (int) var levelcap
 #export (float) var speed
@@ -15,7 +17,6 @@ export (String) var PlayerRank
 export (String) var PlayerYear
 export (String) var PlayerHouse
 export (bool) var CanDrawWand
-export (bool) var MaxedLevel
 export (bool) var IsMale
 export (bool) var IsFemale
 export (bool) var IsGryif
@@ -26,19 +27,21 @@ export (bool) var IsNew
 
 onready var animstate = get_node("AnimatedSprite")
 onready var InventoryUI = get_node("Inventory/InventoryUI")
+onready var LevelUpAnim = $Inventory/Leveup/LevelUpAnim
 onready var PlayerNameUI = $PlayerName
 
-var EXP
-var lvlupEXP
 var gender
 #var velocity = Vector2()
 var alive = true
 var canmove = true
 var Karma = 100
+var statpoints = 0
+var spellppoints = 0
+var currentscene
 
 signal isdead
 signal hpupdate(health)
-signal mpupdate
+signal mpupdate(mana)
 
 const SPEED = 150
 
@@ -60,6 +63,8 @@ func _ready():
 	if(IsFemale == true):
 		gender = "Female"
 	emit_signal("hpupdate", health)
+	emit_signal("mpupdate", mana)
+	print(currentscene)
 
 	
 	
@@ -100,6 +105,9 @@ func _input(event):
 	#DEBUG
 	if(Input.is_action_just_pressed("ui_page_down")):
 		takedamage(5)
+	if(Input.is_action_just_pressed("ui_page_up")):
+		expgain(50)
+		print("Your level is ", level," Your EXP is ",EXP," and your MaxEXP = ",MaxEXP)
 			
 func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
@@ -119,3 +127,26 @@ func takedamage(dmg):
 func healthregen(amount):
 	health += amount
 	emit_signal("hpupdate", health)
+	
+func manatake(amount):
+	mana -= amount
+func manaregen(amount):
+	mana += amount
+	
+func expgain(amount):
+	if(level != levelcap):
+		EXP += amount
+		levelupcheck()
+	else:
+		return
+
+func levelupcheck():
+	if(EXP >= MaxEXP):
+		level += 1
+		MaxEXP *= level / 2 #This is temporary. Change later.
+		EXP = 0
+		statpoints += 1
+		LevelUpAnim.play("FadeInFadeOut")
+
+func SetPosition(Position):
+	self.position = Position
