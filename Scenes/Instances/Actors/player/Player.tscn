@@ -164,9 +164,9 @@ margin_bottom = 1.0
 [node name="HPProgress" type="TextureProgress" parent="Inventory"]
 anchor_right = 0.03
 margin_left = -640.0
-margin_top = 340.0
+margin_top = -360.0
 margin_right = 40.0
-margin_bottom = 40.0
+margin_bottom = -310.0
 rect_scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 21 )
 texture_progress = ExtResource( 22 )
@@ -177,9 +177,9 @@ script = ExtResource( 23 )
 [node name="MPProgress" type="TextureProgress" parent="Inventory"]
 anchor_right = 0.03
 margin_left = -640.0
-margin_top = 320.0
+margin_top = -340.0
 margin_right = 40.0
-margin_bottom = 370.0
+margin_bottom = -290.0
 rect_scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 24 )
 texture_progress = ExtResource( 22 )
