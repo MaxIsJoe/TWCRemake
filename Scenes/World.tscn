@@ -73,6 +73,5 @@ occluder = SubResource( 4 )
 position = Vector2( 215.66, 248.85 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-visible = false
 position = Vector2( 329.565, 243.392 )
 
