@@ -29,6 +29,7 @@ onready var animstate = get_node("AnimatedSprite")
 onready var InventoryUI = get_node("Inventory/InventoryUI")
 onready var LevelUpAnim = $Inventory/Leveup/LevelUpAnim
 onready var PlayerNameUI = $PlayerName
+onready var tabs = $Inventory/TabContainer
 
 var gender
 #var velocity = Vector2()
@@ -102,6 +103,11 @@ func _input(event):
 			InventoryUI.visible = false
 		else:
 			InventoryUI.visible = true
+	if(Input.is_action_just_pressed("OpenTabs")):
+		if tabs.visible == true:
+			tabs.visible = false
+		else:
+			tabs.visible = true
 	#DEBUG
 	if(Input.is_action_just_pressed("ui_page_down")):
 		takedamage(5)
