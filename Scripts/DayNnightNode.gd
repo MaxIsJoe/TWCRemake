@@ -1,4 +1,4 @@
-extends Sprite
+extends AnimatedSprite
 
 onready var DaynNightbehavior = get_node("/root/dayNnight")
 
@@ -8,25 +8,22 @@ var IsNight = false
 func _ready():
 	if(DaynNightbehavior.Day):
 		DaynNightbehavior.ChangeToDay(self)
+		IsDay = true
+		IsNight = false
 	else:
 		DaynNightbehavior.ChangeToNight(self)
-	print(modulate)
+		IsDay = false
+		IsNight = true
+	#print(modulate)
+	#print(DaynNightbehavior.Day , DaynNightbehavior.Night)
 	
 func _process(delta):
-	DaynNightbehavior.TimeMove()
-	if(DaynNightbehavior.Day):
-		if(IsDay):
-			print("Has checked day")
-		if(!IsDay):
-			print("changed to Night")
-			DaynNightbehavior.ChangeToNight(self)
-			IsDay = false
-			IsNight = true
-	if(DaynNightbehavior.Night):
-		if(IsNight):
-			print("has changed night")
-		if(!IsNight):
-			print("has changed to day")
-			DaynNightbehavior.ChangeToDay(self)
-			IsDay = true
-			IsNight = false
+	#The way of doing this is horrible and needs improvments
+	if(DaynNightbehavior.Day == true):
+		DaynNightbehavior.ChangeToDay(self)
+		IsDay = true
+		IsNight = false
+	elif(DaynNightbehavior.Night == true):
+		IsDay = false
+		IsNight = true
+		DaynNightbehavior.ChangeToNight(self)
