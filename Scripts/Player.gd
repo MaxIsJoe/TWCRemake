@@ -26,10 +26,10 @@ export (bool) var IsClaw
 export (bool) var IsNew
 
 onready var animstate = get_node("AnimatedSprite")
-onready var InventoryUI = get_node("Inventory/InventoryUI")
-onready var LevelUpAnim = $Inventory/Leveup/LevelUpAnim
+#onready var InventoryUI = get_node("Inventory/InventoryUI")
+onready var LevelUpAnim = $UI/Leveup/LevelUpAnim
 onready var PlayerNameUI = $PlayerName
-onready var tabs = $Inventory/TabContainer
+onready var tabs = $UI/TabContainer
 
 var gender
 #var velocity = Vector2()
@@ -39,8 +39,11 @@ var Karma = 100
 var statpoints = 0
 var spellppoints = 0
 var currentscene
+#Inventory
+var ItemsArray = []
 
 signal isdead
+signal GrabbedAnItem(item)
 signal hpupdate(health)
 signal mpupdate(mana)
 
@@ -98,11 +101,11 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 	
 func _input(event):
-	if(Input.is_action_just_pressed("InventoryButton")):
-		if InventoryUI.visible == true:   
-			InventoryUI.visible = false
-		else:
-			InventoryUI.visible = true
+	#if(Input.is_action_just_pressed("InventoryButton")):
+	#	if InventoryUI.visible == true:   
+	#		InventoryUI.visible = false
+	#	else:
+	#		InventoryUI.visible = true
 	if(Input.is_action_just_pressed("OpenTabs")):
 		if tabs.visible == true:
 			tabs.visible = false
@@ -156,3 +159,7 @@ func levelupcheck():
 
 func SetPosition(Position):
 	self.position = Position
+	
+func grab(item):
+	ItemsArray.append(item)
+	emit_signal("GrabbedAnItem", item)

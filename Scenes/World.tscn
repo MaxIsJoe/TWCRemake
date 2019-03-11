@@ -44,6 +44,7 @@ animations = [ {
 [node name="World" type="Node2D" groups=[
 "WorldScenes",
 ]]
+show_behind_parent = true
 
 [node name="Floors" parent="." instance=ExtResource( 1 )]
 position = Vector2( 212.295, 97.0689 )
@@ -70,6 +71,7 @@ position = Vector2( 933.414, 785 )
 position = Vector2( 868.437, 785 )
 
 [node name="Door4" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 901.409, 785 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
@@ -92,7 +94,7 @@ position = Vector2( 215.66, 248.85 )
 position = Vector2( 329.565, 243.392 )
 
 [node name="DayNnight" type="AnimatedSprite" parent="."]
-light_mask = 5
+light_mask = 262145
 position = Vector2( 1537.72, 369.616 )
 scale = Vector2( 2.38981, 2.33673 )
 frames = SubResource( 5 )
