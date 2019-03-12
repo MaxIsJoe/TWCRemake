@@ -266,6 +266,7 @@ margin_bottom = 548.0
 light_mask = 524288
 margin_right = 593.0
 margin_bottom = 539.0
+rect_min_size = Vector2( 593, 593 )
 
 [node name="Quests" type="Tabs" parent="UI/TabContainer"]
 editor/display_folded = true
