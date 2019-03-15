@@ -227,6 +227,7 @@ text = "You earned a statpoint for leveling up!"
 anims/FadeInFadeOut = SubResource( 5 )
 
 [node name="TabContainer" type="TabContainer" parent="UI"]
+visible = false
 light_mask = 524288
 anchor_right = 1.0
 margin_left = -570.0
