@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/darkstairs_0.png-a998a35c80e91b7307991bd30b96898b.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

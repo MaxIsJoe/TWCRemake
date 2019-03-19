@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/basilisk_0.png-a86589db5133ea8bf1e830201a8dfac5.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

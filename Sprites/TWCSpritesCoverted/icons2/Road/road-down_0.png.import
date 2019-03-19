@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/road-down_0.png-18ff38f105aaceefbc7c393fd8c9eb79.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

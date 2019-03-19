@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/wyvern_2.png-63f4f11d4c87571fa892752da421eda8.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

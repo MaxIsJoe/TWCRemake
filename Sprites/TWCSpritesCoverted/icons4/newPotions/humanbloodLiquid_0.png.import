@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/humanbloodLiquid_0.png-cf2c8e3e44d0a08bea4ecedf9ddca299.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

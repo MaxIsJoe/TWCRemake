@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/firebat_0.png-f1564ac551b633060b60cd9e79a99b97.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

@@ -6,22 +6,18 @@
 [ext_resource path="res://Scenes/Instances/Actors/player/Player.tscn" type="PackedScene" id=4]
 
 [sub_resource type="OccluderPolygon2D" id=1]
-
 cull_mode = 2
 polygon = PoolVector2Array( 402.865, 322.141, 402.865, 353.653, 533.326, 354.914, 533.326, 322.141 )
 
 [sub_resource type="OccluderPolygon2D" id=2]
-
 cull_mode = 2
 polygon = PoolVector2Array( 320, 32, 320, 800, 544, 800, 544, 1056, 736, 1056, 736, 992, 768, 992, 768, 1408, 1344, 1408, 1344, 960, 1312, 960, 1312, 832, 1280, 832, 1280, 960, 1088, 960, 1088, 992, 1312, 992, 1312, 1376, 800, 1376, 800, 992, 1024, 992, 1024, 960, 704, 960, 704, 1024, 576, 1024, 576, 768, 352, 768, 352, 64, 1024, 64, 1024, 768, 704, 768, 704, 704, 672, 704, 672, 800, 704, 800, 704, 864, 1184, 864, 1184, 832, 736, 832, 736, 800, 1056, 800, 1056, 32 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
-
 cull_mode = 2
 polygon = PoolVector2Array( 464, 288, 496, 288, 496, 256, 464, 256 )
 
 [sub_resource type="OccluderPolygon2D" id=4]
-
 cull_mode = 1
 polygon = PoolVector2Array( 464, 192, 592, 192, 592, 224, 464, 224 )
 

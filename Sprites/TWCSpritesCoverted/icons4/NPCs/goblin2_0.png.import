@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/goblin2_0.png-f66ca8e156eae284d1b84b8bd56213f3.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

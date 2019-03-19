@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/golem_0.png-b36dec7c878d901577384dbce00f9fad.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
