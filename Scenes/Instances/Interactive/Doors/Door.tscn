@@ -7,11 +7,9 @@
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/open_0.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-
 extents = Vector2( 16.6911, 18.2943 )
 
 [sub_resource type="SpriteFrames" id=2]
-
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": false,
@@ -30,7 +28,6 @@ animations = [ {
 } ]
 
 [sub_resource type="OccluderPolygon2D" id=3]
-
 cull_mode = 2
 polygon = PoolVector2Array( -16, -15, -16, 16, 16, 16, 16, -15 )
 
