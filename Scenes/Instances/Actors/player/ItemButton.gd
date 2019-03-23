@@ -11,6 +11,3 @@ func UpdateButton(Name,Icon):
 	#itemref = itemreferece
 	print(name)
 
-func _on_ItemButton_pressed():
-	pass
-	
