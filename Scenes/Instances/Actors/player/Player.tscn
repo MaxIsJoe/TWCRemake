@@ -1,19 +1,19 @@
 [gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/0.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/0.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/1.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/2.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/3.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/0.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/1.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/2.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/3.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/1.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/2.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/3.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/0.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/2.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/3.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/2.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/1.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/2.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/3.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/0.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/1.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/2.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/3.png" type="Texture" id=17]
@@ -34,42 +34,42 @@
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "idleup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "idledown",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
 "name": "idleleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "walkleft",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "walkright",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walkleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "walkdown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "idleright",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "walkup",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "idleup",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "idledown",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idleright",
 "speed": 5.0
 } ]
 
@@ -229,7 +229,8 @@ margin_right = 570.0
 margin_bottom = 290.0
 
 [node name="Status" type="Tabs" parent="UI/TabContainer"]
-editor/display_folded = true
+visible = false
+light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -238,12 +239,13 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="Info_Status" type="Label" parent="UI/TabContainer/Status"]
+light_mask = 524288
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Here the player should see all of his stats and important information on his character"
 
 [node name="Inventory" type="Tabs" parent="UI/TabContainer"]
-visible = false
+light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -255,6 +257,7 @@ ItemButton = ExtResource( 26 )
 
 [node name="Info_Inventory" type="Label" parent="UI/TabContainer/Inventory"]
 visible = false
+light_mask = 524288
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Here the player can accses his full inventory. Still unsure if we should stick to the list inventory or move on to a grid based inventory"
@@ -267,6 +270,7 @@ margin_right = 1127.0
 margin_bottom = 548.0
 
 [node name="VScrollBar" type="VScrollBar" parent="UI/TabContainer/Inventory/Panel"]
+light_mask = 524288
 margin_left = 590.0
 margin_right = 602.0
 margin_bottom = 550.0
@@ -279,7 +283,7 @@ margin_bottom = 539.0
 rect_min_size = Vector2( 593, 593 )
 
 [node name="ItemSpriteShowcase" type="Panel" parent="UI/TabContainer/Inventory"]
-editor/display_folded = true
+light_mask = 524288
 margin_left = -1.43201
 margin_top = -2.79236
 margin_right = 521.568
@@ -287,8 +291,10 @@ margin_bottom = 298.208
 rect_min_size = Vector2( 523, 301 )
 
 [node name="ItemSprite" type="Sprite" parent="UI/TabContainer/Inventory/ItemSpriteShowcase"]
+light_mask = 524288
 
 [node name="DescPanel" type="Panel" parent="UI/TabContainer/Inventory"]
+light_mask = 524288
 margin_left = -1.0
 margin_top = 302.0
 margin_right = 523.0
@@ -296,6 +302,7 @@ margin_bottom = 550.0
 rect_min_size = Vector2( 524, 248 )
 
 [node name="ItemName" type="Label" parent="UI/TabContainer/Inventory/DescPanel"]
+light_mask = 524288
 margin_left = 175.0
 margin_top = 1.0
 margin_right = 352.0
@@ -305,6 +312,7 @@ text = "Item Name"
 align = 1
 
 [node name="ItemDesc" type="RichTextLabel" parent="UI/TabContainer/Inventory/DescPanel"]
+light_mask = 524288
 margin_left = 1.0
 margin_top = 37.0
 margin_right = 523.0
