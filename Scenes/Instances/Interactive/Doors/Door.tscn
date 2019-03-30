@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/opening_0/1.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/closing_0/1.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/closed_0.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/closed_0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/opening_0/1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/closing_0/1.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/open_0.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -11,20 +11,20 @@ extents = Vector2( 16.6911, 18.2943 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": false,
 "name": "Closing",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "Opening",
 "speed": 7.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
 } ]
 
 [sub_resource type="OccluderPolygon2D" id=3]
