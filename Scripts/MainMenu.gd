@@ -40,6 +40,7 @@ onready var mainpage = get_node("MainPage")
 onready var dropdownGender = get_node("CharacterPage/SelectGender")
 onready var dropdownHouse = get_node("CharacterPage/SelectHouse")
 onready var warninglabel = get_node("CharacterPage/Warning")
+onready var SplashScreenAnim = $AnimationPlayer
 onready var MaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifMale.tscn")
 onready var MaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/MaleHuff.tscn")
 onready var MaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/MaleClaw.tscn")
@@ -50,6 +51,7 @@ onready var FemaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/Fema
 onready var FemaleSlytherin = preload("res://Scenes/Instances/Actors/Houses/SlythFemale.tscn")
 
 func _ready():
+	SplashScreenAnim.play("StartOfGame")
 	versionlabel.text = version
 	add_items()
 	disable_items(0)
