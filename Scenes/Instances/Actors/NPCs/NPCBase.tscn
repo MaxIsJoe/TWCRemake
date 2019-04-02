@@ -53,3 +53,9 @@ bbcode_enabled = true
 bbcode_text = "[center]Quick Dialoug"
 text = "Quick Dialoug"
 
+[node name="Holders" type="Node" parent="."]
+
+[node name="ShopHolder" type="Node" parent="Holders"]
+
+[node name="QuestHolder" type="Node" parent="Holders"]
+
