@@ -47,5 +47,5 @@ func GiveHouseCup():
 
 func _process(delta):
 	day = OS.get_date()["day"]
-	if(day == 29): #on the 29th of each month the house cup will be given to the house with most points
+	if(day == 1): #on the 1th of each month the house cup will be given to the house with most points, this has been updated because of leap year issues.
 		GiveHouseCup()
