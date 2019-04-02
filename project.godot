@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 Teleport="*res://Scripts/Teleport.gd"
 dayNnight="*res://Scripts/dayNnight.gd"
+Global="*res://Scripts/Global.gd"
 
 [debug]
 
