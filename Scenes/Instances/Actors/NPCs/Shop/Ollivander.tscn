@@ -29,7 +29,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Ollivander" index="0" instance=ExtResource( 1 )]
+[node name="Ollivander" instance=ExtResource( 1 )]
 NPC_Name = "Olivander"
 Desc = "Ollivander is an intelligent man, with a perfect memory when it comes to his work; he rememberes the details of every wand he ever sold. He seemed to become happier the more difficult the challenge to find exactly the right wand for a difficult customer was. He used a magical tape measure to help assess customers for their wand."
 CanMove = true

@@ -47,7 +47,7 @@ frames = SubResource( 2 )
 animation = "IdleFront"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 25.0
 autostart = true
 
 [node name="Quick_Dia" type="RichTextLabel" parent="."]
@@ -61,7 +61,9 @@ bbcode_enabled = true
 bbcode_text = "[center]Quick Dialoug"
 text = "Quick Dialoug"
 
-[node name="CharacterVisablity" type="Timer" parent="Quick_Dia"]
+[node name="Visable_Chars" type="Timer" parent="Quick_Dia"]
+wait_time = 8.0
+one_shot = true
 
 [node name="Holders" type="Node" parent="."]
 
@@ -73,4 +75,5 @@ text = "Quick Dialoug"
 script = ExtResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Quick_Dia/Visable_Chars" to="." method="_on_Visable_Chars_timeout"]
 [connection signal="send_text" from="Holders/DialougHolder" to="." method="_on_DialougHolder_send_text"]
