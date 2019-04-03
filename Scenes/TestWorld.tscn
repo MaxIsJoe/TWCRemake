@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Instances/Items/Food/CA.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Instances/Actors/player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Ollivander.tscn" type="PackedScene" id=5]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 cull_mode = 2
@@ -71,4 +72,7 @@ position = Vector2( 215.66, 248.85 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 329.565, 243.392 )
+
+[node name="Ollivander" parent="." instance=ExtResource( 5 )]
+position = Vector2( 185.448, 167.344 )
 

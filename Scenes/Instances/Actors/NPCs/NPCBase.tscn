@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/NPCBase.gd" type="Script" id=1]
-[ext_resource path="res://fonts/CaviarDreams.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/PlayfairDisplay-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/DialougHolder.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -29,7 +30,9 @@ animations = [ {
 } ]
 
 [sub_resource type="DynamicFont" id=3]
-size = 12
+size = 11
+outline_size = 1
+outline_color = Color( 0.109804, 0.109804, 0.109804, 1 )
 font_data = ExtResource( 2 )
 
 [node name="NPCBase" type="KinematicBody2D"]
@@ -43,15 +46,22 @@ shape = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "IdleFront"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
 [node name="Quick_Dia" type="RichTextLabel" parent="."]
-margin_left = -73.0
-margin_top = -33.0
-margin_right = 74.0
+margin_left = -80.0
+margin_top = -41.0
+margin_right = 81.0
 margin_bottom = -16.0
 custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0.211765, 1, 0.631373, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Quick Dialoug"
 text = "Quick Dialoug"
+
+[node name="CharacterVisablity" type="Timer" parent="Quick_Dia"]
 
 [node name="Holders" type="Node" parent="."]
 
@@ -59,3 +69,8 @@ text = "Quick Dialoug"
 
 [node name="QuestHolder" type="Node" parent="Holders"]
 
+[node name="DialougHolder" type="Node" parent="Holders"]
+script = ExtResource( 3 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="send_text" from="Holders/DialougHolder" to="." method="_on_DialougHolder_send_text"]
