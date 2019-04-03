@@ -11,9 +11,12 @@ var RandomDialoug_Ollivander = ["Now where did I leave that box?",
 
 var RandomEmotes_Ollivander = ["*Sigh*", "*Humms a song*"]
 
+var RandomGreetings_Ollivander = ["Hello, %s",
+"Good to see you, %s",
+"Looking for a new wand, %s ?"]
+
 func QuickDialoug():
 	if(get_parent().get_parent().NPC_Name == "Olivander"):
-		print(RandomDialoug_Ollivander[4])
 		print("Changing text.. hopefully")
 		randomize()
 		var luck = floor(rand_range(1,2))
@@ -23,3 +26,10 @@ func QuickDialoug():
 			emit_signal("send_text",RandomDialoug_Ollivander[dialougoptions])
 		if(luck == 2):
 			emit_signal("send_text",RandomEmotes_Ollivander[emoteoptions])
+			
+func QuickGreetings(charname):
+	if(get_parent().get_parent().NPC_Name == "Olivander"):
+		randomize()
+		var greetingsoptions = floor(rand_range(0,2))
+		var dilougtoplayername = RandomGreetings_Ollivander[greetingsoptions] % charname
+		emit_signal("send_text", dilougtoplayername)

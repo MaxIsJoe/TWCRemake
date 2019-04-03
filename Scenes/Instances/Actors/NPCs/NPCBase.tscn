@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/NPCBase.gd" type="Script" id=1]
 [ext_resource path="res://fonts/PlayfairDisplay-Regular.ttf" type="DynamicFontData" id=2]
@@ -6,16 +6,19 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 163.15, 122.502 )
+
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [  ],
 "loop": true,
-"name": "IdleLeft",
+"name": "IdleFront",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdleFront",
+"name": "IdelRight",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -25,11 +28,11 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdelRight",
+"name": "IdleLeft",
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 11
 outline_size = 1
 outline_color = Color( 0.109804, 0.109804, 0.109804, 1 )
@@ -42,8 +45,13 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="Acknowledgement_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Acknowledgement_area"]
+shape = SubResource( 2 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "IdleFront"
 
 [node name="Timer" type="Timer" parent="."]
@@ -55,7 +63,7 @@ margin_left = -168.0
 margin_top = -44.0
 margin_right = 169.0
 margin_bottom = -16.0
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0.211765, 1, 0.631373, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Quick Dialoug"
@@ -74,6 +82,7 @@ one_shot = true
 [node name="DialougHolder" type="Node" parent="Holders"]
 script = ExtResource( 3 )
 
+[connection signal="body_entered" from="Acknowledgement_area" to="." method="_on_Acknowledgement_area_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Quick_Dia/Visable_Chars" to="." method="_on_Visable_Chars_timeout"]
 [connection signal="send_text" from="Holders/DialougHolder" to="." method="_on_DialougHolder_send_text"]
