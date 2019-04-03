@@ -51,9 +51,9 @@ wait_time = 25.0
 autostart = true
 
 [node name="Quick_Dia" type="RichTextLabel" parent="."]
-margin_left = -80.0
-margin_top = -41.0
-margin_right = 81.0
+margin_left = -168.0
+margin_top = -44.0
+margin_right = 169.0
 margin_bottom = -16.0
 custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 0.211765, 1, 0.631373, 1 )
