@@ -40,7 +40,6 @@ var target : Vector2 = global_position
 var direction = Vector2()
 var region = 50
 var gap = Vector2()
-var target_raycast = get_world_2d().direct_space_state
 var result
 
 
@@ -48,7 +47,8 @@ var result
 
 func _physics_process(delta):
 	if(state == STATE_WANDERING):
-		simplewanderAI()
+		#simplewanderAI()
+		pass
 
 
 func _on_Timer_timeout():
@@ -84,9 +84,10 @@ func simplewanderAI():
 	#If the target position has been reached, pick a new one
 	var hit_pos
 	var move = direction * SPEED
+	var result
 	if(is_beyond(global_position, move, target)):
 		target = initial_position+Vector2(rand_range(-region, region), rand_range(-region, region))
-		result = target_raycast.intersect_ray(global_position,target)
+		#result = target_raycast.intersect_ray(global_position,target)
 		direction = target.normalized() 
 	if(result):
 		hit_pos = result.position
