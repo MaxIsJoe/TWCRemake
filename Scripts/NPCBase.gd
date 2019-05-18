@@ -16,9 +16,9 @@ onready var Dialoug = $Holders/DialougHolder
 onready var TimerNode = $Cooldowns/Timer
 onready var VisableCharactersTimer = $Quick_Dia/Visable_Chars
 onready var acknowledgement_area = $Acknowledgement_area
-onready var WanderCooldown = $Cooldowns/WanderCooldown
-onready var WanderingCooldown = $Cooldowns/WanderingCooldown
-onready var initial_position : Vector2 = global_position
+#onready var WanderCooldown = $Cooldowns/WanderCooldown
+#onready var WanderingCooldown = $Cooldowns/WanderingCooldown
+#onready var initial_position : Vector2 = global_position
 
 export(String) var NPC_Name = "NPC"
 export(String) var Desc = "No description"
@@ -34,17 +34,11 @@ var IsGreetingAPlayer = false
 var busy = false
 var Moving = false
 var state = STATE_WANDERING
-var roam_target_position = Vector2()
-var velocity = Vector2()
-var target : Vector2 = global_position
-var direction = Vector2()
-var region = 50
-var gap = Vector2()
 var result
 
 
 
-
+#######UPDATES########
 func _physics_process(delta):
 	if(state == STATE_WANDERING):
 		#simplewanderAI()
@@ -55,7 +49,13 @@ func _on_Timer_timeout():
 	if(!busy):
 		Dialoug.QuickDialoug()
 
+func _on_WanderCooldown_timeout():
+	if(Moving):
+		Moving = false
+	if(!Moving):
+		Moving = true
 
+#####DIALOUG######
 func _on_DialougHolder_send_text(text):
 	Quick_Dia.visible_characters = 3000
 	Quick_Dia.bbcode_text = "[center]" + text
@@ -71,37 +71,29 @@ func _on_Acknowledgement_area_body_entered(body):
 		Dialoug.QuickGreetings(body.PlayerName)
 		
 
-# Retuns true if the new position would be behind the target 
+
+#####WANDERING AI######
+# Retuns true if the new position would be behind the target  
 func is_beyond(last_pos : Vector2, move : Vector2, target_pos : Vector2) -> bool:
     if(last_pos.x <= target_pos.x && last_pos.x + move.x >= target_pos.x ||
         last_pos.x >= target_pos.x && last_pos.x + move.x <= target_pos.x ||
         last_pos.y <= target_pos.y && last_pos.y + move.y >= target_pos.y ||
         last_pos.y >= target_pos.y && last_pos.y + move.y <= target_pos.y):
             return true
-    return false 
+    return false
 
-func simplewanderAI():
-	#If the target position has been reached, pick a new one
-	var hit_pos
-	var move = direction * SPEED
-	var result
-	if(is_beyond(global_position, move, target)):
-		target = initial_position+Vector2(rand_range(-region, region), rand_range(-region, region))
-		#result = target_raycast.intersect_ray(global_position,target)
-		direction = target.normalized() 
-	if(result):
-		hit_pos = result.position
+#func randomize_velocity():
+#	velocity = Vector2(randi() % 3 - 1, randi() % 3 - 1)
+#	velocity = velocity.normalized() * SPEED / 2
 
-func _draw():
-	draw_line(get_parent().position, target, Color.red, 0.5)
-
-func _on_WanderCooldown_timeout():
-	if(Moving):
-		Moving = false
-	if(!Moving):
-		Moving = true
-		
-func randomize_velocity():
-	velocity = Vector2(randi() % 3 - 1, randi() % 3 - 1)
-	velocity = velocity.normalized() * SPEED / 2
-
+#func simplewanderAI():
+#	#If the target position has been reached, pick a new one
+#	var hit_pos
+#	var move = direction * SPEED
+#	var result
+#	if(is_beyond(global_position, move, target)):
+#		target = initial_position+Vector2(rand_range(-region, region), rand_range(-region, region))
+#		#result = target_raycast.intersect_ray(global_position,target)
+#		direction = target.normalized() 
+#	if(result):
+#		hit_pos = result.position

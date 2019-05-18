@@ -13,7 +13,7 @@ extents = Vector2( 163.15, 122.502 )
 animations = [ {
 "frames": [  ],
 "loop": true,
-"name": "IdleLeft",
+"name": "IdleFront",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -23,12 +23,12 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdleFront",
+"name": "IdelRight",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdelRight",
+"name": "IdleLeft",
 "speed": 5.0
 } ]
 
@@ -91,7 +91,6 @@ one_shot = true
 
 [node name="DialougHolder" type="Node" parent="Holders"]
 script = ExtResource( 3 )
-
 [connection signal="body_entered" from="Acknowledgement_area" to="." method="_on_Acknowledgement_area_body_entered"]
 [connection signal="timeout" from="Quick_Dia/Visable_Chars" to="." method="_on_Visable_Chars_timeout"]
 [connection signal="timeout" from="Cooldowns/Timer" to="." method="_on_Timer_timeout"]
