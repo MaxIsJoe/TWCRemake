@@ -42,14 +42,14 @@ onready var dropdownGender = get_node("CharacterPage/SelectGender")
 onready var dropdownHouse = get_node("CharacterPage/SelectHouse")
 onready var warninglabel = get_node("CharacterPage/Warning")
 onready var SplashScreenAnim = $AnimationPlayer
-onready var MaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifMale.tscn")
-onready var MaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/MaleHuff.tscn")
-onready var MaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/MaleClaw.tscn")
-onready var MaleSlytherin = preload("res://Scenes/Instances/Actors/Houses/SlythMale.tscn")
-onready var FemaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifFemale.tscn")
-onready var FemaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/FemaleHuff.tscn")
-onready var FemaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/FemaleClaw.tscn")
-onready var FemaleSlytherin = preload("res://Scenes/Instances/Actors/Houses/SlythFemale.tscn")
+var MaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifMale.tscn")
+var MaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/MaleHuff.tscn")
+var MaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/MaleClaw.tscn")
+var MaleSlytherin = preload("res://Scenes/Instances/Actors/Houses/SlythMale.tscn")
+var FemaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifFemale.tscn")
+var FemaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/FemaleHuff.tscn")
+var FemaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/FemaleClaw.tscn")
+var FemaleSlytherin  = preload("res://Scenes/Instances/Actors/Houses/SlythFemale.tscn")
 
 func _ready():
 	if(!DebugTesting):
@@ -112,44 +112,51 @@ func _on_ExitButiion_pressed():
 func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
-func CreateThePlayer(charname,gender,house):
+remote func CreateThePlayer(charname,gender,house):
 	if(gender == 1):
 		if(house == 1):
 			var NewGrifMale = MaleGryffindor.instance()
 			add_child(NewGrifMale)
 			NewGrifMale.PlayerName = charname.text
 			NewGrifMale.updatenamelabel()
+			Teleport.Move_To_Scene(self, TestWorld, MaleGryffindor, TestWorldSpawnPostion)
 		if(house == 2):
 			var NewHuffMale = MaleHufflepuff.instance()
 			add_child(NewHuffMale)
 			NewHuffMale.PlayerName = charname.text
 			NewHuffMale.updatenamelabel()
+			Teleport.Move_To_Scene(self, TestWorld, MaleHufflepuff, TestWorldSpawnPostion)
 		if(house == 3):
 			var NewClawfMale = MaleRavenclaw.instance()
 			add_child(NewClawfMale)
 			NewClawfMale.PlayerName = charname.text
 			NewClawfMale.updatenamelabel()
+			Teleport.Move_To_Scene(self, TestWorld, MaleRavenclaw, TestWorldSpawnPostion)
 		if(house == 4):
 			var NewSlythMale = MaleSlytherin.instance()
 			add_child(NewSlythMale)
 			NewSlythMale.PlayerName = charname.text
 			NewSlythMale.updatenamelabel()
+			Teleport.Move_To_Scene(self, TestWorld, MaleSlytherin, TestWorldSpawnPostion)
 	if(gender == 2):
 		if(house == 1):
 			var NewGrifFemale = FemaleGryffindor.instance()
 			add_child(NewGrifFemale)
 			NewGrifFemale.PlayerName = charname.text
 			NewGrifFemale.updatenamelabel()
+			Teleport.Move_To_Scene(self, TestWorld, FemaleGryffindor, TestWorldSpawnPostion)
 		if(house == 2):
 			var NewHuffFemale = FemaleHufflepuff.instance()
 			add_child(NewHuffFemale)
 			NewHuffFemale.PlayerName = charname.text
 			NewHuffFemale.updatenamelabel()
+			Teleport.Move_To_Scene(self, TestWorld, FemaleHufflepuff, TestWorldSpawnPostion)
 		if(house == 3):
 			var NewClawFemale = FemaleRavenclaw.instance()
 			add_child(NewClawFemale)
 			NewClawFemale.PlayerName = charname.text
 			NewClawFemale.updatenamelabel()
+			Teleport.Move_To_Scene(self, TestWorld, FemaleRavenclaw, TestWorldSpawnPostion)
 		if(house == 4):
 			var NewSlythFemale = FemaleSlytherin.instance()
 			add_child(NewSlythFemale)
