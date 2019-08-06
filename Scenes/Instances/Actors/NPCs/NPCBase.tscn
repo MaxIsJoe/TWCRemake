@@ -18,17 +18,17 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
+"name": "IdleLeft",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
 "name": "IdleUp",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
 "name": "IdelRight",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "IdleLeft",
 "speed": 5.0
 } ]
 

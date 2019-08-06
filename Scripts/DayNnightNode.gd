@@ -1,4 +1,4 @@
-extends AnimatedSprite
+extends ColorRect
 
 onready var DaynNightbehavior = get_node("/root/dayNnight")
 

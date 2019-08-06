@@ -6,12 +6,14 @@ var SlythPoints = 0
 var ClawPoints = 0
 var HuffPoints = 0
 
+
 var housewinnerofthismonth
 
 var housenames = ["Grif","Slyth","Claw","Huff"]
 
 var day = OS.get_date()["day"]
-
+var Moon
+var DaynNight
 
 func givepoints(points, to_house):
 	if(to_house == "Grif"):
