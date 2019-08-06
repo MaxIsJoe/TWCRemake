@@ -2,28 +2,40 @@ extends ColorRect
 
 onready var DaynNightbehavior = get_node("/root/dayNnight")
 
-var IsDay = true
-var IsNight = false
+var IsDay = false
+var IsNight = true
 
 func _ready():
+	DaynNightbehavior
 	if(DaynNightbehavior.Day):
-		DaynNightbehavior.ChangeToDay(self)
+		#DaynNightbehavior.ChangeToDay(self)
+		#DaynNightbehavior.HideShow(self)
 		IsDay = true
 		IsNight = false
 	else:
-		DaynNightbehavior.ChangeToNight(self)
+		#DaynNightbehavior.ChangeToNight(self)
+		#DaynNightbehavior.HideShow(self)
 		IsDay = false
 		IsNight = true
 	#print(modulate)
 	#print(DaynNightbehavior.Day , DaynNightbehavior.Night)
 	
+func _ChangeToNight():
+	self.color = DaynNightbehavior.NightColor
+func _ChangeToDay():
+	self.color = DaynNightbehavior.DayColor
+	
 func _process(delta):
 	#The way of doing this is horrible and needs improvments
 	if(DaynNightbehavior.Day == true):
-		DaynNightbehavior.ChangeToDay(self)
+		_ChangeToDay()
+		#DaynNightbehavior.ChangeToDay(self)
+		#DaynNightbehavior.HideShow(self)
 		IsDay = true
 		IsNight = false
 	elif(DaynNightbehavior.Night == true):
 		IsDay = false
 		IsNight = true
-		DaynNightbehavior.ChangeToNight(self)
+		_ChangeToNight()
+		#DaynNightbehavior.ChangeToNight(self)
+		#DaynNightbehavior.HideShow(self)
