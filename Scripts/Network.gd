@@ -18,6 +18,7 @@ func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnect")
 	
 func _player_disconnected(id):
+	print("Player Disconnected")
 	get_node(str(id)).queue_free()
 
 func _on_server_disconnected():
@@ -41,6 +42,7 @@ func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
 	players[local_player_id] = self_data
 	rpc('_send_player_info', local_player_id, self_data)
+	print("Connected to server")
 
 func _on_player_disconnected(id):
 	players.erase(id)

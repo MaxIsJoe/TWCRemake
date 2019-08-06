@@ -42,6 +42,8 @@ var currentscene
 #Inventory
 var ItemsArray = []
 
+slave var PlayerPostion = Vector2()
+
 signal isdead
 signal GrabbedAnItem(item)
 signal hpupdate(health)
@@ -50,6 +52,7 @@ signal mpupdate(mana)
 const SPEED = 150
 
 func _ready():
+	
 	#Check what house the player is in at the moment
 	if(IsGryif == true):
 		PlayerHouse = "Gryffindor"
@@ -99,6 +102,10 @@ func _physics_process(delta):
 		animstate.play("idleleft")
 	velocity = velocity.normalized() * SPEED
 	move_and_slide(velocity)
+	#if get_tree().is_network_server():
+	#	Network.update_position(int(name), position)
+	#else:
+	rset_unreliable('PlayerPostion', velocity)
 	
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
