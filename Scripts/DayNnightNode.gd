@@ -21,9 +21,9 @@ func _ready():
 	#print(DaynNightbehavior.Day , DaynNightbehavior.Night)
 	
 func _ChangeToNight():
-	self.color = DaynNightbehavior.NightColor
+	self.color = Global.NightColor
 func _ChangeToDay():
-	self.color = DaynNightbehavior.DayColor
+	self.color = Global.DayColor
 	
 func _process(delta):
 	#The way of doing this is horrible and needs improvments

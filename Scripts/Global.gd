@@ -15,6 +15,9 @@ var day = OS.get_date()["day"]
 var Moon
 var DaynNight
 
+var NightColor = Color(0, 0.06, 0.45, 0.35)
+var DayColor = Color(7, 33, 203, 0)
+
 func givepoints(points, to_house):
 	if(to_house == "Grif"):
 		GrifPoints += points

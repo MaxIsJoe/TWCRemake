@@ -4,8 +4,6 @@ var Day = false
 var Night = true
 var timer
 var WaitForNextTimeOfDay = 5 #420 #7 minutes
-var NightColor = Color(0, 0.06, 0.45, 0.35)
-var DayColor = Color(7, 33, 203, 0)
 
 #signal ChangeToDay
 #signal ChangeToNight
@@ -35,10 +33,10 @@ func TimeMove():
 		#emit_signal("ChangeToDay")
 
 func _Change_ToNight():
-	self.color = NightColor
+	self.color = Global.NightColor
 	
 func _Change_ToDay():
-	self.color = DayColor
+	self.color = Global.DayColor
 
 
 func HideShow(node):
