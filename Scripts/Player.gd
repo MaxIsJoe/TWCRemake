@@ -105,7 +105,7 @@ func _physics_process(delta):
 	#if get_tree().is_network_server():
 	#	Network.update_position(int(name), position)
 	#else:
-	rset_unreliable('PlayerPostion', velocity)
+	#rset_unreliable('PlayerPostion', velocity)
 	
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
