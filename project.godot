@@ -21,9 +21,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Teleport="*res://Scripts/Teleport.gd"
+Teleport="res://Scripts/Teleport.gd"
 dayNnight="*res://Scripts/dayNnight.gd"
 Global="*res://Scripts/Global.gd"
+Network="*res://Scripts/Network.gd"
 
 [debug]
 

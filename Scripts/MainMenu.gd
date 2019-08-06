@@ -155,4 +155,4 @@ func CreateThePlayer(charname,gender,house):
 			NewSlythFemale.updatenamelabel()
 			#Move_To_Next_Scene(thisscene ,nextscene, player,spawnPos):
 			#NewSlythFemale.Move_To_Next_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)
-			Teleport.Move_To_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)
+			#Teleport.Move_To_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)

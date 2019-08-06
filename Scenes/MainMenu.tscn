@@ -307,7 +307,6 @@ texture = ExtResource( 7 )
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 628.374, 343.55 )
 texture = ExtResource( 8 )
-
 [connection signal="pressed" from="MainPage/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainPage/ExitButiion" to="." method="_on_ExitButiion_pressed"]
 [connection signal="item_selected" from="CharacterPage/SelectGender" to="." method="_on_SelectGender_item_selected"]

@@ -4,6 +4,9 @@ var Day = false
 var Night = true
 var timer
 var WaitForNextTimeOfDay = 420 #7 minutes
+var NightColor = Color(7, 33,203,71)
+var DayColor = Color(7, 33, 203, 0)
+
 
 func _ready():
 	timer = Timer.new() #Create a new timer to track how long until we change in-game times
@@ -27,7 +30,7 @@ func TimeMove():
 		Night = false
 		print(Day, Night)
 
-func ChangeToDay(animatedsprite):
-	animatedsprite.play("Day")
-func ChangeToNight(animatedsprite):
-	animatedsprite.play("Night")
+func ChangeToDay(ColorRectNode):
+	ColorRectNode.Color = NightColor
+func ChangeToNight(ColorRectNode):
+	ColorRectNode.Color = DayColor

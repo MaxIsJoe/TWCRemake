@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Temporay/TempServerCreateUI.gd" type="Script" id=1]
+
+[node name="Main" type="Node"]
+
+[node name="TempServerCreateUI" type="Control" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="TextEdit" type="TextEdit" parent="TempServerCreateUI"]
+margin_left = 455.484
+margin_top = 342.286
+margin_right = 773.484
+margin_bottom = 382.286
+
+[node name="CreateServer" type="Button" parent="TempServerCreateUI"]
+margin_left = 486.0
+margin_top = 394.0
+margin_right = 546.0
+margin_bottom = 424.0
+text = "Create"
+
+[node name="JoinServer" type="Button" parent="TempServerCreateUI"]
+margin_left = 661.488
+margin_top = 396.721
+margin_right = 721.488
+margin_bottom = 426.721
+text = "Join"
+[connection signal="text_changed" from="TempServerCreateUI/TextEdit" to="TempServerCreateUI" method="_on_TextEdit_text_changed"]
+[connection signal="pressed" from="TempServerCreateUI/CreateServer" to="TempServerCreateUI" method="_on_CreateServer_pressed"]
+[connection signal="pressed" from="TempServerCreateUI/JoinServer" to="TempServerCreateUI" method="_on_JoinServer_pressed"]
