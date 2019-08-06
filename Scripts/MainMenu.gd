@@ -30,8 +30,9 @@ var ForbiddenNames = ["robed figure",
 				"penny haywood",
 				"muller sydney",
 				"muller"]
-var TestWorld = "res://Scenes/World.tscn"
+var TestWorld = "res://Scenes/TestWorld_2.tscn"
 var TestWorldSpawnPostion = Vector2(90,90)
+var DebugTesting = true
 export (NodePath) var dropdown_path
 
 onready var versionlabel = get_node("MainPage/Version")
@@ -51,7 +52,8 @@ onready var FemaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/Fema
 onready var FemaleSlytherin = preload("res://Scenes/Instances/Actors/Houses/SlythFemale.tscn")
 
 func _ready():
-	SplashScreenAnim.play("StartOfGame")
+	if(!DebugTesting):
+		SplashScreenAnim.play("StartOfGame")
 	versionlabel.text = version
 	add_items()
 	disable_items(0)
@@ -155,4 +157,4 @@ func CreateThePlayer(charname,gender,house):
 			NewSlythFemale.updatenamelabel()
 			#Move_To_Next_Scene(thisscene ,nextscene, player,spawnPos):
 			#NewSlythFemale.Move_To_Next_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)
-			#Teleport.Move_To_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)
+			Teleport.Move_To_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)

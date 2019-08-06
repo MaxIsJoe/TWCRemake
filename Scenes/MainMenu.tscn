@@ -67,10 +67,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 16, 29.9951 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 16, 29.9951 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ false, true, false ]
+"values": [ true, false, true, false ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("MainPage:modulate")
@@ -112,7 +112,6 @@ scale = Vector2( 1.34963, 1.17701 )
 texture = ExtResource( 2 )
 
 [node name="MainPage" type="Container" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -267,6 +266,7 @@ scale = Vector2( 2.12841, 2.16244 )
 texture = ExtResource( 5 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 2.0
 margin_right = 1281.0
