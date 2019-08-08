@@ -30,8 +30,8 @@ var ForbiddenNames = ["robed figure",
 				"penny haywood",
 				"muller sydney",
 				"muller"]
-var TestWorld = "res://Scenes/TestWorld_2.tscn"
-var TestWorldSpawnPostion = Vector2(90,90)
+puppet var TestWorld = "res://Scenes/TestWorld_2.tscn"
+puppet var TestWorldSpawnPostion = Vector2(90,90)
 var DebugTesting = true
 export (NodePath) var dropdown_path
 
