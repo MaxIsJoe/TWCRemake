@@ -34,7 +34,7 @@ onready var tabs = $UI/TabContainer
 var gender
 #var velocity = Vector2()
 var alive = true
-var canmove = true
+slave var canmove = true
 var Karma = 100
 var statpoints = 0
 var spellppoints = 0
@@ -49,7 +49,7 @@ signal GrabbedAnItem(item)
 signal hpupdate(health)
 signal mpupdate(mana)
 
-const SPEED = 150
+const SPEED = 5
 
 func _ready():
 	
@@ -80,32 +80,47 @@ func _physics_process(delta):
 		return
 	var rot_dir = 0
 	var velocity = Vector2()
-	if(Input.is_action_pressed("ui_up")):
-		velocity.y -= 1
-		animstate.play("walkup")
-	if(Input.is_action_pressed("ui_down")):
-		velocity.y += 1
-		animstate.play("walkdown")
-	if(Input.is_action_pressed("ui_right")):
-		velocity.x += 1
-		animstate.play("walkright")
-	if(Input.is_action_pressed("ui_left")):
-		velocity.x -= 1
-		animstate.play("walkleft")
-	if(Input.is_action_just_released("ui_up")):
-		animstate.play("idleup")
-	if(Input.is_action_just_released("ui_down")):
-		animstate.play("idledown")
-	if(Input.is_action_just_released("ui_right")):
-		animstate.play("idleright")
-	if(Input.is_action_just_released("ui_left")):
-		animstate.play("idleleft")
-	velocity = velocity.normalized() * SPEED
-	move_and_slide(velocity)
-	#if get_tree().is_network_server():
-	#	Network.update_position(int(name), position)
-	#else:
-	#rset_unreliable('PlayerPostion', velocity)
+	if (is_network_master()):
+		if(Input.is_action_pressed("ui_up")):
+			velocity.y -= 1
+			animstate.play("walkup")
+		if(Input.is_action_pressed("ui_down")):
+			velocity.y += 1
+			animstate.play("walkdown")
+		if(Input.is_action_pressed("ui_right")):
+			velocity.x += 1
+			animstate.play("walkright")
+		if(Input.is_action_pressed("ui_left")):
+			velocity.x -= 1
+			animstate.play("walkleft")
+		if(Input.is_action_just_released("ui_up")):
+			animstate.play("idleup")
+		if(Input.is_action_just_released("ui_down")):
+			animstate.play("idledown")
+		if(Input.is_action_just_released("ui_right")):
+			animstate.play("idleright")
+		if(Input.is_action_just_released("ui_left")):
+			animstate.play("idleleft")
+		velocity = velocity.normalized() * SPEED
+		move_and_slide(velocity)
+	# Check if there is any (meaningful) input
+		if (velocity.x != 0 || velocity.y != 0):
+			# There is some input. If on the server, just update the position
+			if (get_tree().is_network_server()):
+				server_get_player_input(velocity)
+			# Otherwise, request the server to calculate the new position
+			else:
+				rpc_id(1, "server_get_player_input", velocity)
+	# Regardless if this is the master or not, being on the server means: replicate the actor state
+	if (get_tree().is_network_server()):
+		# Replicate the position, using the unreliable protocol
+		rpc_unreliable("client_get_player_update", position)
+		
+remote func server_get_player_input(input):
+	if (get_tree().is_network_server()):
+		position += input.normalized() * SPEED
+remote func client_get_player_update(pos):
+	position = pos
 	
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
@@ -125,7 +140,7 @@ func _input(event):
 		expgain(50)
 		print("Your level is ", level," Your EXP is ",EXP," and your MaxEXP = ",MaxEXP)
 			
-func updatenamelabel():
+remote func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
 	if(IsGryif):
 		PlayerNameUI.add_color_override("font_color", Color(0.86,0.08,0.24,1))
@@ -164,7 +179,7 @@ func levelupcheck():
 		statpoints += 1
 		LevelUpAnim.play("FadeInFadeOut")
 
-func SetPosition(Position):
+master func SetPosition(Position):
 	self.position = Position
 	
 func grab(item):
