@@ -207,7 +207,6 @@ script = ExtResource( 24 )
 
 [node name="Leveup" type="Label" parent="UI"]
 editor/display_folded = true
-visible = false
 light_mask = 524288
 margin_left = -30.0
 margin_top = -140.0
@@ -389,6 +388,7 @@ margin_bottom = 14.0
 text = "The player can manage all of this spells here."
 
 [node name="Chat" type="Tabs" parent="UI/TabContainer"]
+editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
