@@ -9,6 +9,8 @@ onready var Occluder = $LightOccluder2D
 #export(bool) var CanBeBroken = false
 
 var IsOpen
+
+export(bool) var IsLocked = false
 #var playerlist
 #var DoorHealth = 3000
 
@@ -21,12 +23,15 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if(body.is_in_group("Players")):
-		IsOpen = true
-		#Colider.set_disabled(true)
-		AreaCollision.set_disabled(true)
-		spriteanim.play("Opening")
-		Occluder.hide()
-		timer.start()
+		if(IsLocked):
+			return
+		else:
+			IsOpen = true
+			#Colider.set_disabled(true)
+			AreaCollision.set_disabled(true)
+			spriteanim.play("Opening")
+			Occluder.hide()
+			timer.start()
 		
 
 func _on_Timer_timeout():
