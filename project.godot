@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Resource",
+"class": "Dialoug_class",
+"language": "GDScript",
+"path": "res://Scripts/Classes/Dia_Class.gd"
+}, {
+"base": "Resource",
+"class": "QuickDialoug_class",
+"language": "GDScript",
+"path": "res://Scripts/Classes/QuickDia_Class.gd"
+} ]
 _global_script_class_icons={
-
+"Dialoug_class": "",
+"QuickDialoug_class": ""
 }
 
 [application]
@@ -66,8 +77,8 @@ quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
 threads/thread_model=2
-quality/filters/anisotropic_filter_level=1
 quality/shadows/filter_mode=0
 quality/depth_prepass/enable=false
 environment/default_clear_color=Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 quality/depth/hdr=false
+quality/filters/anisotropic_filter_level=1
