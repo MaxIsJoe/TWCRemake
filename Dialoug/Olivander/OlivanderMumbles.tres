@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Classes/QuickDia_Class.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+SpokenLines = [ "Now where did I leave that wand?", "10? 20? No.. I don't think so..", "The wand always chooses it's holder", "[hums a song quitely]", "I was a great wizard like you once until I took a-- nevermind." ]
