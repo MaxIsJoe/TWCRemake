@@ -55,16 +55,20 @@ position = Vector2( 868.437, 785 )
 position = Vector2( 901.409, 785 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 occluder = SubResource( 1 )
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+visible = false
 position = Vector2( -336, -64 )
 occluder = SubResource( 2 )
 
 [node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+visible = false
 occluder = SubResource( 3 )
 
 [node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
+visible = false
 occluder = SubResource( 4 )
 
 [node name="TestTeleEnter" type="Node2D" parent="."]

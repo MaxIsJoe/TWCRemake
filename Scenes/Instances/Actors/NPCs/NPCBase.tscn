@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/NPCBase.gd" type="Script" id=1]
 [ext_resource path="res://fonts/PlayfairDisplay-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/DialougHolder.gd" type="Script" id=3]
+[ext_resource path="res://Dialoug/Dia_Default.tres" type="Resource" id=4]
+[ext_resource path="res://Dialoug/Quick_Default.tres" type="Resource" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -65,13 +67,9 @@ bbcode_enabled = true
 bbcode_text = "[center]Quick Dialoug"
 text = "Quick Dialoug"
 
-[node name="Visable_Chars" type="Timer" parent="Quick_Dia"]
-wait_time = 8.0
-one_shot = true
-
 [node name="Cooldowns" type="Node" parent="."]
 
-[node name="Timer" type="Timer" parent="Cooldowns"]
+[node name="QuickDiaCooldown" type="Timer" parent="Cooldowns"]
 wait_time = 25.0
 autostart = true
 
@@ -91,8 +89,9 @@ one_shot = true
 
 [node name="DialougHolder" type="Node" parent="Holders"]
 script = ExtResource( 3 )
+DialougFile = ExtResource( 4 )
+QuickDialougFile = ExtResource( 5 )
 [connection signal="body_entered" from="Acknowledgement_area" to="." method="_on_Acknowledgement_area_body_entered"]
-[connection signal="timeout" from="Quick_Dia/Visable_Chars" to="." method="_on_Visable_Chars_timeout"]
-[connection signal="timeout" from="Cooldowns/Timer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="Cooldowns/WanderCooldown" to="." method="_on_WanderCooldown_timeout"]
+[connection signal="body_exited" from="Acknowledgement_area" to="." method="_on_Acknowledgement_area_body_exited"]
+[connection signal="timeout" from="Cooldowns/QuickDiaCooldown" to="." method="_on_QuickDiaCooldown_timeout"]
 [connection signal="send_text" from="Holders/DialougHolder" to="." method="_on_DialougHolder_send_text"]

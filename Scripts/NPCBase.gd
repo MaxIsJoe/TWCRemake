@@ -16,14 +16,27 @@ onready var Dialoug = $Holders/DialougHolder
 onready var TimerNode = $Cooldowns/Timer
 onready var VisableCharactersTimer = $Quick_Dia/Visable_Chars
 onready var acknowledgement_area = $Acknowledgement_area
-#onready var WanderCooldown = $Cooldowns/WanderCooldown
-#onready var WanderingCooldown = $Cooldowns/WanderingCooldown
-#onready var initial_position : Vector2 = global_position
 
-
-var acknowleged_players
+var acknowleged_players = []
 var IsGreetingAPlayer = false
 var busy = false
 var Moving = false
 #var state = STATE_WANDERING
-var result
+var quicktext
+
+func _on_DialougHolder_send_text(text):
+	quicktext = text
+
+
+func _on_QuickDiaCooldown_timeout():
+	Dialoug.GetQuickDia()
+	Quick_Dia.bbcode_text = "[center]" + str(quicktext)
+
+
+func _on_Acknowledgement_area_body_entered(body):
+	if(body.is_in_group("Players")):
+		acknowleged_players.append(body.PlayerName)
+
+func _on_Acknowledgement_area_body_exited(body):
+	if(body.is_in_group("Players")):
+		acknowleged_players.remove(body.PlayerName)
