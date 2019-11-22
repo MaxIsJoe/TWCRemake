@@ -13,11 +13,6 @@ extents = Vector2( 163.15, 122.502 )
 animations = [ {
 "frames": [  ],
 "loop": true,
-"name": "IdleFront",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
 "name": "IdleLeft",
 "speed": 5.0
 }, {
@@ -29,6 +24,11 @@ animations = [ {
 "frames": [  ],
 "loop": true,
 "name": "IdelRight",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "IdleFront",
 "speed": 5.0
 } ]
 
