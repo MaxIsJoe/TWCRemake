@@ -24,6 +24,8 @@ config/icon="res://icon.png"
 Teleport="*res://Scripts/Teleport.gd"
 Global="*res://Scripts/Global.gd"
 Network="*res://Scripts/Network.gd"
+Data="*res://Scripts/Globals/Data.gd"
+JsonLoader="*res://Scripts/JSON-Systems/JSON_LOADER.gd"
 
 [debug]
 
