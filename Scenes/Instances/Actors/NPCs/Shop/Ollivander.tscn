@@ -32,12 +32,9 @@ animations = [ {
 [node name="Ollivander" instance=ExtResource( 1 )]
 NPC_Name = "Olivander"
 Desc = "Ollivander is an intelligent man, with a perfect memory when it comes to his work; he rememberes the details of every wand he ever sold. He seemed to become happier the more difficult the challenge to find exactly the right wand for a difficult customer was. He used a magical tape measure to help assess customers for their wand."
+HasQuickDialouge = true
 HasShop = true
 
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 1 )
 playing = true
-
-[node name="DialougHolder" parent="Holders" index="2"]
-DialougFile = ""
-QuickDialougFile = ""

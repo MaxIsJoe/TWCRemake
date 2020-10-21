@@ -8,6 +8,7 @@ export(int) var health = 39000
 export(float) var WanderRadius = 140.0
 export(bool) var CanWander = false
 export(bool) var CanDie = false
+export(bool) var HasQuickDialouge = false
 export(bool) var HasShop = false
 export(bool) var HasQuests = false
 
@@ -24,13 +25,14 @@ var Moving = false
 #var state = STATE_WANDERING
 var quicktext
 
-func _on_DialougHolder_send_text(text):
-	quicktext = text
 
-
-func _on_QuickDiaCooldown_timeout():
-	Dialoug.GetQuickDia()
-	Quick_Dia.bbcode_text = "[center]" + str(quicktext)
+func _ready():
+	if(HasQuickDialouge):
+		quicktext = JsonLoader.LoadJSON_QuickDia($Holders/DialougHolder.QuickDialougFile)
+		$Cooldowns/QuickDiaCooldown.start()
+	if(!HasQuickDialouge):
+		$Quick_Dia.visible = false
+		$Cooldowns/QuickDiaCooldown.stop()
 
 
 func _on_Acknowledgement_area_body_entered(body):
@@ -40,3 +42,7 @@ func _on_Acknowledgement_area_body_entered(body):
 func _on_Acknowledgement_area_body_exited(body):
 	if(body.is_in_group("Players")):
 		acknowleged_players.remove(body.PlayerName)
+
+
+func _on_QuickDiaCooldown_timeout():
+	quicktext = Dialoug.GetQuickDia()

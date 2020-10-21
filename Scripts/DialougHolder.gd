@@ -4,9 +4,18 @@ signal send_text(text)
 export(String) var DialougFile
 export(String) var QuickDialougFile
 
+var loaded_quickdia
+
+func _ready():
+	if(QuickDialougFile != ""):
+		loaded_quickdia = JsonLoader.LoadJSON_QuickDia(QuickDialougFile)
+
+func StartDialogue():
+	pass #Add in later
+
 func GetQuickDia():
 	randomize()
-	var token = rand_range(0, QuickDialougFile.SpokenLines.size())
-	var given_text = QuickDialougFile.SpokenLines[token]
-	print(QuickDialougFile.SpokenLines)
-	emit_signal("send_text", given_text)
+	var token = rand_range(0, loaded_quickdia.size()) #idk if this actually gets the correct size but let's try
+	var given_text = loaded_quickdia[token].get("text")
+	print(given_text)
+	return given_text
