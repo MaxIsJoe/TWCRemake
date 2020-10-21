@@ -38,3 +38,6 @@ HasShop = true
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 1 )
 playing = true
+
+[node name="DialougHolder" parent="Holders" index="2"]
+QuickDialougFile = "res://Dialoug/Olivander/QuickDialouge.JSON"
