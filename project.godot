@@ -8,20 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Resource",
-"class": "Dialoug_class",
-"language": "GDScript",
-"path": "res://Scripts/Classes/Dia_Class.gd"
-}, {
-"base": "Resource",
-"class": "QuickDialoug_class",
-"language": "GDScript",
-"path": "res://Scripts/Classes/QuickDia_Class.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"Dialoug_class": "",
-"QuickDialoug_class": ""
+
 }
 
 [application]
