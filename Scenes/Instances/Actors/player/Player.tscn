@@ -38,14 +38,14 @@ animations = [ {
 "name": "walkdown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walkleft",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "idleright",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "idleup",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -58,19 +58,19 @@ animations = [ {
 "name": "idleleft",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "walkup",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "walkright",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "idleup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "walkup",
+"name": "walkleft",
 "speed": 5.0
 } ]
 
@@ -138,7 +138,6 @@ level = 1
 levelcap = 1600
 
 [node name="Area2D" type="Area2D" parent="."]
-editor/display_folded = true
 
 [node name="CollisionArea" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
@@ -164,6 +163,9 @@ align = 1
 
 [node name="UI" type="Container" parent="."]
 light_mask = 524288
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FPSLabel" type="Label" parent="UI"]
 light_mask = 524288
@@ -174,7 +176,6 @@ margin_bottom = -346.0
 script = ExtResource( 19 )
 
 [node name="HPProgress" type="TextureProgress" parent="UI"]
-editor/display_folded = true
 light_mask = 524288
 anchor_right = 0.03
 margin_left = -640.0
@@ -189,7 +190,6 @@ script = ExtResource( 22 )
 [node name="Tween" type="Tween" parent="UI/HPProgress"]
 
 [node name="MPProgress" type="TextureProgress" parent="UI"]
-editor/display_folded = true
 show_behind_parent = true
 light_mask = 524288
 anchor_right = 0.03
@@ -206,7 +206,6 @@ script = ExtResource( 24 )
 [node name="Tween" type="Tween" parent="UI/MPProgress"]
 
 [node name="Leveup" type="Label" parent="UI"]
-editor/display_folded = true
 light_mask = 524288
 margin_left = -30.0
 margin_top = -140.0
@@ -343,7 +342,6 @@ text = "This is an Item and this is all you need to know about it
 Value : 0 Gold"
 
 [node name="Quests" type="Tabs" parent="UI/TabContainer"]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -358,7 +356,6 @@ margin_bottom = 14.0
 text = "After optaining the quest book this tab should be open for all players to use just like the orginal game."
 
 [node name="Map" type="Tabs" parent="UI/TabContainer"]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -373,7 +370,6 @@ margin_bottom = 14.0
 text = "Maps are there to help the player navigate the game with a little bit of help, this tab can be only used of the player buys/crafts a map item which can be only used on ONE scene only."
 
 [node name="Spells" type="Tabs" parent="UI/TabContainer"]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -388,7 +384,6 @@ margin_bottom = 14.0
 text = "The player can manage all of this spells here."
 
 [node name="Chat" type="Tabs" parent="UI/TabContainer"]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -463,8 +458,6 @@ margin_bottom = -4.0
 
 [node name="Cam" type="Camera2D" parent="."]
 current = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 smoothing_speed = 4.5
 drag_margin_left = 0.0
 drag_margin_top = 0.0
