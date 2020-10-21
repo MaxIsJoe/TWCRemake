@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/NPCBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/ollivander_3/0.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/ollivander_1/0.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/ollivander_2/0.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/ollivander_0/0.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/Classes/QuickDia_Class.gd" type="Script" id=6]
-[ext_resource path="res://Dialoug/Olivander/OlivanderMumbles.tres" type="Resource" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -15,14 +13,14 @@ animations = [ {
 "name": "IdleLeft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "IdleUp",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "IdelRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "IdleUp",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
@@ -30,10 +28,6 @@ animations = [ {
 "name": "IdleFront",
 "speed": 5.0
 } ]
-
-[sub_resource type="Resource" id=2]
-script = ExtResource( 6 )
-SpokenLines = [ "Now where did I leave that wand?", "10? 20? No.. I don't think so..", "The wand always chooses it's holder", "[hums a song quitely]", "I was a great wizard like you once until I took a-- nevermind." ]
 
 [node name="Ollivander" instance=ExtResource( 1 )]
 NPC_Name = "Olivander"
@@ -45,5 +39,5 @@ frames = SubResource( 1 )
 playing = true
 
 [node name="DialougHolder" parent="Holders" index="2"]
-DialougFile = SubResource( 2 )
-QuickDialougFile = ExtResource( 7 )
+DialougFile = ""
+QuickDialougFile = ""

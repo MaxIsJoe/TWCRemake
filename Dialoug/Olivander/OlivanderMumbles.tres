@@ -1,7 +1,12 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/Classes/QuickDia_Class.gd" type="Script" id=1]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Resource
+class_name QuickDialoug_class
+
+export(Array, String, MULTILINE) var SpokenLines
+"
 
 [resource]
-script = ExtResource( 1 )
+script = SubResource( 1 )
 SpokenLines = [ "Now where did I leave that wand?", "10? 20? No.. I don't think so..", "The wand always chooses it's holder", "[hums a song quitely]", "I was a great wizard like you once until I took a-- nevermind." ]
