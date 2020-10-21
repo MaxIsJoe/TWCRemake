@@ -2,9 +2,6 @@ extends Tabs
 
 var m = ""
 
-func _ready():
-	Network.connect("chat_message_received", self, "add_chat_line")
-
 func add_chat_line(msg):
 	$RichTextLabelOOC.add_text(msg)
 	$RichTextLabelOOC.newline()
