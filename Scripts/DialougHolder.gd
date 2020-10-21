@@ -1,8 +1,8 @@
 extends Node
 
 signal send_text(text)
-export(Resource) var DialougFile
-export(Resource) var QuickDialougFile
+export(String) var DialougFile
+export(String) var QuickDialougFile
 
 func GetQuickDia():
 	randomize()
