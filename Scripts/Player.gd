@@ -49,7 +49,7 @@ signal GrabbedAnItem(item)
 signal hpupdate(health)
 signal mpupdate(mana)
 
-const SPEED = 5
+const SPEED = 350
 
 func _ready():
 	
@@ -80,47 +80,42 @@ func _physics_process(delta):
 		return
 	var rot_dir = 0
 	var velocity = Vector2()
-	if (is_network_master()):
-		if(Input.is_action_pressed("ui_up")):
-			velocity.y -= 1
-			animstate.play("walkup")
-		if(Input.is_action_pressed("ui_down")):
-			velocity.y += 1
-			animstate.play("walkdown")
-		if(Input.is_action_pressed("ui_right")):
-			velocity.x += 1
-			animstate.play("walkright")
-		if(Input.is_action_pressed("ui_left")):
-			velocity.x -= 1
-			animstate.play("walkleft")
-		if(Input.is_action_just_released("ui_up")):
-			animstate.play("idleup")
-		if(Input.is_action_just_released("ui_down")):
-			animstate.play("idledown")
-		if(Input.is_action_just_released("ui_right")):
-			animstate.play("idleright")
-		if(Input.is_action_just_released("ui_left")):
-			animstate.play("idleleft")
-		velocity = velocity.normalized() * SPEED
-		move_and_slide(velocity)
+	#if (is_network_master()):
+	if(Input.is_action_pressed("ui_up")):
+		velocity.y -= 1
+		animstate.play("walkup")
+	if(Input.is_action_pressed("ui_down")):
+		velocity.y += 1
+		animstate.play("walkdown")
+	if(Input.is_action_pressed("ui_right")):
+		velocity.x += 1
+		animstate.play("walkright")
+	if(Input.is_action_pressed("ui_left")):
+		velocity.x -= 1
+		animstate.play("walkleft")
+	if(Input.is_action_just_released("ui_up")):
+		animstate.play("idleup")
+	if(Input.is_action_just_released("ui_down")):
+		animstate.play("idledown")
+	if(Input.is_action_just_released("ui_right")):
+		animstate.play("idleright")
+	if(Input.is_action_just_released("ui_left")):
+		animstate.play("idleleft")
+	
+	velocity = velocity.normalized() * SPEED
+	move_and_slide(velocity)
 	# Check if there is any (meaningful) input
-		if (velocity.x != 0 || velocity.y != 0):
-			# There is some input. If on the server, just update the position
-			if (get_tree().is_network_server()):
-				server_get_player_input(velocity)
-			# Otherwise, request the server to calculate the new position
-			else:
-				rpc_id(1, "server_get_player_input", velocity)
-	# Regardless if this is the master or not, being on the server means: replicate the actor state
-	if (get_tree().is_network_server()):
-		# Replicate the position, using the unreliable protocol
-		rpc_unreliable("client_get_player_update", position)
-		
-remote func server_get_player_input(input):
-	if (get_tree().is_network_server()):
-		position += input.normalized() * SPEED
-remote func client_get_player_update(pos):
-	position = pos
+#		if (velocity.x != 0 || velocity.y != 0):
+#			# There is some input. If on the server, just update the position
+#			if (get_tree().is_network_server()):
+#				server_get_player_input(velocity)
+#			# Otherwise, request the server to calculate the new position
+#			else:
+#				rpc_id(1, "server_get_player_input", velocity)
+#	# Regardless if this is the master or not, being on the server means: replicate the actor state
+#	if (get_tree().is_network_server()):
+#		# Replicate the position, using the unreliable protocol
+#		rpc_unreliable("client_get_player_update", position)
 	
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
