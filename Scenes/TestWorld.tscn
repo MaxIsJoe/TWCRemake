@@ -75,7 +75,7 @@ occluder = SubResource( 4 )
 position = Vector2( 215.66, 248.85 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1040.81, 413.286 )
+position = Vector2( 269.521, 184.442 )
 
 [node name="Ollivander" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1213.26, 1662.8 )
+position = Vector2( 514.014, 586.386 )
