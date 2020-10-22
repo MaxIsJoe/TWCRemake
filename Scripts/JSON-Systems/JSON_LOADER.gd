@@ -19,7 +19,7 @@ func LoadJSON_General(JSONFile, WhereToStore): #Used to pass data to variables t
 		file.close()
 		print("[ERROR] file : [%s] does not exist or is empty" % JSONFile)
 
-func LoadJSON_QuickDia(JSONFile) -> Dictionary:
+func LoadJSON_Retrun(JSONFile) -> Dictionary:
 	print("[LOAD] file : looking for [%s]..." % JSONFile)
 	var file = File.new()
 	var dfile = file.open(JSONFile, File.READ)
