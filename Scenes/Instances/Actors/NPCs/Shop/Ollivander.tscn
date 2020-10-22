@@ -13,9 +13,9 @@ animations = [ {
 "name": "IdleLeft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "IdelRight",
+"name": "IdleFront",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -23,9 +23,9 @@ animations = [ {
 "name": "IdleUp",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "IdleFront",
+"name": "IdelRight",
 "speed": 5.0
 } ]
 
@@ -40,4 +40,4 @@ frames = SubResource( 1 )
 playing = true
 
 [node name="DialougHolder" parent="Holders" index="2"]
-QuickDialougFile = "res://Dialoug/Olivander/QuickDialouge.JSON"
+QuickDialougFile = "res://Resources/dialogue/Olivander/QuickDialouge.JSON"
