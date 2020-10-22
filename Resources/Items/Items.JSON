@@ -1,0 +1,13 @@
+{
+    "food-000":
+    {
+        "name":"Caramel Apple",
+        "icon":"res://Sprites/TWCSpritesCoverted/foodc/caramel_apple/_0.png",
+        "desc":"Caramel apples or toffee apples are whole apples covered in a layer of caramel. They're one of the main sweets of every seasonal event in the wizarding world.",
+        "baseprice":30,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
+        "Function":"Nothing for now, add later when the inventory system is more complete and has function handling."
+    }
+}
