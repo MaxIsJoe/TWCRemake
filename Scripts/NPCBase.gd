@@ -46,4 +46,4 @@ func _on_Acknowledgement_area_body_exited(body):
 
 func _on_QuickDiaCooldown_timeout():
 	quicktext = Dialoug.GetQuickDia()
-	$Quick_Dia.text = str(quicktext)
+	$Quick_Dia.bbcode_text = str(quicktext)

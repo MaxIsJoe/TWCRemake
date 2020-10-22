@@ -18,7 +18,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdelRight",
+"name": "IdleFront",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -28,7 +28,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdleFront",
+"name": "IdelRight",
 "speed": 5.0
 } ]
 
@@ -64,6 +64,9 @@ custom_colors/default_color = Color( 0.211765, 1, 0.631373, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Quick Dialoug"
 text = "Quick Dialoug"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Cooldowns" type="Node" parent="."]
 
