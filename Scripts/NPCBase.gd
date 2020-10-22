@@ -28,7 +28,7 @@ var quicktext
 
 func _ready():
 	if(HasQuickDialouge):
-		quicktext = JsonLoader.LoadJSON_QuickDia($Holders/DialougHolder.QuickDialougFile)
+		quicktext = JsonLoader.LoadJSON_Retrun($Holders/DialougHolder.QuickDialougFile)
 		$Cooldowns/QuickDiaCooldown.start()
 	if(!HasQuickDialouge):
 		$Quick_Dia.visible = false

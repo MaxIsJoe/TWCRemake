@@ -8,7 +8,7 @@ var loaded_quickdia
 
 func _ready():
 	if(QuickDialougFile != ""):
-		loaded_quickdia = JsonLoader.LoadJSON_Return(QuickDialougFile)
+		loaded_quickdia = JsonLoader.LoadJSON_Retrun(QuickDialougFile)
 
 func StartDialogue():
 	pass #Add in later
