@@ -22,7 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Teleport="*res://Scripts/Teleport.gd"
-Global="*res://Scripts/Global.gd"
+Global="*res://Scripts/Globals/Global.gd"
 Network="*res://Scripts/Network.gd"
 Data="*res://Scripts/Globals/Data.gd"
 JsonLoader="*res://Scripts/JSON-Systems/JSON_LOADER.gd"
@@ -59,6 +59,10 @@ OpenTabs={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[logging]
+
+file_logging/max_log_files=2
 
 [rendering]
 

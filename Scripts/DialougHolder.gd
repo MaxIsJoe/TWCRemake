@@ -17,5 +17,4 @@ func GetQuickDia():
 	randomize()
 	var token = int(rand_range(0, loaded_quickdia.values().size())) #idk if this actually gets the correct size but let's try
 	var given_text = loaded_quickdia[str(token)].get("text")
-	print(given_text)
 	return given_text
