@@ -11,6 +11,9 @@ margin_right = -834.0
 margin_bottom = -659.0
 rect_min_size = Vector2( 446, 61 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ItemLabel" type="Label" parent="."]
 light_mask = 524288
@@ -25,4 +28,4 @@ light_mask = 524288
 position = Vector2( 32.133, 31.0249 )
 scale = Vector2( 0.82687, 0.792244 )
 texture = ExtResource( 2 )
-
+[connection signal="button_down" from="." to="." method="_on_ItemButton_button_down"]

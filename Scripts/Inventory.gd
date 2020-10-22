@@ -10,7 +10,7 @@ export(PackedScene) var ItemButton
 func create_item_button(item):
 	var item_button = ItemButton.instance()
 	panel.add_child(item_button)
-	item_button.UpdateButton(item.NAME, item.ICON)
+	item_button.UpdateButton(item)
 	return item_button
 
 func _on_Player_GrabbedAnItem(item):

@@ -2,12 +2,17 @@ extends Button
 
 onready var ItemLabel = $ItemLabel
 onready var ItemIcon = $ItemIcon
-onready var ItemMenu = $MenuButton
-var itemreferece
+var ID
 
-func UpdateButton(Name,Icon):
-	ItemLabel.text = Name
-	ItemIcon.texture = Icon
-	#itemref = itemreferece
-	print(name)
+func UpdateButton(ItemID):
+	ItemLabel.text = Data.ItemData[ItemID].get("name")
+	ItemIcon.texture = load(Data.ItemData[ItemID].get("icon"))
+	if(!Data.ItemData[ItemID].get("Useable")):
+		if(!!Data.ItemData[ItemID].get("Equipable")):
+			disabled = true
+	ID = ItemID
 
+
+
+func _on_ItemButton_button_down():
+	pass # Replace with function body.
