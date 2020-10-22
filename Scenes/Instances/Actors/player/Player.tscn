@@ -250,7 +250,6 @@ margin_bottom = 14.0
 text = "Here the player should see all of his stats and important information on his character"
 
 [node name="Inventory" type="Tabs" parent="UI/TabContainer"]
-visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -296,8 +295,17 @@ margin_right = 521.568
 margin_bottom = 298.208
 rect_min_size = Vector2( 523, 301 )
 
-[node name="ItemSprite" type="Sprite" parent="UI/TabContainer/Inventory/ItemSpriteShowcase"]
+[node name="ItemSprite" type="TextureRect" parent="UI/TabContainer/Inventory/ItemSpriteShowcase" groups=[
+"UI_ItemIconPanel",
+]]
 light_mask = 524288
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DescPanel" type="Panel" parent="UI/TabContainer/Inventory"]
 light_mask = 524288
@@ -307,7 +315,9 @@ margin_right = 523.0
 margin_bottom = 550.0
 rect_min_size = Vector2( 524, 248 )
 
-[node name="ItemName" type="Label" parent="UI/TabContainer/Inventory/DescPanel"]
+[node name="ItemName" type="Label" parent="UI/TabContainer/Inventory/DescPanel" groups=[
+"UI_ItemNamePanel",
+]]
 light_mask = 524288
 margin_left = 175.0
 margin_top = 1.0
@@ -317,7 +327,9 @@ custom_fonts/font = SubResource( 6 )
 text = "Item Name"
 align = 1
 
-[node name="ItemDesc" type="RichTextLabel" parent="UI/TabContainer/Inventory/DescPanel"]
+[node name="ItemDesc" type="RichTextLabel" parent="UI/TabContainer/Inventory/DescPanel" groups=[
+"UI_ItemDescPanel",
+]]
 light_mask = 524288
 margin_left = 1.0
 margin_top = 37.0
