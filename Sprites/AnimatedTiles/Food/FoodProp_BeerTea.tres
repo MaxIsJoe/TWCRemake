@@ -5,7 +5,6 @@
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/misc/tea_0/1.png" type="Texture" id=3]
 
 [resource]
-flags = 4
 frames = 3
 fps = 2.0
 frame_0/texture = ExtResource( 2 )
