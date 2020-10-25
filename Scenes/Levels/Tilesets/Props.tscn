@@ -1,4 +1,4 @@
-[gd_scene load_steps=236 format=2]
+[gd_scene load_steps=243 format=2]
 
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons1/desk/1_0.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons1/desk/2_0.png" type="Texture" id=2]
@@ -148,6 +148,13 @@
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/t2_0.png" type="Texture" id=146]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/bottom1_0.png" type="Texture" id=147]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/t3_0.png" type="Texture" id=148]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/barrels_0.png" type="Texture" id=149]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons1/Decoration/pans_0.png" type="Texture" id=150]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/house/Clock_0.png" type="Texture" id=151]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/misc/apie_0.png" type="Texture" id=152]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/misc/bbpie_0.png" type="Texture" id=153]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/misc/cccpie_0.png" type="Texture" id=154]
+[ext_resource path="res://Sprites/AnimatedTiles/Food/FoodProp_BeerTea.tres" type="Texture" id=155]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -3096,6 +3103,104 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 149/z_index = 0
+150/name = "barrels_0.png 150"
+150/texture = ExtResource( 149 )
+150/tex_offset = Vector2( 0, 0 )
+150/modulate = Color( 1, 1, 1, 1 )
+150/region = Rect2( 0, 0, 32, 32 )
+150/tile_mode = 0
+150/occluder_offset = Vector2( 0, 0 )
+150/navigation_offset = Vector2( 0, 0 )
+150/shape_offset = Vector2( 0, 0 )
+150/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+150/shape_one_way = false
+150/shape_one_way_margin = 0.0
+150/shapes = [  ]
+150/z_index = 0
+151/name = "pans_0.png 151"
+151/texture = ExtResource( 150 )
+151/tex_offset = Vector2( 0, 0 )
+151/modulate = Color( 1, 1, 1, 1 )
+151/region = Rect2( 0, 0, 32, 32 )
+151/tile_mode = 0
+151/occluder_offset = Vector2( 0, 0 )
+151/navigation_offset = Vector2( 0, 0 )
+151/shape_offset = Vector2( 0, 0 )
+151/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+151/shape_one_way = false
+151/shape_one_way_margin = 0.0
+151/shapes = [  ]
+151/z_index = 0
+152/name = "Clock_0.png 152"
+152/texture = ExtResource( 151 )
+152/tex_offset = Vector2( 0, 0 )
+152/modulate = Color( 1, 1, 1, 1 )
+152/region = Rect2( 0, 0, 32, 32 )
+152/tile_mode = 0
+152/occluder_offset = Vector2( 0, 0 )
+152/navigation_offset = Vector2( 0, 0 )
+152/shape_offset = Vector2( 0, 0 )
+152/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+152/shape_one_way = false
+152/shape_one_way_margin = 0.0
+152/shapes = [  ]
+152/z_index = 0
+153/name = "FoodProp_ApplePie"
+153/texture = ExtResource( 152 )
+153/tex_offset = Vector2( 0, 0 )
+153/modulate = Color( 1, 1, 1, 1 )
+153/region = Rect2( 0, 0, 32, 32 )
+153/tile_mode = 0
+153/occluder_offset = Vector2( 0, 0 )
+153/navigation_offset = Vector2( 0, 0 )
+153/shape_offset = Vector2( 0, 0 )
+153/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+153/shape_one_way = false
+153/shape_one_way_margin = 0.0
+153/shapes = [  ]
+153/z_index = 0
+154/name = "FoodProp_Blueberrypie"
+154/texture = ExtResource( 153 )
+154/tex_offset = Vector2( 0, 0 )
+154/modulate = Color( 1, 1, 1, 1 )
+154/region = Rect2( 0, 0, 32, 32 )
+154/tile_mode = 0
+154/occluder_offset = Vector2( 0, 0 )
+154/navigation_offset = Vector2( 0, 0 )
+154/shape_offset = Vector2( 0, 0 )
+154/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+154/shape_one_way = false
+154/shape_one_way_margin = 0.0
+154/shapes = [  ]
+154/z_index = 0
+155/name = "FoodProp_CCPIe"
+155/texture = ExtResource( 154 )
+155/tex_offset = Vector2( 0, 0 )
+155/modulate = Color( 1, 1, 1, 1 )
+155/region = Rect2( 0, 0, 32, 32 )
+155/tile_mode = 0
+155/occluder_offset = Vector2( 0, 0 )
+155/navigation_offset = Vector2( 0, 0 )
+155/shape_offset = Vector2( 0, 0 )
+155/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+155/shape_one_way = false
+155/shape_one_way_margin = 0.0
+155/shapes = [  ]
+155/z_index = 0
+156/name = "FoodProp_BeerTea.tres 156"
+156/texture = ExtResource( 155 )
+156/tex_offset = Vector2( 0, 0 )
+156/modulate = Color( 1, 1, 1, 1 )
+156/region = Rect2( 0, 0, 32, 32 )
+156/tile_mode = 0
+156/occluder_offset = Vector2( 0, 0 )
+156/navigation_offset = Vector2( 0, 0 )
+156/shape_offset = Vector2( 0, 0 )
+156/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+156/shape_one_way = false
+156/shape_one_way_margin = 0.0
+156/shapes = [  ]
+156/z_index = 0
 
 [node name="Props" type="TileMap"]
 tile_set = SubResource( 76 )

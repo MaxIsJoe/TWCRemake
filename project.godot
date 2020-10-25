@@ -40,6 +40,10 @@ window/vsync/use_vsync=false
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
+[gui]
+
+theme/custom="res://Resources/Themes/DarkTheme/DarkTheme/Dark.theme"
+
 [input]
 
 ui_accept={

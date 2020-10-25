@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/refresh_w.png-48d89469835724a4f17c4e53124c6e53.stex"
+path="res://.import/logo.png-1766d8649e9ad279354d239f6a8470fd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Icons/refresh_w.png"
-dest_files=[ "res://.import/refresh_w.png-48d89469835724a4f17c4e53124c6e53.stex" ]
+source_file="res://Sprites/BYOND-dmis/logo.png"
+dest_files=[ "res://.import/logo.png-1766d8649e9ad279354d239f6a8470fd.stex" ]
 
 [params]
 
