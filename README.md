@@ -1,6 +1,12 @@
 # TWCRemake
 The Wizards Chronicles remake inside the Godot engine.
 
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/MaxIsJoe/TWCRemake.svg)](http://isitmaintained.com/project/MaxIsJoe/TWCRemake "Percentage of issues still open")
+<img src="https://img.shields.io/github/license/mashape/apistatus.svg">
+<img src=https://img.shields.io/badge/Made%20In-Godot-blue>
+
+
+
 The Wizards Chronicles (TWC) is an online mutiplayer game orignally created in 2005 using the BYOND engine/platform.
 
 
