@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/Themes/DarkTheme/DarkTheme/Dark.theme" type="Theme" id=1]
+[ext_resource path="res://Sprites/UI/Dia_Icon.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Instances/Actors/UI/buttons/RadialButton.gd" type="Script" id=3]
+
+[node name="RadialButton" type="Button"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 18.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 16, 16 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6

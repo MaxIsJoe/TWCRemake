@@ -71,6 +71,8 @@ func _ready():
 		gender = "Female"
 	emit_signal("hpupdate", health)
 	emit_signal("mpupdate", mana)
+	
+	Data.Player = self
 	print(currentscene)
 
 	

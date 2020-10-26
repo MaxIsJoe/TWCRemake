@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/NPCBase.gd" type="Script" id=1]
 [ext_resource path="res://fonts/PlayfairDisplay-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/DialougHolder.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Instances/Actors/UI/RadialMenu.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -59,6 +60,7 @@ margin_left = -168.0
 margin_top = -44.0
 margin_right = 169.0
 margin_bottom = -16.0
+mouse_filter = 2
 custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0.211765, 1, 0.631373, 1 )
 bbcode_enabled = true
@@ -90,6 +92,11 @@ one_shot = true
 
 [node name="DialougHolder" type="Node" parent="Holders"]
 script = ExtResource( 3 )
+
+[node name="RadialMenu" parent="." instance=ExtResource( 4 )]
+[connection signal="input_event" from="." to="." method="_on_NPCBase_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_NPCBase_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_NPCBase_mouse_exited"]
 [connection signal="body_entered" from="Acknowledgement_area" to="." method="_on_Acknowledgement_area_body_entered"]
 [connection signal="body_exited" from="Acknowledgement_area" to="." method="_on_Acknowledgement_area_body_exited"]
 [connection signal="timeout" from="Cooldowns/QuickDiaCooldown" to="." method="_on_QuickDiaCooldown_timeout"]

@@ -82,3 +82,4 @@ position = Vector2( 269.521, 184.442 )
 
 [node name="Ollivander" parent="." instance=ExtResource( 5 )]
 position = Vector2( 514.014, 586.386 )
+collision_mask = 1048575

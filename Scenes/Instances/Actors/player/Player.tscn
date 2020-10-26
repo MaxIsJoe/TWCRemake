@@ -43,14 +43,14 @@ animations = [ {
 "name": "idleright",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "walkright",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "idledown",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "idleup",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
@@ -58,19 +58,19 @@ animations = [ {
 "name": "walkleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "walkup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "walkright",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "idleleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "idleup",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "walkup",
 "speed": 5.0
 } ]
 
@@ -81,7 +81,7 @@ height = 19.0
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 18 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=11]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_colors/font_color")
@@ -102,20 +102,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6, 5, 6 ),
+"times": PoolRealArray( 0.6, 1, 5, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=12]
 size = 19
 font_data = ExtResource( 18 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=9]
 font_data = ExtResource( 18 )
 
-[sub_resource type="OccluderPolygon2D" id=8]
+[sub_resource type="OccluderPolygon2D" id=10]
 cull_mode = 1
 polygon = PoolVector2Array( -7.96928, -17.6246, -8.24667, 17.604, 8.95152, 17.3266, 7.84196, -17.9019 )
 
@@ -163,6 +163,7 @@ align = 1
 
 [node name="UI" type="Container" parent="."]
 light_mask = 524288
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -211,7 +212,7 @@ margin_left = -30.0
 margin_top = -140.0
 margin_right = 30.0
 margin_bottom = -126.0
-custom_colors/font_color = Color( 1, 1, 1, 0 )
+custom_colors/font_color = Color( 0.329412, 1, 0.584314, 0 )
 text = "Level Up!"
 
 [node name="Label" type="Label" parent="UI/Leveup"]
@@ -221,9 +222,12 @@ margin_right = 156.38
 margin_bottom = 28.9685
 custom_colors/font_color = Color( 1, 1, 1, 0 )
 text = "You earned a statpoint for leveling up!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="LevelUpAnim" type="AnimationPlayer" parent="UI/Leveup"]
-anims/FadeInFadeOut = SubResource( 5 )
+anims/FadeInFadeOut = SubResource( 11 )
 
 [node name="TabContainer" type="TabContainer" parent="UI"]
 visible = false
@@ -239,7 +243,7 @@ light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -250,11 +254,12 @@ margin_bottom = 14.0
 text = "Here the player should see all of his stats and important information on his character"
 
 [node name="Inventory" type="Tabs" parent="UI/TabContainer"]
+visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 script = ExtResource( 25 )
@@ -323,7 +328,7 @@ margin_left = 175.0
 margin_top = 1.0
 margin_right = 352.0
 margin_bottom = 25.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 12 )
 text = "Item Name"
 align = 1
 
@@ -336,7 +341,7 @@ margin_top = 37.0
 margin_right = 523.0
 margin_bottom = 239.0
 rect_min_size = Vector2( 522, 202 )
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 9 )
 bbcode_enabled = true
 bbcode_text = "This is an Item and this is all you need to know about it
 
@@ -358,7 +363,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -372,7 +377,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -386,7 +391,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -400,7 +405,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -413,7 +418,7 @@ margin_bottom = 550.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -428,7 +433,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 script = ExtResource( 27 )
@@ -455,7 +460,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -464,7 +469,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -490,7 +495,7 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 light_mask = 4
-occluder = SubResource( 8 )
+occluder = SubResource( 10 )
 light_mask = 4
 [connection signal="GrabbedAnItem" from="." to="UI/TabContainer/Inventory" method="_on_Player_GrabbedAnItem"]
 [connection signal="hpupdate" from="." to="UI/HPProgress" method="_on_Player_hpupdate"]

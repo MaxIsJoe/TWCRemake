@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/ItemsClass.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Instances/Actors/UI/RadialMenu.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -11,4 +12,7 @@ script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="RadialMenu" parent="." instance=ExtResource( 2 )]
 [connection signal="body_entered" from="." to="." method="_on_Item_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_Item_input_event"]
