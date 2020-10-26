@@ -18,13 +18,13 @@
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/stonefloor2_0.png" type="Texture" id=16]
 [ext_resource path="res://Scripts/Floors.gd" type="Script" id=17]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 16, 32, 0, 32 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=4]
 0/name = "blackfloor_0.png 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
@@ -33,6 +33,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
 1/name = "Roof1"
@@ -43,11 +47,16 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 2 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
 1/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 1 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
@@ -59,6 +68,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
 3/name = "darkstairs_0.png 3"
@@ -69,6 +82,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
 3/shapes = [  ]
 3/z_index = 0
 4/name = "dirt_0.png 4"
@@ -79,6 +96,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 4/tile_mode = 0
 4/occluder_offset = Vector2( 0, 0 )
 4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
 4/shapes = [  ]
 4/z_index = 0
 5/name = "grass1_0.png 5"
@@ -89,6 +110,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 5/tile_mode = 0
 5/occluder_offset = Vector2( 0, 0 )
 5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
 5/shapes = [  ]
 5/z_index = 0
 6/name = "newgrass_0.png 6"
@@ -99,6 +124,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 6/tile_mode = 0
 6/occluder_offset = Vector2( 0, 0 )
 6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
 6/shapes = [  ]
 6/z_index = 0
 7/name = "sand_0.png 7"
@@ -109,6 +138,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 7/tile_mode = 0
 7/occluder_offset = Vector2( 0, 0 )
 7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
 7/shapes = [  ]
 7/z_index = 0
 8/name = "snow_0.png 8"
@@ -119,6 +152,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 8/tile_mode = 0
 8/occluder_offset = Vector2( 0, 0 )
 8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
 8/shapes = [  ]
 8/z_index = 0
 9/name = "stonefloor2_0.png 9"
@@ -129,6 +166,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 9/tile_mode = 0
 9/occluder_offset = Vector2( 0, 0 )
 9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
 9/shapes = [  ]
 9/z_index = 0
 10/name = "tf2_0.png 10"
@@ -139,6 +180,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 10/tile_mode = 0
 10/occluder_offset = Vector2( 0, 0 )
 10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape_one_way = false
+10/shape_one_way_margin = 0.0
 10/shapes = [  ]
 10/z_index = 0
 11/name = "wfloor_0.png 11"
@@ -149,6 +194,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 11/tile_mode = 0
 11/occluder_offset = Vector2( 0, 0 )
 11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape_one_way = false
+11/shape_one_way_margin = 0.0
 11/shapes = [  ]
 11/z_index = 0
 12/name = "closed_0.png 12"
@@ -159,11 +208,16 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 12/tile_mode = 0
 12/occluder_offset = Vector2( 0, 0 )
 12/navigation_offset = Vector2( 0, 0 )
+12/shape_offset = Vector2( 0, 0 )
+12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape = SubResource( 3 )
+12/shape_one_way = false
+12/shape_one_way_margin = 1.0
 12/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 2 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 12/z_index = 0
@@ -175,6 +229,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 13/tile_mode = 0
 13/occluder_offset = Vector2( 0, 0 )
 13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, 0 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+13/shape_one_way = false
+13/shape_one_way_margin = 0.0
 13/shapes = [  ]
 13/z_index = 0
 14/name = "tile86_0.png 14"
@@ -185,6 +243,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 14/tile_mode = 0
 14/occluder_offset = Vector2( 0, 0 )
 14/navigation_offset = Vector2( 0, 0 )
+14/shape_offset = Vector2( 0, 0 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+14/shape_one_way = false
+14/shape_one_way_margin = 0.0
 14/shapes = [  ]
 14/z_index = 0
 15/name = "blank_0.png 15"
@@ -195,11 +257,15 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 15/tile_mode = 0
 15/occluder_offset = Vector2( 0, 0 )
 15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape_one_way = false
+15/shape_one_way_margin = 0.0
 15/shapes = [  ]
 15/z_index = 0
 
 [node name="Floors" type="TileMap"]
-tile_set = SubResource( 3 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 32, 32 )
 format = 1
 script = ExtResource( 17 )

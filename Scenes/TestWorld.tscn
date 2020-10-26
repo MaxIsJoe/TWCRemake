@@ -38,6 +38,9 @@ margin_top = 12.1884
 margin_right = 102.105
 margin_bottom = 26.1884
 text = "Test Area"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Item" parent="." instance=ExtResource( 2 )]
 position = Vector2( 60.2279, 74.1218 )
