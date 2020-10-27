@@ -4,10 +4,10 @@ export(String) var ItemName = "Item"
 export(String) var ItemID = "misc-000"
 export(float) var InteractionDistance = 69
 
+onready var radialmenu = $RadialMenu
 
 func _ready():
 	$RadialMenu.LoadButton("Grab", ItemID)
-
 
 
 func _on_Item_input_event(viewport, event, shape_idx):

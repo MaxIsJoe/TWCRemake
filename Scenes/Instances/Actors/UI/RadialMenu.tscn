@@ -35,6 +35,7 @@ margin_top = -78.0
 margin_right = 101.0
 margin_bottom = 77.0
 mouse_filter = 2
+mouse_default_cursor_shape = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -44,8 +45,9 @@ arrange/force_expand = true
 arrange/start_angle = 0.0
 arrange/start_empty = true
 arrange/allow_node2d = false
-animate/percent_visible = 0.0
+animate/percent_visible = 0.079872
 animate/all_at_once = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/ShowButtons = SubResource( 1 )
+[connection signal="mouse_exited" from="CircularContainer" to="." method="_on_CircularContainer_mouse_exited"]
