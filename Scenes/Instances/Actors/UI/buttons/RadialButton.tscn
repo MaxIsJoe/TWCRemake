@@ -26,3 +26,4 @@ stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="button_down" from="." to="." method="_on_RadialButton_button_down"]
