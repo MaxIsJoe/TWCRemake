@@ -44,9 +44,6 @@ func _ready():
 	if(HasDialouge):
 		$RadialMenu.LoadButton("Dialouge", ID)
 		
-func GetDistanceToPlayer():
-	var distance2player = self.global_position.distance_to(Data.Player.global_position)
-	return distance2player
 
 func _on_Acknowledgement_area_body_entered(body):
 	if(body.is_in_group("Players")):
@@ -63,7 +60,7 @@ func _on_QuickDiaCooldown_timeout():
 
 
 func _on_NPCBase_input_event(viewport, event, shape_idx):
-	var distance2player = GetDistanceToPlayer()
+	var distance2player = Global.GetDistance2Player(self)
 	if(distance2player <= InteractionDistance):
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_RIGHT and event.pressed:

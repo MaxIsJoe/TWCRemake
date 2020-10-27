@@ -49,7 +49,9 @@ func GiveHouseCup():
 			housewinnerofthismonth = housenames[i] #the winner is the same index in both points and houses array
 			break #stops the loop once it finds a winner
 
-
+func GetDistance2Player(target):
+	var distance2player = target.global_position.distance_to(Data.Player.global_position)
+	return distance2player
 
 #Updates
 
