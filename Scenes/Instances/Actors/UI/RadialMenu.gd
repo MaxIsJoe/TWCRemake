@@ -11,6 +11,7 @@ func LoadButton(Type, ID):
 			NewButton.UpdateButtionUI(Data.UI_Icon_Dia)
 		"Grab":
 			NewButton.UpdateButtionUI(Data.UI_Icon_Grab)
+	NewButton.ID = ID
 	$CircularContainer.add_child(NewButton)
 		
 func ToggleButtonVisbility(Check:bool):
