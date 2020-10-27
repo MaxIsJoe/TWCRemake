@@ -14,5 +14,4 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="RadialMenu" parent="." instance=ExtResource( 2 )]
-[connection signal="body_entered" from="." to="." method="_on_Item_body_entered"]
 [connection signal="input_event" from="." to="." method="_on_Item_input_event"]
