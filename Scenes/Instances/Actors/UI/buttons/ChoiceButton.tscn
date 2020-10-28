@@ -12,6 +12,7 @@ font_data = ExtResource( 2 )
 margin_right = 446.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 6
@@ -23,6 +24,7 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "Choice Name"
