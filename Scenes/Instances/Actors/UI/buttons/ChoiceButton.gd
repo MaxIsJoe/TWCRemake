@@ -6,6 +6,11 @@ var DialougeID
 var Condetion
 var DiaFile = null
 
+
+func _ready():
+	$Tween.interpolate_property(self, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.8, Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+	$Tween.start()
+
 func InitlizeButtonName(Name):
 	ButtonName = Name
 	$RichTextLabel.bbcode_text = ButtonName
