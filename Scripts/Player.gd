@@ -27,9 +27,9 @@ export (bool) var IsNew
 
 onready var animstate = get_node("AnimatedSprite")
 #onready var InventoryUI = get_node("Inventory/InventoryUI")
-onready var LevelUpAnim = $UI/Leveup/LevelUpAnim
+onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
 onready var PlayerNameUI = $PlayerName
-onready var tabs = $UI/TabContainer
+onready var tabs = $Cam/CanvasLayer/UI/TabContainer
 
 var gender
 #var velocity = Vector2()

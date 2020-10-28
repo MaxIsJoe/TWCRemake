@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Instances/Actors/player/OOC.gd" type="Script" id=27]
 [ext_resource path="res://Sprites/BlackTransparent.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/UI/whitebar.png" type="Texture" id=29]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -38,6 +39,16 @@ animations = [ {
 "name": "walkdown",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idledown",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "walkup",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "idleright",
@@ -46,11 +57,6 @@ animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "walkright",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "idledown",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
@@ -67,11 +73,6 @@ animations = [ {
 "loop": true,
 "name": "idleup",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "walkup",
-"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
@@ -81,7 +82,7 @@ height = 19.0
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 18 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=5]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_colors/font_color")
@@ -108,14 +109,14 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=6]
 size = 19
 font_data = ExtResource( 18 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 18 )
 
-[sub_resource type="OccluderPolygon2D" id=10]
+[sub_resource type="OccluderPolygon2D" id=8]
 cull_mode = 1
 polygon = PoolVector2Array( -7.96928, -17.6246, -8.24667, 17.604, 8.95152, 17.3266, 7.84196, -17.9019 )
 
@@ -161,61 +162,93 @@ custom_fonts/font = SubResource( 4 )
 text = "Player"
 align = 1
 
-[node name="UI" type="Container" parent="."]
+[node name="Cam" type="Camera2D" parent="."]
+current = true
+smoothing_speed = 4.5
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Cam"]
+
+[node name="UI" type="Control" parent="Cam/CanvasLayer"]
 light_mask = 524288
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FPSLabel" type="Label" parent="UI"]
+[node name="FPSLabel" type="Label" parent="Cam/CanvasLayer/UI"]
 light_mask = 524288
-margin_left = 590.0
-margin_top = -360.0
-margin_right = 630.0
-margin_bottom = -346.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -75.5
+margin_top = 0.75
+margin_right = -1.5
+margin_bottom = 21.15
+align = 1
+valign = 1
 script = ExtResource( 19 )
 
-[node name="HPProgress" type="TextureProgress" parent="UI"]
+[node name="HPProgress" type="TextureProgress" parent="Cam/CanvasLayer/UI"]
 light_mask = 524288
-anchor_right = 0.03
-margin_left = -640.0
-margin_top = -360.0
-margin_right = 40.0
-margin_bottom = -310.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -127.0
+margin_top = -21.0
+margin_right = 373.0
+margin_bottom = 29.0
 rect_scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 20 )
 texture_progress = ExtResource( 21 )
 script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Tween" type="Tween" parent="UI/HPProgress"]
+[node name="Tween" type="Tween" parent="Cam/CanvasLayer/UI/HPProgress"]
 
-[node name="MPProgress" type="TextureProgress" parent="UI"]
+[node name="MPProgress" type="TextureProgress" parent="Cam/CanvasLayer/UI"]
 show_behind_parent = true
 light_mask = 524288
 anchor_right = 0.03
-margin_left = -640.0
-margin_top = -340.0
-margin_right = 40.0
-margin_bottom = -290.0
+margin_left = 513.0
+margin_top = 693.0
+margin_right = 974.6
+margin_bottom = 707.0
 rect_scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 23 )
-texture_progress = ExtResource( 21 )
-tint_progress = Color( 0.00392157, 0.878431, 0.94902, 1 )
+texture_progress = ExtResource( 29 )
+tint_progress = Color( 0.00392157, 0.427451, 0.94902, 1 )
+nine_patch_stretch = true
 script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Tween" type="Tween" parent="UI/MPProgress"]
+[node name="Tween" type="Tween" parent="Cam/CanvasLayer/UI/MPProgress"]
 
-[node name="Leveup" type="Label" parent="UI"]
+[node name="Leveup" type="Label" parent="Cam/CanvasLayer/UI"]
 light_mask = 524288
-margin_left = -30.0
-margin_top = -140.0
-margin_right = 30.0
-margin_bottom = -126.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -33.2
+margin_top = -10.2
+margin_right = 33.2
+margin_bottom = 10.2
 custom_colors/font_color = Color( 0.329412, 1, 0.584314, 0 )
 text = "Level Up!"
 
-[node name="Label" type="Label" parent="UI/Leveup"]
+[node name="Label" type="Label" parent="Cam/CanvasLayer/UI/Leveup"]
 margin_left = -85.6197
 margin_top = 14.9685
 margin_right = 156.38
@@ -226,19 +259,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelUpAnim" type="AnimationPlayer" parent="UI/Leveup"]
-anims/FadeInFadeOut = SubResource( 11 )
+[node name="LevelUpAnim" type="AnimationPlayer" parent="Cam/CanvasLayer/UI/Leveup"]
+anims/FadeInFadeOut = SubResource( 5 )
 
-[node name="TabContainer" type="TabContainer" parent="UI"]
+[node name="TabContainer" type="TabContainer" parent="Cam/CanvasLayer/UI"]
 visible = false
 light_mask = 524288
 anchor_right = 1.0
-margin_left = -570.0
-margin_top = -300.0
-margin_right = 570.0
-margin_bottom = 290.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 69.0
+margin_right = -13.0
+margin_bottom = -79.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Status" type="Tabs" parent="UI/TabContainer"]
+[node name="Status" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -247,13 +284,16 @@ margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Info_Status" type="Label" parent="UI/TabContainer/Status"]
+[node name="Info_Status" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Status"]
 light_mask = 524288
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Here the player should see all of his stats and important information on his character"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Inventory" type="Tabs" parent="UI/TabContainer"]
+[node name="Inventory" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
 visible = false
 light_mask = 524288
 anchor_right = 1.0
@@ -265,42 +305,42 @@ margin_bottom = -4.0
 script = ExtResource( 25 )
 ItemButton = ExtResource( 26 )
 
-[node name="Info_Inventory" type="Label" parent="UI/TabContainer/Inventory"]
+[node name="Info_Inventory" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Inventory"]
 visible = false
 light_mask = 524288
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Here the player can accses his full inventory. Still unsure if we should stick to the list inventory or move on to a grid based inventory"
 
-[node name="Panel" type="Panel" parent="UI/TabContainer/Inventory"]
+[node name="Panel" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory"]
 light_mask = 524288
-margin_left = 525.0
+margin_left = 642.466
 margin_top = 3.0
-margin_right = 1127.0
+margin_right = 1244.47
 margin_bottom = 548.0
 
-[node name="VScrollBar" type="VScrollBar" parent="UI/TabContainer/Inventory/Panel"]
+[node name="VScrollBar" type="VScrollBar" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel"]
 light_mask = 524288
 margin_left = 590.0
 margin_right = 602.0
 margin_bottom = 550.0
 rect_min_size = Vector2( 12, 550 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/TabContainer/Inventory/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel"]
 light_mask = 524288
 margin_right = 593.0
 margin_bottom = 539.0
 rect_min_size = Vector2( 593, 593 )
 
-[node name="ItemSpriteShowcase" type="Panel" parent="UI/TabContainer/Inventory"]
+[node name="ItemSpriteShowcase" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory"]
 light_mask = 524288
-margin_left = -1.43201
-margin_top = -2.79236
-margin_right = 521.568
-margin_bottom = 298.208
+margin_left = -1.0
+margin_top = -3.0
+margin_right = 637.0
+margin_bottom = 298.0
 rect_min_size = Vector2( 523, 301 )
 
-[node name="ItemSprite" type="TextureRect" parent="UI/TabContainer/Inventory/ItemSpriteShowcase" groups=[
+[node name="ItemSprite" type="TextureRect" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/ItemSpriteShowcase" groups=[
 "UI_ItemIconPanel",
 ]]
 light_mask = 524288
@@ -312,36 +352,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DescPanel" type="Panel" parent="UI/TabContainer/Inventory"]
+[node name="DescPanel" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory"]
 light_mask = 524288
 margin_left = -1.0
 margin_top = 302.0
-margin_right = 523.0
+margin_right = 637.0
 margin_bottom = 550.0
 rect_min_size = Vector2( 524, 248 )
 
-[node name="ItemName" type="Label" parent="UI/TabContainer/Inventory/DescPanel" groups=[
+[node name="ItemName" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/DescPanel" groups=[
 "UI_ItemNamePanel",
 ]]
 light_mask = 524288
-margin_left = 175.0
-margin_top = 1.0
-margin_right = 352.0
-margin_bottom = 25.0
-custom_fonts/font = SubResource( 12 )
+margin_left = 229.728
+margin_top = -0.334839
+margin_right = 406.728
+margin_bottom = 29.0652
+custom_fonts/font = SubResource( 6 )
 text = "Item Name"
 align = 1
 
-[node name="ItemDesc" type="RichTextLabel" parent="UI/TabContainer/Inventory/DescPanel" groups=[
+[node name="ItemDesc" type="RichTextLabel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/DescPanel" groups=[
 "UI_ItemDescPanel",
 ]]
 light_mask = 524288
 margin_left = 1.0
 margin_top = 37.0
-margin_right = 523.0
+margin_right = 636.0
 margin_bottom = 239.0
 rect_min_size = Vector2( 522, 202 )
-custom_fonts/normal_font = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 7 )
 bbcode_enabled = true
 bbcode_text = "This is an Item and this is all you need to know about it
 
@@ -358,7 +398,7 @@ text = "This is an Item and this is all you need to know about it
 
 Value : 0 Gold"
 
-[node name="Quests" type="Tabs" parent="UI/TabContainer"]
+[node name="Quests" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -367,12 +407,12 @@ margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Info_Quests" type="Label" parent="UI/TabContainer/Quests"]
+[node name="Info_Quests" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Quests"]
 margin_right = 40.0
 margin_bottom = 14.0
 text = "After optaining the quest book this tab should be open for all players to use just like the orginal game."
 
-[node name="Map" type="Tabs" parent="UI/TabContainer"]
+[node name="Map" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -381,12 +421,12 @@ margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Info_Maps" type="Label" parent="UI/TabContainer/Map"]
+[node name="Info_Maps" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Map"]
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Maps are there to help the player navigate the game with a little bit of help, this tab can be only used of the player buys/crafts a map item which can be only used on ONE scene only."
 
-[node name="Spells" type="Tabs" parent="UI/TabContainer"]
+[node name="Spells" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -395,12 +435,29 @@ margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Info_Spells" type="Label" parent="UI/TabContainer/Spells"]
+[node name="Info_Spells" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Spells"]
 margin_right = 40.0
 margin_bottom = 14.0
 text = "The player can manage all of this spells here."
 
-[node name="Chat" type="Tabs" parent="UI/TabContainer"]
+[node name="Chat" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 26.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TabContainer" type="TabContainer" parent="Cam/CanvasLayer/UI/TabContainer/Chat"]
+visible = false
+light_mask = 64
+margin_right = 1240.0
+margin_bottom = 550.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="View" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -409,27 +466,16 @@ margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="TabContainer" type="TabContainer" parent="UI/TabContainer/Chat"]
-light_mask = 64
-margin_right = 1140.0
-margin_bottom = 550.0
-
-[node name="View" type="Tabs" parent="UI/TabContainer/Chat/TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
-
-[node name="TextEdit" type="TextEdit" parent="UI/TabContainer/Chat/TabContainer/View"]
+[node name="TextEdit" type="TextEdit" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/View"]
 margin_top = 490.0
-margin_right = 1135.0
+margin_right = 1219.0
 margin_bottom = 510.0
 text = "type here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="OOC" type="Tabs" parent="UI/TabContainer/Chat/TabContainer"]
-visible = false
+[node name="OOC" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -438,15 +484,15 @@ margin_right = -4.0
 margin_bottom = -4.0
 script = ExtResource( 27 )
 
-[node name="TextEditOOC" type="TextEdit" parent="UI/TabContainer/Chat/TabContainer/OOC"]
+[node name="TextEditOOC" type="TextEdit" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC"]
 margin_top = 490.0
-margin_right = 1135.0
+margin_right = 1227.0
 margin_bottom = 515.0
 text = "type here"
 wrap_enabled = true
 
-[node name="RichTextLabelOOC" type="RichTextLabel" parent="UI/TabContainer/Chat/TabContainer/OOC"]
-margin_right = 1128.0
+[node name="RichTextLabelOOC" type="RichTextLabel" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC"]
+margin_right = 1228.0
 margin_bottom = 480.0
 focus_mode = 2
 bbcode_enabled = true
@@ -455,7 +501,7 @@ text = "-"
 scroll_following = true
 selection_enabled = true
 
-[node name="System" type="Tabs" parent="UI/TabContainer/Chat/TabContainer"]
+[node name="System" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -464,7 +510,7 @@ margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Events" type="Tabs" parent="UI/TabContainer/Chat/TabContainer"]
+[node name="Events" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -472,16 +518,6 @@ margin_left = 4.0
 margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
-
-[node name="Cam" type="Camera2D" parent="."]
-current = true
-smoothing_speed = 4.5
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
-editor_draw_limits = true
-editor_draw_drag_margin = true
 
 [node name="Light2D" type="Light2D" parent="."]
 light_mask = 2
@@ -495,9 +531,9 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 light_mask = 4
-occluder = SubResource( 10 )
+occluder = SubResource( 8 )
 light_mask = 4
-[connection signal="GrabbedAnItem" from="." to="UI/TabContainer/Inventory" method="_on_Player_GrabbedAnItem"]
-[connection signal="hpupdate" from="." to="UI/HPProgress" method="_on_Player_hpupdate"]
-[connection signal="mpupdate" from="." to="UI/MPProgress" method="_on_Player_mpupdate"]
-[connection signal="text_changed" from="UI/TabContainer/Chat/TabContainer/OOC/TextEditOOC" to="UI/TabContainer/Chat/TabContainer/OOC" method="_on_TextEditOOC_text_changed"]
+[connection signal="GrabbedAnItem" from="." to="Cam/CanvasLayer/UI/TabContainer/Inventory" method="_on_Player_GrabbedAnItem"]
+[connection signal="hpupdate" from="." to="Cam/CanvasLayer/UI/HPProgress" method="_on_Player_hpupdate"]
+[connection signal="mpupdate" from="." to="Cam/CanvasLayer/UI/MPProgress" method="_on_Player_mpupdate"]
+[connection signal="text_changed" from="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC/TextEditOOC" to="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC" method="_on_TextEditOOC_text_changed"]
