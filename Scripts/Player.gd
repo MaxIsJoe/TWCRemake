@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+export (String) var PlayerName
+export (String) var PlayerRank
+export (String) var PlayerHouse
+export (int) var PlayerYear = 1
 export (int) var health
 export (int) var maxHealth
 export (int) var mana
@@ -12,10 +16,6 @@ export (int) var MaxEXP
 export (int) var level
 export (int) var levelcap
 #export (float) var speed
-export (String) var PlayerName
-export (String) var PlayerRank
-export (String) var PlayerYear
-export (String) var PlayerHouse
 export (bool) var CanDrawWand
 export (bool) var IsMale
 export (bool) var IsFemale
@@ -31,7 +31,6 @@ onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
 onready var PlayerNameUI = $PlayerName
 onready var tabs = $Cam/CanvasLayer/UI/TabContainer
 
-var gender
 #var velocity = Vector2()
 var alive = true
 slave var canmove = true
@@ -64,11 +63,6 @@ func _ready():
 		PlayerHouse = "Ravenclaw"
 	#if(IsNew == true):
 	#	PlayerHouse = "None"
-	#Check their gender
-	if(IsMale == true):
-		gender = "Male"
-	if(IsFemale == true):
-		gender = "Female"
 	emit_signal("hpupdate", health)
 	emit_signal("mpupdate", mana)
 	
