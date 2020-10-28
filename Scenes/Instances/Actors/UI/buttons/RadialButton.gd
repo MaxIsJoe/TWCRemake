@@ -13,3 +13,5 @@ func _on_RadialButton_button_down():
 			get_parent().get_parent().get_parent().queue_free()
 		Data.UI_Icon_Dia:
 			Global.LoadDialouge(get_parent().get_parent().get_parent().Dialoug.DialougFile, "000")
+		Data.UI_Icon_Shop:
+			Data.Player.ShowShopUI(get_parent().get_parent().get_parent().shop.ItemIDs)

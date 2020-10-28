@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://Sprites/BlackTransparent.png" type="Texture" id=28]
 [ext_resource path="res://Sprites/UI/whitebar.png" type="Texture" id=29]
 [ext_resource path="res://Scenes/Instances/Actors/UI/DiaUI.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scenes/Instances/Actors/UI/ShopUI.tscn" type="PackedScene" id=31]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -522,6 +523,9 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="DiaUI" parent="Cam/CanvasLayer/UI" instance=ExtResource( 30 )]
+
+[node name="ShopUI" parent="Cam/CanvasLayer/UI" instance=ExtResource( 31 )]
+visible = false
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 28 )

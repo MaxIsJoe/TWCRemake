@@ -17,6 +17,7 @@ export(bool) var HasQuests = false
 
 onready var Quick_Dia = $Quick_Dia
 onready var Dialoug = $Holders/DialougHolder
+onready var shop = $Holders/ShopHolder
 onready var TimerNode = $Cooldowns/Timer
 onready var VisableCharactersTimer = $Quick_Dia/Visable_Chars
 onready var acknowledgement_area = $Acknowledgement_area

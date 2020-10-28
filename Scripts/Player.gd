@@ -176,3 +176,6 @@ master func SetPosition(Position):
 func grab(item):
 	ItemsArray.append(item)
 	emit_signal("GrabbedAnItem", item)
+
+func ShowShopUI(Items):
+	$Cam/CanvasLayer/UI/ShopUI.OpenShop(Items)

@@ -9,5 +9,16 @@
         "Equipable":false,
         "CanBeDropped":true,
         "Function":"Nothing for now, add later when the inventory system is more complete and has function handling."
+    },
+	"food-001":
+    {
+        "name":"Beer",
+        "icon":"res://Sprites/TWCSpritesCoverted/icons2/misc/tea_0/0.png",
+        "desc":"Aint nothing like a good beer.",
+        "baseprice":15,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
+        "Function":"Nothing for now, add later when the inventory system is more complete and has function handling."
     }
 }

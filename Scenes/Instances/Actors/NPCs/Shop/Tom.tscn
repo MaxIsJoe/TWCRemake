@@ -12,7 +12,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdleUp",
+"name": "IdelRight",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -22,7 +22,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdelRight",
+"name": "IdleUp",
 "speed": 5.0
 } ]
 
@@ -35,6 +35,9 @@ HasShop = true
 
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 1 )
+
+[node name="ShopHolder" parent="Holders" index="0"]
+ItemIDs = [ "food-001" ]
 
 [node name="DialougHolder" parent="Holders" index="2"]
 DialougFile = "res://Resources/dialogue/Tom/Tom.JSON"
