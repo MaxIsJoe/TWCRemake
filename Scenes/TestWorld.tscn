@@ -44,6 +44,7 @@ __meta__ = {
 
 [node name="Item" parent="." instance=ExtResource( 2 )]
 position = Vector2( 60.2279, 74.1218 )
+input_pickable = true
 
 [node name="Door" parent="." instance=ExtResource( 3 )]
 position = Vector2( 484.387, 305.436 )
@@ -78,8 +79,10 @@ occluder = SubResource( 4 )
 position = Vector2( 215.66, 248.85 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 269.521, 184.442 )
+position = Vector2( 269.521, 185.442 )
 
 [node name="Ollivander" parent="." instance=ExtResource( 5 )]
 position = Vector2( 514.014, 586.386 )
 collision_mask = 1048575
+[connection signal="body_entered" from="Item" to="Item" method="_on_Item_body_entered"]
+[connection signal="mouse_exited" from="Item" to="Item" method="_on_Item_mouse_exited"]

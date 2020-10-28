@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Levels/Tilesets/Props.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Instances/Actors/player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Tom.tscn" type="PackedScene" id=5]
 
 [node name="DiagonAlley" type="Node2D"]
 
@@ -43,6 +44,9 @@ tile_data = PoolIntArray( 2031596, 165, 0, 2031601, 165, 0, 2031604, 165, 0, 203
 [node name="Teleports" type="Node2D" parent="."]
 
 [node name="NPCs" type="Node2D" parent="."]
+
+[node name="Tom" parent="NPCs" instance=ExtResource( 5 )]
+position = Vector2( 624, 1099 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 703, 130 )
