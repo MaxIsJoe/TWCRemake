@@ -12,7 +12,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdelRight",
+"name": "IdleUp",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -22,7 +22,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdleUp",
+"name": "IdelRight",
 "speed": 5.0
 } ]
 
@@ -30,6 +30,11 @@ animations = [ {
 NPC_Name = "Tom"
 Desc = "The barkeeper and guard of the  Leaky Cauldron pub"
 ID = 2
+HasDialouge = true
+HasShop = true
 
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 1 )
+
+[node name="DialougHolder" parent="Holders" index="2"]
+DialougFile = "res://Resources/dialogue/Tom/Tom.JSON"

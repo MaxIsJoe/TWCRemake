@@ -1,0 +1,26 @@
+{
+    "000":
+    {
+        "type": "dialouge",
+        "text": "Hello [gender]g[/gender]",
+        "next": "001"
+    },
+    "001":
+    {
+        "type": "dialouge",
+        "text": "how may I help you today?",
+        "next": "001-choices"
+    },
+    "001-choices":
+    {
+        "type":"response",
+        "text": "how may I help you today?",
+        "choices":{"Talk":{"next":"004"}, "Shop":{"next":"100"}, "Goodbye":{"next":"101"}}
+    },
+    "004":
+    {
+        "type":"dialouge",
+        "text":"I have a rat problem down in my basment, would you like to help?",
+        "next":""
+    }
+}
