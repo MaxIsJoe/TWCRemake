@@ -1,0 +1,22 @@
+[gd_resource type="RichTextEffect" load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "tool
+extends RichTextEffect
+
+# Syntax: [ghost freq=5.0 span=10.0][/ghost]
+
+# Define the tag name.
+var bbcode = \"gender\"
+
+func _process_custom_fx(char_fx):
+	# Get parameters, or use the provided default value if missing.
+	if(Data.Player.IsMale):
+		char_fx.character = \"Sir\"
+	if(Data.Player.IsFemale):
+		char_fx.character = \"Ma'am\"
+		return true
+"
+
+[resource]
+script = SubResource( 1 )
