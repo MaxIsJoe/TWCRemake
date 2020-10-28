@@ -27,3 +27,4 @@ custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "Choice Name"
 text = "Choice Name"
+[connection signal="button_up" from="." to="." method="_on_ChoiceButton_button_up"]
