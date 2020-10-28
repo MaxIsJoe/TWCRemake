@@ -13,7 +13,13 @@ var UI_Icon_Shop = "res://Sprites/UI/BagOSnow_Converted.png"
 var UI_Icon_Dia = "res://Sprites/UI/Dia_Icon.png"
 var UI_Icon_Grab = "res://Sprites/UI/grab.png"
 
+##Groups##
+var Group_DiaNode
+
 #Temp#
 #Dialouge#
 var Loaded_Dialouge
 var Player
+
+func UpdateDiaNodeVar():
+	Group_DiaNode = get_tree().get_nodes_in_group("DiaUI")

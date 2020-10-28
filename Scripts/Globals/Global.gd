@@ -52,6 +52,22 @@ func GiveHouseCup():
 func GetDistance2Player(target):
 	var distance2player = target.global_position.distance_to(Data.Player.global_position)
 	return distance2player
+	
+
+#Player/Cliet specfic
+func LoadDialouge(DiaFile, ID):
+	Data.UpdateDiaNodeVar()
+	for p in Data.Group_DiaNode:
+		p.emit_signal("StartDialougRemotely", DiaFile, ID)
+
+func CheckForFunctionCall(FunctionName):
+	if(FunctionName.begins_with("GiveGold")):
+		var value = FunctionName.split(" ")
+		for p in Data.Player:
+			p.emit_signal("AddGold",value[1])
+			#var Note = "[center]You have recived %s gold!" % value[1] 
+			#p.emit_signal("NotifyPlayer", Note)
+		print(value)
 
 #Updates
 
