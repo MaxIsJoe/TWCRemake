@@ -30,5 +30,4 @@ func _on_ChoiceButton_button_up():
 	var s = get_tree().get_nodes_in_group("DiaButtons")
 	for p in v:
 		p.emit_signal("StartDialougRemotely")
-	for h in s:
-		h.get_parent().remove_child(h)
+		p.ClearChoices()

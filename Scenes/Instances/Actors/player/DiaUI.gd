@@ -96,6 +96,11 @@ func _on_DiaUI_StartDialougRemotely(FILE, ID):
 	else:
 		JsonLoader.LoadJSON_General(FILE, 0)
 		Dia_init(ID)
+		
+func ClearChoices():
+	var childern = $Background/Choices/ChoicesHolder.get_children()
+	for child in childern:
+		$Background/Choices/ChoicesHolder.remove_child(child)
 
 
 func _on_TweenVisibility_tween_completed(object, key):
