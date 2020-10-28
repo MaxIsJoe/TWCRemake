@@ -7,7 +7,7 @@ onready var DiaChoicesHolder = $Background/Choices/ChoicesHolder
 
 onready var ButtonPrefap = preload("res://Scenes/Instances/Actors/UI/buttons/ChoiceButton.tscn")
 
-export(float) var interpolateTime = 0.5
+export(float) var interpolateTime = 0.4
 var CanFlip = false
 var revealspd = 35
 var CurrentID
