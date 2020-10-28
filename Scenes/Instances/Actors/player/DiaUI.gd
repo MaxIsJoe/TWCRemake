@@ -7,10 +7,12 @@ onready var DiaChoicesHolder = $Background/Choices/ChoicesHolder
 
 onready var ButtonPrefap = preload("res://Scenes/Instances/Actors/UI/buttons/ChoiceButton.tscn")
 
+export(float) var interpolateTime = 0.5
 var CanFlip = false
 var revealspd = 35
 var CurrentID
 var IsVisible = false
+
 signal StartDialougRemotely(FILE, ID)
 
 
@@ -34,10 +36,10 @@ func ShowUI(check:bool):
 	if(!visible):
 		visible = true
 	if(check):
-		$TweenVisibility.interpolate_property(DiaBackground, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.5, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+		$TweenVisibility.interpolate_property(DiaBackground, "modulate", Color(1,1,1,0), Color(1,1,1,1), interpolateTime, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 		$TweenVisibility.start()
 	else:
-		$TweenVisibility.interpolate_property(DiaBackground, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.5, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+		$TweenVisibility.interpolate_property(DiaBackground, "modulate", Color(1,1,1,1), Color(1,1,1,0), interpolateTime, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 		$TweenVisibility.start()
 		
 
