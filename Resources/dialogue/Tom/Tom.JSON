@@ -20,7 +20,8 @@
     "004":
     {
         "type":"dialouge",
-        "text":"I have a rat problem down in my basment, would you like to help?",
+        "text":"I'm sorry but there is no quests avaliable in this alpha right now, here is some gold though.",
+        "func": "GiveGold 100",
         "next":""
     }
 }
