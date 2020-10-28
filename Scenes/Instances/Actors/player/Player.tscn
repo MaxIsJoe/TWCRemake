@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=2]
@@ -29,17 +29,20 @@
 [ext_resource path="res://Scenes/Instances/Actors/player/OOC.gd" type="Script" id=27]
 [ext_resource path="res://Sprites/BlackTransparent.png" type="Texture" id=28]
 [ext_resource path="res://Sprites/UI/whitebar.png" type="Texture" id=29]
-[ext_resource path="res://Sprites/UI/Dia_UI_Background.png" type="Texture" id=30]
-[ext_resource path="res://Resources/Fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=31]
-[ext_resource path="res://Scenes/Instances/Actors/player/DiaUI.gd" type="Script" id=33]
+[ext_resource path="res://Scenes/Instances/Actors/UI/DiaUI.tscn" type="PackedScene" id=30]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "walkdown",
+"name": "walkleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idledown",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
@@ -47,14 +50,9 @@ animations = [ {
 "name": "walkup",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
-"name": "walkright",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "idleright",
+"name": "idleup",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -62,19 +60,19 @@ animations = [ {
 "name": "idleleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "walkleft",
+"name": "walkdown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "idleup",
+"name": "idleright",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "idledown",
+"name": "walkright",
 "speed": 5.0
 } ]
 
@@ -119,11 +117,7 @@ font_data = ExtResource( 18 )
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 18 )
 
-[sub_resource type="DynamicFont" id=8]
-size = 25
-font_data = ExtResource( 31 )
-
-[sub_resource type="OccluderPolygon2D" id=9]
+[sub_resource type="OccluderPolygon2D" id=8]
 cull_mode = 1
 polygon = PoolVector2Array( -7.96928, -17.6246, -8.24667, 17.604, 8.95152, 17.3266, 7.84196, -17.9019 )
 
@@ -527,67 +521,7 @@ margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="DiaUI" type="Control" parent="Cam/CanvasLayer/UI" groups=[
-"DiaUI",
-]]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Background" type="TextureRect" parent="Cam/CanvasLayer/UI/DiaUI"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 30 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DialogueText" type="RichTextLabel" parent="Cam/CanvasLayer/UI/DiaUI/Background"]
-margin_top = 588.0
-margin_right = 1276.0
-margin_bottom = 718.0
-custom_fonts/normal_font = SubResource( 8 )
-bbcode_enabled = true
-bbcode_text = "blah blah blah, test test test this is a test text yadayadaya
-[gender]a[/gender]
-[playername]a[/playername]"
-text = "blah blah blah, test test test this is a test text yadayadaya
-[gender]a[/gender]
-[playername]a[/playername]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Choices" type="Control" parent="Cam/CanvasLayer/UI/DiaUI/Background"]
-margin_left = 829.0
-margin_top = 173.0
-margin_right = 1275.0
-margin_bottom = 569.0
-rect_min_size = Vector2( 446, 396 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ChoicesHolder" type="VBoxContainer" parent="Cam/CanvasLayer/UI/DiaUI/Background/Choices"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -3.05176e-05
-margin_bottom = 0.999969
-alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="Cam/CanvasLayer/UI/DiaUI"]
-
-[node name="TweenVisibility" type="Tween" parent="Cam/CanvasLayer/UI/DiaUI"]
+[node name="DiaUI" parent="Cam/CanvasLayer/UI" instance=ExtResource( 30 )]
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 28 )
@@ -600,10 +534,9 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 light_mask = 4
-occluder = SubResource( 9 )
+occluder = SubResource( 8 )
 light_mask = 4
 [connection signal="GrabbedAnItem" from="." to="Cam/CanvasLayer/UI/TabContainer/Inventory" method="_on_Player_GrabbedAnItem"]
 [connection signal="hpupdate" from="." to="Cam/CanvasLayer/UI/HPProgress" method="_on_Player_hpupdate"]
 [connection signal="mpupdate" from="." to="Cam/CanvasLayer/UI/MPProgress" method="_on_Player_mpupdate"]
 [connection signal="text_changed" from="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC/TextEditOOC" to="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC" method="_on_TextEditOOC_text_changed"]
-[connection signal="StartDialougRemotely" from="Cam/CanvasLayer/UI/DiaUI" to="Cam/CanvasLayer/UI/DiaUI" method="_on_DiaUI_StartDialougRemotely"]
