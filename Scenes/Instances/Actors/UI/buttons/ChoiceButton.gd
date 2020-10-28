@@ -24,6 +24,7 @@ func InitlizeCondtions(Cond):
 #			self.disabled = true
 
 func _on_ChoiceButton_button_up():
+	print("choice made:" + $RichTextLabel.bbcode_text)
 	Global.LoadDialouge(DiaFile, DialougeID)
 	var v = get_tree().get_nodes_in_group("DiaUI")
 	var s = get_tree().get_nodes_in_group("DiaButtons")
