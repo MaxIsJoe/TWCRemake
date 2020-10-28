@@ -520,7 +520,6 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="Light2D" type="Light2D" parent="."]
-light_mask = 2
 texture = ExtResource( 28 )
 texture_scale = 4.25
 mode = 3
