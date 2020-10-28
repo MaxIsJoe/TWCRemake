@@ -70,3 +70,4 @@ __meta__ = {
 
 [node name="TweenVisibility" type="Tween" parent="."]
 [connection signal="StartDialougRemotely" from="." to="." method="_on_DiaUI_StartDialougRemotely"]
+[connection signal="tween_completed" from="TweenVisibility" to="." method="_on_TweenVisibility_tween_completed"]

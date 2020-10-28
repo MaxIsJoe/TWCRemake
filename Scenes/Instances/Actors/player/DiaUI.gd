@@ -10,6 +10,7 @@ onready var ButtonPrefap = preload("res://Scenes/Instances/Actors/UI/buttons/Cho
 var CanFlip = false
 var revealspd = 35
 var CurrentID
+var IsVisible = false
 signal StartDialougRemotely(FILE, ID)
 
 
@@ -26,7 +27,7 @@ func _input(event):
 					Dia_LoadChoices(CurrentID)
 					CanFlip = false
 			if(Data.Loaded_Dialouge[CurrentID].get("next") == ""):
-					ToggleVisbility()
+					ShowUI(false)
 					CanFlip = false
 
 func ShowUI(check:bool):
@@ -38,7 +39,6 @@ func ShowUI(check:bool):
 	else:
 		$TweenVisibility.interpolate_property(DiaBackground, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.5, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 		$TweenVisibility.start()
-		visible = false
 		
 
 func Dia_init(ID):
@@ -94,3 +94,11 @@ func _on_DiaUI_StartDialougRemotely(FILE, ID):
 	else:
 		JsonLoader.LoadJSON_General(FILE, 0)
 		Dia_init(ID)
+
+
+func _on_TweenVisibility_tween_completed(object, key):
+	if(IsVisible):
+		visible = false
+		IsVisible = false
+	else:
+		IsVisible = true
