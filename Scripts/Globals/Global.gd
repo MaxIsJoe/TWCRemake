@@ -67,6 +67,9 @@ func CheckForFunctionCall(FunctionName):
 		#var Note = "[center]You have recived %s gold!" % value[1] 
 		#p.emit_signal("NotifyPlayer", Note)
 		print(value)
+	if(FunctionName.begins_with("OpenShop")):
+		var ShopID = FunctionName.split(" ")
+		Data.Player.ShowShopUI(null, int(ShopID[1]))
 
 func ConditionCheck(ID):
 	var d = Data.Loaded_Dialouge[ID].get("cond")
