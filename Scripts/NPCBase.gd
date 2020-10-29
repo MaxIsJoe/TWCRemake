@@ -31,7 +31,7 @@ var quicktext
 
 
 func _ready():
-	input_pickable = true
+	$NPCName.text = NPC_Name
 	if(HasQuickDialouge):
 		quicktext = JsonLoader.LoadJSON_Retrun($Holders/DialougHolder.QuickDialougFile)
 		$Cooldowns/QuickDiaCooldown.start()

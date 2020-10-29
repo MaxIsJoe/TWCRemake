@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/NPCBase.gd" type="Script" id=1]
-[ext_resource path="res://fonts/PlayfairDisplay-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/DialougHolder.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Instances/Actors/UI/RadialMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/ShopHolder.gd" type="Script" id=5]
@@ -15,6 +15,11 @@ extents = Vector2( 163.15, 122.502 )
 animations = [ {
 "frames": [  ],
 "loop": true,
+"name": "IdleFront",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
 "name": "IdleLeft",
 "speed": 5.0
 }, {
@@ -25,19 +30,17 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdleFront",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
 "name": "IdleUp",
 "speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=4]
-size = 11
+size = 14
 outline_size = 1
 outline_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 2 )
 
 [node name="NPCBase" type="KinematicBody2D"]
@@ -58,15 +61,29 @@ animation = "IdleFront"
 
 [node name="Quick_Dia" type="RichTextLabel" parent="."]
 margin_left = -168.0
-margin_top = -44.0
+margin_top = -67.0
 margin_right = 169.0
 margin_bottom = -16.0
 mouse_filter = 2
 custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0.211765, 1, 0.631373, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]Quick Dialoug"
-text = "Quick Dialoug"
+bbcode_text = "[center]Quick Dialouge"
+text = "Quick Dialouge"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NPCName" type="Label" parent="."]
+margin_left = -68.0
+margin_top = -45.2474
+margin_right = 70.0
+margin_bottom = -17.8474
+custom_fonts/font = SubResource( 5 )
+text = "NPC Name"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
