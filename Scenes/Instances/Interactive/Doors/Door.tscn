@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/opening_0/1.png" type="Texture" id=2]
@@ -11,21 +11,25 @@ extents = Vector2( 16.6911, 18.2943 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ],
 "loop": false,
-"name": "Closing",
-"speed": 3.0
+"name": "Opening",
+"speed": 7.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": false,
-"name": "Opening",
-"speed": 7.0
+"name": "Closing",
+"speed": 3.0
 } ]
+
+[sub_resource type="OccluderPolygon2D" id=3]
+cull_mode = 1
+polygon = PoolVector2Array( -15.5866, -14.4842, 15.7029, -14.6609, 15.3493, 15.5679, -15.5866, 15.5679 )
 
 [node name="Door" type="Node2D"]
 light_mask = 2
@@ -43,5 +47,8 @@ animation = "Idle"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 25.0
 one_shot = true
+
+[node name="Occluder" type="LightOccluder2D" parent="."]
+occluder = SubResource( 3 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

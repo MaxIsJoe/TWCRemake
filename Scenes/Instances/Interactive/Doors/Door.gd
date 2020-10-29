@@ -4,7 +4,7 @@ extends Node2D
 onready var AreaCollision = $Area2D/AreaCollision
 onready var spriteanim = $AnimatedSprite
 onready var timer = $Timer
-onready var Occluder = $LightOccluder2D
+onready var Occluder = $Occluder
 
 #export(bool) var CanBeBroken = false
 
@@ -19,7 +19,6 @@ func _ready():
 	IsOpen = false
 	spriteanim.play("Idle")
 	
-
 
 func _on_Area2D_body_entered(body):
 	if(body.is_in_group("Players")):
