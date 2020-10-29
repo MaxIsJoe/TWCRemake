@@ -530,7 +530,6 @@ visible = false
 texture = ExtResource( 28 )
 texture_scale = 4.25
 mode = 3
-shadow_enabled = true
 shadow_buffer_size = 1028
 __meta__ = {
 "_edit_lock_": true
