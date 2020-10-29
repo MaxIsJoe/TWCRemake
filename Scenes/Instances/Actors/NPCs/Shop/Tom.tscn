@@ -31,7 +31,6 @@ NPC_Name = "Tom"
 Desc = "The barkeeper and guard of the  Leaky Cauldron pub"
 ID = 2
 HasDialouge = true
-HasShop = true
 
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 1 )

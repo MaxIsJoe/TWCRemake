@@ -30,7 +30,7 @@
 		"cond":{"PlayerYear":2},
 		"condresp":{"PlayerYear":"101"},
 		"text":"Here's what I got",
-        "func": "GiveGold 100",
+        "func": "OpenShop 2",
 		"next":""
 	},
 	"101":
