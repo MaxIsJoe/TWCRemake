@@ -15,6 +15,7 @@ var UI_Icon_Grab = "res://Sprites/UI/grab.png"
 
 ##Groups##
 var Group_DiaNode
+var Group_ShopHolders
 
 #Temp#
 #Dialouge#
@@ -23,3 +24,6 @@ var Player
 
 func UpdateDiaNodeVar():
 	Group_DiaNode = get_tree().get_nodes_in_group("DiaUI")
+
+func Update_Group_ShopHolders():
+	Group_ShopHolders = get_tree().get_nodes_in_group("shop")
