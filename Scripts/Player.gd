@@ -130,6 +130,11 @@ func _input(event):
 	if(Input.is_action_just_pressed("ui_page_up")):
 		expgain(50)
 		print("Your level is ", level," Your EXP is ",EXP," and your MaxEXP = ",MaxEXP)
+	if(Input.is_action_just_pressed("DEBUG_DisableShadows")):
+		if($Light2D.shadow_enabled):
+			$Light2D.shadow_enabled = false
+		else:
+			$Light2D.shadow_enabled = true
 			
 remote func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
