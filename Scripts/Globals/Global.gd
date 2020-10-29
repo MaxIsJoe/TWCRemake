@@ -54,7 +54,7 @@ func GetDistance2Player(target):
 	return distance2player
 	
 
-#Player/Cliet specfic
+#Player/Client specfic
 func LoadDialouge(DiaFile, ID):
 	Data.UpdateDiaNodeVar()
 	for p in Data.Group_DiaNode:
@@ -67,6 +67,21 @@ func CheckForFunctionCall(FunctionName):
 		#var Note = "[center]You have recived %s gold!" % value[1] 
 		#p.emit_signal("NotifyPlayer", Note)
 		print(value)
+
+func ConditionCheck(ID):
+	var d = Data.Loaded_Dialouge[ID].get("cond")
+	var response = Data.Loaded_Dialouge[ID].get("condresp")
+	var result
+	if(d.has("PlayerYear")):
+		if(Data.Player.PlayerYear >= d.get("PlayerYear")):
+				print("condition met")
+				return true
+		else:
+			result = response.get("PlayerYear")
+			print("condition not met")
+			LoadDialouge(null, result)
+			return false
+		
 
 #Updates
 

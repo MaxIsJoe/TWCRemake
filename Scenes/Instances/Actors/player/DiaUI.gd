@@ -52,6 +52,11 @@ func Dia_init(ID):
 	
 
 func Dia_SetText(ID):
+	if(Data.Loaded_Dialouge[ID].has("cond")):
+		if(Global.ConditionCheck(ID)):
+			pass
+		else:
+			return
 	if(ID == ""):
 		CanFlip = false
 		ShowUI(false)
