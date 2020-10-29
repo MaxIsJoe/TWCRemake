@@ -1,15 +1,14 @@
 extends TextureButton
 
 
-
 var price = 0
 var ID
 
 func LoadData(item):
 	$ItemIcon.texture = load(Data.ItemData[item].get("icon"))
 	$RichTextLabel.bbcode_text = Data.ItemData[item].get("name")
-	hint_tooltip = Data.ItemData[item].get("desc")
 	price = Data.ItemData[item].get("baseprice")
+	hint_tooltip = str(Data.ItemData[item].get("desc") + "\n \n" + "Price : " + str(price))
 	ID = item
 
 
