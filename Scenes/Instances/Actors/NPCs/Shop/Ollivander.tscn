@@ -13,6 +13,11 @@ animations = [ {
 "name": "IdleLeft",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "IdelRight",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "IdleFront",
@@ -21,11 +26,6 @@ animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "IdleUp",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "IdelRight",
 "speed": 5.0
 } ]
 
@@ -40,6 +40,9 @@ HasShop = true
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 1 )
 playing = true
+
+[node name="ShopHolder" parent="Holders" index="0"]
+ShopID = 1
 
 [node name="DialougHolder" parent="Holders" index="2"]
 QuickDialougFile = "res://Resources/dialogue/Olivander/QuickDialouge.JSON"

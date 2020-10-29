@@ -37,6 +37,7 @@ HasShop = true
 frames = SubResource( 1 )
 
 [node name="ShopHolder" parent="Holders" index="0"]
+ShopID = 2
 ItemIDs = [ "food-001" ]
 
 [node name="DialougHolder" parent="Holders" index="2"]
