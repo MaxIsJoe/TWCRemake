@@ -41,6 +41,7 @@ outline_color = Color( 0.109804, 0.109804, 0.109804, 1 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=5]
+size = 12
 font_data = ExtResource( 2 )
 
 [node name="NPCBase" type="KinematicBody2D"]
@@ -75,6 +76,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Tween" type="Tween" parent="Quick_Dia"]
+
 [node name="NPCName" type="Label" parent="."]
 margin_left = -68.0
 margin_top = -45.2474
@@ -94,13 +97,14 @@ __meta__ = {
 wait_time = 25.0
 autostart = true
 
+[node name="QuickDiaVisibiltyCooldown" type="Timer" parent="Cooldowns"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [node name="WanderCooldown" type="Timer" parent="Cooldowns"]
 wait_time = 3.0
 autostart = true
-
-[node name="WanderingCooldown" type="Timer" parent="Cooldowns"]
-wait_time = 2.0
-one_shot = true
 
 [node name="Holders" type="Node" parent="."]
 
@@ -121,4 +125,5 @@ script = ExtResource( 3 )
 [connection signal="body_entered" from="Acknowledgement_area" to="." method="_on_Acknowledgement_area_body_entered"]
 [connection signal="body_exited" from="Acknowledgement_area" to="." method="_on_Acknowledgement_area_body_exited"]
 [connection signal="timeout" from="Cooldowns/QuickDiaCooldown" to="." method="_on_QuickDiaCooldown_timeout"]
+[connection signal="timeout" from="Cooldowns/QuickDiaVisibiltyCooldown" to="." method="_on_QuickDiaVisibiltyCooldown_timeout"]
 [connection signal="send_text" from="Holders/DialougHolder" to="." method="_on_DialougHolder_send_text"]

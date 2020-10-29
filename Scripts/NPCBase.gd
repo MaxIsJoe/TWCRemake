@@ -57,7 +57,10 @@ func _on_Acknowledgement_area_body_exited(body):
 
 func _on_QuickDiaCooldown_timeout():
 	quicktext = Dialoug.GetQuickDia()
-	$Quick_Dia.bbcode_text = str(quicktext)
+	Quick_Dia.bbcode_text = str(quicktext)
+	$Quick_Dia/Tween.interpolate_property(Quick_Dia, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.8, Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+	$Quick_Dia/Tween.start()
+	$Cooldowns/QuickDiaVisibiltyCooldown.start()
 
 
 func _on_NPCBase_input_event(viewport, event, shape_idx):
@@ -67,3 +70,8 @@ func _on_NPCBase_input_event(viewport, event, shape_idx):
 			if event.button_index == BUTTON_RIGHT and event.pressed:
 				$RadialMenu.ToggleButtonVisbility(true)
 				print("it's working")
+
+
+func _on_QuickDiaVisibiltyCooldown_timeout():
+	$Quick_Dia/Tween.interpolate_property(Quick_Dia, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.8, Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+	$Quick_Dia/Tween.start()
