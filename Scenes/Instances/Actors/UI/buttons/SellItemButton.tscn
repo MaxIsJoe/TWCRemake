@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/Fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Instances/Actors/UI/buttons/SellItemButton.gd" type="Script" id=3]
 [ext_resource path="res://Sprites/AnimatedTiles/Food/FoodProp_BeerTea.tres" type="Texture" id=4]
+[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Locked.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Hover.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Pressed.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 22
@@ -15,6 +18,9 @@ margin_bottom = 90.0
 rect_min_size = Vector2( 504, 90 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 5 )
 expand = true
 script = ExtResource( 3 )
 __meta__ = {
