@@ -177,5 +177,5 @@ func grab(item):
 	ItemsArray.append(item)
 	emit_signal("GrabbedAnItem", item)
 
-func ShowShopUI(Items):
-	$Cam/CanvasLayer/UI/ShopUI.OpenShop(Items)
+func ShowShopUI(Items, ShopID):
+	$Cam/CanvasLayer/UI/ShopUI.OpenShop(Items, ShopID)

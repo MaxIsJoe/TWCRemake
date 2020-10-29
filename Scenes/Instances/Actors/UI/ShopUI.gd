@@ -6,9 +6,15 @@ export(float) var interpolateTime = 0.8
 var IsVisible = false
 
 
-func OpenShop(ItemsList:Array):
-	LoadItems(ItemsList)
-	ShowUI(true)
+func OpenShop(ItemsList, ShopID):
+	if(ItemsList == null):
+		for shop in Data.Group_ShopHolders:
+			if(ShopID == shop.ShopID):
+				LoadItems(shop.ItemIDs)
+				ShowUI(true)
+	else:
+		LoadItems(ItemsList)
+		ShowUI(true)
 
 
 func _input(event):
