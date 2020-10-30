@@ -31,6 +31,7 @@ onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
 onready var PlayerNameUI = $PlayerName
 onready var tabs = $Cam/CanvasLayer/UI/TabContainer
 onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
+onready var PopUpUI = $Cam/CanvasLayer/UI/WindowDialog
 
 #var velocity = Vector2()
 var alive = true
@@ -203,3 +204,8 @@ func ShowScroll(ID):
 		file.open("res://debug/Scrolls/" + str(ID) + ".txt", File.WRITE)
 		file.store_string("")
 		file.close()
+
+func ShowSign(Title, Content):
+	PopUpUI.window_title = Title
+	PopUpUI.dialog_text = Content
+	PopUpUI.popup_centered()
