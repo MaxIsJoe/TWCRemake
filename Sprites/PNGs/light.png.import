@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/goblin2_0.png-f66ca8e156eae284d1b84b8bd56213f3.stex"
+path="res://.import/light.png-e598d0f5173da119847931f8c4189e2c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/TWCSpritesCoverted/icons4/NPCs/goblin2_0.png"
-dest_files=[ "res://.import/goblin2_0.png-f66ca8e156eae284d1b84b8bd56213f3.stex" ]
+source_file="res://Sprites/PNGs/light.png"
+dest_files=[ "res://.import/light.png-e598d0f5173da119847931f8c4189e2c.stex" ]
 
 [params]
 
