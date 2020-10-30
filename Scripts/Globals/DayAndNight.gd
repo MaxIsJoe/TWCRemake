@@ -8,8 +8,8 @@ enum TimeOfDay  {
 	Midnight	
 }
 
-var TimeLong = 10
-var TimeShort = 5
+var TimeLong = 120
+var TimeShort = 60
 
 var currentTime = TimeOfDay.Day
 
