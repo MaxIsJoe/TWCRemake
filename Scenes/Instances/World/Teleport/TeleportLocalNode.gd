@@ -9,5 +9,5 @@ func _on_TeleportLocalNode_body_entered(body):
 		if(Footstep_Sounds != null):
 			randomize()
 			var pitch = rand_range(-2,2)
-			GlobalAudio.PlaySound(Footstep_Sounds,$AudioStreamPlayer2D, null, null, pitch)
+			GlobalAudio.PlaySound(Footstep_Sounds,$AudioStreamPlayer2D, "Sound Effects", null, pitch)
 		body.position = get_node(TeleportLocation).position

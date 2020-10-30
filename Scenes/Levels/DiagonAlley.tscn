@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.tscn" type="PackedScene" id=2]
@@ -8,8 +8,11 @@
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Ollivander.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/BoomStoreOwner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Instances/World/Teleport/TeleportLocalNode.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Instances/World/Teleport/FlooFire.tscn" type="PackedScene" id=9]
 
-[node name="DiagonAlley" type="Node2D"]
+[node name="DiagonAlley" type="Node2D" groups=[
+"Map",
+]]
 
 [node name="FloorsAndWalls" type="Node2D" parent="."]
 
@@ -61,6 +64,10 @@ TeleportLocation = NodePath("../../EndPoints/BankInside")
 position = Vector2( -3488, -576 )
 TeleportLocation = NodePath("../../EndPoints/BankOutside")
 
+[node name="FlooFire" parent="Teleports/Pathways" instance=ExtResource( 9 )]
+position = Vector2( 1168, -1696 )
+TeleportToScene = "res://Scenes/TestWorld_2.tscn"
+
 [node name="EndPoints" type="Node2D" parent="Teleports"]
 
 [node name="BankInside" type="Position2D" parent="Teleports/EndPoints"]
@@ -89,7 +96,7 @@ position = Vector2( 2182, -1042 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 light_mask = -2147483647
-position = Vector2( 732, 124 )
+position = Vector2( 1073, -1568 )
 IsFemale = true
 
 [editable path="Teleports/Pathways/TeleportLocalNode"]
