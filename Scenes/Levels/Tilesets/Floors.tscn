@@ -271,6 +271,6 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [node name="Floors" type="TileMap"]
 tile_set = SubResource( 4 )
 cell_size = Vector2( 32, 32 )
-occluder_light_mask = 2
+occluder_light_mask = 3
 format = 1
 script = ExtResource( 17 )
