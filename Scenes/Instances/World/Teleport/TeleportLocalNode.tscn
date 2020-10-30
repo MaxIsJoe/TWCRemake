@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Instances/World/Teleport/TeleportLocalNode.gd" type="Script" id=1]
+[ext_resource path="res://Sound/SFX/footsteps/footsteps_concret_m.ogg" type="AudioStream" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 21 )
@@ -8,7 +9,11 @@ extents = Vector2( 64, 21 )
 [node name="TeleportLocalNode" type="Area2D"]
 position = Vector2( 512, 64 )
 script = ExtResource( 1 )
+Footstep_Sounds = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = "Sound Effects"
 [connection signal="body_entered" from="." to="." method="_on_TeleportLocalNode_body_entered"]
