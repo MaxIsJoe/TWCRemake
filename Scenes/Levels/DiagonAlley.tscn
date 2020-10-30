@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/BoomStoreOwner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Instances/World/Teleport/TeleportLocalNode.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Instances/World/Teleport/FlooFire.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Instances/Interactive/Signs/Sign.tscn" type="PackedScene" id=10]
 
 [node name="DiagonAlley" type="Node2D" groups=[
 "Map",
@@ -33,7 +34,7 @@ tile_data = PoolIntArray( -3473386, 1, 0, -3473371, 1, 0, -3473370, 1, 0, -34733
 position = Vector2( 976, 74 )
 
 [node name="Door2" parent="Doors" instance=ExtResource( 2 )]
-position = Vector2( 1808, -113 )
+position = Vector2( 1808, -118 )
 
 [node name="Door3" parent="Doors" instance=ExtResource( 2 )]
 position = Vector2( 2384, -503 )
@@ -51,6 +52,33 @@ tile_data = PoolIntArray( -3276761, 38, 0, -3276756, 38, 0, -3276743, 38, 0, -32
 
 [node name="Props2" parent="Decore" instance=ExtResource( 3 )]
 tile_data = PoolIntArray( 2031596, 165, 0, 2031601, 165, 0, 2031604, 165, 0, 2031607, 165, 0, 2031610, 165, 0, 2031613, 165, 0, 1966080, 165, 0, 1966083, 165, 0, 1966086, 165, 0, 1966089, 165, 0, 1966092, 165, 0, 1966095, 165, 0, 1966098, 165, 0, 1966101, 165, 0, 1966104, 165, 0, 2097155, 163, 0, 2097174, 150, 0, 2097175, 150, 0, 2293742, 156, 0, 2293743, 156, 0, 2359278, 158, 0, 2359279, 160, 0, 2424813, 156, 0, 2424816, 156, 0, 2424826, 159, 0, 2490350, 161, 0, 2490351, 161, 0, 2490362, 154, 0, 2490384, 156, 0, 2490386, 156, 0, 2490392, 156, 0, 2621422, 153, 0, 2621423, 155, 0, 2555920, 156, 0, 2555922, 156, 0, 2555927, 156, 0, 2686957, 156, 0, 2686960, 156, 0 )
+
+[node name="Signs" type="Node2D" parent="Decore"]
+
+[node name="Sign" parent="Decore/Signs" instance=ExtResource( 10 )]
+position = Vector2( 1013, 74 )
+SignName = "Olivanders Wand Shop"
+SignContent = "founded in 382 B.C."
+
+[node name="Sign2" parent="Decore/Signs" instance=ExtResource( 10 )]
+position = Vector2( 1198, -438 )
+SignName = "Potion Shop"
+SignContent = "Under construction. Potions and potion making tools/ingridents will be sold here."
+
+[node name="Sign3" parent="Decore/Signs" instance=ExtResource( 10 )]
+position = Vector2( 2384, -537 )
+SignName = "Attire Shop"
+SignContent = "Under construction. Wigs, scarfs and more will be sold here for players to customize themselves."
+
+[node name="Sign4" parent="Decore/Signs" instance=ExtResource( 10 )]
+position = Vector2( 1808, -154 )
+SignName = "Trader"
+SignContent = "Under contruction"
+
+[node name="Sign5" parent="Decore/Signs" instance=ExtResource( 10 )]
+position = Vector2( 2128, -628 )
+SignName = "Book Store"
+SignContent = "Get your scrolls, books and quils from here!"
 
 [node name="Teleports" type="Node2D" parent="."]
 
