@@ -8,7 +8,7 @@
         "Useable":true,
         "Equipable":false,
         "CanBeDropped":true,
-        "Function":"Nothing for now, add later when the inventory system is more complete and has function handling."
+        "Function":"Eat 100"
     },
 	"food-001":
     {
@@ -19,6 +19,18 @@
         "Useable":true,
         "Equipable":false,
         "CanBeDropped":true,
-        "Function":"Nothing for now, add later when the inventory system is more complete and has function handling."
+        "Function":"Eat 25"
+    },
+    "misc-000":
+    {
+        "name":"Scroll",
+        "icon":"res://Sprites/TWCSpritesCoverted/items/scroll_empty.png",
+        "desc":"An scroll that is used to write things on it. Nothing is special about this scroll.",
+        "baseprice":5,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
+        "Function":"OpenScroll",
+        "ScrollID":null
     }
 }
