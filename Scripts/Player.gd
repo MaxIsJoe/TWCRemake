@@ -30,6 +30,7 @@ onready var animstate = get_node("AnimatedSprite")
 onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
 onready var PlayerNameUI = $PlayerName
 onready var tabs = $Cam/CanvasLayer/UI/TabContainer
+onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
 
 #var velocity = Vector2()
 var alive = true
@@ -184,3 +185,21 @@ func grab(item):
 
 func ShowShopUI(Items, ShopID):
 	$Cam/CanvasLayer/UI/ShopUI.OpenShop(Items, ShopID)
+
+func ShowScroll(ID):
+	var file = File.new()
+	if file.file_exists("res://debug/Scrolls/" + str(ID) + ".txt"):
+		var error = file.open("res://debug/Scrolls/" + str(ID) + ".txt", file.READ_WRITE)
+		if error == OK:
+			print("Showing file [" + str(ID) + "]")
+			var content = file.get_as_text()
+			ScrollUI.LoadText(content, ID)
+			ScrollUI.visible = true
+		else:
+			print("Error opening the file")
+		file.close()
+	else:
+		print("No scroll files found.. creating a new one")
+		file.open("res://debug/Scrolls/" + str(ID) + ".txt", File.WRITE)
+		file.store_string("")
+		file.close()

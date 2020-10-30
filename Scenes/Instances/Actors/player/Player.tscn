@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=2]
@@ -17,7 +17,7 @@
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/1.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/2.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/3.png" type="Texture" id=17]
-[ext_resource path="res://fonts/Actor-Regular.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://Scenes/Instances/Actors/UI/Scroll.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scripts/FPSLabel.gd" type="Script" id=19]
 [ext_resource path="res://Sprites/Border_Style_5.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/Style_3.png" type="Texture" id=21]
@@ -57,14 +57,9 @@ animations = [ {
 "name": "walkright",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "walkdown",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walkleft",
+"name": "idleleft",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
@@ -72,9 +67,14 @@ animations = [ {
 "name": "idleright",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "idleleft",
+"name": "walkleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walkdown",
 "speed": 5.0
 } ]
 
@@ -112,13 +112,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
-
-[sub_resource type="DynamicFont" id=6]
-size = 19
-font_data = ExtResource( 18 )
-
-[sub_resource type="DynamicFont" id=7]
-font_data = ExtResource( 18 )
 
 [sub_resource type="OccluderPolygon2D" id=8]
 cull_mode = 1
@@ -375,7 +368,6 @@ margin_left = 229.728
 margin_top = -0.334839
 margin_right = 406.728
 margin_bottom = 29.0652
-custom_fonts/font = SubResource( 6 )
 text = "Item Name"
 align = 1
 
@@ -388,7 +380,6 @@ margin_top = 37.0
 margin_right = 636.0
 margin_bottom = 239.0
 rect_min_size = Vector2( 522, 202 )
-custom_fonts/normal_font = SubResource( 7 )
 bbcode_enabled = true
 bbcode_text = "This is an Item and this is all you need to know about it
 
@@ -532,10 +523,14 @@ margin_bottom = -4.0
 [node name="ShopUI" parent="Cam/CanvasLayer/UI" instance=ExtResource( 31 )]
 visible = false
 
+[node name="Scroll" parent="Cam/CanvasLayer/UI" instance=ExtResource( 18 )]
+visible = false
+
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 28 )
 texture_scale = 4.25
 mode = 3
+range_item_cull_mask = -2147483647
 shadow_buffer_size = 1028
 __meta__ = {
 "_edit_lock_": true
