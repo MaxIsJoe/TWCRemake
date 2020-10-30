@@ -26,7 +26,8 @@ Global="*res://Scripts/Globals/Global.gd"
 Network="*res://Scripts/Network.gd"
 Data="*res://Scripts/Globals/Data.gd"
 JsonLoader="*res://Scripts/JSON-Systems/JSON_LOADER.gd"
-FOV="*res://Scripts/Globals/FOV.gd"
+DayAndNight="*res://Scripts/Globals/DayAndNight.gd"
+UseItem="*res://Scripts/Globals/UseItem.gd"
 
 [debug]
 
