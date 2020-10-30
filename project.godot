@@ -28,6 +28,7 @@ Data="*res://Scripts/Globals/Data.gd"
 JsonLoader="*res://Scripts/JSON-Systems/JSON_LOADER.gd"
 DayAndNight="*res://Scripts/Globals/DayAndNight.gd"
 UseItem="*res://Scripts/Globals/UseItem.gd"
+GlobalAudio="*res://Scripts/Globals/GlobalAudio.gd"
 
 [debug]
 
