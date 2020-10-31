@@ -32,6 +32,8 @@ onready var PlayerNameUI = $PlayerName
 onready var tabs = $Cam/CanvasLayer/UI/TabContainer
 onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
 onready var PopUpUI = $Cam/CanvasLayer/UI/WindowDialog
+onready var AudioLocal = $Audio/Audio_Pos
+onready var Audio = $Audio/Audio
 
 #var velocity = Vector2()
 var alive = true

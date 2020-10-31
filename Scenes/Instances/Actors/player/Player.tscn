@@ -47,19 +47,9 @@ animations = [ {
 "name": "walkup",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "idleleft",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "idleup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "idleright",
+"name": "walkleft",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
@@ -67,9 +57,19 @@ animations = [ {
 "name": "walkdown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
-"name": "walkleft",
+"name": "idleup",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "idleleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "idleright",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
@@ -564,6 +564,12 @@ __meta__ = {
 light_mask = 4
 occluder = SubResource( 8 )
 light_mask = 4
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Audio_Pos" type="AudioStreamPlayer2D" parent="Audio"]
+
+[node name="Audio" type="AudioStreamPlayer" parent="Audio"]
 [connection signal="GrabbedAnItem" from="." to="Cam/CanvasLayer/UI/TabContainer/Inventory" method="_on_Player_GrabbedAnItem"]
 [connection signal="hpupdate" from="." to="Cam/CanvasLayer/UI/HPProgress" method="_on_Player_hpupdate"]
 [connection signal="mpupdate" from="." to="Cam/CanvasLayer/UI/MPProgress" method="_on_Player_mpupdate"]
