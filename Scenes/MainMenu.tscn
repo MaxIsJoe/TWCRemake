@@ -1,110 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/bg.jpg" type="Texture" id=2]
 [ext_resource path="res://Sprites/logo.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/logo_banner.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/WhiteBackground.png" type="Texture" id=5]
-[ext_resource path="res://fonts/Actor-Regular.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://mijoldlogo.png" type="Texture" id=7]
-[ext_resource path="res://godoticon.png" type="Texture" id=8]
-
-[sub_resource type="Animation" id=1]
-resource_name = "StartOfGame"
-length = 30.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("StartSplashBackGround:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 15.9, 16.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.0156863, 0.0156863, 0.0156863, 1 ), Color( 0.0745098, 0.0705882, 0.0705882, 0.705882 ), Color( 0.0745098, 0.0705882, 0.0705882, 0.705882 ), Color( 0.0745098, 0.0705882, 0.0705882, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("RichTextLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.9, 1.9, 5.5, 7.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("MIJLogo:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 8.3, 10.1, 12.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("GodotLogo:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 12.1, 14.007, 16 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("MainPage:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1, 16, 29.9951 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("MainPage:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 15.8, 18.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("RichTextLabel:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 7.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="DynamicFont" id=2]
-size = 28
-font_data = ExtResource( 6 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 641.272, 341.338 )
@@ -156,7 +63,6 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
 [node name="CharacterPage" type="Container" parent="."]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -255,58 +161,6 @@ margin_top = 608.0
 margin_right = 704.0
 margin_bottom = 640.0
 text = "Start"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/StartOfGame = SubResource( 1 )
-
-[node name="StartSplashBackGround" type="Sprite" parent="."]
-modulate = Color( 0.0745098, 0.0705882, 0.0705882, 0 )
-position = Vector2( 664.003, 317.605 )
-scale = Vector2( 2.12841, 2.16244 )
-texture = ExtResource( 5 )
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 2.0
-margin_right = 1281.0
-margin_bottom = 718.0
-custom_fonts/normal_font = SubResource( 2 )
-bbcode_enabled = true
-bbcode_text = "																							  [color=red] Attention! [/color]
-
-
-
-
-The Wizards Chronicles Remake is still under development and is not complete yet!
-
-The build you are playing right now is a Dev build that is missing a lot of features and content that has not been yet implamented and this build might be possibly broken.
-
-To help the development of the game and see more content and updates faster plaese head over to [url]https://www.patreon.com/MaxIsJoe[/url] and show some love!
-
-or you can contribute to the development of the project your self at [url]https://github.com/MaxIsJoe/TWCRemake[/url]"
-text = "																							   Attention! 
-
-
-
-
-The Wizards Chronicles Remake is still under development and is not complete yet!
-
-The build you are playing right now is a Dev build that is missing a lot of features and content that has not been yet implamented and this build might be possibly broken.
-
-To help the development of the game and see more content and updates faster plaese head over to https://www.patreon.com/MaxIsJoe and show some love!
-
-or you can contribute to the development of the project your self at https://github.com/MaxIsJoe/TWCRemake"
-
-[node name="MIJLogo" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 654.559, 357.49 )
-texture = ExtResource( 7 )
-
-[node name="GodotLogo" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 628.374, 343.55 )
-texture = ExtResource( 8 )
 [connection signal="pressed" from="MainPage/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainPage/ExitButiion" to="." method="_on_ExitButiion_pressed"]
 [connection signal="item_selected" from="CharacterPage/SelectGender" to="." method="_on_SelectGender_item_selected"]
