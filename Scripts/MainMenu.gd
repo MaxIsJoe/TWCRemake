@@ -30,8 +30,10 @@ var ForbiddenNames = ["robed figure",
 				"penny haywood",
 				"muller sydney",
 				"muller"]
-puppet var TestWorld = "res://Scenes/TestWorld_2.tscn"
-puppet var TestWorldSpawnPostion = Vector2(90,90)
+var TestWorld = "res://Scenes/TestWorld_2.tscn"
+var TestWorldSpawnPostion = Vector2(90,90)
+var DiagonAlley = "res://Scenes/Levels/DiagonAlley.tscn"
+var DiagonAlleySpawnPos = Vector2(6,6)
 var DebugTesting = true
 export (NodePath) var dropdown_path
 
@@ -119,44 +121,44 @@ remote func CreateThePlayer(charname,gender,house):
 			add_child(NewGrifMale)
 			NewGrifMale.PlayerName = charname.text
 			NewGrifMale.updatenamelabel()
-			Teleport.Move_To_Scene(self, TestWorld, NewGrifMale, TestWorldSpawnPostion)
+			Teleport.Move_To_Scene(DiagonAlley, NewGrifMale, DiagonAlleySpawnPos)
 		if(house == 2):
 			var NewHuffMale = MaleHufflepuff.instance()
 			add_child(NewHuffMale)
 			NewHuffMale.PlayerName = charname.text
 			NewHuffMale.updatenamelabel()
-			Teleport.Move_To_Scene(self, TestWorld, NewHuffMale, TestWorldSpawnPostion)
+			Teleport.Move_To_Scene(DiagonAlley, NewHuffMale, DiagonAlleySpawnPos)
 		if(house == 3):
 			var NewClawfMale = MaleRavenclaw.instance()
 			add_child(NewClawfMale)
 			NewClawfMale.PlayerName = charname.text
 			NewClawfMale.updatenamelabel()
-			Teleport.Move_To_Scene(self, TestWorld, NewClawfMale, TestWorldSpawnPostion)
+			Teleport.Move_To_Scene(DiagonAlley, NewClawfMale, DiagonAlleySpawnPos)
 		if(house == 4):
 			var NewSlythMale = MaleSlytherin.instance()
 			add_child(NewSlythMale)
 			NewSlythMale.PlayerName = charname.text
 			NewSlythMale.updatenamelabel()
-			Teleport.Move_To_Scene(self, TestWorld, NewSlythMale, TestWorldSpawnPostion)
+			Teleport.Move_To_Scene(DiagonAlley, NewSlythMale, DiagonAlleySpawnPos)
 	if(gender == 2):
 		if(house == 1):
 			var NewGrifFemale = FemaleGryffindor.instance()
 			add_child(NewGrifFemale)
 			NewGrifFemale.PlayerName = charname.text
 			NewGrifFemale.updatenamelabel()
-			Teleport.Move_To_Scene(self, TestWorld, NewGrifFemale, TestWorldSpawnPostion)
+			Teleport.Move_To_Scene(DiagonAlley, NewGrifFemale, DiagonAlleySpawnPos)
 		if(house == 2):
 			var NewHuffFemale = FemaleHufflepuff.instance()
 			add_child(NewHuffFemale)
 			NewHuffFemale.PlayerName = charname.text
 			NewHuffFemale.updatenamelabel()
-			Teleport.Move_To_Scene(self, TestWorld, NewHuffFemale, TestWorldSpawnPostion)
+			Teleport.Move_To_Scene(DiagonAlley, NewHuffFemale, DiagonAlleySpawnPos)
 		if(house == 3):
 			var NewClawFemale = FemaleRavenclaw.instance()
 			add_child(NewClawFemale)
 			NewClawFemale.PlayerName = charname.text
 			NewClawFemale.updatenamelabel()
-			Teleport.Move_To_Scene(self, TestWorld, NewClawFemale, TestWorldSpawnPostion)
+			Teleport.Move_To_Scene(DiagonAlley, NewClawFemale, DiagonAlleySpawnPos)
 		if(house == 4):
 			var NewSlythFemale = FemaleSlytherin.instance()
 			add_child(NewSlythFemale)
@@ -164,4 +166,4 @@ remote func CreateThePlayer(charname,gender,house):
 			NewSlythFemale.updatenamelabel()
 			#Move_To_Next_Scene(thisscene ,nextscene, player,spawnPos):
 			#NewSlythFemale.Move_To_Next_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)
-			Teleport.Move_To_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)
+			Teleport.Move_To_Scene(DiagonAlley, NewSlythFemale, DiagonAlleySpawnPos)
