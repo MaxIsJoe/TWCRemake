@@ -25,12 +25,13 @@ func _on_Area2D_body_entered(body):
 		if(IsLocked):
 			return
 		else:
-			IsOpen = true
-			#Colider.set_disabled(true)
-			AreaCollision.set_disabled(true)
-			spriteanim.play("Opening")
-			Occluder.hide()
-			timer.start()
+			if IsOpen == false :
+				IsOpen = true
+				#Colider.set_disabled(true)
+				AreaCollision.set_disabled(true)
+				spriteanim.play("Opening")
+				Occluder.hide()
+				timer.start()
 		
 
 func _on_Timer_timeout():
