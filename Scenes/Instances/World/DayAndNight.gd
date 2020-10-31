@@ -8,6 +8,19 @@ export(Color) var DawnColor
 export(Color) var MidnightColor
 export(Color) var BloodMoon
 
+func _ready():
+	match DayAndNight.TimeOfDay:
+		DayAndNight.TimeOfDay.Day:
+			color = DayColor
+		DayAndNight.TimeOfDay.Night:
+			color = NightColor
+		DayAndNight.TimeOfDay.Midnight:
+			color = MidnightColor
+		DayAndNight.TimeOfDay.Dawn:
+			color = DawnColor
+		DayAndNight.TimeOfDay.Dusk:
+			color = DawnColor
+
 func ChangeColor(color):
 	match color:
 		"Day":
