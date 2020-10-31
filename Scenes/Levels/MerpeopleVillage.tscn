@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Levels/Tilesets/Props.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Instances/World/Teleport/FlooFire.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Instances/World/DayAndNight.tscn" type="PackedScene" id=5]
 
 [node name="MerpeopleVillage" type="Node2D"]
 
@@ -95,3 +96,122 @@ TeleportToScene = "res://Scenes/Levels/DiagonAlley.tscn"
 TeleportLocation = Vector2( 992, -1661 )
 
 [node name="DayAndNight" type="Node2D" parent="."]
+
+[node name="DNN" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 384.0
+margin_top = -36.0
+margin_right = 1503.0
+margin_bottom = 1990.0
+
+[node name="DNN13" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = -415.0
+margin_top = 91.0
+margin_right = 384.0
+margin_bottom = 224.0
+
+[node name="DNN15" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = -415.0
+margin_top = -481.0
+margin_right = -64.0
+margin_bottom = 91.0
+
+[node name="DNN16" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = -64.0
+margin_top = -481.0
+margin_right = 128.0
+margin_bottom = -128.0
+
+[node name="DNN17" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = -415.0
+margin_top = -801.0
+margin_right = -352.0
+margin_bottom = -479.0
+
+[node name="DNN14" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = -415.0
+margin_top = 477.0
+margin_right = -161.0
+margin_bottom = 511.0
+
+[node name="DNN2" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = -1560.0
+margin_top = 510.0
+margin_right = 385.0
+margin_bottom = 2184.0
+
+[node name="DNN3" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = -2360.0
+margin_top = -1131.15
+margin_right = -415.0
+margin_bottom = 509.845
+
+[node name="DNN4" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = -415.0
+margin_top = -2440.0
+margin_right = 4494.0
+margin_bottom = -800.0
+
+[node name="DNN5" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 1501.0
+margin_top = 891.0
+margin_right = 4481.0
+margin_bottom = 2272.0
+
+[node name="DNN6" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 1728.0
+margin_top = -125.0
+margin_right = 3233.0
+margin_bottom = 892.0
+
+[node name="DNN7" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 3234.0
+margin_top = -800.0
+margin_right = 4484.0
+margin_bottom = 484.0
+
+[node name="DNN8" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 994.0
+margin_top = -800.0
+margin_right = 3237.0
+margin_bottom = -512.0
+color = Color( 0, 0.0705882, 0.388235, 0.301961 )
+
+[node name="DNN9" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 1090.0
+margin_top = -512.0
+margin_right = 1472.0
+margin_bottom = -36.0
+color = Color( 0, 0.0705882, 0.388235, 0.301961 )
+
+[node name="DNN10" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 1503.0
+margin_top = -129.0
+margin_right = 1728.0
+margin_bottom = 63.0
+color = Color( 0, 0.0705882, 0.388235, 0.301961 )
+
+[node name="DNN11" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 1503.0
+margin_top = 285.0
+margin_right = 1728.0
+margin_bottom = 890.0
+color = Color( 0, 0.0705882, 0.388235, 0.301961 )
+
+[node name="DNN12" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 1472.0
+margin_top = -129.0
+margin_right = 1503.0
+margin_bottom = -36.0
+color = Color( 0, 0.0705882, 0.388235, 0.301961 )
+
+[node name="DNN18" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 545.0
+margin_top = -800.0
+margin_right = 995.0
+margin_bottom = -704.0
+
+[node name="DNN19" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = -416.0
+margin_top = 447.0
+margin_right = -160.0
+margin_bottom = 479.0
