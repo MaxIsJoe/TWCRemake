@@ -158,47 +158,47 @@ TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
 [node name="ToHogwarts13" parent="Teleports/Pathways" instance=ExtResource( 9 )]
-position = Vector2( 1747, -1696 )
+position = Vector2( 1728, -1696 )
 TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
 [node name="ToHogwarts14" parent="Teleports/Pathways" instance=ExtResource( 9 )]
-position = Vector2( 1717, -1696 )
+position = Vector2( 1698, -1696 )
 TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
 [node name="ToHogwarts15" parent="Teleports/Pathways" instance=ExtResource( 9 )]
-position = Vector2( 1688, -1696 )
+position = Vector2( 1668, -1696 )
 TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
 [node name="ToHogwarts16" parent="Teleports/Pathways" instance=ExtResource( 9 )]
-position = Vector2( 1659, -1696 )
+position = Vector2( 1638, -1696 )
 TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
 [node name="ToHogwarts17" parent="Teleports/Pathways" instance=ExtResource( 9 )]
-position = Vector2( 1630, -1696 )
+position = Vector2( 1608, -1696 )
 TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
 [node name="ToHogwarts18" parent="Teleports/Pathways" instance=ExtResource( 9 )]
-position = Vector2( 1600, -1696 )
+position = Vector2( 1578, -1696 )
 TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
 [node name="ToHogwarts19" parent="Teleports/Pathways" instance=ExtResource( 9 )]
-position = Vector2( 1570, -1696 )
+position = Vector2( 1548, -1696 )
 TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
 [node name="ToHogwarts20" parent="Teleports/Pathways" instance=ExtResource( 9 )]
-position = Vector2( 1541, -1696 )
+position = Vector2( 1518, -1696 )
 TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
 [node name="ToHogwarts21" parent="Teleports/Pathways" instance=ExtResource( 9 )]
-position = Vector2( 1511, -1696 )
+position = Vector2( 1488, -1696 )
 TeleportToScene = "res://Scenes/Levels/MerpeopleVillage.tscn"
 TeleportLocation = Vector2( 47.307, -11 )
 
