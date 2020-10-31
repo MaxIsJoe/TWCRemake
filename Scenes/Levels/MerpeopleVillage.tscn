@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="MerpeopleVillage" type="Node2D"]
+
+[node name="MapLayout" type="Node2D" parent="."]
+
+[node name="Inside" type="Node2D" parent="MapLayout"]
+
+[node name="Outside" type="Node2D" parent="MapLayout"]
+
+[node name="Interactables" type="Node2D" parent="."]
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="Teleporters" type="Node2D" parent="."]
+
+[node name="DayAndNight" type="Node2D" parent="."]
