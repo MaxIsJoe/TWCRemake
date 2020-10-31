@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/blackfloor_0.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/broof_0.png" type="Texture" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/snow_0.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/stonefloor2_0.png" type="Texture" id=16]
 [ext_resource path="res://Scripts/Floors.gd" type="Script" id=17]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Road/SideWalk_0.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/door1/closing_0/3.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Road/road_0.png" type="Texture" id=20]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -267,6 +270,48 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 15/shape_one_way_margin = 0.0
 15/shapes = [  ]
 15/z_index = 0
+16/name = "SideWalk_0.png 16"
+16/texture = ExtResource( 18 )
+16/tex_offset = Vector2( 0, 0 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 0, 0, 32, 32 )
+16/tile_mode = 0
+16/occluder_offset = Vector2( 0, 0 )
+16/navigation_offset = Vector2( 0, 0 )
+16/shape_offset = Vector2( 0, 0 )
+16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+16/shape_one_way = false
+16/shape_one_way_margin = 0.0
+16/shapes = [  ]
+16/z_index = 0
+17/name = "Wall_NoCollision"
+17/texture = ExtResource( 19 )
+17/tex_offset = Vector2( 0, 0 )
+17/modulate = Color( 1, 1, 1, 1 )
+17/region = Rect2( 0, 0, 32, 32 )
+17/tile_mode = 0
+17/occluder_offset = Vector2( 0, 0 )
+17/navigation_offset = Vector2( 0, 0 )
+17/shape_offset = Vector2( 0, 0 )
+17/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+17/shape_one_way = false
+17/shape_one_way_margin = 0.0
+17/shapes = [  ]
+17/z_index = 1
+18/name = "road_0.png 18"
+18/texture = ExtResource( 20 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 0, 0, 32, 32 )
+18/tile_mode = 0
+18/occluder_offset = Vector2( 0, 0 )
+18/navigation_offset = Vector2( 0, 0 )
+18/shape_offset = Vector2( 0, 0 )
+18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+18/shape_one_way = false
+18/shape_one_way_margin = 0.0
+18/shapes = [  ]
+18/z_index = 0
 
 [node name="Floors" type="TileMap"]
 tile_set = SubResource( 4 )
