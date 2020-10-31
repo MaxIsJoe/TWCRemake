@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://Scenes/Instances/Actors/UI/DiaUI.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scenes/Instances/Actors/UI/ShopUI.tscn" type="PackedScene" id=31]
 [ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="DynamicFontData" id=32]
+[ext_resource path="res://Scenes/Instances/Actors/player/SpellManager.gd" type="Script" id=33]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -42,14 +43,9 @@ animations = [ {
 "name": "idledown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "walkup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walkleft",
+"name": "walkright",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
@@ -57,14 +53,19 @@ animations = [ {
 "name": "walkdown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "idleup",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "idleleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walkleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "idleup",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
@@ -72,9 +73,9 @@ animations = [ {
 "name": "idleright",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
-"name": "walkright",
+"name": "walkup",
 "speed": 5.0
 } ]
 
@@ -570,6 +571,21 @@ light_mask = 4
 [node name="Audio_Pos" type="AudioStreamPlayer2D" parent="Audio"]
 
 [node name="Audio" type="AudioStreamPlayer" parent="Audio"]
+
+[node name="SpellManager" type="Node2D" parent="."]
+script = ExtResource( 33 )
+
+[node name="ShootPoint" type="Position2D" parent="SpellManager"]
+position = Vector2( 0, 31.7025 )
+
+[node name="ShootPoint2" type="Position2D" parent="SpellManager"]
+position = Vector2( 25.0409, 0.0469322 )
+
+[node name="ShootPoint3" type="Position2D" parent="SpellManager"]
+position = Vector2( -24.5685, -0.268045 )
+
+[node name="ShootPoint4" type="Position2D" parent="SpellManager"]
+position = Vector2( -3.8147e-06, -31.9236 )
 [connection signal="GrabbedAnItem" from="." to="Cam/CanvasLayer/UI/TabContainer/Inventory" method="_on_Player_GrabbedAnItem"]
 [connection signal="hpupdate" from="." to="Cam/CanvasLayer/UI/HPProgress" method="_on_Player_hpupdate"]
 [connection signal="mpupdate" from="." to="Cam/CanvasLayer/UI/MPProgress" method="_on_Player_mpupdate"]

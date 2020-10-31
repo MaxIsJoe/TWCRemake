@@ -91,4 +91,5 @@ func ConditionCheck(ID):
 func _process(delta):
 	day = OS.get_date()["day"]
 	if(day == 1): #on the 1th of each month the house cup will be given to the house with most points, this has been updated because of leap year issues.
-		GiveHouseCup()
+		#GiveHouseCup()
+		pass

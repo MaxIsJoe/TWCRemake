@@ -34,6 +34,7 @@ onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
 onready var PopUpUI = $Cam/CanvasLayer/UI/WindowDialog
 onready var AudioLocal = $Audio/Audio_Pos
 onready var Audio = $Audio/Audio
+onready var Shootpoint = $SpellManager/ShootPoint
 
 #var velocity = Vector2()
 var alive = true
@@ -42,6 +43,10 @@ var Karma = 100
 var statpoints = 0
 var spellppoints = 0
 var currentscene
+
+enum LookDirections {UP,LEFT,RIGHT,DOWN}
+var LookingDirection
+
 #Inventory
 var ItemsArray = []
 
@@ -84,15 +89,19 @@ func _physics_process(delta):
 	if(Input.is_action_pressed("ui_up")):
 		velocity.y -= 1
 		animstate.play("walkup")
+		UpdateShootingPostion("up")
 	if(Input.is_action_pressed("ui_down")):
 		velocity.y += 1
 		animstate.play("walkdown")
+		UpdateShootingPostion("down")
 	if(Input.is_action_pressed("ui_right")):
 		velocity.x += 1
 		animstate.play("walkright")
+		UpdateShootingPostion("right")
 	if(Input.is_action_pressed("ui_left")):
 		velocity.x -= 1
 		animstate.play("walkleft")
+		UpdateShootingPostion("left")
 	if(Input.is_action_just_released("ui_up")):
 		animstate.play("idleup")
 	if(Input.is_action_just_released("ui_down")):
@@ -139,7 +148,24 @@ func _input(event):
 			$Light2D.shadow_enabled = false
 		else:
 			$Light2D.shadow_enabled = true
-			
+	if(Input.is_action_just_pressed("ui_cancel")):
+		$SpellManager.ShootSpell("inflamri")
+
+func UpdateShootingPostion(pos):
+	match pos:
+		"up":
+			Shootpoint.position = Vector2(0, -31.702)
+			LookingDirection = LookDirections.UP
+		"down":
+			Shootpoint.position = Vector2(0, 31.702)
+			LookingDirection = LookDirections.DOWN
+		"left":
+			Shootpoint.position = Vector2(-25, 0)
+			LookingDirection = LookDirections.LEFT
+		"right":
+			Shootpoint.position = Vector2(25, 0)
+			LookingDirection = LookDirections.RIGHT
+
 remote func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
 	if(IsGryif):
