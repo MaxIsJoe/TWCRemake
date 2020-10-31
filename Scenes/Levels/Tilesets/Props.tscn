@@ -1,4 +1,4 @@
-[gd_scene load_steps=248 format=2]
+[gd_scene load_steps=250 format=2]
 
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons1/desk/1_0.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons1/desk/2_0.png" type="Texture" id=2]
@@ -159,6 +159,8 @@
 [ext_resource path="res://Sprites/AnimatedTiles/General/Fireplace_Normal.tres" type="Texture" id=157]
 [ext_resource path="res://Sprites/AnimatedTiles/General/GroundTorch.tres" type="Texture" id=158]
 [ext_resource path="res://Sprites/AnimatedTiles/General/WallTorch.tres" type="Texture" id=159]
+[ext_resource path="res://Sprites/AnimatedTiles/General/Candle.tres" type="Texture" id=160]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/Props/sword.png" type="Texture" id=161]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -3341,6 +3343,34 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 165/shape_one_way_margin = 0.0
 165/shapes = [  ]
 165/z_index = 0
+166/name = "Candle_Animated"
+166/texture = ExtResource( 160 )
+166/tex_offset = Vector2( 0, 0 )
+166/modulate = Color( 1, 1, 1, 1 )
+166/region = Rect2( 0, 0, 32, 32 )
+166/tile_mode = 0
+166/occluder_offset = Vector2( 0, 0 )
+166/navigation_offset = Vector2( 0, 0 )
+166/shape_offset = Vector2( 0, 0 )
+166/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+166/shape_one_way = false
+166/shape_one_way_margin = 0.0
+166/shapes = [  ]
+166/z_index = 0
+167/name = "Sword"
+167/texture = ExtResource( 161 )
+167/tex_offset = Vector2( 0, 0 )
+167/modulate = Color( 1, 1, 1, 1 )
+167/region = Rect2( 0, 0, 32, 32 )
+167/tile_mode = 0
+167/occluder_offset = Vector2( 0, 0 )
+167/navigation_offset = Vector2( 0, 0 )
+167/shape_offset = Vector2( 0, 0 )
+167/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+167/shape_one_way = false
+167/shape_one_way_margin = 0.0
+167/shapes = [  ]
+167/z_index = 0
 
 [node name="Props" type="TileMap"]
 tile_set = SubResource( 88 )
