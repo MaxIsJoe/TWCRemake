@@ -80,6 +80,11 @@ position = Vector2( 2128, -628 )
 SignName = "Book Store"
 SignContent = "Get your scrolls, books and quils from here!"
 
+[node name="Sign6" parent="Decore/Signs" instance=ExtResource( 10 )]
+position = Vector2( 1428, -1049 )
+SignName = "Train out of order"
+SignContent = "We apoglize for your inconvience but from now on the train leading to hogwarts is currently out of order. Please use the fire floor instead."
+
 [node name="Teleports" type="Node2D" parent="."]
 
 [node name="Pathways" type="Node2D" parent="Teleports"]
