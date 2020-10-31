@@ -33,7 +33,7 @@ var ForbiddenNames = ["robed figure",
 var TestWorld = "res://Scenes/TestWorld_2.tscn"
 var TestWorldSpawnPostion = Vector2(90,90)
 var DiagonAlley = "res://Scenes/Levels/DiagonAlley.tscn"
-var DiagonAlleySpawnPos = Vector2(6,6)
+var DiagonAlleySpawnPos = Vector2(782,177)
 var DebugTesting = true
 export (NodePath) var dropdown_path
 
