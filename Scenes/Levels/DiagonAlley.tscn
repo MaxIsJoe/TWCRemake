@@ -1,19 +1,19 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Levels/Tilesets/Props.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Instances/Actors/player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Tom.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Ollivander.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/BoomStoreOwner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Instances/World/Teleport/TeleportLocalNode.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Instances/World/Teleport/TeleportNode.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Instances/World/Teleport/FlooFire.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Instances/Interactive/Signs/Sign.tscn" type="PackedScene" id=10]
 
 [node name="DiagonAlley" type="Node2D" groups=[
 "Map",
 ]]
+z_index = -1
 
 [node name="FloorsAndWalls" type="Node2D" parent="."]
 
@@ -233,11 +233,6 @@ position = Vector2( 947, -180 )
 
 [node name="BoomStoreOwner" parent="NPCs" instance=ExtResource( 7 )]
 position = Vector2( 2182, -1042 )
-
-[node name="Player" parent="." instance=ExtResource( 4 )]
-light_mask = -2147483647
-position = Vector2( 1073, -1568 )
-IsFemale = true
 
 [editable path="Teleports/Pathways/TeleportLocalNode"]
 
