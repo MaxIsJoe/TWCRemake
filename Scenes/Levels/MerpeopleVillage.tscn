@@ -215,3 +215,9 @@ margin_left = 160.0
 margin_top = -32.0
 margin_right = 384.0
 margin_bottom = 91.0
+
+[node name="DNN20" parent="DayAndNight" instance=ExtResource( 5 )]
+margin_left = 2401.0
+margin_top = -513.0
+margin_right = 3235.0
+margin_bottom = -124.0
