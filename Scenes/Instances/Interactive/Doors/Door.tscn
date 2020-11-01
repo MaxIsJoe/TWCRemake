@@ -11,11 +11,6 @@ extents = Vector2( 16.6911, 18.2943 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "Opening",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "Idle",
@@ -25,6 +20,11 @@ animations = [ {
 "loop": false,
 "name": "Closing",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "Opening",
+"speed": 7.0
 } ]
 
 [sub_resource type="OccluderPolygon2D" id=3]

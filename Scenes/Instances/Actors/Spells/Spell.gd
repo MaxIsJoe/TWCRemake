@@ -3,7 +3,7 @@ extends Node2D
 export(int) var SpellDamage = 10
 export(float) var SpellSpeed = 240.0
 export(float) var SpellTime = 2 #Max time allowed for it to travel in a scene
-
+export(bool) var TargetSpell = false
 
 var dmg
 var caster
@@ -23,9 +23,10 @@ func _timeout():
 	queue_free()
 
 func _physics_process(delta):
-	position += dir * SpellSpeed * delta
+	if(!TargetSpell):
+		position += dir * SpellSpeed * delta
 
-func init_spell(direction_animation, casterName, damage):
+func init_spell_shoot(direction_animation, casterName, damage):
 	print(direction_animation)
 	match direction_animation:
 		0:
@@ -42,14 +43,36 @@ func init_spell(direction_animation, casterName, damage):
 			dir = transform.x
 	caster = casterName
 	dmg = damage + SpellDamage
+	
+func init_spell_target(direction_animation, casterName, effect, value, target):
+	print(direction_animation)
+	match direction_animation:
+		0:
+			$AnimatedSprite.play("up")
+			dir = -transform.y
+		3:
+			$AnimatedSprite.play("down")
+			dir = transform.y
+		1:
+			$AnimatedSprite.play("left")
+			dir = -transform.x
+		2:
+			$AnimatedSprite.play("right")
+			dir = transform.x
+	caster = casterName
+	match effect:
+		"heal":
+			target.healthregen(value)
+			$AnimatedSprite.play("right")
 
 
 func _on_Area2D_body_entered(body):
-	if(body.is_in_group("Players")):
-		body.takedamage(dmg)
-		queue_free()
-	if(body.is_in_group("Enemies")):
-		body.takedamage(dmg)
-		queue_free()
-	else:
-		queue_free()
+	if(!TargetSpell):
+		if(body.is_in_group("Players")):
+			body.takedamage(dmg)
+			queue_free()
+		if(body.is_in_group("Enemies")):
+			body.takedamage(dmg)
+			queue_free()
+		else:
+			queue_free()

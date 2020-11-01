@@ -35,6 +35,7 @@ onready var PopUpUI = $Cam/CanvasLayer/UI/WindowDialog
 onready var AudioLocal = $Audio/Audio_Pos
 onready var Audio = $Audio/Audio
 onready var Shootpoint = $SpellManager/ShootPoint
+onready var TargertPoint = $SpellManager/TargetPoint
 
 #var velocity = Vector2()
 var alive = true
@@ -150,6 +151,8 @@ func _input(event):
 			$Light2D.shadow_enabled = true
 	if(Input.is_action_just_pressed("ui_cancel")):
 		$SpellManager.ShootSpell("inflamri")
+	if(Input.is_action_just_pressed("ui_home")):
+		$SpellManager.TargetSpell("Episkey", self)
 
 func UpdateShootingPostion(pos):
 	match pos:
