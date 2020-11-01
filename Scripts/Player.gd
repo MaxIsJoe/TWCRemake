@@ -214,6 +214,12 @@ master func SetPosition(Position):
 func grab(item):
 	ItemsArray.append(item)
 	emit_signal("GrabbedAnItem", item)
+	
+func AddSpellForHotkey(hotkey, action, ActionArguments, ActionCooldown,icon):
+	var Hotkeys = get_tree().get_nodes_in_group("UI_HotkeyButton")
+	for key in Hotkeys:
+		if(key.ButtonHotkey == hotkey):
+			key.AddAction(action, ActionArguments, ActionCooldown, icon)
 
 func ShowShopUI(Items, ShopID):
 	$Cam/CanvasLayer/UI/ShopUI.OpenShop(Items, ShopID)
@@ -240,3 +246,10 @@ func ShowSign(Title, Content):
 	PopUpUI.window_title = Title
 	PopUpUI.dialog_text = Content
 	PopUpUI.popup_centered()
+
+func ShootSpell(Spell):
+	$SpellManager.ShootSpell(Spell)
+
+func ShowHotkeyAsign(ID):
+	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true
+	$Cam/CanvasLayer/UI/SetHotkeyUI.ID = ID

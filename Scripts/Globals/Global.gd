@@ -20,6 +20,7 @@ var DayColor = Color(7, 33, 203, 0)
 
 func _ready():
 	JsonLoader.LoadJSON_General(Data.ItemJSON, 1)
+	JsonLoader.LoadJSON_General(Data.SpellsJSON, 2)
 
 func givepoints(points, to_house):
 	if(to_house == "Grif"):

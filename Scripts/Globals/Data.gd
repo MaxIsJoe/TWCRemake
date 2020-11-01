@@ -8,6 +8,10 @@ extends Node
 var ItemJSON = "res://Resources/Items/Items.JSON"
 var ItemData
 
+#Spells
+var SpellsJSON = "res://Resources/Spells/SpellData.JSON"
+var SpellsData
+
 ##Images##
 var UI_Icon_Shop = "res://Sprites/UI/BagOSnow_Converted.png"
 var UI_Icon_Dia = "res://Sprites/UI/Dia_Icon.png"

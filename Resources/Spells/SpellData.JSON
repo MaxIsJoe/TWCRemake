@@ -1,0 +1,10 @@
+{
+    "000":
+    {
+        "SpellName":"inflamri",
+        "SpellIcon":"res://Sprites/TWCSpritesCoverted/icons2/SpellbookIcons/Inflamari_0/0.png",
+        "Action": "ShootSpell",
+        "ActionArguments":"inflamri",
+        "ActionCooldown": 0.5
+    }
+}

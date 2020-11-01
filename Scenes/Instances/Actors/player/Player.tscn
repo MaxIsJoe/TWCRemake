@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=2]
@@ -33,6 +33,9 @@
 [ext_resource path="res://Scenes/Instances/Actors/UI/ShopUI.tscn" type="PackedScene" id=31]
 [ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="DynamicFontData" id=32]
 [ext_resource path="res://Scenes/Instances/Actors/player/SpellManager.gd" type="Script" id=33]
+[ext_resource path="res://Scenes/Instances/Actors/UI/buttons/HotkeyButton.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Scenes/Instances/Actors/player/Spells.gd" type="Script" id=35]
+[ext_resource path="res://Scenes/Instances/Actors/UI/SetHotkeyUI.tscn" type="PackedScene" id=36]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -216,10 +219,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -127.0
-margin_top = -21.0
-margin_right = 373.0
-margin_bottom = 29.0
+margin_left = -212.397
+margin_top = -60.1022
+margin_right = 287.603
+margin_bottom = -10.1022
 rect_scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 20 )
 texture_progress = ExtResource( 21 )
@@ -233,11 +236,14 @@ __meta__ = {
 [node name="MPProgress" type="TextureProgress" parent="Cam/CanvasLayer/UI"]
 show_behind_parent = true
 light_mask = 524288
-anchor_right = 0.03
-margin_left = 513.0
-margin_top = 693.0
-margin_right = 974.6
-margin_bottom = 707.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = -60.0001
+margin_right = 515.0
+margin_bottom = -10.0001
 rect_scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 23 )
 texture_progress = ExtResource( 29 )
@@ -447,11 +453,22 @@ margin_left = 4.0
 margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
+script = ExtResource( 35 )
 
-[node name="Info_Spells" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Spells"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "The player can manage all of this spells here."
+[node name="SpellsContainer" type="Control" parent="Cam/CanvasLayer/UI/TabContainer/Spells"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer"]
+margin_right = 1244.0
+margin_bottom = 541.0
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer/ScrollContainer"]
+columns = 7
 
 [node name="Chat" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
 visible = false
@@ -533,6 +550,79 @@ margin_top = 26.0
 margin_right = -4.0
 margin_bottom = -4.0
 
+[node name="Hotkeys" type="Control" parent="Cam/CanvasLayer/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 676.0
+margin_bottom = -6.10352e-05
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HotkeysContainer" type="Control" parent="Cam/CanvasLayer/UI/Hotkeys"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -212.5
+margin_top = -40.0
+margin_right = 212.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HotkeyButton" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+
+[node name="HotkeyButton2" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+margin_left = 43.0
+margin_right = 83.0
+ButtonHotkey = 1
+
+[node name="HotkeyButton3" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+margin_left = 86.0
+margin_right = 126.0
+ButtonHotkey = 2
+
+[node name="HotkeyButton4" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+margin_left = 129.0
+margin_right = 169.0
+ButtonHotkey = 3
+
+[node name="HotkeyButton5" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+margin_left = 172.0
+margin_right = 212.0
+ButtonHotkey = 4
+
+[node name="HotkeyButton6" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+margin_left = 215.0
+margin_right = 255.0
+ButtonHotkey = 5
+
+[node name="HotkeyButton7" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+margin_left = 258.0
+margin_right = 298.0
+ButtonHotkey = 6
+
+[node name="HotkeyButton8" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+margin_left = 301.0
+margin_right = 341.0
+ButtonHotkey = 7
+
+[node name="HotkeyButton9" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+margin_left = 344.0
+margin_right = 384.0
+ButtonHotkey = 8
+
+[node name="HotkeyButton10" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
+margin_left = 387.0
+margin_right = 427.0
+ButtonHotkey = 9
+
 [node name="DiaUI" parent="Cam/CanvasLayer/UI" instance=ExtResource( 30 )]
 
 [node name="ShopUI" parent="Cam/CanvasLayer/UI" instance=ExtResource( 31 )]
@@ -550,6 +640,9 @@ theme = SubResource( 7 )
 popup_exclusive = true
 window_title = "Info"
 dialog_text = "text"
+
+[node name="SetHotkeyUI" parent="Cam/CanvasLayer/UI" instance=ExtResource( 36 )]
+visible = false
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 28 )

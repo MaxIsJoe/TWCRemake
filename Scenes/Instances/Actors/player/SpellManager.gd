@@ -5,6 +5,14 @@ onready var ShootPoint = $ShootPoint
 var Inflamri = load("res://Scenes/Instances/Actors/Spells/Projectiles/Inflamri.tscn")
 var Episkey = load("res://Scenes/Instances/Actors/Spells/Target/Episkey.tscn")
 
+var SpellsOnCoolDown = []
+
+func PutSpellOnCoolDown(spell, cooldown):
+	match spell:
+		"Episkey":
+			SpellsOnCoolDown.append()
+			
+
 func ShootSpell(Spell):
 	var b
 	match Spell:

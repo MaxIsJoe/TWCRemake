@@ -14,6 +14,8 @@ func LoadJSON_General(JSONFile, WhereToStore): #Used to pass data to variables t
 				Data.Loaded_Dialouge = data
 			1: #Items
 				Data.ItemData = data
+			2:
+				Data.SpellsData = data
 		file.close()
 	else:
 		file.close()
