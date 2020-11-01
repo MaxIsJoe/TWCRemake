@@ -6,6 +6,7 @@ onready var SpellButton = load("res://Scenes/Instances/Actors/UI/buttons/SpellBu
 
 func _ready():
 	SpawnButton("000")
+	SpawnButton("001")
 
 func SpawnButton(Info):
 	var Name = Data.SpellsData[Info].get("SpellName")
