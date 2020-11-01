@@ -16,8 +16,10 @@ func AddAction(action, GivenActionArguments, ActionCooldown, icon):
 	cooldown = ActionCooldown
 	$Timer.wait_time = cooldown
 	$TextureRect.texture = load(icon)
+	disabled = false
 
 func _ready():
+	disabled = true
 	$Timer.wait_time = cooldown
 	time_label.hide()
 	$TextureProgress.texture_progress = texture_normal
