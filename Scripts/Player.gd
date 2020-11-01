@@ -247,8 +247,11 @@ func ShowSign(Title, Content):
 	PopUpUI.dialog_text = Content
 	PopUpUI.popup_centered()
 
-func ShootSpell(Spell):
+func ShootSpell(Spell, Argument):
+	if(Argument == "player"):
+		Argument = Data.Player
 	$SpellManager.ShootSpell(Spell)
+	$SpellManager.TargetSpell(Spell, Argument)
 
 func ShowHotkeyAsign(ID):
 	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true

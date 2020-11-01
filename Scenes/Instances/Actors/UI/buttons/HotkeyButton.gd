@@ -12,7 +12,9 @@ var ActionArguments = []
 
 func AddAction(action, GivenActionArguments, ActionCooldown, icon):
 	Action = action
-	ActionArguments.append(GivenActionArguments)
+	var value = GivenActionArguments.split(" ")
+	for argument in value:
+		ActionArguments.append(argument)
 	cooldown = ActionCooldown
 	$Timer.wait_time = cooldown
 	$TextureRect.texture = load(icon)
