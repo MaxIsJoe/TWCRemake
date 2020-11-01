@@ -47,29 +47,35 @@ func _on_HotkeyButton_button_down():
 			Data.Player.call(Action)
 			$Timer.start()
 			set_process(true)
+			time_label.show()
 			disabled = true
 		0:
 			Data.Player.call(Action)
 			$Timer.start()
 			set_process(true)
+			time_label.show()
 			disabled = true
 		1:
 			Data.Player.call(Action, ActionArguments[0])
 			$Timer.start()
 			set_process(true)
+			time_label.show()
 			disabled = true
 		2:
 			Data.Player.call(Action, ActionArguments[0], ActionArguments[1])
 			$Timer.start()
 			set_process(true)
+			time_label.show()
 			disabled = true
 		3:
 			Data.Player.call(Action, ActionArguments[0], ActionArguments[1], ActionArguments[2])
 			$Timer.start()
 			set_process(true)
+			time_label.show()
 			disabled = true
 		4:
 			Data.Player.call(Action, ActionArguments[0], ActionArguments[1], ActionArguments[2], ActionArguments[3])
 			$Timer.start()
 			set_process(true)
+			time_label.show()
 			disabled = true
