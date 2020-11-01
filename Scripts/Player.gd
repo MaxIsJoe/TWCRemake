@@ -149,10 +149,6 @@ func _input(event):
 			$Light2D.shadow_enabled = false
 		else:
 			$Light2D.shadow_enabled = true
-	if(Input.is_action_just_pressed("ui_cancel")):
-		$SpellManager.ShootSpell("inflamri")
-	if(Input.is_action_just_pressed("ui_home")):
-		$SpellManager.TargetSpell("Episkey", self)
 
 func UpdateShootingPostion(pos):
 	match pos:
