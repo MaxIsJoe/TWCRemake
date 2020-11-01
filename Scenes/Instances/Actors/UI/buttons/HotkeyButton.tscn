@@ -67,3 +67,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="button_down" from="." to="." method="_on_HotkeyButton_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

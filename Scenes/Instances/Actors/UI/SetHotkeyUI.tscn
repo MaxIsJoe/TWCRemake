@@ -33,6 +33,9 @@ margin_bottom = 128.157
 focus_mode = 0
 enabled_focus_mode = 0
 text = "OK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button2" type="Button" parent="PopupPanel"]
 margin_left = 295.996

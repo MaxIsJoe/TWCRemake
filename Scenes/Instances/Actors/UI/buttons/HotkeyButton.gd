@@ -14,6 +14,7 @@ func AddAction(action, GivenActionArguments, ActionCooldown, icon):
 	Action = action
 	ActionArguments.append(GivenActionArguments)
 	cooldown = ActionCooldown
+	$Timer.wait_time = cooldown
 	$TextureRect.texture = load(icon)
 
 func _ready():
@@ -26,10 +27,9 @@ func _ready():
 	
 func _process(delta):
 	time_label.text = "%3.1f" % $Timer.time_left
-	$Sweep.value = int(($Timer.time_left / cooldown) * 100)
+	$TextureProgress.value = int(($Timer.time_left / cooldown) * 100)
 	
 func _on_Timer_timeout():
-	print("ability ready")
 	$TextureProgress.value = 0
 	disabled = false
 	time_label.hide()
@@ -41,13 +41,31 @@ func _on_HotkeyButton_button_down():
 	match ActionArguments.size():
 		null:
 			Data.Player.call(Action)
+			$Timer.start()
+			set_process(true)
+			disabled = true
 		0:
 			Data.Player.call(Action)
+			$Timer.start()
+			set_process(true)
+			disabled = true
 		1:
 			Data.Player.call(Action, ActionArguments[0])
+			$Timer.start()
+			set_process(true)
+			disabled = true
 		2:
 			Data.Player.call(Action, ActionArguments[0], ActionArguments[1])
+			$Timer.start()
+			set_process(true)
+			disabled = true
 		3:
 			Data.Player.call(Action, ActionArguments[0], ActionArguments[1], ActionArguments[2])
+			$Timer.start()
+			set_process(true)
+			disabled = true
 		4:
 			Data.Player.call(Action, ActionArguments[0], ActionArguments[1], ActionArguments[2], ActionArguments[3])
+			$Timer.start()
+			set_process(true)
+			disabled = true
