@@ -25,7 +25,7 @@
     {
         "name":"Sundae",
         "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/Sundae.png",
-        "desc":"An ice cream dessert, It typically consists of one or more scoops of ice cream topped with sauce or syrup and various other toppings. \n This Sundae stangely never melts away. \n \n You feel happy when eating this and you share your happiness with others around you.",
+        "desc":"An ice cream dessert, It typically consists of one or more scoops of ice cream topped with sauce or syrup and various other toppings.\n This Sundae stangely never melts away.\n\n You feel happy when eating this and you share your happiness with others around you.",
         "baseprice":8,
         "Useable":true,
         "Equipable":false,
@@ -47,7 +47,7 @@
     {
         "name":"Chicken",
         "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/chicken.png",
-        "desc":"A tasty dish made out of chicken. The most common dish in the world. \n \n You get 20% damage reduction from eating this.",
+        "desc":"A tasty dish made out of chicken. The most common dish in the world.\n\n You get 20% damage reduction from eating this.",
         "baseprice":10,
         "Useable":true,
         "Equipable":false,
@@ -58,7 +58,7 @@
     {
         "name":"Fish and Chips",
         "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/fish.png",
-        "desc":"Fish and chips is a hot dish consisting of fried fish in batter served with chips. The dish originated in England and is an example of culinary fusion. \n \n Has a random low chance to give you a random status effect.",
+        "desc":"Fish and chips is a hot dish consisting of fried fish in batter served with chips. The dish originated in England and is an example of culinary fusion.\n\n Has a random low chance to give you a random status effect.",
         "baseprice":14,
         "Useable":true,
         "Equipable":false,
