@@ -15,3 +15,4 @@ func _on_RadialButton_button_down():
 			Global.LoadDialouge(get_parent().get_parent().get_parent().Dialoug.DialougFile, "000")
 		Data.UI_Icon_Shop:
 			Data.Player.ShowShopUI(get_parent().get_parent().get_parent().shop.ItemIDs, get_parent().get_parent().get_parent().shop.ShopID)
+	get_parent().get_parent().ToggleButtonVisbility(false)
