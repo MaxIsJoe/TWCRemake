@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Levels/Tilesets/Props.tscn" type="PackedScene" id=2]
@@ -10,6 +10,11 @@
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/GreenMan.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Zonko.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/BroomSeller.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Instances/World/Teleport/TeleportNode.gd" type="Script" id=11]
+[ext_resource path="res://Sound/SFX/footsteps/footsteps_concret_m.ogg" type="AudioStream" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 184.649, 86.5231 )
 
 [node name="MerpeopleVillage" type="Node2D"]
 
@@ -104,22 +109,41 @@ __meta__ = {
 "_gizmo_extents_": 25.0
 }
 
+[node name="Entering_Village2" type="Position2D" parent="Teleporters/Postion2Ds"]
+position = Vector2( 1266.37, -825.627 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
 [node name="Floos" type="Node2D" parent="Teleporters"]
 
 [node name="FlooFire" parent="Teleporters/Floos" instance=ExtResource( 4 )]
 position = Vector2( 14.0543, -48.1212 )
 TeleportToScene = "res://Scenes/Levels/DiagonAlley.tscn"
-TeleportLocation = Vector2( 992, -1661 )
 
 [node name="FlooFire2" parent="Teleporters/Floos" instance=ExtResource( 4 )]
 position = Vector2( 43.8994, -48.1212 )
 TeleportToScene = "res://Scenes/Levels/DiagonAlley.tscn"
-TeleportLocation = Vector2( 992, -1661 )
 
 [node name="FlooFire3" parent="Teleporters/Floos" instance=ExtResource( 4 )]
 position = Vector2( 73.2991, -48.1212 )
 TeleportToScene = "res://Scenes/Levels/DiagonAlley.tscn"
-TeleportLocation = Vector2( 992, -1661 )
+
+[node name="Teles" type="Node2D" parent="Teleporters"]
+
+[node name="TeleportlNode" type="Area2D" parent="Teleporters/Teles"]
+position = Vector2( 1266.44, -1114.53 )
+script = ExtResource( 11 )
+Local = false
+NextScene = "res://Scenes/Levels/HogwartsGrounds.tscn"
+SpawnPostion = Vector2( -15.119, 314 )
+Footstep_Sounds = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleporters/Teles/TeleportlNode"]
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Teleporters/Teles/TeleportlNode"]
+bus = "Sound Effects"
 
 [node name="DayAndNight" type="Node2D" parent="."]
 
@@ -242,3 +266,4 @@ margin_left = 2401.0
 margin_top = -513.0
 margin_right = 3235.0
 margin_bottom = -124.0
+[connection signal="body_entered" from="Teleporters/Teles/TeleportlNode" to="Teleporters/Teles/TeleportlNode" method="_on_TeleportLocalNode_body_entered"]

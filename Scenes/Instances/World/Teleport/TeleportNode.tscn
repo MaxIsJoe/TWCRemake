@@ -4,7 +4,7 @@
 [ext_resource path="res://Sound/SFX/footsteps/footsteps_concret_m.ogg" type="AudioStream" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 64, 21 )
+extents = Vector2( 184.649, 86.5231 )
 
 [node name="TeleportlNode" type="Area2D"]
 position = Vector2( 512, 64 )
