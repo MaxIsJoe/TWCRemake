@@ -12,11 +12,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextEdit" type="TextEdit" parent="TempServerCreateUI"]
+[node name="TextEdit" type="LineEdit" parent="TempServerCreateUI"]
 margin_left = 455.484
 margin_top = 342.286
 margin_right = 773.484
 margin_bottom = 382.286
+text = "Player Name"
+align = 1
 
 [node name="CreateServer" type="Button" parent="TempServerCreateUI"]
 margin_left = 486.0
