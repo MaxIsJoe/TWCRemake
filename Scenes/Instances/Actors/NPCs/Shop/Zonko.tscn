@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/NPCBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/zonko_0.png" type="Texture" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "IdleUp",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "IdleLeft",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "IdelRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "IdleFront",
+"speed": 5.0
+} ]
+
+[node name="Zonko" instance=ExtResource( 1 )]
+NPC_Name = "Zonko"
+Desc = "Zonko the prankster"
+ID = 7
+
+[node name="AnimatedSprite" parent="." index="2"]
+frames = SubResource( 1 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Levels/Tilesets/Props.tscn" type="PackedScene" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://Scenes/Instances/World/Teleport/FlooFire.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Instances/World/DayAndNight.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Tammie.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/Quest/Alyssa.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/GreenMan.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Zonko.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/BroomSeller.tscn" type="PackedScene" id=10]
 
 [node name="MerpeopleVillage" type="Node2D"]
 
@@ -68,6 +72,24 @@ position = Vector2( 1616.13, 301.945 )
 [node name="Interactables" type="Node2D" parent="."]
 
 [node name="NPCs" type="Node2D" parent="."]
+
+[node name="Alyssa" parent="NPCs" instance=ExtResource( 7 )]
+position = Vector2( 335.903, -338.471 )
+
+[node name="GreenMan" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( -147.566, -691.73 )
+
+[node name="GreenMan2" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( -113.115, -691.73 )
+
+[node name="GreenMan3" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( -80.0794, -691.73 )
+
+[node name="Zonko" parent="NPCs/GreenMan3" instance=ExtResource( 9 )]
+position = Vector2( 114.681, 1.88776 )
+
+[node name="BroomSeller" parent="NPCs/GreenMan3" instance=ExtResource( 10 )]
+position = Vector2( 1698.06, 876.65 )
 
 [node name="Tammie" parent="NPCs" instance=ExtResource( 6 )]
 position = Vector2( 750.148, -529.146 )
