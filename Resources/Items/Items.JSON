@@ -19,7 +19,84 @@
         "Useable":true,
         "Equipable":false,
         "CanBeDropped":true,
+        "Function":"Eat 5"
+    },
+    "food-002":
+    {
+        "name":"Sundae",
+        "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/Sundae.png",
+        "desc":"An ice cream dessert, It typically consists of one or more scoops of ice cream topped with sauce or syrup and various other toppings. \n This Sundae stangely never melts away. \n \n You feel happy when eating this and you share your happiness with others around you.",
+        "baseprice":8,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
         "Function":"Eat 25"
+    },
+    "food-003":
+    {
+        "name":"Pizza",
+        "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/Pizza.png",
+        "desc":"A large delicious sandwich. It's origins come from the muggle world from Italy when they baked a flattened base of leavened wheat-based dough topped with tomatoes, cheese, and often various other ingredients (such as anchovies, mushrooms, onions, olives, pineapple, meat, etc.), which is then baked at a high temperature, traditionally in a wood-fired oven. \n \n You feel happy when eating this.",
+        "baseprice":16,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
+        "Function":"Eat 30"
+    },
+    "food-004":
+    {
+        "name":"Chicken",
+        "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/chicken.png",
+        "desc":"A tasty dish made out of chicken. The most common dish in the world. \n \n You get 20% damage reduction from eating this.",
+        "baseprice":10,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
+        "Function":"Eat 50"
+    },
+    "food-005":
+    {
+        "name":"Fish and Chips",
+        "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/fish.png",
+        "desc":"Fish and chips is a hot dish consisting of fried fish in batter served with chips. The dish originated in England and is an example of culinary fusion. \n \n Has a random low chance to give you a random status effect.",
+        "baseprice":14,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
+        "Function":"Eat 75"
+    },
+    "food-006":
+    {
+        "name":"Fish",
+        "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/fish.png",
+        "desc":"A healthy dish that uses Fish and lemons. \n \n Has a random low chance to give you a random status effect and a 0.001% chance to cause a global event.",
+        "baseprice":9,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
+        "Function":"Eat 125"
+    },
+    "food-007":
+    {
+        "name":"Fruits",
+        "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/Fruits.png",
+        "desc":"A Random collection of fruits. Great for your health! \n \n Grants you 30% extra health regen.",
+        "baseprice":30,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
+        "Function":"Eat 125"
+    },
+    "food-008":
+    {
+        "name":"Onion",
+        "icon":"res://Sprites/TWCSpritesCoverted/Food-Potions/lft.png",
+        "desc":"An onion. Why would you eat this alone?",
+        "baseprice":2,
+        "Useable":true,
+        "Equipable":false,
+        "CanBeDropped":true,
+        "Function":"Eat 1"
     },
     "misc-000":
     {
