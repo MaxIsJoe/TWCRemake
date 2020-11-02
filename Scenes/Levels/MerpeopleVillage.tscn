@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Levels/Tilesets/Props.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Instances/World/Teleport/FlooFire.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Instances/World/DayAndNight.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Tammie.tscn" type="PackedScene" id=6]
 
 [node name="MerpeopleVillage" type="Node2D"]
 
@@ -67,6 +68,9 @@ position = Vector2( 1616.13, 301.945 )
 [node name="Interactables" type="Node2D" parent="."]
 
 [node name="NPCs" type="Node2D" parent="."]
+
+[node name="Tammie" parent="NPCs" instance=ExtResource( 6 )]
+position = Vector2( 750.148, -529.146 )
 
 [node name="Teleporters" type="Node2D" parent="."]
 
@@ -174,35 +178,30 @@ margin_left = 994.0
 margin_top = -800.0
 margin_right = 3237.0
 margin_bottom = -512.0
-color = Color( 0, 0.0705882, 0.388235, 0.301961 )
 
 [node name="DNN9" parent="DayAndNight" instance=ExtResource( 5 )]
 margin_left = 1090.0
 margin_top = -512.0
 margin_right = 1472.0
 margin_bottom = -36.0
-color = Color( 0, 0.0705882, 0.388235, 0.301961 )
 
 [node name="DNN10" parent="DayAndNight" instance=ExtResource( 5 )]
 margin_left = 1503.0
 margin_top = -129.0
 margin_right = 1728.0
 margin_bottom = 63.0
-color = Color( 0, 0.0705882, 0.388235, 0.301961 )
 
 [node name="DNN11" parent="DayAndNight" instance=ExtResource( 5 )]
 margin_left = 1503.0
 margin_top = 285.0
 margin_right = 1728.0
 margin_bottom = 890.0
-color = Color( 0, 0.0705882, 0.388235, 0.301961 )
 
 [node name="DNN12" parent="DayAndNight" instance=ExtResource( 5 )]
 margin_left = 1472.0
 margin_top = -129.0
 margin_right = 1503.0
 margin_bottom = -36.0
-color = Color( 0, 0.0705882, 0.388235, 0.301961 )
 
 [node name="DNN18" parent="DayAndNight" instance=ExtResource( 5 )]
 margin_left = 545.0

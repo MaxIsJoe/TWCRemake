@@ -20,7 +20,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdleLeft",
+"name": "IdleUp",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -30,7 +30,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdleUp",
+"name": "IdleLeft",
 "speed": 5.0
 } ]
 
