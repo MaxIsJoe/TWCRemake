@@ -19,31 +19,10 @@
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/MaleHufflepuff/_2/3.png" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
-
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "idleright",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "idledown",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "idleleft",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "walkup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "walkdown",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
@@ -51,21 +30,40 @@ animations = [ {
 "name": "walkleft",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idleright",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "idleup",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "walkdown",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "idleleft",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "walkright",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "walkup",
+"speed": 5.0
 } ]
 
-[node name="MaleHuff" index="0" instance=ExtResource( 1 )]
+[node name="MaleHuff" instance=ExtResource( 1 )]
 IsMale = true
 IsHuff = true
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
-

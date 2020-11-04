@@ -19,26 +19,10 @@
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleRavenclaw/_2/3.png" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
-
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "idleright",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "idledown",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "idleleft",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "walkdown",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
@@ -46,9 +30,9 @@ animations = [ {
 "name": "walkleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "walkup",
+"name": "idleright",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
@@ -56,9 +40,24 @@ animations = [ {
 "name": "idleup",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "walkdown",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "idleleft",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "walkright",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "walkup",
 "speed": 5.0
 } ]
 
@@ -68,4 +67,3 @@ IsClaw = true
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
-
