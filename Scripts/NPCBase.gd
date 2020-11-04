@@ -2,25 +2,23 @@ extends KinematicBody2D
 
 const SPEED = 150
 
-export(String) var NPC_Name = "NPC"
-export(String) var Desc = "No description"
-export(int) var ID = 000
+export(String) var NPC_Name = "NPC" #NPC Name, used for various things.
+export(String) var Desc = "No description" #NPC description, will be used later.
+export(int) var ID = 000 #The NPC's ID is used to accsess data about them
 export(int) var health = 39000
-export(float) var InteractionDistance = 120
-export(float) var WanderRadius = 140.0
-export(bool) var CanWander = false
-export(bool) var CanDie = false
-export(bool) var HasQuickDialouge = false
-export(bool) var HasDialouge
-export(bool) var HasShop = false
-export(bool) var HasQuests = false
+export(float) var InteractionDistance = 120 #The distance where an NPC can be interacted with
+export(bool) var CanWander = false #Can this NPC freely move?
+export(bool) var CanDie = false #Can this NPC be killed by players/other NPCs?
+export(bool) var HasQuickDialouge = false #Does he have quick dialouge above this head?
+export(bool) var HasDialouge #Can you start conversations with this NPC?
+export(bool) var HasShop = false #Can you buy items from this NPC?
+export(bool) var HasQuests = false #Does this NPC have quests that need to be tracked?
 
 onready var Quick_Dia = $Quick_Dia
 onready var Dialoug = $Holders/DialougHolder
 onready var shop = $Holders/ShopHolder
 onready var TimerNode = $Cooldowns/Timer
-onready var VisableCharactersTimer = $Quick_Dia/Visable_Chars
-onready var acknowledgement_area = $Acknowledgement_area
+onready var acknowledgement_area = $Acknowledgement_area #Used to acknolwadge the player's existence
 
 var acknowleged_player_names = []
 var IsGreetingAPlayer = false

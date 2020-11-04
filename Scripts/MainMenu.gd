@@ -1,6 +1,6 @@
 extends Control
 
-var version = "0.0.1"
+var version = "0.0.1" #Used to display the game's version, should be updated later to make this a variable found in a config file or something like that.
 var selecteditemG
 var selectitemH
 var ForbiddenNames = ["robed figure",
@@ -29,21 +29,24 @@ var ForbiddenNames = ["robed figure",
 				"ben copper",
 				"penny haywood",
 				"muller sydney",
-				"muller"]
-var TestWorld = "res://Scenes/TestWorld_2.tscn"
-var TestWorldSpawnPostion = Vector2(90,90)
+				"muller"] #These are the forbidden names that the player cannot use, it's the same list from the original game.
+				
+#var TestWorld = "res://Scenes/TestWorld_2.tscn" 
+#var TestWorldSpawnPostion = Vector2(90,90)
+
+#Here we define where new players will load into and where their position will be.
 var DiagonAlley = "res://Scenes/Levels/DiagonAlley.tscn"
 var DiagonAlleySpawnPos = Vector2(782,177)
-var DebugTesting = true
+
 export (NodePath) var dropdown_path
 
+#All the importat things that needs to referenced and defined
 onready var versionlabel = get_node("MainPage/Version")
 onready var charactersetup = get_node("CharacterPage")
 onready var mainpage = get_node("MainPage")
 onready var dropdownGender = get_node("CharacterPage/SelectGender")
 onready var dropdownHouse = get_node("CharacterPage/SelectHouse")
 onready var warninglabel = get_node("CharacterPage/Warning")
-onready var SplashScreenAnim = $AnimationPlayer
 var MaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifMale.tscn")
 var MaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/MaleHuff.tscn")
 var MaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/MaleClaw.tscn")
@@ -54,10 +57,8 @@ var FemaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/FemaleClaw.t
 var FemaleSlytherin  = preload("res://Scenes/Instances/Actors/Houses/SlythFemale.tscn")
 
 func _ready():
-	if(!DebugTesting):
-		SplashScreenAnim.play("StartOfGame")
 	versionlabel.text = version
-	add_items()
+	add_items() #Adds items to the drop down menu to be used
 	disable_items(0)
 	selecteditemG = 0
 	selectitemH = 0
@@ -85,6 +86,7 @@ func _on_FinishCharSetup_pressed():
 	warninglabel.text = ""
 	var CharacterName = get_node("CharacterPage/SelectName")
 	print("The Character's name is" , CharacterName.text, "And their gender is" ,selecteditemG)
+	#Check if the player has filled everything in correctly
 	if(CharacterName.text.length() < 3):
 		warninglabel.text = "Please enter a name longer than three characters"
 		return

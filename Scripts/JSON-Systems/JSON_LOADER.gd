@@ -1,5 +1,6 @@
 extends Node
 
+##The JSON_LOADER autoload is used to handle loading data from JSON files without having to rewrite the same function over and over again for each use case
 
 func LoadJSON_General(JSONFile, WhereToStore): #Used to pass data to variables that can be accsed globally
 	print("[LOAD] file : looking for [%s]..." % JSONFile)
@@ -14,7 +15,7 @@ func LoadJSON_General(JSONFile, WhereToStore): #Used to pass data to variables t
 				Data.Loaded_Dialouge = data
 			1: #Items
 				Data.ItemData = data
-			2:
+			2: #Spells
 				Data.SpellsData = data
 		file.close()
 	else:

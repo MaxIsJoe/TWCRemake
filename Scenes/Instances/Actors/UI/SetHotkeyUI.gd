@@ -1,6 +1,10 @@
 extends Control
 
+
+##Used to set which hotkey should use what function
+
 var ID
+
 
 func _on_Button2_button_down():
 	visible = false

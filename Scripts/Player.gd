@@ -1,22 +1,22 @@
 extends KinematicBody2D
 
 export (String) var PlayerName
-export (String) var PlayerRank
+export (String) var PlayerRank #Ranks are earned via completing quests, earing achivements or becoming a teacher/moderator/admin
 export (String) var PlayerHouse
-export (int) var PlayerYear = 1
+export (int) var PlayerYear = 1 #What year is the player in? This is tied to player and content progression and leveling up
 export (int) var health
 export (int) var maxHealth
 export (int) var mana
 export (int) var maxMana
-export (int) var damage
-export (int) var defense
-export (int) var gold
-export (int) var EXP
-export (int) var MaxEXP
-export (int) var level
-export (int) var levelcap
+export (int) var damage #The player's base damage
+export (int) var defense #The player's base defense
+export (int) var gold #How much money does the player have?
+export (int) var EXP #How much XP points does he have currently?
+export (int) var MaxEXP #How much XP is required before he can level up?
+export (int) var level #Player level
 #export (float) var speed
-export (bool) var CanDrawWand
+export (bool) var CanDrawWand #Used for spell checks, dueling and more
+#A bunch of variables that define's the player, this should be updated later to something more.. cleaner.. but this will do for now.
 export (bool) var IsMale
 export (bool) var IsFemale
 export (bool) var IsGryif
@@ -38,20 +38,19 @@ onready var Shootpoint = $SpellManager/ShootPoint
 onready var TargertPoint = $SpellManager/TargetPoint
 
 #var velocity = Vector2()
-var alive = true
-slave var canmove = true
-var Karma = 100
-var statpoints = 0
-var spellppoints = 0
-var currentscene
+var alive = true #Used for handling how everything around the player behaves
+slave var canmove = true #Can the player move?
+var Karma = 100 #Used for quests, NPC behavior, clans and applying damage reduction on player's who aren't fighting and have higher karma points.
+var statpoints = 0 #Used for upgrading the player's stats
+var spellppoints = 0 #Used for learning new spells without having to go to a teacher
 
 enum LookDirections {UP,LEFT,RIGHT,DOWN}
 var LookingDirection
 
-#Inventory
-var ItemsArray = []
 
-slave var PlayerPostion = Vector2()
+var ItemsArray = [] #Will be used for the save system
+
+slave var PlayerPosition = Vector2()
 
 signal isdead
 signal GrabbedAnItem(item)
@@ -61,6 +60,11 @@ signal mpupdate(mana)
 const SPEED = 350
 
 func _ready():
+	
+	#For now, always make sure that the player HP = MaxHP until we add a save system
+	
+	health = maxHealth
+	mana = maxMana
 	
 	#Check what house the player is in at the moment
 	if(IsGryif == true):
@@ -77,7 +81,6 @@ func _ready():
 	emit_signal("mpupdate", mana)
 	
 	Data.Player = self
-	print(currentscene)
 
 	
 	
@@ -190,11 +193,8 @@ func manaregen(amount):
 	mana += amount
 	
 func expgain(amount):
-	if(level != levelcap):
 		EXP += amount
 		levelupcheck()
-	else:
-		return
 
 func levelupcheck():
 	if(EXP >= MaxEXP):

@@ -7,9 +7,10 @@ var active = false
 func _process(delta):
 	if(active):
 		var d2p = Global.GetDistance2Player(get_parent())
+		#Has the player walked or teleported away from the menu?
 		if(d2p >= get_parent().InteractionDistance):
 			ToggleButtonVisbility(false)
-			#Yes, I know mouse_exit() exists, but it doesn't work no matter how many solutions i tried.
+		#Does he want to manually hide it?
 		if(Input.is_key_pressed(KEY_ESCAPE)):
 			ToggleButtonVisbility(false)
 
