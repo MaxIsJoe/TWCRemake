@@ -4,7 +4,7 @@
         "SpellName":"inflamri",
         "SpellIcon":"res://Sprites/TWCSpritesCoverted/icons2/SpellbookIcons/Inflamari_0/0.png",
         "Action": "ShootSpell",
-        "ActionArguments":"inflamri",
+        "ActionArguments":"inflamri null",
         "ActionCooldown": 0.1
     },
     "001":
