@@ -123,24 +123,28 @@ remote func CreateThePlayer(charname,gender,house):
 			add_child(NewGrifMale)
 			NewGrifMale.PlayerName = charname.text
 			NewGrifMale.updatenamelabel()
+			NewGrifMale.set_network_master(get_tree().get_network_unique_id())
 			Teleport.Move_To_Scene(DiagonAlley, NewGrifMale, DiagonAlleySpawnPos)
 		if(house == 2):
 			var NewHuffMale = MaleHufflepuff.instance()
 			add_child(NewHuffMale)
 			NewHuffMale.PlayerName = charname.text
 			NewHuffMale.updatenamelabel()
+			NewHuffMale.set_network_master(get_tree().get_network_unique_id())
 			Teleport.Move_To_Scene(DiagonAlley, NewHuffMale, DiagonAlleySpawnPos)
 		if(house == 3):
 			var NewClawfMale = MaleRavenclaw.instance()
 			add_child(NewClawfMale)
 			NewClawfMale.PlayerName = charname.text
 			NewClawfMale.updatenamelabel()
+			NewClawfMale.set_network_master(get_tree().get_network_unique_id())
 			Teleport.Move_To_Scene(DiagonAlley, NewClawfMale, DiagonAlleySpawnPos)
 		if(house == 4):
 			var NewSlythMale = MaleSlytherin.instance()
 			add_child(NewSlythMale)
 			NewSlythMale.PlayerName = charname.text
 			NewSlythMale.updatenamelabel()
+			NewSlythMale.set_network_master(get_tree().get_network_unique_id())
 			Teleport.Move_To_Scene(DiagonAlley, NewSlythMale, DiagonAlleySpawnPos)
 	if(gender == 2):
 		if(house == 1):
@@ -148,24 +152,28 @@ remote func CreateThePlayer(charname,gender,house):
 			add_child(NewGrifFemale)
 			NewGrifFemale.PlayerName = charname.text
 			NewGrifFemale.updatenamelabel()
+			NewGrifFemale.set_network_master(get_tree().get_network_unique_id())
 			Teleport.Move_To_Scene(DiagonAlley, NewGrifFemale, DiagonAlleySpawnPos)
 		if(house == 2):
 			var NewHuffFemale = FemaleHufflepuff.instance()
 			add_child(NewHuffFemale)
 			NewHuffFemale.PlayerName = charname.text
 			NewHuffFemale.updatenamelabel()
+			NewHuffFemale.set_network_master(get_tree().get_network_unique_id())
 			Teleport.Move_To_Scene(DiagonAlley, NewHuffFemale, DiagonAlleySpawnPos)
 		if(house == 3):
 			var NewClawFemale = FemaleRavenclaw.instance()
 			add_child(NewClawFemale)
 			NewClawFemale.PlayerName = charname.text
 			NewClawFemale.updatenamelabel()
+			NewClawFemale.set_network_master(get_tree().get_network_unique_id())
 			Teleport.Move_To_Scene(DiagonAlley, NewClawFemale, DiagonAlleySpawnPos)
 		if(house == 4):
 			var NewSlythFemale = FemaleSlytherin.instance()
 			add_child(NewSlythFemale)
 			NewSlythFemale.PlayerName = charname.text
 			NewSlythFemale.updatenamelabel()
+			NewSlythFemale.set_network_master(get_tree().get_network_unique_id())
 			#Move_To_Next_Scene(thisscene ,nextscene, player,spawnPos):
 			#NewSlythFemale.Move_To_Next_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)
 			Teleport.Move_To_Scene(DiagonAlley, NewSlythFemale, DiagonAlleySpawnPos)

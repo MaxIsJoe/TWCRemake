@@ -7,13 +7,13 @@ var PlayerName = ""
 func _on_CreateServer_pressed():
 	if PlayerName == "":
 		return
-	Network.CreateServer(PlayerName)
+	Network.create_server(PlayerName)
 	_load_game()
 
 func _on_JoinServer_pressed():
 	if PlayerName == "":
 		return
-	Network.ConnectToServer(PlayerName)
+	Network.connect_to_server(PlayerName)
 	_load_game()
 	
 func _load_game():
