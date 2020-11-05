@@ -12,6 +12,16 @@ var ItemData
 var SpellsJSON = "res://Resources/Spells/SpellData.JSON"
 var SpellsData
 
+#Scenes
+var MaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifMale.tscn")
+var MaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/MaleHuff.tscn")
+var MaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/MaleClaw.tscn")
+var MaleSlytherin = preload("res://Scenes/Instances/Actors/Houses/SlythMale.tscn")
+var FemaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifFemale.tscn")
+var FemaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/FemaleHuff.tscn")
+var FemaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/FemaleClaw.tscn")
+var FemaleSlytherin  = preload("res://Scenes/Instances/Actors/Houses/SlythFemale.tscn")
+
 ##Images##
 var UI_Icon_Shop = "res://Sprites/UI/BagOSnow_Converted.png"
 var UI_Icon_Dia = "res://Sprites/UI/Dia_Icon.png"
