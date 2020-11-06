@@ -114,7 +114,7 @@ func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
 func CreateThePlayer(charname,gender,house):
-	NetworkingFunctions.rpc_id(1 , "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos)
+	NetworkingFunctions.rpc("CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos)
 
 func _on_CreateServer_pressed():
 	if PlayerID == "":
