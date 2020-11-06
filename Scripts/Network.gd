@@ -29,6 +29,7 @@ func create_server(player_nickname):
 	peer.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	get_tree().set_network_peer(peer)
 	print("created server")
+	set_network_master(1)
 
 func connect_to_server(player_nickname):
 	self_data.name = player_nickname

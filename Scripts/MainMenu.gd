@@ -80,13 +80,13 @@ func disable_items(id):
 
 func _on_FinishCharSetup_pressed():
 	warninglabel.text = ""
-	var CharacterName = get_node("CharacterPage/SelectName")
-	print("The Character's name is" , CharacterName.text, "And their gender is" ,selecteditemG)
+	var CharacterName = $CharacterPage/SelectName.text
+	print("The Character's name is" , CharacterName, "And their gender is" ,selecteditemG)
 	#Check if the player has filled everything in correctly
-	if(CharacterName.text.length() < 3):
+	if(CharacterName.length() < 3):
 		warninglabel.text = "Please enter a name longer than three characters"
 		return
-	if(CharacterName.text.length() > 16):
+	if(CharacterName.length() > 16):
 		warninglabel.text = "Please use a shorter name"
 		return
 	if(selecteditemG == 0 or null):
@@ -95,12 +95,12 @@ func _on_FinishCharSetup_pressed():
 	if(selectitemH == 0 or null):
 		warninglabel.text = "Please choose a house"
 		return
-	if(ForbiddenNames.has(CharacterName.text)):
+	if(ForbiddenNames.has(CharacterName)):
 		warninglabel.text = "Please select another name"
 		return
 	#Spawn the player with their name and gender assigned to them
-	#CreateThePlayer(CharacterName, selecteditemG,selectitemH)
-	rpc_id(1 , "CreateThePlayer", CharacterName, selecteditemG,selectitemH)
+	CreateThePlayer(CharacterName, selecteditemG,selectitemH)
+	#rpc_id(1 , "CreateThePlayer", CharacterName, selecteditemG,selectitemH)
 
 func _on_SelectGender_item_selected(ID):
 	selecteditemG = ID
@@ -113,68 +113,8 @@ func _on_ExitButiion_pressed():
 func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
-sync func CreateThePlayer(charname,gender,house):
-	if(gender == 1):
-		if(house == 1):
-			var NewGrifMale = Data.MaleGryffindor.instance()
-			add_child(NewGrifMale)
-			NewGrifMale.PlayerName = charname.text
-			NewGrifMale.updatenamelabel()
-			NewGrifMale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(DiagonAlley, NewGrifMale, DiagonAlleySpawnPos)
-		if(house == 2):
-			var NewHuffMale = Data.MaleHufflepuff.instance()
-			add_child(NewHuffMale)
-			NewHuffMale.PlayerName = charname.text
-			NewHuffMale.updatenamelabel()
-			NewHuffMale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(DiagonAlley, NewHuffMale, DiagonAlleySpawnPos)
-		if(house == 3):
-			var NewClawfMale = Data.MaleRavenclaw.instance()
-			add_child(NewClawfMale)
-			NewClawfMale.PlayerName = charname.text
-			NewClawfMale.updatenamelabel()
-			NewClawfMale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(DiagonAlley, NewClawfMale, DiagonAlleySpawnPos)
-		if(house == 4):
-			var NewSlythMale = Data.MaleSlytherin.instance()
-			add_child(NewSlythMale)
-			NewSlythMale.PlayerName = charname.text
-			NewSlythMale.updatenamelabel()
-			NewSlythMale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(DiagonAlley, NewSlythMale, DiagonAlleySpawnPos)
-	if(gender == 2):
-		if(house == 1):
-			var NewGrifFemale = Data.FemaleGryffindor.instance()
-			add_child(NewGrifFemale)
-			NewGrifFemale.PlayerName = charname.text
-			NewGrifFemale.updatenamelabel()
-			NewGrifFemale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(DiagonAlley, NewGrifFemale, DiagonAlleySpawnPos)
-		if(house == 2):
-			var NewHuffFemale = Data.FemaleHufflepuff.instance()
-			add_child(NewHuffFemale)
-			NewHuffFemale.PlayerName = charname.text
-			NewHuffFemale.updatenamelabel()
-			NewHuffFemale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(DiagonAlley, NewHuffFemale, DiagonAlleySpawnPos)
-		if(house == 3):
-			var NewClawFemale = Data.FemaleRavenclaw.instance()
-			add_child(NewClawFemale)
-			NewClawFemale.PlayerName = charname.text
-			NewClawFemale.updatenamelabel()
-			NewClawFemale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(DiagonAlley, NewClawFemale, DiagonAlleySpawnPos)
-		if(house == 4):
-			var NewSlythFemale = Data.FemaleSlytherin.instance()
-			add_child(NewSlythFemale)
-			NewSlythFemale.PlayerName = charname.text
-			NewSlythFemale.updatenamelabel()
-			NewSlythFemale.set_network_master(get_tree().get_network_unique_id())
-			#Move_To_Next_Scene(thisscene ,nextscene, player,spawnPos):
-			#NewSlythFemale.Move_To_Next_Scene(self, TestWorld, NewSlythFemale, TestWorldSpawnPostion)
-			Teleport.Move_To_Scene(DiagonAlley, NewSlythFemale, DiagonAlleySpawnPos)
-			
+func CreateThePlayer(charname,gender,house):
+	NetworkingFunctions.rpc_id(1 , "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos)
 
 func _on_CreateServer_pressed():
 	if PlayerID == "":
