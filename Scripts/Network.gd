@@ -14,6 +14,8 @@ var self_data = {}
 var world_data = {}
 var world_state = {}
 
+var PlayerContainer
+
 var last_world_state = 0
 
 signal player_disconnected
@@ -24,8 +26,9 @@ func _ready():
 	get_tree().connect('network_peer_connected', self, '_on_player_connected')
 	var player_container = Node.new()
 	player_container.name = "Container"
-	get_parent().add_child(player_container)
-
+	add_child(player_container)
+	PlayerContainer = get_node("Container")
+	
 func create_server(player_nickname):
 	self_data.name = player_nickname
 	players[1] = self_data
@@ -85,8 +88,8 @@ remote func GetWorldState(state):
 		state.erase("T")
 		state.erase(get_tree().get_network_unique_id())
 		for player in state.keys():
-			if(get_tree().get_node("Container").has_node(str(player))):
-				get_tree().get_node("Container/" + str(player)).UpdatePlayer(state[player]["P"])
+			if(PlayerContainer.has_node(str(player))):
+				PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"])
 			else:
 				NetworkingFunctions.CreateThePlayer("Testing", 1, state[player]["H"], null, state[player]["P"])
 		

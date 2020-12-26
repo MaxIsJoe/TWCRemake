@@ -4,7 +4,6 @@ export(PackedScene) var MapFile
 export(PackedScene) var MainMenu
 export(bool) var JoinOfficalServer = true
 
-
 onready var FirstLoadUI = $FirstLoad
 
 func _ready():
