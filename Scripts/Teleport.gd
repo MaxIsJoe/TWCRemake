@@ -20,3 +20,6 @@ func Deffered_MoveToScene(nextscene, player,spawnPos):
 	print("we reached this point") #<--- Doesn't get printed
 	pl.position = spawnPos
 	Data.Player = pl
+
+func TeleportPos(target, pos):
+	target.position = pos
