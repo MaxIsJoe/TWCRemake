@@ -85,50 +85,45 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	if canmove == false: #Can the player move?
-		return
-	var rot_dir = 0
-	var velocity = Vector2()
-	#if (is_network_master()):
-	if(Input.is_action_pressed("ui_up")):
-		velocity.y -= 1
-		animstate.play("walkup")
-		UpdateShootingPostion("up")
-	if(Input.is_action_pressed("ui_down")):
-		velocity.y += 1
-		animstate.play("walkdown")
-		UpdateShootingPostion("down")
-	if(Input.is_action_pressed("ui_right")):
-		velocity.x += 1
-		animstate.play("walkright")
-		UpdateShootingPostion("right")
-	if(Input.is_action_pressed("ui_left")):
-		velocity.x -= 1
-		animstate.play("walkleft")
-		UpdateShootingPostion("left")
-	if(Input.is_action_just_released("ui_up")):
-		animstate.play("idleup")
-	if(Input.is_action_just_released("ui_down")):
-		animstate.play("idledown")
-	if(Input.is_action_just_released("ui_right")):
-		animstate.play("idleright")
-	if(Input.is_action_just_released("ui_left")):
-		animstate.play("idleleft")
-	
-	velocity = velocity.normalized() * SPEED
-	move_and_slide(velocity)
-	# Check if there is any (meaningful) input
-#		if (velocity.x != 0 || velocity.y != 0):
-#			# There is some input. If on the server, just update the position
-#			if (get_tree().is_network_server()):
-#				server_get_player_input(velocity)
-#			# Otherwise, request the server to calculate the new position
-#			else:
-#				rpc_id(1, "server_get_player_input", velocity)
-#	# Regardless if this is the master or not, being on the server means: replicate the actor state
-#	if (get_tree().is_network_server()):
-#		# Replicate the position, using the unreliable protocol
-#		rpc_unreliable("client_get_player_update", position)
+	if is_network_master():
+		if canmove == false: #Can the player move?
+			return
+		var rot_dir = 0
+		var velocity = Vector2()
+		if(Input.is_action_pressed("ui_up")):
+			velocity.y -= 1
+			animstate.play("walkup")
+			UpdateShootingPostion("up")
+		if(Input.is_action_pressed("ui_down")):
+			velocity.y += 1
+			animstate.play("walkdown")
+			UpdateShootingPostion("down")
+		if(Input.is_action_pressed("ui_right")):
+			velocity.x += 1
+			animstate.play("walkright")
+			UpdateShootingPostion("right")
+		if(Input.is_action_pressed("ui_left")):
+			velocity.x -= 1
+			animstate.play("walkleft")
+			UpdateShootingPostion("left")
+		if(Input.is_action_just_released("ui_up")):
+			animstate.play("idleup")
+		if(Input.is_action_just_released("ui_down")):
+			animstate.play("idledown")
+		if(Input.is_action_just_released("ui_right")):
+			animstate.play("idleright")
+		if(Input.is_action_just_released("ui_left")):
+			animstate.play("idleleft")
+		
+		velocity = velocity.normalized() * SPEED
+		
+		if velocity != Vector2():
+			move_and_slide(velocity)
+		rpc_unreliable("RPC_UpdateMovement", global_transform.origin, animstate.animation)
+
+remote func RPC_UpdateMovement(pos, anim):
+	global_transform.origin = pos
+	animstate.play(anim)
 	
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
