@@ -11,9 +11,10 @@ const ping_timeout = 5.0            # Wait 5 seconds before considering a ping r
 var players   = {}
 var self_data = {}
 
-# This dictionary holds an entry for each connected player and will keep the necessary data to perform
-# ping/pong requests. This will be filled only on the server
-var ping_data = {}
+var world_data = {}
+var world_state = {}
+
+var last_world_state = 0
 
 signal player_disconnected
 signal server_disconnected
@@ -21,6 +22,9 @@ signal server_disconnected
 func _ready():
 	get_tree().connect('network_peer_disconnected', self, '_on_player_disconnected')
 	get_tree().connect('network_peer_connected', self, '_on_player_connected')
+	var player_container = Node.new()
+	player_container.name = "Container"
+	get_parent().add_child(player_container)
 
 func create_server(player_nickname):
 	self_data.name = player_nickname
@@ -63,3 +67,33 @@ remote func _request_players(request_from_id):
 		for peer_id in players:
 			if( peer_id != request_from_id):
 				rpc_id(request_from_id, '_send_player_info', peer_id, players[peer_id])
+				
+func SendData(state):
+	var playerID = get_tree().get_rpc_sender_id()
+	if(world_data.has(playerID)):
+		if(world_data[playerID]["T"] < state["T"]):
+			world_data[playerID] = state
+	else:
+		world_data[playerID] = state
+
+func SendWorldState(state):
+	rpc_unreliable_id(0, "GetWorldState", state)
+	
+remote func GetWorldState(state):
+	if state["T"] > last_world_state:
+		last_world_state = state["T"]
+		state.erase("T")
+		state.erase(get_tree().get_network_unique_id())
+		for player in state.keys():
+			if(get_tree().get_node("Container").has_node(str(player))):
+				get_tree().get_node("Container/" + str(player)).UpdatePlayer(state[player]["P"])
+			else:
+				NetworkingFunctions.CreateThePlayer("Testing", 1, state[player]["H"], null, state[player]["P"])
+		
+func _physics_process(delta):
+	if not world_data.empty():
+		world_state = world_data.duplicate(true)
+		for player in world_state.keys():
+			world_state[player].erase("T")
+		world_state["T"] = OS.get_system_time_msecs()
+		SendWorldState(world_state)

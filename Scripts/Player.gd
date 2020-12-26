@@ -50,7 +50,7 @@ var LookingDirection
 
 var ItemsArray = [] #Will be used for the save system
 
-slave var PlayerPosition = Vector2()
+var PlayerState = {}
 
 signal isdead
 signal GrabbedAnItem(item)
@@ -119,12 +119,14 @@ func _physics_process(delta):
 		
 		if velocity != Vector2():
 			move_and_slide(velocity)
-		rpc_unreliable("RPC_UpdateMovement", global_transform.origin, animstate.animation)
 
-remote func RPC_UpdateMovement(pos, anim):
-	global_transform.origin = pos
-	animstate.play(anim)
-	
+func Send_PlayerState(playerstate):
+	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "H": PlayerHouse}
+	Network.SendData(playerstate)
+
+func UpdatePlayer(pos):
+	global_position = pos
+
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
 	#	if InventoryUI.visible == true:   
