@@ -242,6 +242,9 @@ __meta__ = {
 "_gizmo_extents_": 42.3
 }
 
+[node name="DefaultSpawn" type="Position2D" parent="Teleports/EndPoints"]
+position = Vector2( 790, 174 )
+
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="Tom" parent="NPCs" instance=ExtResource( 5 )]

@@ -1,6 +1,6 @@
 extends Control
 
-var version = "0.0.1" #Used to display the game's version, should be updated later to make this a variable found in a config file or something like that.
+var version = Global.version #Used to display the game's version, should be updated later to make this a variable found in a config file or something like that.
 var selecteditemG
 var selectitemH
 var ForbiddenNames = ["robed figure",
@@ -50,7 +50,6 @@ onready var mainpage = $MainPage
 onready var dropdownGender = $CharacterPage/SelectGender
 onready var dropdownHouse = $CharacterPage/SelectHouse
 onready var warninglabel = $CharacterPage/Warning
-onready var NetworkingPage = $NetworkingPage
 
 func _ready():
 	versionlabel.text = version
@@ -61,7 +60,7 @@ func _ready():
 
 func _on_StartButton_pressed():
 	mainpage.visible = false
-	NetworkingPage.visible = true
+	charactersetup.visible = true
 	
 func add_items():
 	dropdownGender.add_item("Select your gender")
@@ -115,21 +114,4 @@ func _on_SelectHouse_item_selected(ID):
 	
 func CreateThePlayer(charname,gender,house):
 	NetworkingFunctions.rpc("CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos)
-
-func _on_CreateServer_pressed():
-	if PlayerID == "":
-		return
-	Network.create_server(PlayerID)
-	NetworkingPage.visible = false
-	charactersetup.visible = true
-
-func _on_JoinServer_pressed():
-	if PlayerID == "":
-		return
-	Network.connect_to_server(PlayerID)
-	NetworkingPage.visible = false
-	charactersetup.visible = true
-
-
-func _on_TakePlayerName_text_changed(new_text):
-	PlayerID = $NetworkingPage/Background/TakePlayerName.text
+	self.queue_free()

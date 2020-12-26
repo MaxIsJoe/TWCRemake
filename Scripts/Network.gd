@@ -43,6 +43,7 @@ func _connected_to_server():
 	players[local_player_id] = self_data
 	rpc('_send_player_info', local_player_id, self_data)
 	print("connected to server")
+	Data.main_node.LoadGame()
 
 func _on_player_disconnected(id):
 	players.erase(id)

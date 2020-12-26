@@ -1,0 +1,136 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Levels/World.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/MainMenu.tscn" type="PackedScene" id=3]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+MapFile = ExtResource( 2 )
+MainMenu = ExtResource( 3 )
+
+[node name="FirstLoad" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FirstLoad"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -221.0
+margin_top = -355.0
+margin_right = 219.0
+margin_bottom = 353.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="FirstLoad/VBoxContainer"]
+margin_top = 232.0
+margin_right = 440.0
+margin_bottom = 252.4
+text = "Startup Settings"
+align = 1
+
+[node name="Check_Debug" type="CheckButton" parent="FirstLoad/VBoxContainer"]
+margin_top = 256.0
+margin_right = 440.0
+margin_bottom = 288.0
+text = "DEBUG mode"
+
+[node name="Check_fov" type="CheckButton" parent="FirstLoad/VBoxContainer"]
+margin_top = 291.0
+margin_right = 440.0
+margin_bottom = 323.0
+text = "FOV/shadows"
+
+[node name="Check_tracker" type="CheckButton" parent="FirstLoad/VBoxContainer"]
+margin_top = 326.0
+margin_right = 440.0
+margin_bottom = 358.0
+pressed = true
+text = "FPS Tracker"
+
+[node name="Label2" type="Label" parent="FirstLoad/VBoxContainer"]
+margin_top = 360.0
+margin_right = 440.0
+margin_bottom = 380.4
+text = "Networking"
+align = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="FirstLoad/VBoxContainer"]
+margin_top = 384.0
+margin_right = 440.0
+margin_bottom = 408.0
+alignment = 1
+
+[node name="Label" type="Label" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
+margin_left = 38.0
+margin_top = 1.0
+margin_right = 67.4
+margin_bottom = 21.4
+text = "ID :"
+
+[node name="ID_Text" type="LineEdit" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
+margin_left = 70.0
+margin_right = 219.572
+margin_bottom = 24.0
+rect_min_size = Vector2( 149.572, 0 )
+placeholder_text = "enter a special ID"
+placeholder_alpha = 0.2
+
+[node name="Label2" type="Label" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
+margin_left = 222.0
+margin_top = 1.0
+margin_right = 249.4
+margin_bottom = 21.4
+text = "IP :"
+
+[node name="IP_Text" type="LineEdit" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
+margin_left = 252.0
+margin_right = 401.572
+margin_bottom = 24.0
+rect_min_size = Vector2( 149.572, 0 )
+placeholder_text = "For online servers"
+placeholder_alpha = 0.2
+
+[node name="Label3" type="Label" parent="FirstLoad/VBoxContainer"]
+margin_top = 410.0
+margin_right = 440.0
+margin_bottom = 430.4
+text = "Connection To"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FirstLoad/VBoxContainer"]
+margin_top = 434.0
+margin_right = 440.0
+margin_bottom = 474.0
+alignment = 1
+
+[node name="Connect_LAN" type="Button" parent="FirstLoad/VBoxContainer/HBoxContainer"]
+margin_left = 37.0
+margin_right = 157.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+text = "LAN"
+
+[node name="Connect_CustomIp" type="Button" parent="FirstLoad/VBoxContainer/HBoxContainer"]
+margin_left = 160.0
+margin_right = 280.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+text = "Online"
+
+[node name="Host" type="Button" parent="FirstLoad/VBoxContainer/HBoxContainer"]
+margin_left = 283.0
+margin_right = 403.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+text = "Host Online"
+[connection signal="button_down" from="FirstLoad/VBoxContainer/HBoxContainer/Connect_LAN" to="." method="_on_Connect_LAN_button_down"]
+[connection signal="button_down" from="FirstLoad/VBoxContainer/HBoxContainer/Host" to="." method="_on_Host_button_down"]

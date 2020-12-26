@@ -13,10 +13,17 @@ var housenames = ["Grif","Slyth","Claw","Huff"]
 
 var day = OS.get_date()["day"]
 var Moon
-var DaynNight
 
+#Day and Night stuff
+var DaynNight
 var NightColor = Color(0, 0.06, 0.45, 0.35)
 var DayColor = Color(7, 33, 203, 0)
+
+#Misc variables
+var DEBUG_Mode = true
+var version = "0.0.1"
+var EnableFOV = false
+var EnableFPSTracker = true
 
 func _ready():
 	JsonLoader.LoadJSON_General(Data.ItemJSON, 1)

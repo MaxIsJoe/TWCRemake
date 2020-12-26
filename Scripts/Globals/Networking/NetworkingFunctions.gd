@@ -9,28 +9,29 @@ remotesync func CreateThePlayer(charname,gender,house, loc, locSpawnPos):
 			NewGrifMale.PlayerName = charname
 			NewGrifMale.updatenamelabel()
 			NewGrifMale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(loc, NewGrifMale, locSpawnPos)
+			#Teleport.Move_To_Scene(loc, NewGrifMale, locSpawnPos)
+			Teleport.TeleportPos(NewGrifMale, locSpawnPos)
 		if(house == 2):
 			var NewHuffMale = Data.MaleHufflepuff.instance()
 			add_child(NewHuffMale)
 			NewHuffMale.PlayerName = charname
 			NewHuffMale.updatenamelabel()
 			NewHuffMale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(loc, NewHuffMale, locSpawnPos)
+			Teleport.TeleportPos(NewHuffMale, locSpawnPos)
 		if(house == 3):
 			var NewClawfMale = Data.MaleRavenclaw.instance()
 			add_child(NewClawfMale)
 			NewClawfMale.PlayerName = charname
 			NewClawfMale.updatenamelabel()
 			NewClawfMale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(loc, NewClawfMale, locSpawnPos)
+			Teleport.TeleportPos(NewClawfMale, locSpawnPos)
 		if(house == 4):
 			var NewSlythMale = Data.MaleSlytherin.instance()
 			add_child(NewSlythMale)
 			NewSlythMale.PlayerName = charname
 			NewSlythMale.updatenamelabel()
 			NewSlythMale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(loc, NewSlythMale, locSpawnPos)
+			Teleport.TeleportPos(NewSlythMale, locSpawnPos)
 	if(gender == 2):
 		if(house == 1):
 			var NewGrifFemale = Data.FemaleGryffindor.instance()
@@ -38,25 +39,25 @@ remotesync func CreateThePlayer(charname,gender,house, loc, locSpawnPos):
 			NewGrifFemale.PlayerName = charname
 			NewGrifFemale.updatenamelabel()
 			NewGrifFemale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(loc, NewGrifFemale, locSpawnPos)
+			Teleport.TeleportPos(NewGrifFemale, locSpawnPos)
 		if(house == 2):
 			var NewHuffFemale = Data.FemaleHufflepuff.instance()
 			add_child(NewHuffFemale)
 			NewHuffFemale.PlayerName = charname
 			NewHuffFemale.updatenamelabel()
 			NewHuffFemale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(loc, NewHuffFemale, locSpawnPos)
+			Teleport.TeleportPos(NewHuffFemale, locSpawnPos)
 		if(house == 3):
 			var NewClawFemale = Data.FemaleRavenclaw.instance()
 			add_child(NewClawFemale)
 			NewClawFemale.PlayerName = charname
 			NewClawFemale.updatenamelabel()
 			NewClawFemale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(loc, NewClawFemale, locSpawnPos)
+			Teleport.TeleportPos(NewClawFemale, locSpawnPos)
 		if(house == 4):
 			var NewSlythFemale = Data.FemaleSlytherin.instance()
 			add_child(NewSlythFemale)
 			NewSlythFemale.PlayerName = charname
 			NewSlythFemale.updatenamelabel()
 			NewSlythFemale.set_network_master(get_tree().get_network_unique_id())
-			Teleport.Move_To_Scene(loc, NewSlythFemale, locSpawnPos)
+			Teleport.TeleportPos(NewSlythFemale, locSpawnPos)

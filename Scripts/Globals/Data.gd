@@ -3,6 +3,8 @@ extends Node
 ####Data####
 ##Here all data that needs to be stored and referenced will be put here.##
 
+var main_node
+
 #Always present#
 #Inventory and Items#
 var ItemJSON = "res://Resources/Items/Items.JSON"
