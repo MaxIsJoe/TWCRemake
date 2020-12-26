@@ -17,6 +17,7 @@
 extents = Vector2( 184.649, 86.5231 )
 
 [node name="MerpeopleVillage" type="Node2D"]
+z_index = -1
 
 [node name="MapLayout" type="Node2D" parent="."]
 z_index = -1

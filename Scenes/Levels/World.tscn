@@ -7,6 +7,9 @@
 
 [node name="World" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8579.55, 134.933 )
+
 [node name="HogwartsGrounds" parent="." instance=ExtResource( 1 )]
 position = Vector2( 9004.46, -4210.5 )
 
@@ -18,6 +21,7 @@ TeleportLocation = NodePath("../../../../Positions/Enter_MVillage_From_Hogwarts"
 
 [node name="MerpeopleVillage" parent="." instance=ExtResource( 2 )]
 position = Vector2( 7936, 0 )
+z_index = 0
 
 [node name="Entering_Village" parent="MerpeopleVillage/Teleporters/Postion2Ds" index="0"]
 position = Vector2( 45.718, -11.7433 )
@@ -44,7 +48,6 @@ SpawnPostion = Vector2( 8989.54, 314 )
 TeleportLocation = NodePath("../../../../Positions/Enter_Hogwarts_From_MiraVillage")
 
 [node name="DiagonAlley" parent="." instance=ExtResource( 3 )]
-z_index = 0
 
 [node name="ToHogwarts" parent="DiagonAlley/Teleports/Pathways" index="2"]
 TeleportToScene = ""
@@ -129,9 +132,6 @@ TeleportLocation = Vector2( 7982.57, -12 )
 [node name="ToHogwarts21" parent="DiagonAlley/Teleports/Pathways" index="22"]
 TeleportToScene = ""
 TeleportLocation = Vector2( 7982.57, -12 )
-
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 752.362, 161.22 )
 
 [node name="Positions" type="Node2D" parent="."]
 
