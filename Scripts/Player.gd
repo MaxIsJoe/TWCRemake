@@ -117,7 +117,7 @@ func Send_PlayerState():
 	Network.rpc_unreliable("SendData", PlayerState)
 
 func UpdatePlayer(pos, anim):
-	global_position = pos
+	global_position = lerp(global_position, pos, 0.5)
 	animstate.animation = anim
 
 func _input(event):
