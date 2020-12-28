@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 export (String) var PlayerName
 export (String) var PlayerRank #Ranks are earned via completing quests, earing achivements or becoming a teacher/moderator/admin
-export (String) var PlayerHouse
 export (int) var PlayerYear = 1 #What year is the player in? This is tied to player and content progression and leveling up
 export (int) var health
 export (int) var maxHealth
@@ -17,13 +16,8 @@ export (int) var level #Player level
 #export (float) var speed
 export (bool) var CanDrawWand #Used for spell checks, dueling and more
 #A bunch of variables that define's the player, this should be updated later to something more.. cleaner.. but this will do for now.
-export (bool) var IsMale
-export (bool) var IsFemale
-export (bool) var IsGryif
-export (bool) var IsSlyth
-export (bool) var IsHuff
-export (bool) var IsClaw
-export (bool) var IsNew
+export (int, "Male", "Female") var Gender
+export (int, "Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin") var House
 
 onready var animstate = get_node("AnimatedSprite")
 #onready var InventoryUI = get_node("Inventory/InventoryUI")
@@ -50,7 +44,7 @@ var LookingDirection
 
 var ItemsArray = [] #Will be used for the save system
 
-var PlayerState = {}
+var PlayerState = {} #For networking
 
 
 signal isdead
@@ -66,18 +60,6 @@ func _ready():
 	
 	health = maxHealth
 	mana = maxMana
-	
-	#Check what house the player is in at the moment
-	if(IsGryif == true):
-		PlayerHouse = "Gryffindor"
-	if(IsSlyth == true):
-		PlayerHouse = "Slytherin"
-	if(IsHuff == true):
-		PlayerHouse = "Hufflepuff"
-	if(IsClaw == true):
-		PlayerHouse = "Ravenclaw"
-	#if(IsNew == true):
-	#	PlayerHouse = "None"
 	emit_signal("hpupdate", health)
 	emit_signal("mpupdate", mana)
 	
@@ -127,7 +109,7 @@ func _physics_process(delta):
 		Send_PlayerState()
 
 func Send_PlayerState():
-	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "H": PlayerHouse, "N": PlayerName}
+	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender}
 	Network.rpc_unreliable("SendData", PlayerState)
 
 func UpdatePlayer(pos, anim):
@@ -174,13 +156,13 @@ func UpdateShootingPostion(pos):
 
 remote func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
-	if(IsGryif):
+	if(House == 0):
 		PlayerNameUI.add_color_override("font_color", Color(0.86,0.08,0.24,1))
-	if(IsHuff):
+	if(House == 1):
 		PlayerNameUI.add_color_override("font_color", Color(1,0.84,0,1))
-	if(IsSlyth):
+	if(House == 3):
 		PlayerNameUI.add_color_override("font_color", Color(0,1,0,1))
-	if(IsClaw):
+	if(House == 2):
 		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
 
 func takedamage(dmg):

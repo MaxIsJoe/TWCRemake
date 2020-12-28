@@ -88,7 +88,7 @@ remote func GetWorldState(state):
 				else: #If the player doesn't exist, create them.
 					if(state.size() > PlayerContainer.get_child_count()): #This is to prevent players from getting infintally created
 						print(player, " does not exist, creating new copy.")
-						NetworkingFunctions.CreateThePlayer(state[player]["N"], 1, 1, null, state[player]["P"], player) #Reminder that this needs to be updated to actually sync more accurate player data instead of spawning the wrong house and info.
+						NetworkingFunctions.CreateThePlayer(state[player]["N"], state[player]["H"], state[player]["G"], null, state[player]["P"], player) 
 				
 	#print(world_state)
 		

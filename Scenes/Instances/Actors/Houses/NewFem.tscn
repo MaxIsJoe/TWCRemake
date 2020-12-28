@@ -25,14 +25,14 @@ animations = [ {
 "name": "idledown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "walkleft",
+"name": "idleleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "idleright",
+"name": "walkright",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -45,26 +45,24 @@ animations = [ {
 "name": "walkdown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "idleleft",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "walkright",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "walkup",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "walkleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idleright",
+"speed": 5.0
 } ]
 
 [node name="NewFem" instance=ExtResource( 1 )]
-PlayerHouse = "None"
-IsFemale = true
-IsNew = true
+Gender = 1
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
