@@ -35,7 +35,7 @@ func create_server(player_nickname):
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	get_tree().set_network_peer(peer)
-	print("created server")
+	print(str("[Networking]: Server created // Server ID -> " + str(get_tree().get_network_unique_id())))
 	set_network_master(1)
 
 func connect_to_server(player_nickname):
@@ -48,29 +48,20 @@ func connect_to_server(player_nickname):
 func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
 	players[local_player_id] = self_data
-	rpc('_send_player_info', local_player_id, self_data)
 	print("connected to server")
 	Data.main_node.LoadGame()
 
 func _on_player_disconnected(id):
+	print(str("[Networking]: " + " disconnected."))
 	players.erase(id)
 
 func _on_player_connected(connected_player_id):
+	print("[Networking]: player_connected:", connected_player_id)
+	print("[Networking]: PlayerList:", players)
 	var local_player_id = get_tree().get_network_unique_id()
 	if not(get_tree().is_network_server()):
-		rpc_id(1, '_request_player_info', local_player_id, connected_player_id)
+		rpc_id(1, 'GetWorldState', world_state)
 
-remote func _request_player_info(request_from_id, player_id):
-	if get_tree().is_network_server():
-		rpc_id(request_from_id, '_send_player_info', player_id, players[player_id])
-
-# A function to be used if needed. The purpose is to request all players in the current session.
-remote func _request_players(request_from_id):
-	if get_tree().is_network_server():
-		for peer_id in players:
-			if( peer_id != request_from_id):
-				rpc_id(request_from_id, '_send_player_info', peer_id, players[peer_id])
-				
 func SendData(state):
 	var playerID = get_tree().get_rpc_sender_id()
 	if(world_data.has(playerID)):
@@ -83,15 +74,18 @@ func SendWorldState(state):
 	rpc_unreliable_id(0, "GetWorldState", state)
 	
 remote func GetWorldState(state):
-	if state["T"] > last_world_state:
-		last_world_state = state["T"]
-		state.erase("T")
-		state.erase(get_tree().get_network_unique_id())
-		for player in state.keys():
-			if(PlayerContainer.has_node(str(player))):
-				PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"])
-			else:
-				NetworkingFunctions.CreateThePlayer("Testing", 1, state[player]["H"], null, state[player]["P"])
+	if(!state.empty()):
+		if state["T"] > last_world_state:
+			last_world_state = state["T"]
+			state.erase("T")
+			state.erase(get_tree().get_network_unique_id())
+			for player in state.keys():
+				if(PlayerContainer.has_node(str(player))):
+					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"])
+				else:
+					NetworkingFunctions.CreateThePlayer("Testing", 1, 1, null, state[player]["P"])
+				
+	#print(world_state)
 		
 func _physics_process(delta):
 	if not world_data.empty():

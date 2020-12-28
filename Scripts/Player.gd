@@ -81,7 +81,7 @@ func _ready():
 	emit_signal("mpupdate", mana)
 	
 	Data.Player = self
-
+	Send_PlayerState()
 	
 	
 func _physics_process(delta):
@@ -119,10 +119,11 @@ func _physics_process(delta):
 		
 		if velocity != Vector2():
 			move_and_slide(velocity)
+		Send_PlayerState()
 
-func Send_PlayerState(playerstate):
+func Send_PlayerState():
 	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "H": PlayerHouse}
-	Network.SendData(playerstate)
+	Network.SendData(PlayerState)
 
 func UpdatePlayer(pos):
 	global_position = pos
