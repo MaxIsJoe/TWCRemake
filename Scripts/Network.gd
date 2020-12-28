@@ -86,8 +86,9 @@ remote func GetWorldState(state):
 					PlayerContainer.get_node(str(player)).UpdatePlayer(str(get_tree().get_network_unique_id()), state[player]["P"])
 					print("[Networking] - Updating ", player, " data.")
 				else: #If a player does not exist on the client's end, create them.
-					print(player, " does not exist, creating new copy.")
-					NetworkingFunctions.CreateThePlayer(state[player]["N"], 1, 1, null, state[player]["P"], player)
+					if(!PlayerContainer.has_node(str(player))):
+						print(player, " does not exist, creating new copy.")
+						NetworkingFunctions.CreateThePlayer(state[player]["N"], 1, 1, null, state[player]["P"], player)
 				
 	#print(world_state)
 		
