@@ -48,8 +48,9 @@ func connect_to_server(player_nickname):
 func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
 	players[local_player_id] = self_data
-	print("connected to server")
+	print("[Networking]: Connected to server. Loading game..")
 	Data.main_node.LoadGame()
+	print("[Networking] - DEBUG - Players: ", players)
 
 func _on_player_disconnected(id):
 	print(str("[Networking]: " + " disconnected."))
