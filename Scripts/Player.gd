@@ -67,7 +67,11 @@ func _ready():
 		Data.Player = self
 		$Cam.current = true
 		$Cam/CanvasLayer/UI.visible = true
-	
+		if(Global.EnableFOV):
+			$Light2D.shadow_enabled = true
+		else:
+			$Light2D.shadow_enabled = false
+		
 	Send_PlayerState()
 	
 	
@@ -128,16 +132,17 @@ func _input(event):
 		else:
 			tabs.visible = true
 	#DEBUG
-	if(Input.is_action_just_pressed("ui_page_down")):
-		takedamage(5)
-	if(Input.is_action_just_pressed("ui_page_up")):
-		expgain(50)
-		print("Your level is ", level," Your EXP is ",EXP," and your MaxEXP = ",MaxEXP)
-	if(Input.is_action_just_pressed("DEBUG_DisableShadows")):
-		if($Light2D.shadow_enabled):
-			$Light2D.shadow_enabled = false
-		else:
-			$Light2D.shadow_enabled = true
+	if(Global.DEBUG_Mode):
+		if(Input.is_action_just_pressed("ui_page_down")):
+			takedamage(5)
+		if(Input.is_action_just_pressed("ui_page_up")):
+			expgain(50)
+			print("Your level is ", level," Your EXP is ",EXP," and your MaxEXP = ",MaxEXP)
+		if(Input.is_action_just_pressed("DEBUG_DisableShadows")):
+			if($Light2D.shadow_enabled):
+				$Light2D.shadow_enabled = false
+			else:
+				$Light2D.shadow_enabled = true
 
 func UpdateShootingPostion(pos):
 	match pos:
