@@ -51,12 +51,14 @@ func _connected_to_server():
 	print("[Networking] - DEBUG - Players: ", players)
 
 func _on_player_disconnected(id):
-	print(str("[Networking]: " + " disconnected."))
+	print(str("[Networking]: " + str(id) + " disconnected."))
 	players.erase(id)
 
 func _on_player_connected(connected_player_id):
-	print("[Networking]: player_connected:", connected_player_id)
-	print("[Networking]: PlayerList:", players)
+	print("[Networking] - player_connected:", connected_player_id)
+	print("[Networking] - PlayerList:", players)
+	players[str(connected_player_id)] = connected_player_id
+	print("[Networking] - Check players -> ", players)
 	var local_player_id = get_tree().get_network_unique_id()
 	if not(get_tree().is_network_server()):
 		rpc_id(1, 'GetWorldState', world_state)
@@ -70,7 +72,8 @@ func SendData(state):
 		world_data[playerID] = state
 
 func SendWorldState(state):
-	rpc_unreliable_id(0, "GetWorldState", state)
+	if(is_network_master()):
+		rpc_unreliable_id(0, "GetWorldState", state)
 	
 remote func GetWorldState(state):
 	if(!state.empty()):
@@ -79,10 +82,16 @@ remote func GetWorldState(state):
 			state.erase("T")
 			state.erase(get_tree().get_network_unique_id())
 			for player in state.keys():
-				if(PlayerContainer.has_node(str(player))):
-					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"])
-				else:
-					NetworkingFunctions.CreateThePlayer("Testing", 1, 1, null, state[player]["P"])
+				if(PlayerContainer.has_node(str(player))): #ID 0 causes the server and client to spam CreateThePlayer().
+					if(str(player).begins_with("0")):
+						return
+					PlayerContainer.get_node(str(player)).UpdatePlayer(str(get_tree().get_network_unique_id()), state[player]["P"])
+					print("[Networking] - Updating ", player, " data.")
+				else: #If a player does not exist on the client's end, create them.
+					if(str(player).begins_with("0")):
+						return
+					print(player, " does not exist, creating new copy.")
+					NetworkingFunctions.CreateThePlayer(state[player]["N"], 1, 1, null, state[player]["P"], player)
 				
 	#print(world_state)
 		

@@ -82,6 +82,8 @@ func _ready():
 	
 	Data.Player = self
 	Send_PlayerState()
+	if(is_network_master()):
+		$Cam.current = true
 	
 	
 func _physics_process(delta):
@@ -122,11 +124,12 @@ func _physics_process(delta):
 		Send_PlayerState()
 
 func Send_PlayerState():
-	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "H": PlayerHouse}
+	PlayerState = {"T": OS.get_system_time_msecs(), "NN": get_tree().get_network_unique_id(), "P": global_position, "A": animstate.animation, "H": PlayerHouse, "N": PlayerName}
 	Network.SendData(PlayerState)
 
-func UpdatePlayer(pos):
+func UpdatePlayer(node_name, pos):
 	global_position = pos
+	name = node_name
 
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):

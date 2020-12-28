@@ -113,5 +113,5 @@ func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
 func CreateThePlayer(charname,gender,house):
-	NetworkingFunctions.rpc("CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos)
+	NetworkingFunctions.rpc("CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
 	self.queue_free()

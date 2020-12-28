@@ -51,9 +51,9 @@ animations = [ {
 "name": "idleright",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "walkup",
+"name": "walkdown",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -61,19 +61,19 @@ animations = [ {
 "name": "idleleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "idleup",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "walkright",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
-"name": "walkdown",
+"name": "walkup",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "idleup",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
@@ -178,7 +178,6 @@ __meta__ = {
 }
 
 [node name="Cam" type="Camera2D" parent="."]
-current = true
 smoothing_speed = 4.5
 drag_margin_left = 0.0
 drag_margin_top = 0.0
