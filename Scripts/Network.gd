@@ -50,8 +50,8 @@ func _connected_to_server():
 	print("[Networking] - DEBUG - Players: ", players)
 
 func _on_player_disconnected(id):
+	if(PlayerContainer.has_node(str(id))): PlayerContainer.get_node(str(id)).queue_free()
 	print(str("[Networking]: " + str(id) + " disconnected."))
-	if(PlayerContainer.has_node(str(id))): PlayerContainer.get_node(id).queue_free()
 	players.erase(id)
 
 func _on_player_connected(connected_player_id):
