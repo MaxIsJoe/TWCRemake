@@ -11,9 +11,10 @@ func _ready():
 
 
 func _on_Connect_LAN_button_down():
-	if $FirstLoad/VBoxContainer/HBoxContainer2/ID_Text.text == "":
-		return
-	Network.connect_to_server($FirstLoad/VBoxContainer/HBoxContainer2/ID_Text.text)
+	#if $FirstLoad/VBoxContainer/HBoxContainer2/ID_Text.text == "":
+	#	return
+	#Network.connect_to_server($FirstLoad/VBoxContainer/HBoxContainer2/ID_Text.text)
+	Network.connect_to_server()
 	
 
 func LoadGame():
@@ -34,9 +35,10 @@ func LoadGame():
 
 
 func _on_Host_button_down():
-	if $FirstLoad/VBoxContainer/HBoxContainer2/ID_Text.text == "":
-		return
-	Network.create_server($FirstLoad/VBoxContainer/HBoxContainer2/ID_Text.text)
+	#if $FirstLoad/VBoxContainer/HBoxContainer2/ID_Text.text == "":
+	#	return
+	#Network.create_server($FirstLoad/VBoxContainer/HBoxContainer2/ID_Text.text)
+	Network.create_server()
 	var note = RichTextLabel.new()
 	note.bbcode_enabled = true
 	note.bbcode_text = "[color=green]You are now hosting locally, online hosting is not implamented yet.[/color]"

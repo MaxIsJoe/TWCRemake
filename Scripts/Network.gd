@@ -29,17 +29,15 @@ func _ready():
 	add_child(player_container)
 	PlayerContainer = get_node("Container")
 	
-func create_server(player_nickname):
-	self_data.name = player_nickname
-	players[1] = self_data
+func create_server():
+	players[1] = str(get_tree().get_network_unique_id())
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	get_tree().set_network_peer(peer)
 	print(str("[Networking]: Server created // Server ID -> " + str(get_tree().get_network_unique_id())))
 	set_network_master(1)
 
-func connect_to_server(player_nickname):
-	self_data.name = player_nickname
+func connect_to_server():
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
@@ -47,7 +45,7 @@ func connect_to_server(player_nickname):
 
 func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
-	players[local_player_id] = self_data
+	players[str(local_player_id)] = local_player_id
 	print("[Networking]: Connected to server. Loading game..")
 	Data.main_node.LoadGame()
 	print("[Networking] - DEBUG - Players: ", players)
