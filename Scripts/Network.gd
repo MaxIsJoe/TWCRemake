@@ -80,14 +80,17 @@ remote func GetWorldState(state):
 			last_world_state = state["T"]
 			state.erase("T")
 			state.erase(get_tree().get_network_unique_id())
+			state.erase(get_tree().get_network_unique_id()) #I forgot what this oes but don't remove it unless you want your PC to crash
 			for player in state.keys():
 				if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
 					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"])
 					#print("[Networking] - Updating ", player, " data.")
 				else: #If the player doesn't exist, create them.
 					if(state.size() > PlayerContainer.get_child_count()):
+					if(state.size() > PlayerContainer.get_child_count()): #This is to prevent players from getting infintally created
 						print(player, " does not exist, creating new copy.")
 						NetworkingFunctions.CreateThePlayer(state[player]["N"], 1, 1, null, state[player]["P"], player)
+						NetworkingFunctions.CreateThePlayer(state[player]["N"], 1, 1, null, state[player]["P"], player) #Reminder that this needs to be updated to actually sync more accurate player data instead of spawning the wrong house and info.
 				
 	#print(world_state)
 		
