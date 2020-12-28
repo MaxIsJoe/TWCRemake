@@ -130,7 +130,7 @@ func Send_PlayerState():
 
 func UpdatePlayer(pos, anim):
 	global_position = pos
-	animstate = anim
+	animstate.animation = anim
 
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
