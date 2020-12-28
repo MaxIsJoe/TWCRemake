@@ -45,7 +45,6 @@ func connect_to_server():
 
 func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
-	players[str(local_player_id)] = local_player_id
 	print("[Networking]: Connected to server. Loading game..")
 	Data.main_node.LoadGame()
 	print("[Networking] - DEBUG - Players: ", players)
@@ -63,7 +62,7 @@ func _on_player_connected(connected_player_id):
 	if not(get_tree().is_network_server()):
 		rpc_id(1, 'GetWorldState', world_state)
 
-func SendData(state):
+remotesync func SendData(state):
 	var playerID = get_tree().get_rpc_sender_id()
 	if(world_data.has(playerID)):
 		if(world_data[playerID]["T"] < state["T"]):
@@ -82,11 +81,11 @@ remote func GetWorldState(state):
 			state.erase("T")
 			state.erase(get_tree().get_network_unique_id())
 			for player in state.keys():
-				if(PlayerContainer.has_node(str(player))): #ID 0 causes the server and client to spam CreateThePlayer().
-					PlayerContainer.get_node(str(player)).UpdatePlayer(str(get_tree().get_network_unique_id()), state[player]["P"])
-					print("[Networking] - Updating ", player, " data.")
-				else: #If a player does not exist on the client's end, create them.
-					if(!PlayerContainer.has_node(str(player))):
+				if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
+					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"])
+					#print("[Networking] - Updating ", player, " data.")
+				else: #If the player doesn't exist, create them.
+					if(state.size() > PlayerContainer.get_child_count()):
 						print(player, " does not exist, creating new copy.")
 						NetworkingFunctions.CreateThePlayer(state[player]["N"], 1, 1, null, state[player]["P"], player)
 				

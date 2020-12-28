@@ -52,6 +52,7 @@ var ItemsArray = [] #Will be used for the save system
 
 var PlayerState = {}
 
+
 signal isdead
 signal GrabbedAnItem(item)
 signal hpupdate(health)
@@ -124,12 +125,12 @@ func _physics_process(delta):
 		Send_PlayerState()
 
 func Send_PlayerState():
-	PlayerState = {"T": OS.get_system_time_msecs(), "NN": get_tree().get_network_unique_id(), "P": global_position, "A": animstate.animation, "H": PlayerHouse, "N": PlayerName}
-	Network.SendData(PlayerState)
+	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "H": PlayerHouse, "N": PlayerName}
+	Network.rpc_unreliable("SendData", PlayerState)
 
-func UpdatePlayer(node_name, pos):
+func UpdatePlayer(pos, anim):
 	global_position = pos
-	name = node_name
+	animstate = anim
 
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):

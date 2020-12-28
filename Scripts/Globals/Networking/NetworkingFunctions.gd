@@ -73,3 +73,10 @@ remotesync func CreateThePlayer(charname,gender,house, loc, locSpawnPos, network
 				NewSlythFemale.PlayerName = charname
 				NewSlythFemale.updatenamelabel()
 				Teleport.TeleportPos(NewSlythFemale, locSpawnPos)
+				
+func SetPlayer_InMenu(case):
+	var InMenu
+	if(case):
+		return InMenu == true
+	else:
+		return InMenu == false
