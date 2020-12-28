@@ -83,13 +83,9 @@ remote func GetWorldState(state):
 			state.erase(get_tree().get_network_unique_id())
 			for player in state.keys():
 				if(PlayerContainer.has_node(str(player))): #ID 0 causes the server and client to spam CreateThePlayer().
-					if(str(player).begins_with("0")):
-						return
 					PlayerContainer.get_node(str(player)).UpdatePlayer(str(get_tree().get_network_unique_id()), state[player]["P"])
 					print("[Networking] - Updating ", player, " data.")
 				else: #If a player does not exist on the client's end, create them.
-					if(str(player).begins_with("0")):
-						return
 					print(player, " does not exist, creating new copy.")
 					NetworkingFunctions.CreateThePlayer(state[player]["N"], 1, 1, null, state[player]["P"], player)
 				
