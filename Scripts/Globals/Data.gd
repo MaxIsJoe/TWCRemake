@@ -37,6 +37,7 @@ var Group_ShopHolders
 #Dialouge#
 var Loaded_Dialouge
 var Player
+var Chat
 
 func UpdateDiaNodeVar():
 	Group_DiaNode = get_tree().get_nodes_in_group("DiaUI")

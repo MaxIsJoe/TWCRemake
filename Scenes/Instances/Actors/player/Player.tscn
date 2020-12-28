@@ -26,7 +26,6 @@
 [ext_resource path="res://Scripts/MPProgress.gd" type="Script" id=24]
 [ext_resource path="res://Scripts/Inventory.gd" type="Script" id=25]
 [ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.tscn" type="PackedScene" id=26]
-[ext_resource path="res://Scenes/Instances/Actors/player/OOC.gd" type="Script" id=27]
 [ext_resource path="res://Sprites/BlackTransparent.png" type="Texture" id=28]
 [ext_resource path="res://Sprites/UI/whitebar.png" type="Texture" id=29]
 [ext_resource path="res://Scenes/Instances/Actors/UI/DiaUI.tscn" type="PackedScene" id=30]
@@ -36,6 +35,7 @@
 [ext_resource path="res://Scenes/Instances/Actors/UI/buttons/HotkeyButton.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Scenes/Instances/Actors/player/Spells.gd" type="Script" id=35]
 [ext_resource path="res://Scenes/Instances/Actors/UI/SetHotkeyUI.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Scenes/Instances/Actors/UI/ChatUI.tscn" type="PackedScene" id=37]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -189,7 +189,6 @@ editor_draw_drag_margin = true
 [node name="CanvasLayer" type="CanvasLayer" parent="Cam"]
 
 [node name="UI" type="Control" parent="Cam/CanvasLayer"]
-visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -199,6 +198,12 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Chat" parent="Cam/CanvasLayer/UI" instance=ExtResource( 37 )]
+margin_left = 879.0
+margin_top = 3.0
+margin_right = -1.0
+margin_bottom = -317.0
 
 [node name="FPSLabel" type="Label" parent="Cam/CanvasLayer/UI"]
 light_mask = 524288
@@ -469,86 +474,6 @@ __meta__ = {
 [node name="GridContainer" type="GridContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer/ScrollContainer"]
 columns = 7
 
-[node name="Chat" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
-
-[node name="TabContainer" type="TabContainer" parent="Cam/CanvasLayer/UI/TabContainer/Chat"]
-visible = false
-light_mask = 64
-margin_right = 1240.0
-margin_bottom = 550.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="View" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
-
-[node name="TextEdit" type="TextEdit" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/View"]
-margin_top = 490.0
-margin_right = 1219.0
-margin_bottom = 510.0
-text = "type here"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OOC" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
-script = ExtResource( 27 )
-
-[node name="TextEditOOC" type="TextEdit" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC"]
-margin_top = 490.0
-margin_right = 1227.0
-margin_bottom = 515.0
-text = "type here"
-wrap_enabled = true
-
-[node name="RichTextLabelOOC" type="RichTextLabel" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC"]
-margin_right = 1228.0
-margin_bottom = 480.0
-focus_mode = 2
-bbcode_enabled = true
-bbcode_text = "-"
-text = "-"
-scroll_following = true
-selection_enabled = true
-
-[node name="System" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
-
-[node name="Events" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
-
 [node name="Hotkeys" type="Control" parent="Cam/CanvasLayer/UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -674,4 +599,3 @@ position = Vector2( 0, 31.7025 )
 [connection signal="GrabbedAnItem" from="." to="Cam/CanvasLayer/UI/TabContainer/Inventory" method="_on_Player_GrabbedAnItem"]
 [connection signal="hpupdate" from="." to="Cam/CanvasLayer/UI/HPProgress" method="_on_Player_hpupdate"]
 [connection signal="mpupdate" from="." to="Cam/CanvasLayer/UI/MPProgress" method="_on_Player_mpupdate"]
-[connection signal="text_changed" from="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC/TextEditOOC" to="Cam/CanvasLayer/UI/TabContainer/Chat/TabContainer/OOC" method="_on_TextEditOOC_text_changed"]
