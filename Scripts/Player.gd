@@ -55,7 +55,6 @@ signal mpupdate(mana)
 const SPEED = 350
 
 func _ready():
-	
 	#For now, always make sure that the player HP = MaxHP until we add a save system
 	
 	health = maxHealth
@@ -73,7 +72,6 @@ func _ready():
 			$Light2D.shadow_enabled = false
 		
 	Send_PlayerState()
-	
 	
 func _physics_process(delta):
 	if is_network_master():
@@ -113,9 +111,9 @@ func _physics_process(delta):
 		Send_PlayerState()
 
 func Send_PlayerState():
-	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender}
+	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": false, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender}
 	Network.rpc_unreliable("SendData", PlayerState)
-
+	
 func UpdatePlayer(pos, anim):
 	global_position = lerp(global_position, pos, 0.5)
 	animstate.animation = anim

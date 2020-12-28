@@ -28,6 +28,7 @@ func _ready():
 	player_container.name = "Container"
 	add_child(player_container)
 	PlayerContainer = get_node("Container")
+	world_state["T"] = OS.get_system_time_msecs()
 	
 func create_server():
 	players[1] = str(get_tree().get_network_unique_id())
@@ -36,18 +37,21 @@ func create_server():
 	get_tree().set_network_peer(peer)
 	print(str("[Networking]: Server created // Server ID -> " + str(get_tree().get_network_unique_id())))
 	set_network_master(1)
+	world_state["T"] = OS.get_system_time_msecs()
 
 func connect_to_server():
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
 	get_tree().set_network_peer(peer)
+	world_state["T"] = OS.get_system_time_msecs()
 
 func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
 	print("[Networking]: Connected to server. Loading game..")
 	Data.main_node.LoadGame()
 	print("[Networking] - DEBUG - Players: ", players)
+	world_state["T"] = OS.get_system_time_msecs()
 
 func _on_player_disconnected(id):
 	if(PlayerContainer.has_node(str(id))): PlayerContainer.get_node(str(id)).queue_free()
@@ -57,8 +61,10 @@ func _on_player_disconnected(id):
 func _on_player_connected(connected_player_id):
 	print("[Networking] - player_connected:", connected_player_id)
 	print("[Networking] - PlayerList:", players)
-	players[str(connected_player_id)] = connected_player_id
+	players[str(connected_player_id)] = {"ID": connected_player_id, "IMM":true}
+	world_state[str(connected_player_id)] = {"ID": connected_player_id, "IMM":true}
 	print("[Networking] - Check players -> ", players)
+	print("[Networking] - Check Wolrd_State ->", world_state)
 	var local_player_id = get_tree().get_network_unique_id()
 	if not(get_tree().is_network_server()):
 		rpc_id(1, 'GetWorldState', world_state)
@@ -87,8 +93,14 @@ remote func GetWorldState(state):
 					#print("[Networking] - Updating ", player, " data.")
 				else: #If the player doesn't exist, create them.
 					if(state.size() > PlayerContainer.get_child_count()): #This is to prevent players from getting infintally created
+						if(player == 1):
+							print("Server [", player,"] found.")
+							NetworkingFunctions.CreateThePlayer("server", 1, 1, null, Vector2(0,0), 1)
+							print("creating server")
+						if(state[player]["IMM"] == true):
+							return
 						print(player, " does not exist, creating new copy.")
-						NetworkingFunctions.CreateThePlayer(state[player]["N"], state[player]["H"], state[player]["G"], null, state[player]["P"], player) 
+						NetworkingFunctions.rpc("CreateThePlayer", state[player]["N"], state[player]["H"], state[player]["G"], null, state[player]["P"], player)
 				
 	#print(world_state)
 		

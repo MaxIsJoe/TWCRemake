@@ -2,7 +2,7 @@ extends Node
 
 
 remotesync func CreateThePlayer(charname,gender,house, loc, locSpawnPos, network_id):
-	if(Network.PlayerContainer.has_node(str(network_id)) or charname == null): #To (hopefully) prevent the game from creating millions of copies of the same player.
+	if(Network.PlayerContainer.has_node(str(network_id))): #To (hopefully) prevent the game from creating millions of copies of the same player.
 		print("[NetworkFunc] - ", network_id, " does exist. Exiting function.")
 		return
 	else:
