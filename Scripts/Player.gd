@@ -81,10 +81,12 @@ func _ready():
 	emit_signal("hpupdate", health)
 	emit_signal("mpupdate", mana)
 	
-	Data.Player = self
-	Send_PlayerState()
 	if(is_network_master()):
+		Data.Player = self
 		$Cam.current = true
+		$Cam/CanvasLayer/UI.visible = true
+	
+	Send_PlayerState()
 	
 	
 func _physics_process(delta):
