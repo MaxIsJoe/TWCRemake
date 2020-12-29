@@ -7,6 +7,8 @@ export(bool) var JoinOfficalServer = true
 onready var FirstLoadUI = $FirstLoad
 
 func _ready():
+	if "--server" in OS.get_cmdline_args():
+		Network.create_server()
 	Data.main_node = self
 
 
