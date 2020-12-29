@@ -2,8 +2,7 @@ extends Node
 
 
 remotesync func CreateThePlayer(charname,gender,house, loc, locSpawnPos, network_id):
-	if(Network.PlayerContainer.has_node(str(network_id))): #To (hopefully) prevent the game from creating millions of copies of the same player.
-		print("[NetworkFunc] - ", network_id, " does exist. Exiting function.")
+	if(Network.PlayerContainer.has_node(str(network_id)) or charname == null): #To (hopefully) prevent the game from creating millions of copies of the same player.
 		return
 	else:
 		if(gender == 1):
@@ -73,10 +72,3 @@ remotesync func CreateThePlayer(charname,gender,house, loc, locSpawnPos, network
 				NewSlythFemale.PlayerName = charname
 				NewSlythFemale.updatenamelabel()
 				Teleport.TeleportPos(NewSlythFemale, locSpawnPos)
-				
-func SetPlayer_InMenu(case):
-	var InMenu
-	if(case):
-		return InMenu == true
-	else:
-		return InMenu == false

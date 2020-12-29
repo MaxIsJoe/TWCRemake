@@ -63,13 +63,14 @@ func _ready():
 	emit_signal("mpupdate", mana)
 	
 	if(is_network_master()):
+		if(get_tree().get_network_unique_id() != 1):
+			$Cam.current = true
+			$Cam/CanvasLayer/UI.visible = true
+			if(Global.EnableFOV):
+				$Light2D.shadow_enabled = true
+			else:
+				$Light2D.shadow_enabled = false
 		Data.Player = self
-		$Cam.current = true
-		$Cam/CanvasLayer/UI.visible = true
-		if(Global.EnableFOV):
-			$Light2D.shadow_enabled = true
-		else:
-			$Light2D.shadow_enabled = false
 		
 	Send_PlayerState()
 	
@@ -111,7 +112,9 @@ func _physics_process(delta):
 		Send_PlayerState()
 
 func Send_PlayerState():
-	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": false, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender}
+	var IMM = false
+	if(get_tree().get_network_unique_id() == 1): IMM = true
+	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": IMM, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender}
 	Network.rpc_unreliable("SendData", PlayerState)
 	
 func UpdatePlayer(pos, anim):
