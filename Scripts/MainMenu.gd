@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var version = Global.version #Used to display the game's version, should be updated later to make this a variable found in a config file or something like that.
 var selecteditemG
