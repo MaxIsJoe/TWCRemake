@@ -69,33 +69,19 @@ margin_right = 440.0
 margin_bottom = 408.0
 alignment = 1
 
-[node name="Label" type="Label" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
-margin_left = 38.0
-margin_top = 1.0
-margin_right = 67.4
-margin_bottom = 21.4
-text = "ID :"
-
-[node name="ID_Text" type="LineEdit" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
-margin_left = 70.0
-margin_right = 219.572
-margin_bottom = 24.0
-rect_min_size = Vector2( 149.572, 0 )
-placeholder_text = "enter a special ID"
-placeholder_alpha = 0.2
-
 [node name="Label2" type="Label" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
-margin_left = 222.0
+margin_left = 125.0
 margin_top = 1.0
-margin_right = 249.4
+margin_right = 152.4
 margin_bottom = 21.4
 text = "IP :"
 
 [node name="IP_Text" type="LineEdit" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
-margin_left = 252.0
-margin_right = 401.572
+margin_left = 155.0
+margin_right = 315.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 149.572, 0 )
+rect_min_size = Vector2( 160, 0 )
+align = 1
 placeholder_text = "For online servers"
 placeholder_alpha = 0.2
 
@@ -113,24 +99,16 @@ margin_bottom = 474.0
 alignment = 1
 
 [node name="Connect_LAN" type="Button" parent="FirstLoad/VBoxContainer/HBoxContainer"]
-margin_left = 37.0
-margin_right = 157.0
+margin_left = 98.0
+margin_right = 218.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 text = "LAN"
 
 [node name="Connect_CustomIp" type="Button" parent="FirstLoad/VBoxContainer/HBoxContainer"]
-margin_left = 160.0
-margin_right = 280.0
+margin_left = 221.0
+margin_right = 341.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 text = "Online"
-
-[node name="Host" type="Button" parent="FirstLoad/VBoxContainer/HBoxContainer"]
-margin_left = 283.0
-margin_right = 403.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 120, 40 )
-text = "Host Online"
 [connection signal="button_down" from="FirstLoad/VBoxContainer/HBoxContainer/Connect_LAN" to="." method="_on_Connect_LAN_button_down"]
-[connection signal="button_down" from="FirstLoad/VBoxContainer/HBoxContainer/Host" to="." method="_on_Host_button_down"]
