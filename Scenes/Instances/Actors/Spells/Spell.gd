@@ -24,10 +24,12 @@ func _timeout():
 
 func _physics_process(delta):
 	if(!TargetSpell):
-		position += dir * SpellSpeed * delta
+		rpc_unreliable_id(0, "UpdateSpellPosition", delta)
 
-func init_spell_shoot(direction_animation, casterName, damage):
-	print(direction_animation)
+master func UpdateSpellPosition(delta):
+	position += dir * SpellSpeed * delta
+
+master func init_spell_shoot(direction_animation, casterName, damage):
 	match direction_animation:
 		0:
 			$AnimatedSprite.play("up")
@@ -44,8 +46,7 @@ func init_spell_shoot(direction_animation, casterName, damage):
 	caster = casterName
 	dmg = damage + SpellDamage
 	
-func init_spell_target(direction_animation, casterName, effect, value, target):
-	print(direction_animation)
+master func init_spell_target(direction_animation, casterName, effect, value, target):
 	match direction_animation:
 		0:
 			$AnimatedSprite.play("up")
@@ -69,10 +70,10 @@ func init_spell_target(direction_animation, casterName, effect, value, target):
 func _on_Area2D_body_entered(body):
 	if(!TargetSpell):
 		if(body.is_in_group("Players")):
-			body.takedamage(dmg)
+			body.rpc("takedamage", dmg)
 			queue_free()
 		if(body.is_in_group("Enemies")):
-			body.takedamage(dmg)
+			body.rpc("takedamage", dmg)
 			queue_free()
 		else:
 			queue_free()

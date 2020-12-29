@@ -63,13 +63,16 @@ func _ready():
 	emit_signal("mpupdate", mana)
 	
 	if(is_network_master()):
-		if(get_tree().get_network_unique_id() != 1):
+		if(get_tree().get_network_unique_id() != 1 or get_tree().get_network_unique_id() != 0):
 			$Cam.current = true
 			$Cam/CanvasLayer/UI.visible = true
 			if(Global.EnableFOV):
 				$Light2D.shadow_enabled = true
 			else:
 				$Light2D.shadow_enabled = false
+	else:
+		$Cam/CanvasLayer/UI.queue_free()
+
 		Data.Player = self
 		
 	Send_PlayerState()
@@ -114,12 +117,13 @@ func _physics_process(delta):
 func Send_PlayerState():
 	var IMM = false
 	if(get_tree().get_network_unique_id() == 1): IMM = true
-	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": IMM, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender}
+	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": IMM, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender, "LD": LookingDirection}
 	Network.rpc_unreliable("SendData", PlayerState)
 	
-func UpdatePlayer(pos, anim):
+func UpdatePlayer(pos, anim, ld):
 	global_position = lerp(global_position, pos, 0.5)
 	animstate.animation = anim
+	LookingDirection = ld
 
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
@@ -171,7 +175,7 @@ remote func updatenamelabel():
 	if(House == 2):
 		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
 
-func takedamage(dmg):
+remote func takedamage(dmg):
 	health -= dmg
 	emit_signal("hpupdate", health)
 	
@@ -235,10 +239,10 @@ func ShowSign(Title, Content):
 	PopUpUI.dialog_text = Content
 	PopUpUI.popup_centered()
 
-func ShootSpell(Spell, Argument):
+remote func ShootSpell(Spell, Argument):
 	if(Argument == "player"):
 		Argument = Data.Player
-	$SpellManager.ShootSpell(Spell)
+	$SpellManager.rpc("ShootSpell" ,Spell)
 	$SpellManager.TargetSpell(Spell, Argument)
 
 func ShowHotkeyAsign(ID):
