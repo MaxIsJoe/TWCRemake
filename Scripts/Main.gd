@@ -34,9 +34,9 @@ func LoadMap(n):
 	var map = MapFile.instance()
 	var menu = MainMenu.instance()
 	loadingbar.value += 25
-	add_child(map)
+	call_deferred("add_child", map)
 	loadingbar.value += 25
-	add_child(menu)
+	call_deferred("add_child", menu)
 	loadingbar.value += 25
 	FirstLoadUI.queue_free()
 
