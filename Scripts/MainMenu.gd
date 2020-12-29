@@ -54,27 +54,29 @@ onready var warninglabel = $CharacterPage/Warning
 func _ready():
 	versionlabel.text = version
 	add_items() #Adds items to the drop down menu to be used
-	disable_items(0)
-	selecteditemG = 0
-	selectitemH = 0
+	disable_items()
+	selecteditemG = 2
+	selectitemH = 4
+	dropdownGender.selected = 2
+	dropdownHouse.selected = 4
 
 func _on_StartButton_pressed():
 	mainpage.visible = false
 	charactersetup.visible = true
 	
 func add_items():
-	dropdownGender.add_item("Select your gender")
 	dropdownGender.add_item("Wizard")
 	dropdownGender.add_item("Witch")
-	dropdownHouse.add_item("Select your house")
+	dropdownGender.add_item("Select your gender")
 	dropdownHouse.add_item("Gryffindor")
 	dropdownHouse.add_item("Hufflepuff")
 	dropdownHouse.add_item("Ravenclaw")
 	dropdownHouse.add_item("Slytherin")
+	dropdownHouse.add_item("Select your house")
 
-func disable_items(id):
-	dropdownGender.set_item_disabled(id, true)
-	dropdownHouse.set_item_disabled(id, true)
+func disable_items():
+	dropdownGender.set_item_disabled(2, true)
+	dropdownHouse.set_item_disabled(4, true)
 
 
 func _on_FinishCharSetup_pressed():
@@ -88,10 +90,10 @@ func _on_FinishCharSetup_pressed():
 	if(CharacterName.length() > 16):
 		warninglabel.text = "Please use a shorter name"
 		return
-	if(selecteditemG == 0 or null):
+	if(selecteditemG == 2 or null):
 		warninglabel.text = "Please select your character's gender"
 		return
-	if(selectitemH == 0 or null):
+	if(selectitemH == 4 or null):
 		warninglabel.text = "Please choose a house"
 		return
 	if(ForbiddenNames.has(CharacterName)):
