@@ -51,11 +51,11 @@ func _connected_to_server():
 	Data.main_node.LoadGame()
 
 func _on_player_disconnected(id):
-	if(PlayerContainer.has_node(str(id))): PlayerContainer.get_node(str(id)).queue_free()
 	print(str("[Networking]: " + str(id) + " disconnected."))
 	if(id != 0 or id != 1):
 		Data.Chat.Send_System_Text(str(world_state[id]["N"]) + " logged off.")
 	world_state.erase(id)
+	if(PlayerContainer.has_node(str(id))): PlayerContainer.get_node(str(id)).queue_free()
 
 func _on_player_connected(connected_player_id):
 	print("[Networking] - player_connected:", connected_player_id)
