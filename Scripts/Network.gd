@@ -92,7 +92,7 @@ remote func GetWorldState(state):
 			for player in state.keys():
 				if(player != 0):
 					if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
-						PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"])
+						PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"], state[player]["D"])
 					else: #If the player doesn't exist, create them.
 						if(state.size() > PlayerContainer.get_child_count()): #This is to prevent players from getting infintally created
 							NetworkingFunctions.rpc("CreateThePlayer", state[player]["N"], state[player]["H"], state[player]["G"], null, state[player]["P"], player)

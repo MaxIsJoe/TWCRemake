@@ -10,7 +10,7 @@ func PutSpellOnCoolDown(spell, cooldown):
 			SpellsOnCoolDown.append()
 			
 
-remotesync func ShootSpell(Spell):
+remotesync func ShootSpell(Spell, caster_network_id):
 	var b
 	ShootPoint = Data.Player.Shootpoint
 	match Spell:
@@ -19,7 +19,7 @@ remotesync func ShootSpell(Spell):
 			b.transform = ShootPoint.global_transform
 	if(b != null): 
 		add_child(b)
-		b.rpc_id(0, "init_spell_shoot", Data.Player.LookingDirection, Data.Player.PlayerName, Data.Player.damage)
+		b.rpc_id(0, "init_spell_shoot", caster_network_id)
 	
 remotesync func TargetSpell(Spell, Target):
 	var b

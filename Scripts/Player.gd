@@ -115,13 +115,14 @@ func _physics_process(delta):
 func Send_PlayerState():
 	var IMM = false
 	if(get_tree().get_network_unique_id() == 1): IMM = true
-	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": IMM, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender, "LD": LookingDirection}
+	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": IMM, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender, "LD": LookingDirection, "D": damage}
 	Network.rpc_unreliable("SendData", PlayerState)
 	
-func UpdatePlayer(pos, anim, ld):
+func UpdatePlayer(pos, anim, ld, d):
 	global_position = lerp(global_position, pos, 0.5)
 	animstate.animation = anim
 	LookingDirection = ld
+	damage = d
 
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
@@ -242,7 +243,7 @@ func ShowSign(Title, Content):
 remotesync func ShootSpell(Spell, Argument):
 	if(Argument == "player"):
 		Argument = Data.Player
-	SpellManager.rpc_id(0, "ShootSpell" ,Spell)
+	SpellManager.rpc_id(0, "ShootSpell" ,Spell, get_tree().get_network_unique_id())
 	SpellManager.TargetSpell(Spell, Argument)
 
 func ShowHotkeyAsign(ID):
