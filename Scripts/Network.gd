@@ -55,13 +55,13 @@ func _on_player_disconnected(id):
 	if(id != 0 or id != 1):
 		Data.Chat.Send_System_Text(str(world_state[id]["N"]) + " logged off.")
 	world_state.erase(id)
-	if(PlayerContainer.has_node(str(id))): PlayerContainer.get_node(str(id)).queue_free()
+	if(PlayerContainer.has_node(str(id))): NetworkingFunctions.rpc_id(0, "RemovePlayerFromWorld", id)
 
 func _on_player_connected(connected_player_id):
 	print("[Networking] - player_connected:", connected_player_id)
 	var PlayerState
 	if(connected_player_id == 1):
-		PlayerState = {"T": OS.get_system_time_msecs(),"IMM": true, "P":Vector2(0,0), "A": "idleup", "H": 2, "N": "server", "G": 1}
+		PlayerState = {"T": OS.get_system_time_msecs(),"IMM": true, "P":Vector2(0,0), "A": "idleup", "H": 3, "N": "server", "G": 1}
 		print("Creating server character to avoid crashes.")
 	else:
 		PlayerState = {"T": OS.get_system_time_msecs(),"IMM": true}

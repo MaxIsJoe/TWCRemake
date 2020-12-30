@@ -72,3 +72,7 @@ remotesync func CreateThePlayer(charname,gender,house, loc, locSpawnPos, network
 				NewSlythFemale.PlayerName = charname
 				NewSlythFemale.updatenamelabel()
 				Teleport.TeleportPos(NewSlythFemale, locSpawnPos)
+
+remotesync func RemovePlayerFromWorld(id):
+	var target = Network.PlayerContainer.get_node(str(id))
+	target.queue_free()
