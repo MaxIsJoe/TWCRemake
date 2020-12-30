@@ -10,7 +10,6 @@ var caster
 var dir = transform.x
 
 var timer
-var exit = false
 
 func _init():
 	timer = Timer.new()
@@ -18,15 +17,14 @@ func _init():
 	timer.autostart = true
 	timer.wait_time = SpellTime
 	timer.connect("timeout", self, "_timeout")
-
+	self.set_physics_process(false)
 
 func _timeout():
 	rpc_id(0, "RemoveSpellFromWorld")
 
 func _physics_process(delta):
-	if(exit == false): #To prevent the RPC cache error
-		if(!TargetSpell):
-			rpc_id(0, "UpdateSpellPosition", delta)
+	if(!TargetSpell):
+		rpc_id(0, "UpdateSpellPosition", delta)
 
 remotesync func UpdateSpellPosition(delta):
 	var smooth_mov = position + (dir * SpellSpeed * delta)
@@ -65,6 +63,7 @@ remotesync func init_spell_shoot(direction_animation, casterName, damage):
 	caster = casterName #For damage logging and death messages
 	var final_dmg = damage + SpellDamage #Combine the base damage of the spell with the player's damage
 	dmg = final_dmg
+	self.set_physics_process(true)
 	
 remotesync func init_spell_target(direction_animation, casterName, effect, value, target):
 	match direction_animation:
@@ -87,7 +86,7 @@ remotesync func init_spell_target(direction_animation, casterName, effect, value
 			$AnimatedSprite.play("right")
 
 remotesync func RemoveSpellFromWorld(): #This should avoid some RPC cache errors when a spell runs out of time or hits something
-	exit = true
+	self.set_physics_process(false)
 	queue_free()
 
 
@@ -100,4 +99,4 @@ func _on_Area2D_body_entered(body):
 			body.rpc("takedamage", dmg)
 			rpc_id(0, "RemoveSpellFromWorld")
 		else:
-			queue_free()
+			rpc_id(0, "RemoveSpellFromWorld")
