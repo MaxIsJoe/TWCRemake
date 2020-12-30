@@ -24,13 +24,13 @@ func _timeout():
 
 func _physics_process(delta):
 	if(!TargetSpell):
-		rpc_id(0, "UpdateSpellPosition", delta)
+		UpdateSpellPosition(delta)
 
-remotesync func UpdateSpellPosition(delta):
+func UpdateSpellPosition(delta):
 	var smooth_mov = position + (dir * SpellSpeed * delta)
 	position = lerp(position, smooth_mov, 0.5)
 
-remotesync func init_spell_shoot(caster_network_id):
+sync func init_spell_shoot(caster_network_id):
 	var direction_animation = Network.world_state[caster_network_id].get("LD")
 	match direction_animation: #What animation and direction the spell go to?
 		0:
@@ -50,7 +50,7 @@ remotesync func init_spell_shoot(caster_network_id):
 	dmg = final_dmg
 	self.set_physics_process(true)
 	
-remotesync func init_spell_target(direction_animation, casterName, effect, value, target):
+sync func init_spell_target(direction_animation, casterName, effect, value, target):
 	match direction_animation:
 		0:
 			$AnimatedSprite.play("up")
@@ -72,7 +72,7 @@ remotesync func init_spell_target(direction_animation, casterName, effect, value
 
 remotesync func RemoveSpellFromWorld(): #This should avoid some RPC cache errors when a spell runs out of time or hits something
 	self.set_physics_process(false)
-	queue_free()
+	if(get_parent().has_node(self.name)): queue_free()
 
 
 func _on_Area2D_body_entered(body):
