@@ -28,8 +28,8 @@ onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
 onready var PopUpUI = $Cam/CanvasLayer/UI/WindowDialog
 onready var AudioLocal = $Audio/Audio_Pos
 onready var Audio = $Audio/Audio
-onready var Shootpoint = $SpellManager/ShootPoint
-onready var TargertPoint = $SpellManager/TargetPoint
+onready var Shootpoint = $Spell_Pointers/ShootPoint
+onready var TargertPoint = $Spell_Pointers/TargetPoint
 
 #var velocity = Vector2()
 var alive = true #Used for handling how everything around the player behaves
@@ -66,14 +66,12 @@ func _ready():
 		if(get_tree().get_network_unique_id() != 1 or get_tree().get_network_unique_id() != 0):
 			$Cam.current = true
 			$Cam/CanvasLayer/UI.visible = true
+			Data.Player = self
 			if(Global.EnableFOV):
 				$Light2D.shadow_enabled = true
 			else:
 				$Light2D.shadow_enabled = false
-	else:
-		$Cam/CanvasLayer/UI.queue_free()
 
-		Data.Player = self
 		
 	Send_PlayerState()
 	
@@ -132,6 +130,8 @@ func _input(event):
 	#	else:
 	#		InventoryUI.visible = true
 	if(Input.is_action_just_pressed("OpenTabs")):
+		if(tabs == null): tabs = get_node("Cam/CanvasLayer/UI/TabContainer") #Use get_node() because holy fuck does Godot never make sense sometimes
+		#Always check if tabs exist because for some reason tabs become null for new connections without any reason
 		if tabs.visible == true:
 			tabs.visible = false
 		else:
@@ -175,11 +175,11 @@ remote func updatenamelabel():
 	if(House == 2):
 		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
 
-remote func takedamage(dmg):
+remotesync func takedamage(dmg):
 	health -= dmg
 	emit_signal("hpupdate", health)
 	
-func healthregen(amount):
+remotesync func healthregen(amount):
 	health += amount
 	emit_signal("hpupdate", health)
 	
@@ -239,11 +239,11 @@ func ShowSign(Title, Content):
 	PopUpUI.dialog_text = Content
 	PopUpUI.popup_centered()
 
-remote func ShootSpell(Spell, Argument):
+remotesync func ShootSpell(Spell, Argument):
 	if(Argument == "player"):
 		Argument = Data.Player
-	$SpellManager.rpc("ShootSpell" ,Spell)
-	$SpellManager.TargetSpell(Spell, Argument)
+	SpellManager.rpc_id(0, "ShootSpell" ,Spell)
+	SpellManager.TargetSpell(Spell, Argument)
 
 func ShowHotkeyAsign(ID):
 	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true

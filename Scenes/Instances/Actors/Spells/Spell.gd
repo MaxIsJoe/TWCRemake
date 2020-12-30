@@ -10,6 +10,7 @@ var caster
 var dir = transform.x
 
 var timer
+var exit = false
 
 func _init():
 	timer = Timer.new()
@@ -20,17 +21,36 @@ func _init():
 
 
 func _timeout():
+	exit = true
 	queue_free()
 
 func _physics_process(delta):
 	if(!TargetSpell):
-		rpc_unreliable_id(0, "UpdateSpellPosition", delta)
+		rpc_id(0, "UpdateSpellPosition", delta)
 
-master func UpdateSpellPosition(delta):
-	position += dir * SpellSpeed * delta
+remotesync func UpdateSpellPosition(delta):
+	if(exit == false): #To prevent the RPC cache error
+		var smooth_mov = position + (dir * SpellSpeed * delta)
+		position = lerp(position, smooth_mov, 0.5)
 
-master func init_spell_shoot(direction_animation, casterName, damage):
-	match direction_animation:
+remotesync func init_spell_shoot(direction_animation, casterName, damage):
+	if(casterName == null or dmg == null): #This is just to be safe
+		push_warning(str("[Spell] - ERROR - CasterName or dmg is null. -> " + casterName + " " + str(dmg)))
+		print("[Spell] - Attempting to fix this issue automatically")
+		if(Data.Player == null):
+			push_warning("[Spell] - Data.Player does not exist! Failed!")
+		else:
+			if(Data.Player.damage != null):
+				damage = Data.Player.damage
+				print("[Spell] - Success! Damage is now ->", damage)
+			else:
+				print("[Spell] - Player's damage is null! Failed!")
+			if(Data.Player.PlayerName != null):
+				casterName = Data.Player.PlayerName
+				print("[Spell] - Success! casterName is now ->", casterName)
+			else:
+				print("[Spell] - Player's name is null! Failed!")
+	match direction_animation: #What animation and direction the spell go to?
 		0:
 			$AnimatedSprite.play("up")
 			dir = -transform.y
@@ -43,10 +63,11 @@ master func init_spell_shoot(direction_animation, casterName, damage):
 		2:
 			$AnimatedSprite.play("right")
 			dir = transform.x
-	caster = casterName
-	dmg = damage + SpellDamage
+	caster = casterName #For damage logging and death messages
+	var final_dmg = damage + SpellDamage #Combine the base damage of the spell with the player's damage
+	dmg = final_dmg
 	
-master func init_spell_target(direction_animation, casterName, effect, value, target):
+remotesync func init_spell_target(direction_animation, casterName, effect, value, target):
 	match direction_animation:
 		0:
 			$AnimatedSprite.play("up")

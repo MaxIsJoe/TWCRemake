@@ -32,6 +32,7 @@ DayAndNight="*res://Scripts/Globals/DayAndNight.gd"
 UseItem="*res://Scripts/Globals/UseItem.gd"
 GlobalAudio="*res://Scripts/Globals/GlobalAudio.gd"
 NetworkingFunctions="*res://Scripts/Globals/Networking/NetworkingFunctions.gd"
+SpellManager="*res://Scripts/Globals/SpellManager.gd"
 
 [debug]
 
