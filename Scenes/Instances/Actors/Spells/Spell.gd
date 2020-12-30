@@ -21,8 +21,7 @@ func _init():
 
 
 func _timeout():
-	exit = true
-	queue_free()
+	rpc_id(0, "RemoveSpellFromWorld")
 
 func _physics_process(delta):
 	if(!TargetSpell):
@@ -87,14 +86,18 @@ remotesync func init_spell_target(direction_animation, casterName, effect, value
 			target.healthregen(value)
 			$AnimatedSprite.play("right")
 
+remotesync func RemoveSpellFromWorld(): #This should avoid some RPC cache errors when a spell runs out of time or hits something
+	exit = true
+	queue_free()
+
 
 func _on_Area2D_body_entered(body):
 	if(!TargetSpell):
 		if(body.is_in_group("Players")):
 			body.rpc("takedamage", dmg)
-			queue_free()
+			rpc_id(0, "RemoveSpellFromWorld") 
 		if(body.is_in_group("Enemies")):
 			body.rpc("takedamage", dmg)
-			queue_free()
+			rpc_id(0, "RemoveSpellFromWorld")
 		else:
 			queue_free()
