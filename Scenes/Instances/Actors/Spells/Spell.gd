@@ -71,7 +71,7 @@ sync func init_spell_target(direction_animation, casterName, effect, value, targ
 			$AnimatedSprite.play("right")
 
 remotesync func RemoveSpellFromWorld(): #This should avoid some RPC cache errors when a spell runs out of time or hits something
-	self.set_physics_process(false)
+	if(get_parent().has_node(self.name)): set_physics_process(false)
 	if(get_parent().has_node(self.name)): queue_free()
 
 

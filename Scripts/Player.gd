@@ -118,11 +118,12 @@ func Send_PlayerState():
 	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": IMM, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
 	Network.rpc_unreliable("SendData", PlayerState)
 	
-func UpdatePlayer(pos, anim, ld, d):
+func UpdatePlayer(pos, anim, ld, d, SP):
 	global_position = lerp(global_position, pos, 0.5)
 	animstate.animation = anim
 	LookingDirection = ld
 	damage = d
+	Shootpoint = SP
 
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
