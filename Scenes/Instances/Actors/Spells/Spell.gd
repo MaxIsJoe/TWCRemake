@@ -24,13 +24,13 @@ func _timeout():
 	rpc_id(0, "RemoveSpellFromWorld")
 
 func _physics_process(delta):
-	if(!TargetSpell):
-		rpc_id(0, "UpdateSpellPosition", delta)
+	if(exit == false): #To prevent the RPC cache error
+		if(!TargetSpell):
+			rpc_id(0, "UpdateSpellPosition", delta)
 
 remotesync func UpdateSpellPosition(delta):
-	if(exit == false): #To prevent the RPC cache error
-		var smooth_mov = position + (dir * SpellSpeed * delta)
-		position = lerp(position, smooth_mov, 0.5)
+	var smooth_mov = position + (dir * SpellSpeed * delta)
+	position = lerp(position, smooth_mov, 0.5)
 
 remotesync func init_spell_shoot(direction_animation, casterName, damage):
 	if(casterName == null or dmg == null): #This is just to be safe
