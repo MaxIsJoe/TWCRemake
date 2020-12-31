@@ -28,6 +28,7 @@ func _ready():
 	add_child(player_container)
 	PlayerContainer = get_node("Container")
 	world_state["T"] = OS.get_system_time_msecs()
+	SetPhysicsProcess(false)
 	
 func create_server():
 	var peer = NetworkedMultiplayerENet.new()
@@ -105,3 +106,6 @@ func _physics_process(delta):
 			world_state[player].erase("T")
 		world_state["T"] = OS.get_system_time_msecs()
 		SendWorldState(world_state)
+
+func SetPhysicsProcess(state:bool):
+	set_physics_process(state)

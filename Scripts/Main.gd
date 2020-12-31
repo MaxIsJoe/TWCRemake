@@ -12,6 +12,7 @@ var loadingbar = ProgressBar.new()
 func _ready():
 	if "--server" in OS.get_cmdline_args():
 		Network.create_server()
+		Network.SetPhysicsProcess(true)
 	Data.main_node = self
 
 
@@ -39,3 +40,4 @@ func LoadMap(n):
 	call_deferred("add_child", menu)
 	loadingbar.value += 25
 	FirstLoadUI.queue_free()
+	Network.SetPhysicsProcess(true)
