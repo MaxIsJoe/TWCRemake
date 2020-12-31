@@ -29,5 +29,6 @@ func LoadGame():
 	call_deferred("add_child", menu)
 	Map.visible = true
 	FirstLoadUI.queue_free()
+	SpellManager.SetMaster()
 	
 

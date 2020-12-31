@@ -12,6 +12,7 @@ var dir = transform.x
 var timer
 
 func _init():
+	set_network_master(1)
 	timer = Timer.new()
 	add_child(timer)
 	timer.autostart = true
@@ -78,7 +79,7 @@ remotesync func RemoveSpellFromWorld(): #This should avoid some RPC cache errors
 func _on_Area2D_body_entered(body):
 	if(!TargetSpell):
 		if(body.is_in_group("Players")):
-			body.rpc("takedamage", dmg)
+			body.rpc_id(int(body.name), "takedamage", dmg)
 			rpc_id(0, "RemoveSpellFromWorld") 
 		if(body.is_in_group("Enemies")):
 			body.rpc("takedamage", dmg)

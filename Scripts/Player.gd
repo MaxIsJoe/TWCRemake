@@ -201,9 +201,6 @@ func levelupcheck():
 		EXP = 0
 		statpoints += 1
 		LevelUpAnim.play("FadeInFadeOut")
-
-master func SetPosition(Position):
-	self.position = Position
 	
 func grab(item):
 	ItemsArray.append(item)
@@ -241,11 +238,11 @@ func ShowSign(Title, Content):
 	PopUpUI.dialog_text = Content
 	PopUpUI.popup_centered()
 
-remotesync func ShootSpell(Spell, Argument):
+remote func ShootSpell(Spell, Argument):
 	if(Argument == "player"):
 		Argument = Data.Player
 	SpellManager.rpc_id(0, "ShootSpell" ,Spell, get_tree().get_network_unique_id())
-	SpellManager.TargetSpell(Spell, Argument)
+	SpellManager.rpc_id(0, "TargetSpell", Spell, Argument)
 
 func ShowHotkeyAsign(ID):
 	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true

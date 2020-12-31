@@ -29,3 +29,6 @@ remotesync func TargetSpell(Spell, Target):
 	if(b != null): 
 		Target.add_child(b)
 		b.init_spell_target(2, Data.Player.PlayerName, "heal", 5, Target)
+
+func SetMaster():
+	self.set_network_master(1)
