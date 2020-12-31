@@ -1,9 +1,9 @@
 extends Node
 
-export(PackedScene) var MapFile
 export(PackedScene) var MainMenu
 
 onready var FirstLoadUI = $FirstLoad
+onready var Map = $World
 
 var thread = Thread.new()
 var loadingbar = ProgressBar.new()
@@ -25,15 +25,9 @@ func LoadGame():
 	Global.EnableFOV = $FirstLoad/VBoxContainer/Check_fov.pressed
 	Global.EnableFPSTracker = $FirstLoad/VBoxContainer/Check_tracker.pressed
 	loadingbar.value += 25
-	thread.start(self, "LoadMap", null, 1)
-
-func LoadMap(n):
-	var map = MapFile.instance()
 	var menu = MainMenu.instance()
-	loadingbar.value += 25
-	call_deferred("add_child", map)
-	loadingbar.value += 25
 	call_deferred("add_child", menu)
-	loadingbar.value += 25
+	Map.visible = true
 	FirstLoadUI.queue_free()
-	Network.SetPhysicsProcess(true)
+	
+

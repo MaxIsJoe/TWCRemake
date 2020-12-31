@@ -28,7 +28,6 @@ func _ready():
 	add_child(player_container)
 	PlayerContainer = get_node("Container")
 	world_state["T"] = OS.get_system_time_msecs()
-	SetPhysicsProcess(false)
 	
 func create_server():
 	var peer = NetworkedMultiplayerENet.new()
@@ -49,25 +48,19 @@ func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
 	print("[Networking]: Connected to server as", local_player_id ,". Loading game..")
 	world_state["T"] = OS.get_system_time_msecs()
+	world_state[local_player_id] = {"IMM": true}
 	Data.main_node.LoadGame()
 
 func _on_player_disconnected(id):
+	var id_copy = id
 	print(str("[Networking]: " + str(id) + " disconnected."))
 	if(id != 0 or id != 1):
-		Data.Chat.Send_System_Text(str(world_state[id]["N"]) + " logged off.")
+		if(PlayerContainer.get_child_count() > 0): Data.Chat.Send_System_Text(str(world_state[id]["N"]) + " logged off.") #If there is at least one other player on the server, tell them who logged off
 	world_state.erase(id)
-	if(PlayerContainer.has_node(str(id))): NetworkingFunctions.rpc_id(0, "RemovePlayerFromWorld", id)
-
+	if(PlayerContainer.has_node(str(id_copy))): NetworkingFunctions.rpc_id(0, "RemovePlayerFromWorld", id_copy)
+	
 func _on_player_connected(connected_player_id):
 	print("[Networking] - player_connected:", connected_player_id)
-	var PlayerState
-	if(connected_player_id == 1):
-		PlayerState = {"T": OS.get_system_time_msecs(),"IMM": true, "P":Vector2(0,0), "A": "idleup", "H": 3, "N": "server", "G": 1}
-		print("Creating server character to avoid crashes.")
-	else:
-		PlayerState = {"T": OS.get_system_time_msecs(),"IMM": true}
-	#world_state[connected_player_id] = PlayerState
-	SendData(PlayerState)
 	print("\n[Networking] - Check Wolrd_State ->", world_state)
 	if not(get_tree().is_network_server()):
 		rpc_id(1, 'GetWorldState', world_state)
@@ -85,17 +78,18 @@ func SendWorldState(state):
 		rpc_unreliable_id(0, "GetWorldState", state)
 	
 remote func GetWorldState(state):
-	if(!state.empty()):
+	if(state.size() > 1):
 		if state["T"] > last_world_state:
 			last_world_state = state["T"]
 			state.erase("T")
+			state.erase(1)
 			state.erase(get_tree().get_network_unique_id()) #This removes the client from the list so we can focus on the other players
 			for player in state.keys():
-				if(player != 0):
-					if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
-						PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"], state[player]["D"], state[player]["SP"])
-					else: #If the player doesn't exist, create them.
-						if(state.size() > PlayerContainer.get_child_count()): #This is to prevent players from getting infintally created
+				if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
+					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"], state[player]["D"], state[player]["SP"])
+				else: #If the player doesn't exist, create them.
+					if(state.size() > PlayerContainer.get_child_count()):
+						if(!world_state[player].get("IMM")): #This is to prevent players from getting infintally created
 							NetworkingFunctions.rpc("CreateThePlayer", state[player]["N"], state[player]["H"], state[player]["G"], null, state[player]["P"], player)
 				###NOTE TO SELF(MAX): don't print anything, just don't. fixing this is already enough to make me lose my sanity, lag and crashing is the last thing I need while I fix this.###
 		
@@ -106,6 +100,3 @@ func _physics_process(delta):
 			world_state[player].erase("T")
 		world_state["T"] = OS.get_system_time_msecs()
 		SendWorldState(world_state)
-
-func SetPhysicsProcess(state:bool):
-	set_physics_process(state)

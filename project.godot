@@ -116,6 +116,10 @@ DEBUG_DisableShadows={
 
 file_logging/max_log_files=2
 
+[physics]
+
+common/physics_fps=45
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
