@@ -6,7 +6,6 @@
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
-MapFile = ExtResource( 2 )
 MainMenu = ExtResource( 3 )
 
 [node name="FirstLoad" type="Control" parent="."]
@@ -111,4 +110,7 @@ margin_right = 341.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 text = "Online"
+
+[node name="World" parent="." instance=ExtResource( 2 )]
+visible = false
 [connection signal="button_down" from="FirstLoad/VBoxContainer/HBoxContainer/Connect_LAN" to="." method="_on_Connect_LAN_button_down"]

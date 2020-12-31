@@ -12,23 +12,28 @@ var dir = transform.x
 var timer
 
 func _init():
+	set_network_master(1)
 	timer = Timer.new()
 	add_child(timer)
 	timer.autostart = true
 	timer.wait_time = SpellTime
 	timer.connect("timeout", self, "_timeout")
-
+	self.set_physics_process(false)
 
 func _timeout():
-	queue_free()
+	rpc_id(0, "RemoveSpellFromWorld")
 
 func _physics_process(delta):
 	if(!TargetSpell):
-		position += dir * SpellSpeed * delta
+		UpdateSpellPosition(delta)
 
-func init_spell_shoot(direction_animation, casterName, damage):
-	print(direction_animation)
-	match direction_animation:
+func UpdateSpellPosition(delta):
+	var smooth_mov = position + (dir * SpellSpeed * delta)
+	position = lerp(position, smooth_mov, 0.5)
+
+sync func init_spell_shoot(caster_network_id):
+	var direction_animation = Network.world_state[caster_network_id].get("LD")
+	match direction_animation: #What animation and direction the spell go to?
 		0:
 			$AnimatedSprite.play("up")
 			dir = -transform.y
@@ -41,11 +46,12 @@ func init_spell_shoot(direction_animation, casterName, damage):
 		2:
 			$AnimatedSprite.play("right")
 			dir = transform.x
-	caster = casterName
-	dmg = damage + SpellDamage
+	var CasterName = Network.world_state[caster_network_id].get("N")#For damage logging and death messages
+	var final_dmg = Network.world_state[caster_network_id].get("D") + SpellDamage #Combine the base damage of the spell with the player's damage
+	dmg = final_dmg
+	self.set_physics_process(true)
 	
-func init_spell_target(direction_animation, casterName, effect, value, target):
-	print(direction_animation)
+sync func init_spell_target(direction_animation, casterName, effect, value, target):
 	match direction_animation:
 		0:
 			$AnimatedSprite.play("up")
@@ -65,14 +71,18 @@ func init_spell_target(direction_animation, casterName, effect, value, target):
 			target.healthregen(value)
 			$AnimatedSprite.play("right")
 
+remotesync func RemoveSpellFromWorld(): #This should avoid some RPC cache errors when a spell runs out of time or hits something
+	if(get_parent().has_node(self.name)): set_physics_process(false)
+	if(get_parent().has_node(self.name)): queue_free()
+
 
 func _on_Area2D_body_entered(body):
 	if(!TargetSpell):
 		if(body.is_in_group("Players")):
-			body.takedamage(dmg)
-			queue_free()
+			body.rpc_id(int(body.name), "takedamage", dmg)
+			rpc_id(0, "RemoveSpellFromWorld") 
 		if(body.is_in_group("Enemies")):
-			body.takedamage(dmg)
-			queue_free()
+			body.rpc("takedamage", dmg)
+			rpc_id(0, "RemoveSpellFromWorld")
 		else:
-			queue_free()
+			rpc_id(0, "RemoveSpellFromWorld")

@@ -32,6 +32,7 @@ DayAndNight="*res://Scripts/Globals/DayAndNight.gd"
 UseItem="*res://Scripts/Globals/UseItem.gd"
 GlobalAudio="*res://Scripts/Globals/GlobalAudio.gd"
 NetworkingFunctions="*res://Scripts/Globals/Networking/NetworkingFunctions.gd"
+SpellManager="*res://Scripts/Globals/SpellManager.gd"
 
 [debug]
 
@@ -114,6 +115,10 @@ DEBUG_DisableShadows={
 [logging]
 
 file_logging/max_log_files=2
+
+[physics]
+
+common/physics_fps=45
 
 [rendering]
 

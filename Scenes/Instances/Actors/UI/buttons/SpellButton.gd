@@ -7,7 +7,5 @@ func UpdateButton(Name, Icon, ID):
 	$SpellIcon.texture = load(Icon)
 	SpellID = ID
 
-
-
 func _on_SpellButton_button_down():
 	Data.Player.ShowHotkeyAsign(SpellID)

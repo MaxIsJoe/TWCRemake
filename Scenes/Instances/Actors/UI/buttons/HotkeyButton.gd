@@ -41,7 +41,6 @@ func _on_Timer_timeout():
 
 
 func _on_HotkeyButton_button_down():
-	print(ActionArguments)
 	match ActionArguments.size():
 		null:
 			Data.Player.call(Action)

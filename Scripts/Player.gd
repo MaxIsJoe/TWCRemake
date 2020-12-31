@@ -28,8 +28,8 @@ onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
 onready var PopUpUI = $Cam/CanvasLayer/UI/WindowDialog
 onready var AudioLocal = $Audio/Audio_Pos
 onready var Audio = $Audio/Audio
-onready var Shootpoint = $SpellManager/ShootPoint
-onready var TargertPoint = $SpellManager/TargetPoint
+onready var Shootpoint = $Spell_Pointers/ShootPoint
+onready var TargertPoint = $Spell_Pointers/TargetPoint
 
 #var velocity = Vector2()
 var alive = true #Used for handling how everything around the player behaves
@@ -63,14 +63,15 @@ func _ready():
 	emit_signal("mpupdate", mana)
 	
 	if(is_network_master()):
-		if(get_tree().get_network_unique_id() != 1):
+		if(get_tree().get_network_unique_id() != 1 or get_tree().get_network_unique_id() != 0):
 			$Cam.current = true
 			$Cam/CanvasLayer/UI.visible = true
+			Data.Player = self
 			if(Global.EnableFOV):
 				$Light2D.shadow_enabled = true
 			else:
 				$Light2D.shadow_enabled = false
-		Data.Player = self
+
 		
 	Send_PlayerState()
 	
@@ -114,12 +115,15 @@ func _physics_process(delta):
 func Send_PlayerState():
 	var IMM = false
 	if(get_tree().get_network_unique_id() == 1): IMM = true
-	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": IMM, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender}
+	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": IMM, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
 	Network.rpc_unreliable("SendData", PlayerState)
 	
-func UpdatePlayer(pos, anim):
+func UpdatePlayer(pos, anim, ld, d, SP):
 	global_position = lerp(global_position, pos, 0.5)
 	animstate.animation = anim
+	LookingDirection = ld
+	damage = d
+	Shootpoint = SP
 
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
@@ -128,6 +132,8 @@ func _input(event):
 	#	else:
 	#		InventoryUI.visible = true
 	if(Input.is_action_just_pressed("OpenTabs")):
+		if(tabs == null): tabs = get_node("Cam/CanvasLayer/UI/TabContainer") #Use get_node() because holy fuck does Godot never make sense sometimes
+		#Always check if tabs exist because for some reason tabs become null for new connections without any reason
 		if tabs.visible == true:
 			tabs.visible = false
 		else:
@@ -171,11 +177,11 @@ remote func updatenamelabel():
 	if(House == 2):
 		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
 
-func takedamage(dmg):
+remotesync func takedamage(dmg):
 	health -= dmg
 	emit_signal("hpupdate", health)
 	
-func healthregen(amount):
+remotesync func healthregen(amount):
 	health += amount
 	emit_signal("hpupdate", health)
 	
@@ -195,9 +201,6 @@ func levelupcheck():
 		EXP = 0
 		statpoints += 1
 		LevelUpAnim.play("FadeInFadeOut")
-
-master func SetPosition(Position):
-	self.position = Position
 	
 func grab(item):
 	ItemsArray.append(item)
@@ -235,11 +238,11 @@ func ShowSign(Title, Content):
 	PopUpUI.dialog_text = Content
 	PopUpUI.popup_centered()
 
-func ShootSpell(Spell, Argument):
+remote func ShootSpell(Spell, Argument):
 	if(Argument == "player"):
 		Argument = Data.Player
-	$SpellManager.ShootSpell(Spell)
-	$SpellManager.TargetSpell(Spell, Argument)
+	SpellManager.rpc_id(0, "ShootSpell" ,Spell, get_tree().get_network_unique_id())
+	SpellManager.rpc_id(0, "TargetSpell", Spell, Argument)
 
 func ShowHotkeyAsign(ID):
 	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true
