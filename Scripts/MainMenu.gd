@@ -115,6 +115,6 @@ func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
 func CreateThePlayer(charname,gender,house):
-	NetworkingFunctions.rpc("CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
+	NetworkingFunctions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
 	Data.Chat.Send_System_Text(str(charname + " logged in."))
 	self.queue_free()
