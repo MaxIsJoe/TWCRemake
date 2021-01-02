@@ -37,6 +37,8 @@ func create_server():
 	set_network_master(1)
 	print(str("[Networking]: Server created // Server ID -> " + str(get_tree().get_network_unique_id())))
 	world_state["T"] = OS.get_system_time_msecs()
+	set_physics_process(true)
+	Engine.set_iterations_per_second(20)
 
 func connect_to_server():
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
@@ -54,15 +56,17 @@ func _connected_to_server():
 
 func _on_player_disconnected(id):
 	var id_copy = id
+	PlayerContainer.get_node(str(id_copy)).set_physics_process(false)
 	print(str("[Networking]: " + str(id) + " disconnected."))
 	if(id != 0 or id != 1):
 		if(PlayerContainer.get_child_count() > 0): Data.Chat.Send_System_Text(str(world_state[id]["N"]) + " logged off.") #If there is at least one other player on the server, tell them who logged off
-	world_state.erase(id)
-	if(PlayerContainer.has_node(str(id_copy))): NetworkingFunctions.rpc_id(0, "RemovePlayerFromWorld", id_copy)
+	rpc_id(0, "RemovePlayerID", id) #This is to prevent the player from getting spawned back on some clients when he gets deleted
+	NetworkingFunctions.rpc("RemovePlayerFromWorld", id_copy) #Remove the player id from all clients and server
+	if(get_tree().get_network_unique_id() == 1): print("World State ->", world_state) #Server side debugging
 	
 func _on_player_connected(connected_player_id):
 	print("[Networking] - player_connected:", connected_player_id)
-	print("\n[Networking] - Check Wolrd_State ->", world_state)
+	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - Check Wolrd_State ->", world_state)
 	if not(get_tree().is_network_server()):
 		rpc_id(1, 'GetWorldState', world_state)
 
@@ -78,21 +82,20 @@ func SendWorldState(state):
 	if(is_network_master()):
 		rpc_unreliable_id(0, "GetWorldState", state)
 	
-remote func GetWorldState(state):
-	if(state.size() > 1):
+remotesync func GetWorldState(state):
+	if(!state.empty()):
 		if state["T"] > last_world_state:
 			last_world_state = state["T"]
 			state.erase("T")
-			state.erase(1)
+			state.erase(1) #This prevents the server from creating an empty player
 			state.erase(get_tree().get_network_unique_id()) #This removes the client from the list so we can focus on the other players
 			for player in state.keys():
 				if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
-					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"], state[player]["D"], state[player]["SP"])
+					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"], state[player]["D"], state[player]["SP"], state[player]["H"], state[player]["G"], state[player]["N"])
 				else: #If the player doesn't exist, create them.
-					if(state.size() > PlayerContainer.get_child_count()):
-						if(!world_state[player].get("IMM")): #This is to prevent players from getting infintally created
-							NetworkingFunctions.rpc("CreateThePlayer", state[player]["N"], state[player]["H"], state[player]["G"], null, state[player]["P"], player)
-				###NOTE TO SELF(MAX): don't print anything, just don't. fixing this is already enough to make me lose my sanity, lag and crashing is the last thing I need while I fix this.###
+					NetworkingFunctions.rpc("CreateThePlayer", state[player]["N"], state[player]["H"], state[player]["G"], null, state[player]["P"], player)
+				###NOTE: Do NOT print anything here for any reason.###
+				###If you do,then remove it before pushing a change###
 		
 remotesync func SetSpellState():
 	spells_ID += 1
@@ -100,6 +103,10 @@ remotesync func SetSpellState():
 	
 remote func SendSpellState():
 	rpc_unreliable_id(0, "SetSpellState")
+
+remotesync func RemovePlayerID(id):
+	world_state.erase(id)
+	world_data.erase(id)
 
 func _physics_process(delta):
 	if not world_data.empty():

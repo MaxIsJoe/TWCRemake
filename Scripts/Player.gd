@@ -113,17 +113,20 @@ func _physics_process(delta):
 		Send_PlayerState()
 
 func Send_PlayerState():
-	var IMM = false
-	if(get_tree().get_network_unique_id() == 1): IMM = true
-	PlayerState = {"T": OS.get_system_time_msecs(),"IMM": IMM, "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
+	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
 	Network.rpc_unreliable("SendData", PlayerState)
 	
-func UpdatePlayer(pos, anim, ld, d, SP):
+func UpdatePlayer(pos, anim, ld, d, SP, h, g, n):
 	global_position = lerp(global_position, pos, 0.5)
 	animstate.animation = anim
 	LookingDirection = ld
 	damage = d
 	Shootpoint = SP
+	###To make sure that the player spawns correctly across all clients, update these###
+	House = h
+	Gender = g
+	PlayerName = n
+
 
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):
