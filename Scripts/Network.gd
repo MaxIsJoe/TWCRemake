@@ -12,6 +12,7 @@ var self_data = {}
 
 var world_data = {}
 var world_state = {}
+var spells_ID = -1
 
 var PlayerContainer
 
@@ -93,6 +94,13 @@ remote func GetWorldState(state):
 							NetworkingFunctions.rpc("CreateThePlayer", state[player]["N"], state[player]["H"], state[player]["G"], null, state[player]["P"], player)
 				###NOTE TO SELF(MAX): don't print anything, just don't. fixing this is already enough to make me lose my sanity, lag and crashing is the last thing I need while I fix this.###
 		
+remotesync func SetSpellState():
+	spells_ID += 1
+	SpellManager.SpellsID = spells_ID
+	
+remote func SendSpellState():
+	rpc_unreliable_id(0, "SetSpellState")
+
 func _physics_process(delta):
 	if not world_data.empty():
 		world_state = world_data.duplicate(true)

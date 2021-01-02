@@ -1,5 +1,7 @@
 extends Node
 
+var SpellsID = -1
+
 var ShootPoint
 var SpellsOnCoolDown = []
 
@@ -11,14 +13,16 @@ func PutSpellOnCoolDown(spell, cooldown):
 
 remotesync func ShootSpell(Spell, caster_network_id):
 	var b
+	Network.SendSpellState()
 	ShootPoint = Network.world_state[caster_network_id].get("SP")
 	match Spell:
 		"inflamri":
 			b = Data.Inflamri.instance()
+			b.name = str(Network.spells_ID)
 			b.transform = ShootPoint
 	if(b != null): 
 		add_child(b)
-		if(has_node(b.name)): b.rpc_id(0, "init_spell_shoot", caster_network_id)
+		b.rpc_id(0, "init_spell_shoot", caster_network_id)
 	
 remotesync func TargetSpell(Spell, Target):
 	var b
