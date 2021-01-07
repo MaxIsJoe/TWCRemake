@@ -1,21 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Levels/World.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MainMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Instances/Actors/UI/ChatUI.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 MainMenu = ExtResource( 3 )
 
-[node name="FirstLoad" type="Control" parent="."]
+[node name="MainUI" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="FirstLoad" type="Control" parent="MainUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FirstLoad"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/FirstLoad"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -29,53 +33,53 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="FirstLoad/VBoxContainer"]
+[node name="Label" type="Label" parent="MainUI/FirstLoad/VBoxContainer"]
 margin_top = 232.0
 margin_right = 440.0
 margin_bottom = 252.4
 text = "Startup Settings"
 align = 1
 
-[node name="Check_Debug" type="CheckButton" parent="FirstLoad/VBoxContainer"]
+[node name="Check_Debug" type="CheckButton" parent="MainUI/FirstLoad/VBoxContainer"]
 margin_top = 256.0
 margin_right = 440.0
 margin_bottom = 288.0
 text = "DEBUG mode"
 
-[node name="Check_fov" type="CheckButton" parent="FirstLoad/VBoxContainer"]
+[node name="Check_fov" type="CheckButton" parent="MainUI/FirstLoad/VBoxContainer"]
 margin_top = 291.0
 margin_right = 440.0
 margin_bottom = 323.0
 text = "FOV/shadows"
 
-[node name="Check_tracker" type="CheckButton" parent="FirstLoad/VBoxContainer"]
+[node name="Check_tracker" type="CheckButton" parent="MainUI/FirstLoad/VBoxContainer"]
 margin_top = 326.0
 margin_right = 440.0
 margin_bottom = 358.0
 pressed = true
 text = "FPS Tracker"
 
-[node name="Label2" type="Label" parent="FirstLoad/VBoxContainer"]
+[node name="Label2" type="Label" parent="MainUI/FirstLoad/VBoxContainer"]
 margin_top = 360.0
 margin_right = 440.0
 margin_bottom = 380.4
 text = "Networking"
 align = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="FirstLoad/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainUI/FirstLoad/VBoxContainer"]
 margin_top = 384.0
 margin_right = 440.0
 margin_bottom = 408.0
 alignment = 1
 
-[node name="Label2" type="Label" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="MainUI/FirstLoad/VBoxContainer/HBoxContainer2"]
 margin_left = 125.0
 margin_top = 1.0
 margin_right = 152.4
 margin_bottom = 21.4
 text = "IP :"
 
-[node name="IP_Text" type="LineEdit" parent="FirstLoad/VBoxContainer/HBoxContainer2"]
+[node name="IP_Text" type="LineEdit" parent="MainUI/FirstLoad/VBoxContainer/HBoxContainer2"]
 margin_left = 155.0
 margin_right = 315.0
 margin_bottom = 24.0
@@ -84,33 +88,38 @@ align = 1
 placeholder_text = "For online servers"
 placeholder_alpha = 0.2
 
-[node name="Label3" type="Label" parent="FirstLoad/VBoxContainer"]
+[node name="Label3" type="Label" parent="MainUI/FirstLoad/VBoxContainer"]
 margin_top = 410.0
 margin_right = 440.0
 margin_bottom = 430.4
 text = "Connection To"
 align = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="FirstLoad/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/FirstLoad/VBoxContainer"]
 margin_top = 434.0
 margin_right = 440.0
 margin_bottom = 474.0
 alignment = 1
 
-[node name="Connect_LAN" type="Button" parent="FirstLoad/VBoxContainer/HBoxContainer"]
+[node name="Connect_LAN" type="Button" parent="MainUI/FirstLoad/VBoxContainer/HBoxContainer"]
 margin_left = 98.0
 margin_right = 218.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 text = "LAN"
 
-[node name="Connect_CustomIp" type="Button" parent="FirstLoad/VBoxContainer/HBoxContainer"]
+[node name="Connect_CustomIp" type="Button" parent="MainUI/FirstLoad/VBoxContainer/HBoxContainer"]
 margin_left = 221.0
 margin_right = 341.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 text = "Online"
 
+[node name="Chat" parent="MainUI" instance=ExtResource( 4 )]
+visible = false
+margin_left = 1282.21
+margin_right = 402.206
+
 [node name="World" parent="." instance=ExtResource( 2 )]
 visible = false
-[connection signal="button_down" from="FirstLoad/VBoxContainer/HBoxContainer/Connect_LAN" to="." method="_on_Connect_LAN_button_down"]
+[connection signal="button_down" from="MainUI/FirstLoad/VBoxContainer/HBoxContainer/Connect_LAN" to="." method="_on_Connect_LAN_button_down"]

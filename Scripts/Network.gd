@@ -4,12 +4,6 @@ const DEFAULT_PORT = 31416
 const DEFAULT_IP = '127.0.0.1'
 const MAX_PLAYERS    = 127
 
-
-const ping_interval = 1.0           # Wait one second between ping requests
-const ping_timeout = 5.0            # Wait 5 seconds before considering a ping request as lost
-
-var self_data = {}
-
 var world_data = {}
 var world_state = {}
 var spells_ID = -1
@@ -59,14 +53,16 @@ func _on_player_disconnected(id):
 	PlayerContainer.get_node(str(id_copy)).set_physics_process(false)
 	print(str("[Networking]: " + str(id) + " disconnected."))
 	if(id != 0 or id != 1):
-		if(PlayerContainer.get_child_count() > 0): Data.Chat.Send_System_Text(str(world_state[id]["N"]) + " logged off.") #If there is at least one other player on the server, tell them who logged off
+		if(PlayerContainer.get_child_count() > 0): Data.main_node.UI_Chat.SendText(0, str(world_state[id]["N"]) + " logged off.", "") #If there is at least one other player on the server, tell them who logged off
 	rpc_id(0, "RemovePlayerID", id) #This is to prevent the player from getting spawned back on some clients when he gets deleted
 	NetworkingFunctions.rpc("RemovePlayerFromWorld", id_copy) #Remove the player id from all clients and server
-	if(get_tree().get_network_unique_id() == 1): print("World State ->", world_state) #Server side debugging
+	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - World State ->", world_state) #Server side debugging
+	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
 	
 func _on_player_connected(connected_player_id):
 	print("[Networking] - player_connected:", connected_player_id)
 	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - Check Wolrd_State ->", world_state)
+	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
 	if not(get_tree().is_network_server()):
 		rpc_id(1, 'GetWorldState', world_state)
 
