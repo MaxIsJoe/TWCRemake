@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=2]
@@ -34,7 +34,6 @@
 [ext_resource path="res://Scenes/Instances/Actors/UI/buttons/HotkeyButton.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Scenes/Instances/Actors/player/Spells.gd" type="Script" id=35]
 [ext_resource path="res://Scenes/Instances/Actors/UI/SetHotkeyUI.tscn" type="PackedScene" id=36]
-[ext_resource path="res://Scenes/Instances/Actors/UI/ChatUI.tscn" type="PackedScene" id=37]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -45,14 +44,9 @@ animations = [ {
 "name": "idledown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "walkdown",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walkleft",
+"name": "idleleft",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ) ],
@@ -65,19 +59,24 @@ animations = [ {
 "name": "walkup",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "walkright",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "idleright",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "idleleft",
+"name": "walkright",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walkleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walkdown",
 "speed": 5.0
 } ]
 
@@ -198,12 +197,6 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Chat" parent="Cam/CanvasLayer/UI" instance=ExtResource( 37 )]
-margin_left = 879.0
-margin_top = 3.0
-margin_right = -1.0
-margin_bottom = -317.0
 
 [node name="FPSLabel" type="Label" parent="Cam/CanvasLayer/UI"]
 light_mask = 524288

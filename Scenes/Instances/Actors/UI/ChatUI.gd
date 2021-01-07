@@ -7,94 +7,64 @@ export(Color) var Event_Color
 export(Color) var System_Color
 
 onready var TextDisplay = $Background/VBoxContainer/RichTextLabel
-onready var bg = $Background
 onready var vis_tween = $T/T_Background
-onready var timer_bg = $T/T_ShowAndHideTime
-onready var timer_txt = $T/T_Text2
 
 var is_visible = false
-var is_focused = false
 
 var selected_saymode
 
 func _ready():
+	###Add the selectable chat modes###
 	$Background/VBoxContainer/Write/HBoxContainer/SayOption.add_item("Say")
 	$Background/VBoxContainer/Write/HBoxContainer/SayOption.add_item("OOC")
+	###Selected mode will be Talk-In-View###
 	selected_saymode = 0
-	Data.Chat = self
 	
-	
-func _input(event):
-	pass
 
-sync func Send_System_Text(txt):
-	var TxtToBeSent = str("[color=][System] - " + txt + "[/color]\n")
-	var TxtSent = ReplaceColor(TxtToBeSent, System_Color)
-	rpc("receive_message", TxtSent)
-	ShowUI()
+func SendText(Mode:int, txt:String, sender:String):
+	match Mode:
+		0: #System
+			var TxtToBeSent = str("[color=][System] - " + txt + "[/color]\n")
+			var TxtSent = ReplaceColor(TxtToBeSent, System_Color)
+			rpc("receive_message", TxtSent)
+		1: #Talk to players in your view only (Will work on that functionality later, for now it will act like OOC)
+			$Background/VBoxContainer/Write/HBoxContainer/LineEdit.text = ""
+			var TxtToBeSent =  str("[color=]" +sender + "[/color]: " + txt + "\n")
+			var TxtSent = ReplaceColor(TxtToBeSent, Player_InView_Color)
+			rpc("receive_message", TxtSent)
+		2: #ooc
+			$Background/VBoxContainer/Write/HBoxContainer/LineEdit.text = ""
+			var TxtToBeSent =  str("[color=]<OOC>" + sender + "[/color]: " + txt + "\n")
+			var TxtSent = ReplaceColor(TxtToBeSent, OOC_Color)
+			rpc("receive_message", TxtSent)
 
-sync func Send_OOC_Text(txt, sender):
-	$Background/VBoxContainer/Write/HBoxContainer/LineEdit.text = ""
-	var TxtToBeSent =  str("[color=]<OOC>" + sender + "[/color]: " + txt + "\n")
-	var TxtSent = ReplaceColor(TxtToBeSent, OOC_Color)
-	rpc("receive_message", TxtSent)
-	ShowUI()
-	
-sync func Send_InView_Text(txt, sender):
-	$Background/VBoxContainer/Write/HBoxContainer/LineEdit.text = ""
-	var TxtToBeSent =  str("[color=]" +sender + "[/color]: " + txt + "\n")
-	var TxtSent = ReplaceColor(TxtToBeSent, Player_InView_Color)
-	rpc("receive_message", TxtSent)
-	ShowUI()
 
-func ReplaceColor(text, color):
+
+func ReplaceColor(text, color): #Replaces the text color to the desired color
 	var result = text.replace("[color=]", str("[color=#" + color.to_html(false) + "]"))
 	return result
 	
-func ShowUI():
-	var is_visible = true
-	vis_tween.interpolate_property(bg, "color", Color(0.4,0.4,0.4,0), Color(0.4,0.4,0.4,0.23), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+func ShowUI(): #Moves the UI smoothly off and back on screen
+	if(is_visible == false):
+		vis_tween.interpolate_property(self, "rect_position", Vector2(1281.142,0), Vector2(878.629,0), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		is_visible = true
+	else:
+		vis_tween.interpolate_property(self, "rect_position", Vector2(878.629,0), Vector2(1281.142,0), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		is_visible = false
 	vis_tween.start()
-	vis_tween.interpolate_property(bg, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-	vis_tween.start()
-	timer_bg.start()
-	timer_txt.start()
 
 sync func receive_message(text):
 	TextDisplay.bbcode_text += text
-
-func _on_T_ShowAndHideTime_timeout():
-	if(is_visible and is_focused != true):
-		vis_tween.interpolate_property(bg, "color", Color(0.4,0.4,0.4,0.23), Color(0.4,0.4,0.4,0), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		vis_tween.start()
-		is_visible = false
-
-
-func _on_T_Text2_timeout():
-	if(!is_visible and is_focused != true):
-		vis_tween.interpolate_property(bg, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		vis_tween.start()
-
+	#I have no idea why I have to use "sync" instead of remotesync but it so far works unlike remotesync, yes there is a fucking RPC cache issue that *can* crash the server/players if spammed too much but what the hell am i suppousd to do? someone else fix this.
 
 func _on_SayOption_item_selected(index):
 	selected_saymode = index
 
-
 func _on_LineEdit_text_entered(new_text):
-	if(selected_saymode == 0):
-			Send_InView_Text(new_text, Data.Player.PlayerName)
-	if(selected_saymode == 1):
-			Send_OOC_Text(new_text, Data.Player.PlayerName)
+	if(new_text != ""): #If there is no text, don't do anything
+		SendText(int(selected_saymode + 1), new_text, Data.Player.PlayerName)
+		#selected_saymode must always added by one because Mode starts at 0
+		#Say and OOC are 1 and 2 in SendText, if you don't add by one then you'll instead run a system message or a say message since System is 0 and Say is 1
 
-
-func _on_Background_mouse_entered():
-	if(!is_visible and !is_focused):
-		ShowUI()
-
-
-func _on_LineEdit_focus_entered():
-	is_focused = true
-
-
-func _on_LineEdit_focus_exited():
-	is_focused = false
+func _on_ShowChatButton_button_down():
+	ShowUI()

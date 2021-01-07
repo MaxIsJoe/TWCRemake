@@ -5,23 +5,29 @@
 [node name="Chat" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1281.14
+margin_right = 401.142
 rect_min_size = Vector2( 400, 400 )
 mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-Player_InView_Color = Color( 1, 0.203922, 0.203922, 1 )
-OOC_Color = Color( 0.176471, 0.588235, 1, 1 )
+Player_InView_Color = Color( 0.670588, 0.117647, 0.117647, 1 )
+OOC_Color = Color( 0.176471, 0.368627, 1, 1 )
 NPC_Color = Color( 0.945098, 0.611765, 0, 1 )
 Event_Color = Color( 0.290196, 0.776471, 0.560784, 1 )
-System_Color = Color( 0.8, 0.396078, 0.996078, 1 )
+System_Color = Color( 0.494118, 0.298039, 0.588235, 1 )
+
+[node name="ShowChatButton" type="Button" parent="."]
+margin_left = -13.0
+margin_bottom = 51.0
+text = "C"
 
 [node name="Background" type="ColorRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0431373, 0.0431373, 0.0431373, 0.231373 )
+color = Color( 0.121569, 0.101961, 0.101961, 0.231373 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -36,7 +42,7 @@ __meta__ = {
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Background/VBoxContainer"]
 margin_top = 656.0
-margin_right = 1280.0
+margin_right = 400.0
 margin_bottom = 677.0
 focus_mode = 2
 bbcode_enabled = true
@@ -46,7 +52,7 @@ selection_enabled = true
 
 [node name="Write" type="Control" parent="Background/VBoxContainer"]
 margin_top = 680.0
-margin_right = 1280.0
+margin_right = 400.0
 margin_bottom = 720.0
 rect_min_size = Vector2( 0, 40 )
 
@@ -73,22 +79,6 @@ placeholder_text = "Enter what you'd like to say here."
 [node name="T" type="Node" parent="."]
 
 [node name="T_Background" type="Tween" parent="T"]
-
-[node name="T_Text" type="Tween" parent="T"]
-
-[node name="T_ShowAndHideTime" type="Timer" parent="T"]
-wait_time = 6.0
-one_shot = true
-autostart = true
-
-[node name="T_Text2" type="Timer" parent="T"]
-wait_time = 6.0
-one_shot = true
-autostart = true
-[connection signal="mouse_entered" from="Background" to="." method="_on_Background_mouse_entered"]
+[connection signal="button_down" from="ShowChatButton" to="." method="_on_ShowChatButton_button_down"]
 [connection signal="item_selected" from="Background/VBoxContainer/Write/HBoxContainer/SayOption" to="." method="_on_SayOption_item_selected"]
-[connection signal="focus_entered" from="Background/VBoxContainer/Write/HBoxContainer/LineEdit" to="." method="_on_LineEdit_focus_entered"]
-[connection signal="focus_exited" from="Background/VBoxContainer/Write/HBoxContainer/LineEdit" to="." method="_on_LineEdit_focus_exited"]
 [connection signal="text_entered" from="Background/VBoxContainer/Write/HBoxContainer/LineEdit" to="." method="_on_LineEdit_text_entered"]
-[connection signal="timeout" from="T/T_ShowAndHideTime" to="." method="_on_T_ShowAndHideTime_timeout"]
-[connection signal="timeout" from="T/T_Text2" to="." method="_on_T_Text2_timeout"]
