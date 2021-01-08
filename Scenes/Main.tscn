@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Levels/World.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MainMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Instances/Actors/UI/ChatUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Instances/Actors/UI/AccountUI.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -119,6 +120,9 @@ text = "Online"
 visible = false
 margin_left = 1282.21
 margin_right = 402.206
+
+[node name="AccountUI" parent="MainUI" instance=ExtResource( 5 )]
+visible = false
 
 [node name="World" parent="." instance=ExtResource( 2 )]
 visible = false

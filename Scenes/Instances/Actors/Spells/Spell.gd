@@ -12,7 +12,6 @@ var dir = transform.x
 var timer
 
 func _init():
-	set_network_master(1)
 	timer = Timer.new()
 	add_child(timer)
 	timer.autostart = true
@@ -21,7 +20,7 @@ func _init():
 	self.set_physics_process(false)
 
 func _timeout():
-	rpc_id(0, "RemoveSpellFromWorld")
+	rpc("RemoveSpellFromWorld")
 
 func _physics_process(delta):
 	if(!TargetSpell):
@@ -49,7 +48,7 @@ sync func init_spell_shoot(caster_network_id):
 	var CasterName = Network.world_state[caster_network_id].get("N")#For damage logging and death messages
 	var final_dmg = Network.world_state[caster_network_id].get("D") + SpellDamage #Combine the base damage of the spell with the player's damage
 	dmg = final_dmg
-	self.set_physics_process(true)
+	if(get_tree().get_network_unique_id() != 1): self.set_physics_process(true)
 	
 sync func init_spell_target(direction_animation, casterName, effect, value, target):
 	match direction_animation:
@@ -70,19 +69,19 @@ sync func init_spell_target(direction_animation, casterName, effect, value, targ
 		"heal":
 			target.healthregen(value)
 			$AnimatedSprite.play("right")
+	if(get_tree().get_network_unique_id() != 1): self.set_physics_process(true)
 
-remotesync func RemoveSpellFromWorld(): #This should avoid some RPC cache errors when a spell runs out of time or hits something
-	if(get_parent().has_node(self.name)): set_physics_process(false)
-	if(get_parent().has_node(self.name)): queue_free()
+sync func RemoveSpellFromWorld(): #This should avoid some RPC cache errors when a spell runs out of time or hits something
+	queue_free()
 
 
 func _on_Area2D_body_entered(body):
 	if(!TargetSpell):
 		if(body.is_in_group("Players")):
 			body.rpc_id(int(body.name), "takedamage", dmg)
-			rpc_id(0, "RemoveSpellFromWorld") 
+			rpc("RemoveSpellFromWorld") 
 		if(body.is_in_group("Enemies")):
 			body.rpc("takedamage", dmg)
-			rpc_id(0, "RemoveSpellFromWorld")
+			rpc("RemoveSpellFromWorld")
 		else:
-			rpc_id(0, "RemoveSpellFromWorld")
+			rpc("RemoveSpellFromWorld")

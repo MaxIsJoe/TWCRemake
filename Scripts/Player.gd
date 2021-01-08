@@ -45,6 +45,7 @@ var LookingDirection
 var ItemsArray = [] #Will be used for the save system
 
 var PlayerState = {} #For networking
+var key = 1 #For saving and account mangement
 
 
 signal isdead
@@ -127,6 +128,19 @@ func UpdatePlayer(pos, anim, ld, d, SP, h, g, n):
 	Gender = g
 	PlayerName = n
 
+func GetSavePlayerInfo():
+	var info = {"N": PlayerName, 
+	"H": House, 
+	"G": Gender, 
+	"D": damage, 
+	"Year": PlayerYear, 
+	"lvl": level, "EXP": EXP, "MEXP": MaxEXP, 
+	"gold": gold, 
+	"HP": health, "mHP": maxHealth, "MP": mana, "MMP": maxMana,
+	"StatPoints": statpoints, "SpellPoints": spellppoints,
+	"LastPos": global_position,
+	"key": key}
+	return info
 
 func _input(event):
 	#if(Input.is_action_just_pressed("InventoryButton")):

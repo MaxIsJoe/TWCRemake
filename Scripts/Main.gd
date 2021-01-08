@@ -1,20 +1,39 @@
 extends Node
 
-export(PackedScene) var MainMenu
+###NOTE : The Main node will be updated to carry more "universal" nodes that all clients need.
+###Similar to the Panorama UI that CSGO, DOTA 2 and TF2 have
+###This will be mainly used to avoid headaches with RPC cache issues and what not more than being a visual thing
+###A working example of this already is the Chat UI.
 
+
+export(PackedScene) var MainMenu #This will probably be replaced in the future
+
+#Always-Avaliable stuff
 onready var FirstLoadUI = $MainUI/FirstLoad
 onready var UI_Chat = $MainUI/Chat
 onready var Map = $World
+onready var LoginScreen = $MainUI/AccountUI
+
+var key #The player's token for saving and loading him
 
 func _ready():
 	if "--server" in OS.get_cmdline_args():
 		Network.create_server()
 		FirstLoadUI.queue_free()
+	var dir = Directory.new()
+	if(dir.dir_exists("user://saves/")):
+		pass
+	else:
+		dir.make_dir("user://saves/")
 	Data.main_node = self
 
 
 func _on_Connect_LAN_button_down():
 	Network.connect_to_server()
+
+func ShowLoginScreen():
+	FirstLoadUI.visible = false
+	LoginScreen.visible = true
 
 func LoadGame():
 	Global.DEBUG_Mode = $MainUI/FirstLoad/VBoxContainer/Check_Debug.pressed
@@ -23,8 +42,15 @@ func LoadGame():
 	var menu = MainMenu.instance()
 	call_deferred("add_child", menu)
 	Map.visible = true
-	UI_Chat.visible = true
+	LoginScreen.queue_free()
 	FirstLoadUI.queue_free()
+	UI_Chat.visible = true
 	SpellManager.SetMaster()
-	UI_Chat.set_network_master(get_tree().get_network_connected_peers())
+	#UI_Chat.set_network_master(get_tree().get_network_connected_peers())
 
+func _input(event):
+	if(Input.is_action_just_pressed("ui_home")):
+		if(self.has_node("MainUI/FirstLoad")): #Mainly used for debugging the server from the editor.
+			Network.create_server()
+			print("Created LAN server.")
+			FirstLoadUI.queue_free()
