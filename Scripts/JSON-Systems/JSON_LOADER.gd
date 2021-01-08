@@ -37,6 +37,6 @@ func LoadJSON_Retrun(JSONFile) -> Dictionary:
 
 func SaveJSON(data, path):
 	var file = File.new()
-	file.open(path, File.WRITE)
+	file.open(path, File.WRITE_READ)
 	file.store_line(to_json(data))
 	file.close()

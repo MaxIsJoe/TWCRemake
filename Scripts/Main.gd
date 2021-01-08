@@ -21,10 +21,11 @@ func _ready():
 		Network.create_server()
 		FirstLoadUI.queue_free()
 	var dir = Directory.new()
-	if(dir.dir_exists("user://saves/")):
+	if(dir.dir_exists("user://saves/") or dir.dir_exists("user://accounts/")):
 		pass
 	else:
 		dir.make_dir("user://saves/")
+		dir.make_dir("user://accounts/")
 	Data.main_node = self
 
 
@@ -47,6 +48,8 @@ func LoadGame():
 	UI_Chat.visible = true
 	SpellManager.SetMaster()
 	#UI_Chat.set_network_master(get_tree().get_network_connected_peers())
+func getkey(k):
+	key = k
 
 func _input(event):
 	if(Input.is_action_just_pressed("ui_home")):
