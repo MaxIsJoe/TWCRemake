@@ -4,6 +4,33 @@ extends Node
 ##Here all data that needs to be stored and referenced will be put here.##
 
 var main_node
+var ForbiddenNames = ["robed figure",
+				"masked figure",
+				"deatheater",
+				"auror",
+				"harry",
+				"potter",
+				"albus",
+				"malfoy",
+				"snape",
+				"hermoine",
+				"voldemort",
+				"dumbledore",
+				"riddle",
+				"potter",
+				"granger",
+				"malfoy",
+				"weasley",
+				"lestrange",
+				"sirius",
+				"riddle",
+				"lestrange",
+				"black",
+				"marvello",
+				"ben copper",
+				"penny haywood",
+				"muller sydney",
+				"muller"] #These are the forbidden names that the player cannot use, it's the same list from the original game.
 
 #Always present#
 #Inventory and Items#

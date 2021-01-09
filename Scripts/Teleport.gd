@@ -9,7 +9,6 @@ func Move_To_Scene(nextscene, player,spawnPos):
 	#Deffered_MoveToScene(nextscene, player,spawnPos)
 	
 func Deffered_MoveToScene(nextscene, player,spawnPos):
-	var scene = nextscene
 	pl = Data.Player
 	print("Chaning Scene..")
 	player.get_parent().remove_child(player)
