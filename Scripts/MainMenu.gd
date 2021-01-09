@@ -31,9 +31,6 @@ var ForbiddenNames = ["robed figure",
 				"muller sydney",
 				"muller"] #These are the forbidden names that the player cannot use, it's the same list from the original game.
 				
-#var TestWorld = "res://Scenes/TestWorld_2.tscn" 
-#var TestWorldSpawnPostion = Vector2(90,90)
-
 var PlayerID = ""
 
 
@@ -51,6 +48,9 @@ onready var dropdownGender = $CharacterPage/SelectGender
 onready var dropdownHouse = $CharacterPage/SelectHouse
 onready var warninglabel = $CharacterPage/Warning
 
+remote var hascharacter = false
+remote var saveddata 
+
 func _ready():
 	versionlabel.text = version
 	add_items() #Adds items to the drop down menu to be used
@@ -60,9 +60,52 @@ func _ready():
 	dropdownGender.selected = 2
 	dropdownHouse.selected = 4
 
+func ShowStartingPage():
+	$Background.visible = true
+	mainpage.visible = true
+	
+func HideStartingPage():
+	$Background.visible = false
+	mainpage.queue_free()
+	charactersetup.queue_free()
+
 func _on_StartButton_pressed():
-	mainpage.visible = false
-	charactersetup.visible = true
+	Network.rpc_id(1, "GetActiveKeys")
+	$MainPage/StartButton.disabled = true
+	$MainPage/StartButton.text = "Loading.. (25%)"
+	rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_network_unique_id())
+	var timer = get_tree().create_timer(1) #Wait for the server to actually return hascharacter
+	yield(timer, "timeout")
+	$MainPage/StartButton.text = "Loading.. (50%)"
+	if(hascharacter):
+		Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_network_unique_id())
+		var timertwo = get_tree().create_timer(1.0) #Wait for the server to actually return it's data
+		yield(timertwo, "timeout")
+		$MainPage/StartButton.text = "Loading.. (75%)"
+		var timerthree = get_tree().create_timer(1.0) #As a safety measure for slow connections.
+		yield(timerthree, "timeout")
+		versionlabel.text = "if you're stuck\n restart the game."
+		NetworkingFunctions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_network_unique_id())
+		Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+		HideStartingPage()
+	else:
+		mainpage.visible = false
+		charactersetup.visible = true
+	
+remote func DoesHeAlreadyHaveACharacter(key, id):
+	var file
+	var dir = Directory.new()
+	if dir.open("user://saves/") == OK:
+		dir.list_dir_begin(true, true)
+		while file != "": #(Max): I have no idea what's going on here but it works so I'm not messing with it.
+			if(file != null):
+				if(file.begins_with(str(key))): 
+					rset_id(id, "hascharacter", true) #Tell the client that his account does exist
+					print("Setting hascharacter to true")
+					break #(Max): Does this even stop the loop?
+			file = dir.get_next()
+	else:
+		print("Failed to open user://saves/")
 	
 func add_items():
 	dropdownGender.add_item("Wizard")
@@ -115,6 +158,8 @@ func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
 func CreateThePlayer(charname,gender,house):
+	Network.rpc_id(1, "GetActiveKeys")
 	NetworkingFunctions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
 	Data.main_node.UI_Chat.SendText(0, str(charname + " logged in."), "")
-	self.queue_free()
+	Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+	HideStartingPage()

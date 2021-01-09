@@ -74,6 +74,7 @@ func _ready():
 			else:
 				$Light2D.shadow_enabled = false
 			rpc_id(1, "SendKeyToServer", playerkey)
+			Network.rpc("AddActiveKey", playerkey)
 	
 	Send_PlayerState()
 	
@@ -119,7 +120,7 @@ func Send_PlayerState():
 	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
 	Network.rpc_unreliable("SendData", PlayerState)
 	
-func UpdatePlayer(pos, anim, ld, d, SP, h, g, n):
+func UpdatePlayer(pos, anim, ld, d, SP):
 	global_position = lerp(global_position, pos, 0.5)
 	animstate.animation = anim
 	LookingDirection = ld
@@ -136,7 +137,8 @@ func GetSavePlayerInfo():
 	"gold": gold, 
 	"HP": health, "mHP": maxHealth, "MP": mana, "MMP": maxMana,
 	"StatPoints": statpoints, "SpellPoints": spellppoints,
-	"LastPos": global_position,
+	"vx": global_position.x,
+	"vy": global_position.y,
 	"key": playerkey}
 	if(info.get("key") == null): push_warning("\a Warning, Key is null.")
 	return info

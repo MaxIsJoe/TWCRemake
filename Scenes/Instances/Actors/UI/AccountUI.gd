@@ -9,9 +9,9 @@ onready var warninglabel = $VBoxContainer/WarningLabel
 onready var keyinput = $VBoxContainer/KeyInput
 onready var passwordinput = $VBoxContainer/PasswordInput
 
-var keyexists = false
+remotesync var keyexists = false
 
-remote func DoesThisKeyExist(key): #Loops through all files in /saves/ to find a filename with the inserted key.
+remote func DoesThisKeyExist(key, id): #Loops through all files in /saves/ to find a filename with the inserted key.
 	var file
 	var dir = Directory.new()
 	if dir.open("user://accounts/") == OK:
@@ -19,13 +19,13 @@ remote func DoesThisKeyExist(key): #Loops through all files in /saves/ to find a
 		while file != "": #(Max): I have no idea what's going on here but it works so I'm not messing with it.
 			if(file != null):
 				if(file.begins_with(str(key))): 
-					rset_id(get_tree().get_rpc_sender_id(), "keyexists", true) #Tell the client that his account does exist
+					rset_id(id, "keyexists", true) #Tell the client that his account does exist
 					break #(Max): Does this even stop the loop?
 			file = dir.get_next()
 	else:
 		print("Failed to open user://accounts/")
 
-remote func getpassword(savefile, password, id): #Gets the password from a savefile
+remote func login(savefile, password, id): #Gets the password from a savefile
 	var file = File.new()
 	file.open(str("user://accounts/" + savefile + ".json"), File.READ)
 	var dfile = file.get_as_text()
@@ -38,7 +38,7 @@ remote func getpassword(savefile, password, id): #Gets the password from a savef
 		rpc_id(id, "UpdateLabelRemotly", "Incorrect key or password.")
 
 remote func createaccount(key, password, id):
-	var pw = {"password": passwordhasing(passwordinput.text)}
+	var pw = {"password": passwordhasing(password)}
 	JsonLoader.SaveJSON(pw, str("user://accounts/" + key + ".json"))
 	rpc_id(id, "startgame", key)
 
@@ -53,7 +53,8 @@ remote func GiveUserHisKey(k):
 	Data.main_node.key = k
 
 func passwordhasing(password:String):
-	var final = password.sha256_text() 
+	var final = password.sha256_text()
+	print(final) 
 	return final
 
 ###(Max): Note to self or anyone working on this, rename Button and Button2 and Button3 to something else
@@ -62,9 +63,9 @@ func _on_Button_button_down():
 	if(keyinput.text == "" or str(passwordinput.text).length() < MiniumPasswordLength):
 		warninglabel.text = "Invalid data entered."
 		return
-	rpc_id(1, "DoesThisKeyExist", keyinput.text)
+	rpc_id(1, "DoesThisKeyExist", keyinput.text, get_tree().get_network_unique_id())
 	if(keyexists):
-		rpc_id(1, "getpassword", keyinput.text, passwordinput.text, get_tree().get_network_unique_id())
+		rpc_id(1, "login", keyinput.text, passwordinput.text, get_tree().get_network_unique_id())
 	else:
 		warninglabel.text = "Incorrect key or password."
 
@@ -73,7 +74,7 @@ func _on_Button2_button_down():
 	if(keyinput.text == "" or str(passwordinput.text).length() < MiniumPasswordLength):
 		warninglabel.text = "Invalid data entered."
 		return
-	rpc_id(1, "DoesThisKeyExist", keyinput.text)
+	rpc_id(1, "DoesThisKeyExist", keyinput.text,  get_tree().get_network_unique_id())
 	if(keyexists):
 		warninglabel.text = "Key already exists."
 	else:

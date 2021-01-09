@@ -2,9 +2,9 @@ extends Node
 
 
 remotesync func CreateThePlayer(charname,gender,house, loc, locSpawnPos, network_id):
-	if(Network.PlayerContainer.has_node(str(network_id)) or charname == null or charname == "" or house == null or gender == null): #To (hopefully) prevent the game from creating millions of copies of the same player.
-		return
-	else:
+		print("Creating character for ", network_id)
+		print("[NetworkFunc/CreateThePlayer] - RPC Sender ID ->", get_tree().get_rpc_sender_id())
+		print("[NetworkFunc/CreateThePlayer] - charname is ->", charname)
 		match gender:
 			0:
 				match house:

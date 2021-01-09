@@ -6,6 +6,7 @@ const MAX_PLAYERS    = 127
 
 var world_data = {}
 var world_state = {}
+remotesync var ActiveKeys = {}
 var spells_ID = -1
 
 var PlayerContainer
@@ -30,7 +31,7 @@ func create_server():
 	peer.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	get_tree().set_network_peer(peer)
 	set_network_master(1)
-	print(str("[Networking]: Server created // Server ID -> " + str(get_tree().get_network_unique_id())))
+	print(str("[Networking]: Server created // Server IP -> " + DEFAULT_IP))
 	world_state["T"] = OS.get_system_time_msecs() #(Max): I don't remember why I needed to set a timestamp this early but the game throws an error randomly if I don't so I'm leaving this here.
 	set_physics_process(true)
 	Engine.set_iterations_per_second(20) #This is to make the server send calls 20 times per second instead of 60
@@ -51,8 +52,13 @@ func _connected_to_server():
 func _on_player_disconnected(id):
 	print(str("[Networking]: " + str(id) + " disconnected."))
 	PlayerContainer.get_node(str(id)).set_physics_process(false)
-	if(id != 1): if(PlayerContainer.get_child_count() > 0): Data.main_node.UI_Chat.SendText(0, PlayerContainer.get_node(str(id)).PlayerName + " logged off.", "") #If there is at least one other player on the server, tell them who logged off
-	rpc("RemovePlayerID", id) #This is to prevent the player from getting spawned back on some clients when he gets deleted
+	if(get_tree().get_network_unique_id() != 1): 
+		if(PlayerContainer.get_child_count() > 0): 
+			Data.main_node.UI_Chat.SendText(0, PlayerContainer.get_node(str(id)).PlayerName + " logged off.", "") #If there is at least one other player on the server, tell them who logged off
+	else:
+		RemovePlayerID(id)
+	world_state.erase(id)
+	world_data.erase(id)
 	NetworkingFunctions.rpc("RemovePlayerFromWorld", id) #Remove the player id from all clients and server
 	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - World State ->", world_state) #Server side debugging
 	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
@@ -79,30 +85,59 @@ func SendWorldState(state):
 remotesync func GetWorldState(state):
 	###NOTE: Do NOT print anything here for any reason.###
 	###If you do,then remove it before pushing a change###
-	if(get_tree().get_network_unique_id() != 1):
-		if(!state.empty()):
-			if state["T"] > last_world_state:
-				last_world_state = state["T"]
-				state.erase("T")
-				state.erase(1) #This prevents the server from creating an empty player
-				state.erase(get_tree().get_network_unique_id()) #This removes the client from the list so we can focus on the other players
-				for player in state.keys():
-					if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
-						PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"], state[player]["D"], state[player]["SP"], state[player]["H"], state[player]["G"], state[player]["N"])
-					else: #If the player doesn't exist, create them.
-						NetworkingFunctions.rpc("CreateThePlayer", state[player]["N"], state[player]["H"], state[player]["G"], null, state[player]["P"], player)
+	if(!state.empty()):
+		if state["T"] > last_world_state:
+			last_world_state = state["T"]
+			state.erase("T")
+			state.erase(1) #This prevents the server from creating an empty player
+			state.erase(get_tree().get_network_unique_id()) #This removes the client from the list so we can focus on the other players
+			for player in state.keys():
+				if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
+					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"], state[player]["D"], state[player]["SP"])
+
+remote func CreateActivePlayers(id):
+	for player in ActiveKeys:
+		if(player == PlayerContainer.get_node(str(id)).playerkey): return
+		var file = File.new()
+		file.open(str("user://saves/" + player + ".json"), File.READ)
+		var dfile = file.get_as_text()
+		var data = parse_json(dfile)
+		print(data)
+		NetworkingFunctions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"]))
+		file.close()
 		
+remote func GetSavedPlayerData(key, id):
+	var file = File.new()
+	file.open(str("user://saves/" + key + ".json"), File.READ)
+	var dfile = file.get_as_text()
+	var data = parse_json(dfile)
+	print(data)
+	Data.main_node.MainMenu.rset_id(id, "saveddata", data)
+	file.close()
+
 remotesync func SetSpellState():
 	spells_ID += 1
 	
 remote func SendSpellState():
 	rpc_unreliable_id(0, "SetSpellState")
 
-remotesync func RemovePlayerID(id):
-	if(get_tree().get_network_unique_id() == 1): SavePlayer(id)
-	world_state.erase(id)
-	world_data.erase(id)
-	print("[Networking] - Removed ID.")
+func RemovePlayerID(id):
+	SavePlayer(id)
+	RemoveActiveKey(PlayerContainer.get_node(str(id)).playerkey)
+	if(world_state.has(id)): world_state.erase(id)
+	print("Removed player ID")
+	
+remotesync func GetActiveKeys():
+	rset_id(0, "ActiveKeys", ActiveKeys)
+
+remote func AddActiveKey(key):
+	var online_id = get_tree().get_rpc_sender_id()
+	ActiveKeys[key] = {"ID": online_id}
+	GetActiveKeys()
+	
+func RemoveActiveKey(key):
+	ActiveKeys.erase(key)
+	GetActiveKeys()
 
 func _physics_process(delta):
 	if not world_data.empty():

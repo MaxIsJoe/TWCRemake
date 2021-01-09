@@ -8,7 +8,6 @@
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
-MainMenu = ExtResource( 3 )
 
 [node name="MainUI" type="CanvasLayer" parent="."]
 layer = 128
@@ -123,6 +122,8 @@ margin_right = 402.206
 
 [node name="AccountUI" parent="MainUI" instance=ExtResource( 5 )]
 visible = false
+
+[node name="MainMenu" parent="MainUI" instance=ExtResource( 3 )]
 
 [node name="World" parent="." instance=ExtResource( 2 )]
 visible = false
