@@ -143,7 +143,7 @@ func _on_FinishCharSetup_pressed():
 		warninglabel.text = "Please select another name"
 		return
 	#Spawn the player with their name and gender assigned to them
-	CreateThePlayer(CharacterName, selecteditemG,selectitemH)
+	CreateThePlayer(CharacterName)
 	#rpc_id(1 , "CreateThePlayer", CharacterName, selecteditemG,selectitemH)
 
 func _on_SelectGender_item_selected(ID):
@@ -157,7 +157,7 @@ func _on_ExitButiion_pressed():
 func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
-func CreateThePlayer(charname,gender,house):
+func CreateThePlayer(charname):
 	Network.rpc_id(1, "GetActiveKeys")
 	NetworkingFunctions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
 	Data.main_node.UI_Chat.SendText(0, str(charname + " logged in."), "")

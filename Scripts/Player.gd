@@ -33,7 +33,7 @@ onready var TargertPoint = $Spell_Pointers/TargetPoint
 
 #var velocity = Vector2()
 var alive = true #Used for handling how everything around the player behaves
-slave var canmove = true #Can the player move?
+puppet var canmove = true #Can the player move?
 var Karma = 100 #Used for quests, NPC behavior, clans and applying damage reduction on player's who aren't fighting and have higher karma points.
 var statpoints = 0 #Used for upgrading the player's stats
 var spellppoints = 0 #Used for learning new spells without having to go to a teacher
@@ -47,8 +47,6 @@ var ItemsArray = [] #Will be used for the save system
 var PlayerState = {} #For networking
 var playerkey #For saving and account mangement
 
-
-signal isdead
 signal GrabbedAnItem(item)
 signal hpupdate(health)
 signal mpupdate(mana)
@@ -83,7 +81,6 @@ func _physics_process(delta):
 	if is_network_master():
 		if canmove == false: #Can the player move?
 			return
-		var rot_dir = 0
 		var velocity = Vector2()
 		if(Input.is_action_pressed("ui_up")):
 			velocity.y -= 1
