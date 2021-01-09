@@ -97,23 +97,21 @@ remotesync func GetWorldState(state):
 				if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
 					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"], state[player]["D"], state[player]["SP"])
 
-remote func CreateActivePlayers(id):
+remote func CreateActivePlayers(id): #Creates all players on the server on the client
 	for player in ActiveKeys:
-		if(player == PlayerContainer.get_node(str(id)).playerkey): return
+		if(player == PlayerContainer.get_node(str(id)).playerkey): return #So we don't create doubles of the player
 		var file = File.new()
 		file.open(str("user://saves/" + player + ".json"), File.READ)
 		var dfile = file.get_as_text()
 		var data = parse_json(dfile)
-		print(data)
-		NetworkingFunctions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"]))
+		NetworkingFunctions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"])) #Tell the client to create this player with their correct data
 		file.close()
 		
-remote func GetSavedPlayerData(key, id):
+remote func GetSavedPlayerData(key, id): #Sends the player's savefile to him, the savefile *should* only exist on the server.
 	var file = File.new()
 	file.open(str("user://saves/" + key + ".json"), File.READ)
 	var dfile = file.get_as_text()
 	var data = parse_json(dfile)
-	print(data)
 	Data.main_node.MainMenu.rset_id(id, "saveddata", data)
 	file.close()
 
@@ -123,21 +121,21 @@ remotesync func SetSpellState():
 remote func SendSpellState():
 	rpc_unreliable_id(0, "SetSpellState")
 
-func RemovePlayerID(id):
+func RemovePlayerID(id): #Responisble for erasing the player key and making sure it's no longer in world_state
 	SavePlayer(id)
 	RemoveActiveKey(PlayerContainer.get_node(str(id)).playerkey)
 	if(world_state.has(id)): world_state.erase(id)
 	if(Global.DEBUG_Mode): print("Removed player ID")
 	
-remotesync func GetActiveKeys():
+remotesync func GetActiveKeys(): #Tell all clients what clients are online and playing right now.
 	rset_id(0, "ActiveKeys", ActiveKeys)
 
-remote func AddActiveKey(key):
+remote func AddActiveKey(key): #Add player who's actively playing right now
 	var online_id = get_tree().get_rpc_sender_id()
 	ActiveKeys[key] = {"ID": online_id}
 	GetActiveKeys()
 	
-func RemoveActiveKey(key):
+func RemoveActiveKey(key): #Remove a key that belongs to a player who is no longer connected.
 	ActiveKeys.erase(key)
 	GetActiveKeys()
 
