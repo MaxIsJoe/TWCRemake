@@ -17,7 +17,6 @@ export(bool) var HasQuests = false #Does this NPC have quests that need to be tr
 onready var Quick_Dia = $Quick_Dia
 onready var Dialoug = $Holders/DialougHolder
 onready var shop = $Holders/ShopHolder
-onready var TimerNode = $Cooldowns/Timer
 onready var acknowledgement_area = $Acknowledgement_area #Used to acknolwadge the player's existence
 
 var acknowleged_player_names = []

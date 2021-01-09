@@ -45,6 +45,7 @@ var LookingDirection
 var ItemsArray = [] #Will be used for the save system
 
 var PlayerState = {} #For networking
+var playerkey #For saving and account mangement
 
 
 signal isdead
@@ -55,8 +56,9 @@ signal mpupdate(mana)
 const SPEED = 350
 
 func _ready():
-	#For now, always make sure that the player HP = MaxHP until we add a save system
+	playerkey = Data.main_node.key
 	
+	#For now, always make sure that the player HP = MaxHP until we add a save system
 	health = maxHealth
 	mana = maxMana
 	emit_signal("hpupdate", health)
@@ -71,9 +73,11 @@ func _ready():
 				$Light2D.shadow_enabled = true
 			else:
 				$Light2D.shadow_enabled = false
-
-		
+			rpc_id(1, "SendKeyToServer", playerkey)
+			Network.rpc("AddActiveKey", playerkey)
+	
 	Send_PlayerState()
+	
 	
 func _physics_process(delta):
 	if is_network_master():
@@ -113,27 +117,36 @@ func _physics_process(delta):
 		Send_PlayerState()
 
 func Send_PlayerState():
-	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "H": House, "N": PlayerName, "G": Gender, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
+	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
 	Network.rpc_unreliable("SendData", PlayerState)
 	
-func UpdatePlayer(pos, anim, ld, d, SP, h, g, n):
+func UpdatePlayer(pos, anim, ld, d, SP):
 	global_position = lerp(global_position, pos, 0.5)
 	animstate.animation = anim
 	LookingDirection = ld
 	damage = d
 	Shootpoint = SP
-	###To make sure that the player spawns correctly across all clients, update these###
-	House = h
-	Gender = g
-	PlayerName = n
 
+func GetSavePlayerInfo():
+	var info = {"N": PlayerName, 
+	"H": House, 
+	"G": Gender, 
+	"D": damage, 
+	"Year": PlayerYear, 
+	"lvl": level, "EXP": EXP, "MEXP": MaxEXP, 
+	"gold": gold, 
+	"HP": health, "mHP": maxHealth, "MP": mana, "MMP": maxMana,
+	"StatPoints": statpoints, "SpellPoints": spellppoints,
+	"vx": global_position.x,
+	"vy": global_position.y,
+	"key": playerkey}
+	if(info.get("key") == null): push_warning("\a Warning, Key is null.")
+	return info
+
+remote func SendKeyToServer(key):
+	playerkey = key
 
 func _input(event):
-	#if(Input.is_action_just_pressed("InventoryButton")):
-	#	if InventoryUI.visible == true:   
-	#		InventoryUI.visible = false
-	#	else:
-	#		InventoryUI.visible = true
 	if(Input.is_action_just_pressed("OpenTabs")):
 		if(tabs == null): tabs = get_node("Cam/CanvasLayer/UI/TabContainer") #Use get_node() because holy fuck does Godot never make sense sometimes
 		#Always check if tabs exist because for some reason tabs become null for new connections without any reason
