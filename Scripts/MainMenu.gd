@@ -3,34 +3,7 @@ extends CanvasLayer
 var version = Global.version #Used to display the game's version, should be updated later to make this a variable found in a config file or something like that.
 var selecteditemG
 var selectitemH
-var ForbiddenNames = ["robed figure",
-				"masked figure",
-				"deatheater",
-				"auror",
-				"harry",
-				"potter",
-				"albus",
-				"malfoy",
-				"snape",
-				"hermoine",
-				"voldemort",
-				"dumbledore",
-				"riddle",
-				"potter",
-				"granger",
-				"malfoy",
-				"weasley",
-				"lestrange",
-				"sirius",
-				"riddle",
-				"lestrange",
-				"black",
-				"marvello",
-				"ben copper",
-				"penny haywood",
-				"muller sydney",
-				"muller"] #These are the forbidden names that the player cannot use, it's the same list from the original game.
-				
+
 var PlayerID = ""
 
 
@@ -139,7 +112,7 @@ func _on_FinishCharSetup_pressed():
 	if(selectitemH == 4 or null):
 		warninglabel.text = "Please choose a house"
 		return
-	if(ForbiddenNames.has(CharacterName)):
+	if(Data.ForbiddenNames.has(CharacterName)):
 		warninglabel.text = "Please select another name"
 		return
 	#Spawn the player with their name and gender assigned to them
