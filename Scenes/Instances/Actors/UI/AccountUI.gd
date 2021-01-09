@@ -54,7 +54,7 @@ remote func GiveUserHisKey(k):
 
 func passwordhasing(password:String):
 	var final = password.sha256_text()
-	print(final) 
+	if(Global.DEBUG_Mode): print(final) 
 	return final
 
 ###(Max): Note to self or anyone working on this, rename Button and Button2 and Button3 to something else

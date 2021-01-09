@@ -2,9 +2,10 @@ extends Node
 
 
 remotesync func CreateThePlayer(charname,gender,house, loc, locSpawnPos, network_id):
-		print("Creating character for ", network_id)
-		print("[NetworkFunc/CreateThePlayer] - RPC Sender ID ->", get_tree().get_rpc_sender_id())
-		print("[NetworkFunc/CreateThePlayer] - charname is ->", charname)
+		if(Global.DEBUG_Mode):
+			print("Creating character for ", network_id)
+			print("[NetworkFunc/CreateThePlayer] - RPC Sender ID ->", get_tree().get_rpc_sender_id())
+			print("[NetworkFunc/CreateThePlayer] - charname is ->", charname)
 		match gender:
 			0:
 				match house:

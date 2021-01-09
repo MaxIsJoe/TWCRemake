@@ -60,13 +60,15 @@ func _on_player_disconnected(id):
 	world_state.erase(id)
 	world_data.erase(id)
 	NetworkingFunctions.rpc("RemovePlayerFromWorld", id) #Remove the player id from all clients and server
-	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - World State ->", world_state) #Server side debugging
-	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
+	if(Global.DEBUG_Mode):
+		print("\n[Networking] - World State ->", world_state) #Server side debugging
+		print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
 	
 func _on_player_connected(connected_player_id):
 	print("[Networking] - player_connected:", connected_player_id)
-	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - Check Wolrd_State ->", world_state)
-	if(get_tree().get_network_unique_id() == 1): print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
+	if(Global.DEBUG_Mode):
+		print("\n[Networking] - Check Wolrd_State ->", world_state)
+		print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
 	if not(get_tree().is_network_server()):
 		rpc_id(1, 'GetWorldState', world_state)
 
@@ -125,7 +127,7 @@ func RemovePlayerID(id):
 	SavePlayer(id)
 	RemoveActiveKey(PlayerContainer.get_node(str(id)).playerkey)
 	if(world_state.has(id)): world_state.erase(id)
-	print("Removed player ID")
+	if(Global.DEBUG_Mode): print("Removed player ID")
 	
 remotesync func GetActiveKeys():
 	rset_id(0, "ActiveKeys", ActiveKeys)
@@ -150,4 +152,4 @@ func _physics_process(delta):
 func SavePlayer(id):
 	var playerdata = PlayerContainer.get_node(str(id)).GetSavePlayerInfo()
 	JsonLoader.SaveJSON(playerdata, str("user://saves/" + str(playerdata.get("key")) + ".json"))
-	print(str("Hey shitass, I'm saving " + playerdata["N"] + " under key -> " + str(playerdata.get("key"))))
+	if(Global.DEBUG_Mode): print(str("Hey shitass, I'm saving " + playerdata["N"] + " under key -> " + str(playerdata.get("key"))))
