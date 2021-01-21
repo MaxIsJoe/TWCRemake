@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
-        platform: [Linux/X11, WindowsDesktop]
+        platform: [Linux/X11]
     steps:
       - uses: actions/checkout@v2
         with:
