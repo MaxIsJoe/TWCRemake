@@ -1,4 +1,4 @@
-name: Build Godot Project
+name: TWCRemakeLatestBuild
 
 on:
   push: {}
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
-        platform: [linux, windows]
+        platform: [linux, win64]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -18,7 +18,7 @@ jobs:
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
         with:
-          name: example
+          name: build
           preset: ${{ matrix.platform }}
           debugMode: "true"
       - name: Upload Artifact
