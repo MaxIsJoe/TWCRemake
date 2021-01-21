@@ -6,7 +6,7 @@ on:
 
 jobs:
   Godot:
-    runs-on: windows-latest
+    runs-on: ubuntu-16.04
     strategy:
       matrix:
         platform: [linux, windows]
