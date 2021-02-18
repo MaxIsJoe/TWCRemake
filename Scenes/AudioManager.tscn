@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Globals/GlobalAudio.gd" type="Script" id=1]
+
+[node name="AudioManager" type="AudioStreamPlayer"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Mainly used for playing audio on the client's side. If it's something another player won't hear then use this manager."
+}
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+bus = "Ambience"
+
+[node name="UI" type="AudioStreamPlayer" parent="."]
+bus = "UI"
+
+[node name="FX" type="AudioStreamPlayer" parent="."]
+bus = "Sound Effects"

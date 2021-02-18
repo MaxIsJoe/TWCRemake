@@ -1,25 +1,22 @@
 extends Area2D
 
-export(bool) var Local = true
-export(String) var NextScene
-export(Vector2) var SpawnPostion
 export(NodePath) var TeleportLocation
 export(AudioStream) var Footstep_Sounds
 #export(Range) var Pitch_Range
 
+func _ready():
+	$AudioStreamPlayer2D.stream = Footstep_Sounds
+
 func _on_TeleportLocalNode_body_entered(body):
 	if(body.is_in_group("Players")):
-		if(Local):
 			if(Footstep_Sounds != null):
-				PlayAudio(body)
-			body.position = get_node(TeleportLocation).position
-		if(!Local):
-			if(Footstep_Sounds != null):
-				PlayAudio(body)
-			Teleport.Move_To_Scene(NextScene, body, SpawnPostion)
+				PlayAudio()
+			Teleport.TeleportPos(body, get_node(TeleportLocation).position, Footstep_Sounds)
 
-func PlayAudio(body):
+func PlayAudio():
 	randomize()
-	var pitch = int(rand_range(-3,3))
-	print("Audio Pitch :" + str(pitch))
-	GlobalAudio.PlaySound(Footstep_Sounds,body.AudioLocal, "Sound Effects", null, pitch)
+	var pitch = rand_range(0.75,1.30)
+	if(pitch == 0.0):
+		pitch = 0.1
+	$AudioStreamPlayer2D.pitch_scale = pitch
+	$AudioStreamPlayer2D.play()

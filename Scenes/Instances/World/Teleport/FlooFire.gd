@@ -1,12 +1,12 @@
 extends Node2D
 
-export(String) var TeleportToScene
+#export(String) var TeleportToScene
 export(Vector2) var TeleportLocation
+export(AudioStream) var TeleportSound = load("res://Sound/SFX/teleports/poof_simple.wav")
 
-
-
+onready var audio = $Area2D/AudioStreamPlayer2D
 
 func _on_Area2D_body_entered(body):
 	if(body.is_in_group("Players")):
-		GlobalAudio.PlaySound(load("res://Sound/SFX/teleports/poof_simple.wav"), Data.Player.AudioLocal, null, null, null)
-		if(TeleportToScene != ""): Teleport.Move_To_Scene(TeleportToScene, body, TeleportLocation); else: Teleport.TeleportPos(body, TeleportLocation)
+		audio.play()
+		Teleport.TeleportPos(body, TeleportLocation, TeleportSound)
