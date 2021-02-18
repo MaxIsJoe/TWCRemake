@@ -16,15 +16,15 @@ animations = [ {
 "name": "Closing",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "Opening",
 "speed": 7.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
 } ]
 
 [sub_resource type="OccluderPolygon2D" id=3]
@@ -41,6 +41,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.04, 1.08 )
 frames = SubResource( 2 )
 animation = "Idle"
 
