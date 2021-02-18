@@ -24,16 +24,15 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Teleport="*res://Scripts/Teleport.gd"
+Teleport="*res://Scripts/Globals/Teleport.gd"
 Global="*res://Scripts/Globals/Global.gd"
-Network="*res://Scripts/Network.gd"
 Data="*res://Scripts/Globals/Data.gd"
 JsonLoader="*res://Scripts/JSON-Systems/JSON_LOADER.gd"
 DayAndNight="*res://Scripts/Globals/DayAndNight.gd"
 UseItem="*res://Scripts/Globals/UseItem.gd"
-GlobalAudio="*res://Scripts/Globals/GlobalAudio.gd"
-NetworkingFunctions="*res://Scripts/Globals/Networking/NetworkingFunctions.gd"
 SpellManager="*res://Scripts/Globals/SpellManager.gd"
+NetworkManager="*res://Scenes/NetworkManager.tscn"
+AudioManager="*res://Scenes/AudioManager.tscn"
 
 [debug]
 

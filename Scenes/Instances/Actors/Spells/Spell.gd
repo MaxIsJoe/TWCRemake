@@ -31,7 +31,7 @@ func UpdateSpellPosition(delta):
 	position = lerp(position, smooth_mov, 0.5)
 
 sync func init_spell_shoot(caster_network_id):
-	var direction_animation = Network.world_state[caster_network_id].get("LD")
+	var direction_animation = NetworkManager.Network.world_state[caster_network_id].get("LD")
 	match direction_animation: #What animation and direction the spell go to?
 		0:
 			$AnimatedSprite.play("up")
@@ -45,8 +45,8 @@ sync func init_spell_shoot(caster_network_id):
 		2:
 			$AnimatedSprite.play("right")
 			dir = transform.x
-	var CasterName = Network.world_state[caster_network_id].get("N")#For damage logging and death messages
-	var final_dmg = Network.world_state[caster_network_id].get("D") + SpellDamage #Combine the base damage of the spell with the player's damage
+	var CasterName = NetworkManager.Network.world_state[caster_network_id].get("N")#For damage logging and death messages
+	var final_dmg = NetworkManager.Network.world_state[caster_network_id].get("D") + SpellDamage #Combine the base damage of the spell with the player's damage
 	dmg = final_dmg
 	if(get_tree().get_network_unique_id() != 1): self.set_physics_process(true)
 	
