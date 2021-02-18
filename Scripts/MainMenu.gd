@@ -43,7 +43,7 @@ func HideStartingPage():
 	charactersetup.queue_free()
 
 func _on_StartButton_pressed():
-	Network.rpc_id(1, "GetActiveKeys")
+	NetworkManager.Network.rpc_id(1, "GetActiveKeys")
 	$MainPage/StartButton.disabled = true
 	$MainPage/StartButton.text = "Loading.. (25%)"
 	rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_network_unique_id())
@@ -51,15 +51,15 @@ func _on_StartButton_pressed():
 	yield(timer, "timeout")
 	$MainPage/StartButton.text = "Loading.. (50%)"
 	if(hascharacter):
-		Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_network_unique_id())
+		NetworkManager.Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_network_unique_id())
 		var timertwo = get_tree().create_timer(1.0) #Wait for the server to actually return it's data
 		yield(timertwo, "timeout")
 		$MainPage/StartButton.text = "Loading.. (75%)"
 		var timerthree = get_tree().create_timer(1.0) #As a safety measure for slow connections.
 		yield(timerthree, "timeout")
 		versionlabel.text = "if you're stuck\n restart the game."
-		NetworkingFunctions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_network_unique_id())
-		Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+		NetworkManager.Functions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_network_unique_id())
+		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
 		HideStartingPage()
 	else:
 		mainpage.visible = false
@@ -131,8 +131,8 @@ func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
 func CreateThePlayer(charname):
-	Network.rpc_id(1, "GetActiveKeys")
-	NetworkingFunctions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
+	NetworkManager.Network.rpc_id(1, "GetActiveKeys")
+	NetworkManager.Functions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
 	Data.main_node.UI_Chat.SendText(0, str(charname + " logged in."), "")
-	Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+	NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
 	HideStartingPage()

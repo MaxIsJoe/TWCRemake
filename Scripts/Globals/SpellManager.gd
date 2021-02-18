@@ -12,12 +12,12 @@ func PutSpellOnCoolDown(spell, cooldown):
 remotesync func ShootSpell(Spell, caster_network_id):
 	if(get_tree().get_network_unique_id() != 1):
 		var b
-		Network.SendSpellState()
-		ShootPoint = Network.world_state[caster_network_id].get("SP")
+		NetworkManager.Network.SendSpellState()
+		ShootPoint = NetworkManager.Network.world_state[caster_network_id].get("SP")
 		match Spell:
 			"inflamri":
 				b = Data.Inflamri.instance()
-				b.name = str(Network.spells_ID)
+				b.name = str(NetworkManager.Network.spells_ID)
 				b.set_network_master(get_tree().get_rpc_sender_id())
 				b.transform = ShootPoint
 		if(b != null): 

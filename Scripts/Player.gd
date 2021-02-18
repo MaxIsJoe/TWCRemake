@@ -72,7 +72,7 @@ func _ready():
 			else:
 				$Light2D.shadow_enabled = false
 			rpc_id(1, "SendKeyToServer", playerkey)
-			Network.rpc("AddActiveKey", playerkey)
+			NetworkManager.Network.rpc("AddActiveKey", playerkey)
 	
 	Send_PlayerState()
 	
@@ -115,7 +115,7 @@ func _physics_process(delta):
 
 func Send_PlayerState():
 	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
-	Network.rpc_unreliable("SendData", PlayerState)
+	NetworkManager.Network.rpc_unreliable("SendData", PlayerState)
 	
 func UpdatePlayer(pos, anim, ld, d, SP):
 	global_position = lerp(global_position, pos, 0.5)

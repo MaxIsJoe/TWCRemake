@@ -4,12 +4,13 @@ const DEFAULT_PORT = 31416
 const DEFAULT_IP = '127.0.0.1'
 const MAX_PLAYERS    = 127
 
+onready var PlayerContainer = $Container
+
 var world_data = {}
 var world_state = {}
 remotesync var ActiveKeys = {}
 var spells_ID = -1
 
-var PlayerContainer
 
 var last_world_state = 0
 
@@ -21,10 +22,6 @@ func _ready():
 	get_tree().connect('network_peer_disconnected', self, '_on_player_disconnected')
 	get_tree().connect('network_peer_connected', self, '_on_player_connected')
 	#Create the container that will have the players
-	var player_container = Node.new()
-	player_container.name = "Container"
-	add_child(player_container)
-	PlayerContainer = get_node("Container")
 	
 func create_server():
 	var peer = NetworkedMultiplayerENet.new()
@@ -51,7 +48,7 @@ func _connected_to_server():
 
 func _on_player_disconnected(id):
 	print(str("[Networking]: " + str(id) + " disconnected."))
-	PlayerContainer.get_node(str(id)).set_physics_process(false)
+#	PlayerContainer.get_node(str(id)).set_physics_process(false)
 	if(get_tree().get_network_unique_id() != 1): 
 		if(PlayerContainer.get_child_count() > 0): 
 			Data.main_node.UI_Chat.SendText(0, PlayerContainer.get_node(str(id)).PlayerName + " logged off.", "") #If there is at least one other player on the server, tell them who logged off
@@ -59,7 +56,7 @@ func _on_player_disconnected(id):
 		RemovePlayerID(id)
 	world_state.erase(id)
 	world_data.erase(id)
-	NetworkingFunctions.rpc("RemovePlayerFromWorld", id) #Remove the player id from all clients and server
+	NetworkManager.Functions.rpc("RemovePlayerFromWorld", id) #Remove the player id from all clients and server
 	if(Global.DEBUG_Mode):
 		print("\n[Networking] - World State ->", world_state) #Server side debugging
 		print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
@@ -104,7 +101,7 @@ remote func CreateActivePlayers(id): #Creates all players on the server on the c
 		file.open(str("user://saves/" + player + ".json"), File.READ)
 		var dfile = file.get_as_text()
 		var data = parse_json(dfile)
-		NetworkingFunctions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"])) #Tell the client to create this player with their correct data
+		NetworkManager.Functions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"])) #Tell the client to create this player with their correct data
 		file.close()
 		
 remote func GetSavedPlayerData(key, id): #Sends the player's savefile to him, the savefile *should* only exist on the server.

@@ -16,7 +16,7 @@ var key #The player's token for saving and loading him
 
 func _ready():
 	if "--server" in OS.get_cmdline_args():
-		Network.create_server()
+		NetworkManager.Network.create_server()
 		FirstLoadUI.queue_free()
 	var dir = Directory.new()
 	if(dir.dir_exists("user://saves/") or dir.dir_exists("user://accounts/")):
@@ -28,7 +28,7 @@ func _ready():
 
 
 func _on_Connect_LAN_button_down():
-	Network.connect_to_server()
+	NetworkManager.Network.connect_to_server()
 
 func ShowLoginScreen():
 	FirstLoadUI.visible = false
@@ -50,6 +50,6 @@ func LoadGame():
 func _input(event):
 	if(Input.is_action_just_pressed("ui_home")):
 		if(self.has_node("MainUI/FirstLoad")): #Mainly used for debugging the server from the editor.
-			Network.create_server()
+			NetworkManager.Network.create_server()
 			print("Created LAN server.")
 			FirstLoadUI.queue_free()
