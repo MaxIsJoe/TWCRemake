@@ -1,9 +1,7 @@
 # TWCRemake
 The Wizards Chronicles remake inside the Godot engine.
 
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/MaxIsJoe/TWCRemake.svg)](http://isitmaintained.com/project/MaxIsJoe/TWCRemake "Percentage of issues still open")
-<img src="https://img.shields.io/github/license/mashape/apistatus.svg">
-<img src=https://img.shields.io/badge/Made%20In-Godot-blue>
+<img src="https://img.shields.io/github/issues/MaxIsJoe/TWCRemake"><img src="https://badges.pufler.dev/updated/MaxIsJoe/TWCRemake"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"><img src=https://img.shields.io/badge/Made%20In-Godot-blue>
 
 
 
