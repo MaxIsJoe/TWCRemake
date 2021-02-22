@@ -60,6 +60,7 @@ func _on_StartButton_pressed():
 		versionlabel.text = "if you're stuck\n restart the game."
 		NetworkManager.Functions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_network_unique_id())
 		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+		Data.main_node.UI_Chat.SendText(0, str(saveddata["N"] + " logged in."), "")
 		HideStartingPage()
 	else:
 		mainpage.visible = false
