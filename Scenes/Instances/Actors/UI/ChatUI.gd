@@ -53,9 +53,8 @@ func ShowUI(): #Moves the UI smoothly off and back on screen
 		is_visible = false
 	vis_tween.start()
 
-sync func receive_message(text):
+remotesync func receive_message(text):
 	TextDisplay.bbcode_text += text
-	#I have no idea why I have to use "sync" instead of remotesync but it so far works unlike remotesync, yes there is a fucking RPC cache issue that *can* crash the server/players if spammed too much but what the hell am i suppousd to do? someone else fix this.
 
 func _on_SayOption_item_selected(index):
 	selected_saymode = index
