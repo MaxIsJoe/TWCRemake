@@ -9,7 +9,7 @@ onready var PlayerContainer = $Container
 var world_data = {}
 var world_state = {}
 remotesync var ActiveKeys = {}
-var spells_ID = -1
+remotesync var spells_ID = -1
 
 
 var last_world_state = 0
@@ -48,7 +48,6 @@ func _connected_to_server():
 
 func _on_player_disconnected(id):
 	print(str("[Networking]: " + str(id) + " disconnected."))
-#	PlayerContainer.get_node(str(id)).set_physics_process(false)
 	if(get_tree().get_network_unique_id() != 1): 
 		if(PlayerContainer.get_child_count() > 0): 
 			Data.main_node.UI_Chat.SendText(0, PlayerContainer.get_node(str(id)).PlayerName + " logged off.", "") #If there is at least one other player on the server, tell them who logged off
@@ -112,11 +111,12 @@ remote func GetSavedPlayerData(key, id): #Sends the player's savefile to him, th
 	Data.main_node.MainMenu.rset_id(id, "saveddata", data)
 	file.close()
 
-remotesync func SetSpellState():
+remote func SetSpellState():
 	spells_ID += 1
+	rset_id(0, "spells_ID", spells_ID)
 	
 remote func SendSpellState():
-	rpc_unreliable_id(0, "SetSpellState")
+	rpc("SetSpellState")
 
 func RemovePlayerID(id): #Responisble for erasing the player key and making sure it's no longer in world_state
 	SavePlayer(id)
