@@ -26,7 +26,7 @@
 [ext_resource path="res://Scripts/MPProgress.gd" type="Script" id=24]
 [ext_resource path="res://Scripts/Inventory.gd" type="Script" id=25]
 [ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.tscn" type="PackedScene" id=26]
-[ext_resource path="res://Sprites/BlackTransparent.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/PNGs/lightv2.png" type="Texture" id=27]
 [ext_resource path="res://Sprites/UI/whitebar.png" type="Texture" id=29]
 [ext_resource path="res://Scenes/Instances/Actors/UI/DiaUI.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scenes/Instances/Actors/UI/ShopUI.tscn" type="PackedScene" id=31]
@@ -49,19 +49,9 @@ animations = [ {
 "name": "walkdown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "idleup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "walkup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "walkright",
+"name": "idleright",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
@@ -69,20 +59,33 @@ animations = [ {
 "name": "walkleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "idleright",
+"name": "walkright",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "walkup",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "idledown",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "idleup",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 4.0
+radius = 6.125
 height = 19.0
+
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 1
 
 [sub_resource type="DynamicFont" id=4]
 size = 13
@@ -127,10 +130,6 @@ border_blend = true
 [sub_resource type="Theme" id=7]
 WindowDialog/styles/panel = SubResource( 6 )
 
-[sub_resource type="OccluderPolygon2D" id=8]
-cull_mode = 1
-polygon = PoolVector2Array( -7.96928, -17.6246, -8.24667, 17.604, 8.95152, 17.3266, 7.84196, -17.9019 )
-
 [node name="Player" type="KinematicBody2D" groups=[
 "DNNInt",
 "Players",
@@ -163,6 +162,7 @@ shape = SubResource( 3 )
 
 [node name="PlayerName" type="Label" parent="."]
 light_mask = 524288
+material = SubResource( 8 )
 margin_left = -50.0
 margin_top = -39.0
 margin_right = 50.0
@@ -562,19 +562,14 @@ dialog_text = "text"
 visible = false
 
 [node name="Light2D" type="Light2D" parent="."]
-texture = ExtResource( 28 )
-texture_scale = 4.25
-mode = 3
+texture = ExtResource( 27 )
+texture_scale = 0.3
+energy = 0.2
 range_item_cull_mask = -2147483647
 shadow_buffer_size = 1028
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-light_mask = 4
-occluder = SubResource( 8 )
-light_mask = 4
 
 [node name="Audio" type="Node2D" parent="."]
 
