@@ -1,7 +1,7 @@
 extends Node
 
-const DEFAULT_PORT = 31416
-const DEFAULT_IP = '127.0.0.1'
+const DEFAULT_PORT   = 31416
+const DEFAULT_IP     = '127.0.0.1'
 const MAX_PLAYERS    = 127
 
 onready var PlayerContainer = $Container
@@ -51,6 +51,7 @@ func _on_player_disconnected(id):
 	if(get_tree().get_network_unique_id() != 1): 
 		if(PlayerContainer.get_child_count() > 0): 
 			Data.main_node.UI_Chat.SendText(0, PlayerContainer.get_node(str(id)).PlayerName + " logged off.", "") #If there is at least one other player on the server, tell them who logged off
+			Data.main_node.PauseScreen.BuildPlayerWhoList()
 	else:
 		RemovePlayerID(id)
 	world_state.erase(id)

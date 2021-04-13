@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Instances/Actors/UI/PauseScreen.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.756863 )
@@ -15,6 +17,7 @@ TabContainer/styles/tab_fg = SubResource( 2 )
 [node name="PauseScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -28,7 +31,6 @@ __meta__ = {
 }
 
 [node name="Main" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 22.0
@@ -88,79 +90,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Main/WhoArea"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Houses" type="VBoxContainer" parent="TabContainer/Main/WhoArea/HBoxContainer"]
-margin_right = 47.0
-margin_bottom = 642.0
-
-[node name="Label" type="Label" parent="TabContainer/Main/WhoArea/HBoxContainer/Houses"]
-margin_top = -1.0
-margin_right = 47.4
-margin_bottom = 19.4
+[node name="Label" type="Label" parent="TabContainer/Main/WhoArea"]
+margin_right = 6.4
+margin_bottom = 20.4
 text = "House"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="VSeparator" type="VSeparator" parent="TabContainer/Main/WhoArea/HBoxContainer"]
-margin_left = 50.0
-margin_right = 54.0
-margin_bottom = 642.0
-
-[node name="PlayerNames" type="VBoxContainer" parent="TabContainer/Main/WhoArea/HBoxContainer"]
-margin_left = 57.0
-margin_right = 151.0
-margin_bottom = 642.0
-
-[node name="PlayerNames" type="Label" parent="TabContainer/Main/WhoArea/HBoxContainer/PlayerNames"]
-margin_top = -1.0
-margin_right = 94.4
-margin_bottom = 19.4
+[node name="Label2" type="Label" parent="TabContainer/Main/WhoArea"]
+margin_left = 66.0712
+margin_right = 160.471
+margin_bottom = 20.4
 text = "Player Names"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="VSeparator2" type="VSeparator" parent="TabContainer/Main/WhoArea/HBoxContainer"]
-margin_left = 154.0
-margin_right = 158.0
-margin_bottom = 642.0
-
-[node name="Ranks" type="VBoxContainer" parent="TabContainer/Main/WhoArea/HBoxContainer"]
-margin_left = 161.0
-margin_right = 204.0
-margin_bottom = 642.0
-
-[node name="Ranks" type="Label" parent="TabContainer/Main/WhoArea/HBoxContainer/Ranks"]
-margin_top = -1.0
-margin_right = 43.4
-margin_bottom = 19.4
-text = "Ranks"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VSeparator3" type="VSeparator" parent="TabContainer/Main/WhoArea/HBoxContainer"]
-margin_left = 207.0
-margin_right = 211.0
-margin_bottom = 642.0
-
-[node name="Years" type="VBoxContainer" parent="TabContainer/Main/WhoArea/HBoxContainer"]
-margin_left = 214.0
-margin_right = 247.0
-margin_bottom = 642.0
-
-[node name="Year" type="Label" parent="TabContainer/Main/WhoArea/HBoxContainer/Years"]
-margin_top = -1.0
-margin_right = 33.4
-margin_bottom = 19.4
+[node name="Label3" type="Label" parent="TabContainer/Main/WhoArea"]
+margin_left = 164.234
+margin_right = 258.634
+margin_bottom = 20.4
 text = "Year"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Main/WhoArea"]
+margin_top = 22.0
+margin_right = 256.0
+margin_bottom = 640.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -226,6 +177,7 @@ __meta__ = {
 }
 
 [node name="Settings" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 22.0
@@ -868,12 +820,6 @@ margin_top = 446.0
 margin_right = 977.0
 margin_bottom = 466.4
 text = "Rune-Rune - Spelling/Grammer checker, Contributor"
-
-[node name="Wiki" type="Tabs" parent="TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 22.0
 
 [node name="Achievments" type="Tabs" parent="TabContainer"]
 visible = false
