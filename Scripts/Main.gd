@@ -1,18 +1,16 @@
 extends Node
 
-###NOTE : The Main node will be updated to carry more "universal" nodes that all clients need.
-###Similar to things like the Panorama UI that CSGO, DOTA 2 and TF2 have
-###This will be mainly used to avoid headaches with RPC cache issues and what not more than being a visual thing
-###A working example of this already is the Chat UI.
-
 #Always-Avaliable stuff
 onready var FirstLoadUI = $MainUI/FirstLoad
 onready var UI_Chat = $MainUI/Chat
 onready var Map = $World
 onready var MainMenu = $MainUI/MainMenu
 onready var LoginScreen = $MainUI/AccountUI
+onready var PauseScreen = $MainUI/PauseScreen
 
 var key #The player's token for saving and loading him
+
+var CanOpenPauseMenu : bool = false
 
 func _ready():
 	if "--server" in OS.get_cmdline_args():
@@ -53,3 +51,8 @@ func _input(event):
 			NetworkManager.Network.create_server()
 			print("Created LAN server.")
 			FirstLoadUI.queue_free()
+	if(Input.is_action_just_pressed("pause") and CanOpenPauseMenu):
+		if(PauseScreen.visible):
+			PauseScreen.visible = false
+		else:
+			PauseScreen.visible = true
