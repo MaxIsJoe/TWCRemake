@@ -31,7 +31,7 @@ func create_server():
 	print(str("[Networking]: Server created // Server IP -> " + DEFAULT_IP))
 	world_state["T"] = OS.get_system_time_msecs() #(Max): I don't remember why I needed to set a timestamp this early but the game throws an error randomly if I don't so I'm leaving this here.
 	set_physics_process(true)
-	Engine.set_iterations_per_second(20) #This is to make the server send calls 20 times per second instead of 60
+	Engine.set_iterations_per_second(30) #This is to make the server send calls at a rate that both the server and client and handle
 
 func connect_to_server():
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
