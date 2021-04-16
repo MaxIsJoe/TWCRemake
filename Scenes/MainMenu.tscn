@@ -161,6 +161,10 @@ margin_top = 608.0
 margin_right = 704.0
 margin_bottom = 640.0
 text = "Start"
+
+[node name="Timeout" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 [connection signal="pressed" from="MainPage/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainPage/ExitButiion" to="." method="_on_ExitButiion_pressed"]
 [connection signal="item_selected" from="CharacterPage/SelectGender" to="." method="_on_SelectGender_item_selected"]

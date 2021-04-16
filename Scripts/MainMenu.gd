@@ -20,9 +20,12 @@ onready var mainpage = $MainPage
 onready var dropdownGender = $CharacterPage/SelectGender
 onready var dropdownHouse = $CharacterPage/SelectHouse
 onready var warninglabel = $CharacterPage/Warning
+onready var timeout = $Timeout
 
-remote var hascharacter = false
-remote var saveddata 
+remote var hascharacter : bool = false
+remote var saveddata : Dictionary = {}
+
+var timeout_counter = -1
 
 func _ready():
 	versionlabel.text = version
@@ -45,19 +48,37 @@ func HideStartingPage():
 func _on_StartButton_pressed():
 	NetworkManager.Network.rpc_id(1, "GetActiveKeys")
 	$MainPage/StartButton.disabled = true
-	$MainPage/StartButton.text = "Loading.. (25%)"
+	$MainPage/StartButton.text = "Loading.."
+	hascharacter = false
+	
 	rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_network_unique_id())
-	var timer = get_tree().create_timer(1) #Wait for the server to actually return hascharacter
-	yield(timer, "timeout")
-	$MainPage/StartButton.text = "Loading.. (50%)"
+	
+	while hascharacter == false:
+		if(timeout_counter >= 10):
+			$MainPage/StartButton.text = "Connection unstable."
+			$MainPage/StartButton.disabled = false
+			timeout_counter = -1
+			break
+		else:
+			timeout.start()
+			yield(timeout, "timeout")
+			timeout_counter += 1
+			
 	if(hascharacter):
+		saveddata = {}
 		NetworkManager.Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_network_unique_id())
-		var timertwo = get_tree().create_timer(1.0) #Wait for the server to actually return it's data
-		yield(timertwo, "timeout")
-		$MainPage/StartButton.text = "Loading.. (75%)"
-		var timerthree = get_tree().create_timer(1.0) #As a safety measure for slow connections.
-		yield(timerthree, "timeout")
-		versionlabel.text = "if you're stuck\n restart the game."
+		
+		while saveddata.size() == 0:
+			if(timeout_counter >= 10):
+				$MainPage/StartButton.text = "Connection unstable."
+				$MainPage/StartButton.disabled = false
+				timeout_counter = -1
+				break
+			else:
+				timeout.start()
+				yield(timeout, "timeout")
+				timeout_counter += 1
+				
 		NetworkManager.Functions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_network_unique_id())
 		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
 		Data.main_node.UI_Chat.SendText(0, str(saveddata["N"] + " logged in."), "")
