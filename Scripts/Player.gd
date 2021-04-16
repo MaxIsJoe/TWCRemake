@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (String) var PlayerName
-export (String) var PlayerRank #Ranks are earned via completing quests, earing achivements or becoming a teacher/moderator/admin
+export (String) var PlayerTitle #Ranks are earned via completing quests, earing achivements or becoming a teacher/moderator/admin
 export (int) var PlayerYear = 1 #What year is the player in? This is tied to player and content progression and leveling up
 export (int) var health
 export (int) var maxHealth
@@ -19,8 +19,7 @@ export (bool) var CanDrawWand #Used for spell checks, dueling and more
 export (int, "Male", "Female") var Gender
 export (int, "Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin") var House
 
-onready var animstate = get_node("AnimatedSprite")
-#onready var InventoryUI = get_node("Inventory/InventoryUI")
+onready var SpriteHandler = $SpritesHandler
 onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
 onready var PlayerNameUI = $PlayerName
 onready var tabs = $Cam/CanvasLayer/UI/TabContainer
@@ -76,6 +75,36 @@ func _ready():
 	
 	Send_PlayerState()
 	
+func SetupPlayer(house: int, Name: String, gender: int):
+	PlayerName = Name
+	Gender = gender
+	House = house
+	
+	SetupBodySprites()
+	updatenamelabel()
+	
+func SetupBodySprites():
+	match Gender:
+		0:
+			match House:
+				0:
+					SpriteHandler.LoadAnimatedSprites(Data.Grif_Male, $SpritesHandler/Body)
+				1:
+					SpriteHandler.LoadAnimatedSprites(Data.Huff_Male, $SpritesHandler/Body)
+				2:
+					SpriteHandler.LoadAnimatedSprites(Data.Claw_Male, $SpritesHandler/Body)
+				3:
+					SpriteHandler.LoadAnimatedSprites(Data.Slyth_Male, $SpritesHandler/Body)
+		1:
+			match House:
+				0:
+					SpriteHandler.LoadAnimatedSprites(Data.Grif_Female, $SpritesHandler/Body)
+				1:
+					SpriteHandler.LoadAnimatedSprites(Data.Huff_Female, $SpritesHandler/Body)
+				2:
+					SpriteHandler.LoadAnimatedSprites(Data.Claw_Female, $SpritesHandler/Body)
+				3:
+					SpriteHandler.LoadAnimatedSprites(Data.Slyth_Female, $SpritesHandler/Body)
 	
 func _physics_process(delta):
 	if is_network_master():
@@ -84,28 +113,28 @@ func _physics_process(delta):
 		var velocity = Vector2()
 		if(Input.is_action_pressed("ui_up")):
 			velocity.y -= 1
-			animstate.play("walkup")
+			SpriteHandler.PlayDirectionalAnimAll(13)
 			UpdateShootingPostion("up")
 		if(Input.is_action_pressed("ui_down")):
 			velocity.y += 1
-			animstate.play("walkdown")
+			SpriteHandler.PlayDirectionalAnimAll(10)
 			UpdateShootingPostion("down")
 		if(Input.is_action_pressed("ui_right")):
 			velocity.x += 1
-			animstate.play("walkright")
+			SpriteHandler.PlayDirectionalAnimAll(12)
 			UpdateShootingPostion("right")
 		if(Input.is_action_pressed("ui_left")):
 			velocity.x -= 1
-			animstate.play("walkleft")
+			SpriteHandler.PlayDirectionalAnimAll(11)
 			UpdateShootingPostion("left")
 		if(Input.is_action_just_released("ui_up")):
-			animstate.play("idleup")
+			SpriteHandler.PlayDirectionalAnimAll(3)
 		if(Input.is_action_just_released("ui_down")):
-			animstate.play("idledown")
+			SpriteHandler.PlayDirectionalAnimAll(0)
 		if(Input.is_action_just_released("ui_right")):
-			animstate.play("idleright")
+			SpriteHandler.PlayDirectionalAnimAll(2)
 		if(Input.is_action_just_released("ui_left")):
-			animstate.play("idleleft")
+			SpriteHandler.PlayDirectionalAnimAll(1)
 		
 		velocity = velocity.normalized() * SPEED
 		
@@ -114,12 +143,12 @@ func _physics_process(delta):
 		Send_PlayerState()
 
 func Send_PlayerState():
-	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": animstate.animation, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
+	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": SpriteHandler.currentDir, "LD": LookingDirection, "D": damage, "SP": Shootpoint.global_transform}
 	NetworkManager.Network.rpc_unreliable("SendData", PlayerState)
 	
 func UpdatePlayer(pos, anim, ld, d, SP):
 	global_position = lerp(global_position, pos, 0.5)
-	animstate.animation = anim
+	SpriteHandler.currentDir = anim
 	LookingDirection = ld
 	damage = d
 	Shootpoint = SP

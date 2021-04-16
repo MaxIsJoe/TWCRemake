@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Scripts/Inventory.gd" type="Script" id=25]
 [ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Sprites/PNGs/lightv2.png" type="Texture" id=27]
+[ext_resource path="res://Scripts/SpritesHandler.gd" type="Script" id=28]
 [ext_resource path="res://Sprites/UI/whitebar.png" type="Texture" id=29]
 [ext_resource path="res://Scenes/Instances/Actors/UI/DiaUI.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scenes/Instances/Actors/UI/ShopUI.tscn" type="PackedScene" id=31]
@@ -37,16 +38,15 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 6.125
+height = 19.0
+
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "idleleft",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "walkdown",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
@@ -54,14 +54,14 @@ animations = [ {
 "name": "idleright",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idledown",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "walkleft",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "walkright",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
@@ -69,9 +69,14 @@ animations = [ {
 "name": "walkup",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "idledown",
+"name": "walkright",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walkdown",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ) ],
@@ -80,18 +85,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 6.125
-height = 19.0
-
-[sub_resource type="CanvasItemMaterial" id=8]
+[sub_resource type="CanvasItemMaterial" id=4]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 13
 font_data = ExtResource( 32 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_colors/font_color")
@@ -118,7 +119,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 0.945098 )
 border_width_left = 1
 border_width_top = 1
@@ -127,8 +128,8 @@ border_width_bottom = 1
 border_color = Color( 0.513726, 0.513726, 0.513726, 1 )
 border_blend = true
 
-[sub_resource type="Theme" id=7]
-WindowDialog/styles/panel = SubResource( 6 )
+[sub_resource type="Theme" id=8]
+WindowDialog/styles/panel = SubResource( 7 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "DNNInt",
@@ -151,23 +152,34 @@ level = 1
 [node name="CollisionArea" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="SpritesHandler" type="Node2D" parent="."]
+script = ExtResource( 28 )
+
+[node name="Body" type="AnimatedSprite" parent="SpritesHandler"]
+frames = SubResource( 3 )
 animation = "idledown"
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+[node name="Wigs" type="AnimatedSprite" parent="SpritesHandler"]
+
+[node name="WandEquip" type="AnimatedSprite" parent="SpritesHandler"]
+
+[node name="BroomRide" type="AnimatedSprite" parent="SpritesHandler"]
+
+[node name="BloodOverlay" type="AnimatedSprite" parent="SpritesHandler"]
 
 [node name="Ray" type="RayCast2D" parent="."]
 
 [node name="PlayerName" type="Label" parent="."]
 light_mask = 524288
-material = SubResource( 8 )
+material = SubResource( 4 )
 margin_left = -50.0
 margin_top = -39.0
 margin_right = 50.0
 margin_bottom = -15.6
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Player"
 align = 1
 valign = 1
@@ -278,7 +290,7 @@ __meta__ = {
 }
 
 [node name="LevelUpAnim" type="AnimationPlayer" parent="Cam/CanvasLayer/UI/Leveup"]
-anims/FadeInFadeOut = SubResource( 5 )
+anims/FadeInFadeOut = SubResource( 6 )
 
 [node name="TabContainer" type="TabContainer" parent="Cam/CanvasLayer/UI"]
 visible = false
@@ -553,7 +565,7 @@ margin_left = 492.0
 margin_top = 355.0
 margin_right = 818.0
 margin_bottom = 438.0
-theme = SubResource( 7 )
+theme = SubResource( 8 )
 popup_exclusive = true
 window_title = "Info"
 dialog_text = "text"

@@ -44,14 +44,7 @@ var Inflamri = load("res://Scenes/Instances/Actors/Spells/Projectiles/Inflamri.t
 var Episkey = load("res://Scenes/Instances/Actors/Spells/Target/Episkey.tscn")
 
 #Scenes
-var MaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifMale.tscn")
-var MaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/MaleHuff.tscn")
-var MaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/MaleClaw.tscn")
-var MaleSlytherin = preload("res://Scenes/Instances/Actors/Houses/SlythMale.tscn")
-var FemaleGryffindor = preload("res://Scenes/Instances/Actors/Houses/GrifFemale.tscn")
-var FemaleHufflepuff = preload("res://Scenes/Instances/Actors/Houses/FemaleHuff.tscn")
-var FemaleRavenclaw = preload("res://Scenes/Instances/Actors/Houses/FemaleClaw.tscn")
-var FemaleSlytherin  = preload("res://Scenes/Instances/Actors/Houses/SlythFemale.tscn")
+var PlayerBase = preload("res://Scenes/Instances/Actors/player/Player.tscn")
 
 ##Images##
 var UI_Icon_Shop = "res://Sprites/UI/BagOSnow_Converted.png"
@@ -61,6 +54,18 @@ var UI_Icon_Grab = "res://Sprites/UI/grab.png"
 ##Groups##
 var Group_DiaNode
 var Group_ShopHolders
+
+##Animated Textures##
+var Base_Female : String = "res://Resources/AnimatedTextures/PlayerBases/Female/FemaleStaff.tres"
+var Base_Male   : String = "res://Resources/AnimatedTextures/PlayerBases/Male/MaleStaff.tres"
+var Grif_Female : String = "res://Resources/AnimatedTextures/PlayerBases/Female/FemaleGrif.tres"
+var Grif_Male   : String = "res://Resources/AnimatedTextures/PlayerBases/Male/GrifMale.tres"
+var Slyth_Female: String = "res://Resources/AnimatedTextures/PlayerBases/Female/FemaleSlyth.tres"
+var Slyth_Male  : String = "res://Resources/AnimatedTextures/PlayerBases/Male/SlythMale.tres"
+var Huff_Female : String = "res://Resources/AnimatedTextures/PlayerBases/Female/FemaleHuff.tres"
+var Huff_Male   : String = "res://Resources/AnimatedTextures/PlayerBases/Male/MaleHuff.tres"
+var Claw_Female : String = "res://Resources/AnimatedTextures/PlayerBases/Female/FemaleClaw.tres"
+var Claw_Male   : String = "res://Resources/AnimatedTextures/PlayerBases/Male/MaleClaw.tres"
 
 #Temp#
 #Dialouge#
