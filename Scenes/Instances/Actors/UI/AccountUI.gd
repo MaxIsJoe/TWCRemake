@@ -9,7 +9,7 @@ onready var warninglabel = $VBoxContainer/WarningLabel
 onready var keyinput = $VBoxContainer/KeyInput
 onready var passwordinput = $VBoxContainer/PasswordInput
 
-remotesync var keyexists = false
+remotesync var keyexists : bool = false
 
 remote func DoesThisKeyExist(key, id): #Loops through all files in /saves/ to find a filename with the inserted key.
 	var file
@@ -64,6 +64,9 @@ func _on_Button_button_down():
 		warninglabel.text = "Invalid data entered."
 		return
 	rpc_id(1, "DoesThisKeyExist", keyinput.text, get_tree().get_network_unique_id())
+	var await = get_tree().create_timer(0.3)
+	warninglabel.text = "Loading.."
+	yield(await, "timeout")
 	if(keyexists):
 		rpc_id(1, "login", keyinput.text, passwordinput.text, get_tree().get_network_unique_id())
 	else:
@@ -75,6 +78,9 @@ func _on_Button2_button_down():
 		warninglabel.text = "Invalid data entered."
 		return
 	rpc_id(1, "DoesThisKeyExist", keyinput.text,  get_tree().get_network_unique_id())
+	var await = get_tree().create_timer(0.3)
+	warninglabel.text = "Loading.."
+	yield(await, "timeout")
 	if(keyexists):
 		warninglabel.text = "Key already exists."
 	else:
