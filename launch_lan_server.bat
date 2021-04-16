@@ -1,0 +1,1 @@
+start TWCRemakeTest.exe --server
