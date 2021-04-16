@@ -38,6 +38,8 @@ func LoadGame():
 	Global.EnableFOV = $MainUI/FirstLoad/VBoxContainer/Check_fov.pressed
 	Global.EnableFPSTracker = $MainUI/FirstLoad/VBoxContainer/Check_tracker.pressed
 	MainMenu.ShowStartingPage()
+	$OpeningEyeCandy.visible = false
+	$OpeningEyeCandy.emitting = false
 	Map.visible = true
 	LoginScreen.queue_free()
 	FirstLoadUI.queue_free()
