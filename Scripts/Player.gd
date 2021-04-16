@@ -148,7 +148,7 @@ func Send_PlayerState():
 	
 func UpdatePlayer(pos, anim, ld, d, SP):
 	global_position = lerp(global_position, pos, 0.5)
-	SpriteHandler.currentDir = anim
+	SpriteHandler.PlayDirectionalAnimAll(anim)
 	LookingDirection = ld
 	damage = d
 	Shootpoint = SP
