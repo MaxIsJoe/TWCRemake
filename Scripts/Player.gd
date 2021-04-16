@@ -147,7 +147,7 @@ func Send_PlayerState():
 	NetworkManager.Network.rpc_unreliable("SendData", PlayerState)
 	
 func UpdatePlayer(pos, anim, ld, d, SP):
-	global_position = lerp(global_position, pos, 0.5)
+	global_position = lerp(global_position, pos, 0.8)
 	SpriteHandler.PlayDirectionalAnimAll(anim)
 	LookingDirection = ld
 	damage = d
