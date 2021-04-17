@@ -40,7 +40,6 @@ func LoadGame():
 	MainMenu.ShowStartingPage()
 	$OpeningEyeCandy.visible = false
 	$OpeningEyeCandy.emitting = false
-	Map.visible = true
 	LoginScreen.queue_free()
 	FirstLoadUI.queue_free()
 	UI_Chat.visible = true

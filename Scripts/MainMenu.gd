@@ -39,6 +39,7 @@ func _ready():
 func ShowStartingPage():
 	$Background.visible = true
 	mainpage.visible = true
+	$AnimationPlayer.play("ShowUI")
 	
 func HideStartingPage():
 	$Background.visible = false
@@ -46,6 +47,7 @@ func HideStartingPage():
 	charactersetup.queue_free()
 
 func _on_StartButton_pressed():
+	Data.main_node.Map.visible = true
 	NetworkManager.Network.rpc_id(1, "GetActiveKeys")
 	$MainPage/StartButton.disabled = true
 	$MainPage/StartButton.text = "Loading.."
