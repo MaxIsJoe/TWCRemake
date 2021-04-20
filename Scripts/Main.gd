@@ -16,6 +16,8 @@ func _ready():
 	if "--server" in OS.get_cmdline_args():
 		NetworkManager.Network.create_server()
 		FirstLoadUI.queue_free()
+		$MainUI/OpeningScreen.queue_free()
+		$OpeningEyeCandy.queue_free()
 	var dir = Directory.new()
 	if(dir.dir_exists("user://saves/") or dir.dir_exists("user://accounts/")):
 		pass
@@ -23,6 +25,9 @@ func _ready():
 		dir.make_dir("user://saves/")
 		dir.make_dir("user://accounts/")
 	Data.main_node = self
+	
+	$Tweens/OpeningTween.interpolate_property($MainUI/OpeningScreen, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	$Tweens/OpeningTween.start()
 
 
 func _on_Connect_LAN_button_down():
@@ -40,15 +45,15 @@ func LoadGame():
 	MainMenu.ShowStartingPage()
 	$OpeningEyeCandy.visible = false
 	$OpeningEyeCandy.emitting = false
-	LoginScreen.queue_free()
-	FirstLoadUI.queue_free()
+	LoginScreen.visible = false
+	FirstLoadUI.visible = false
 	UI_Chat.visible = true
 	SpellManager.SetMaster()
 	#UI_Chat.set_network_master(get_tree().get_network_unique_id())
 
 func _input(event):
 	if(Input.is_action_just_pressed("ui_home")):
-		if(self.has_node("MainUI/FirstLoad")): #Mainly used for debugging the server from the editor.
+		if($MainUI/FirstLoad.visible == true): #Mainly used for debugging the server from the editor.
 			NetworkManager.Network.create_server()
 			print("Created LAN server.")
 			FirstLoadUI.queue_free()
@@ -57,3 +62,7 @@ func _input(event):
 			PauseScreen.visible = false
 		else:
 			PauseScreen.visible = true
+	if($MainUI/OpeningScreen != null):
+		if($MainUI/OpeningScreen.visible == true and Input.is_action_just_pressed("continue")):
+			$MainUI/OpeningScreen.queue_free()
+			FirstLoadUI.visible = true
