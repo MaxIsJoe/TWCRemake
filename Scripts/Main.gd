@@ -16,7 +16,6 @@ func _ready():
 	if "--server" in OS.get_cmdline_args():
 		NetworkManager.Network.create_server()
 		FirstLoadUI.queue_free()
-		$MainUI/OpeningScreen.queue_free()
 		$OpeningEyeCandy.queue_free()
 	var dir = Directory.new()
 	if(dir.dir_exists("user://saves/") or dir.dir_exists("user://accounts/")):
@@ -62,7 +61,7 @@ func _input(event):
 			PauseScreen.visible = false
 		else:
 			PauseScreen.visible = true
-	if($MainUI/OpeningScreen != null):
-		if($MainUI/OpeningScreen.visible == true and Input.is_action_just_pressed("continue")):
+	if(Input.is_action_just_pressed("continue")):
+		if(self.has_node("MainUI/OpeningScreen") and $MainUI/OpeningScreen.visible == true):
 			$MainUI/OpeningScreen.queue_free()
 			FirstLoadUI.visible = true
