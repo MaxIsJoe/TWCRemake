@@ -46,6 +46,7 @@ func _connected_to_server():
 	print("[Networking]: Connected to server as", local_player_id ,". Loading game..")
 	world_state["T"] = OS.get_system_time_msecs()
 	Data.main_node.ShowLoginScreen()
+	DayAndNightV2.SyncTime(local_player_id)
 
 func _on_player_disconnected(id):
 	print(str("[Networking]: " + str(id) + " disconnected."))

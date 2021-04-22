@@ -62,19 +62,28 @@ func ChangeTime(Time):
 		match Time:
 			TimeOfDay.Day:
 				rpc_id(0,"ChangeColor", "Day")
-				rset_id(0, "currentTime", "TimeOfDay.Day")
+				currentTime = TimeOfDay.Day
+				rset_id(0, "currentTime", currentTime)
 			TimeOfDay.Dusk:
 				rpc_id(0,"ChangeColor", "Dawn")
-				rset_id(0, "currentTime", "TimeOfDay.Dusk")
+				currentTime = TimeOfDay.Dusk
+				rset_id(0, "currentTime", currentTime)
 			TimeOfDay.Night:
 				rpc_id(0,"ChangeColor", "Night")
-				rset_id(0, "currentTime", "TimeOfDay.Night")
+				currentTime = TimeOfDay.Night
+				rset_id(0, "currentTime", currentTime)
 			TimeOfDay.Midnight:
 				rpc_id(0,"ChangeColor", "Midnight")
-				rset_id(0, "currentTime", "TimeOfDay.Midnight")
+				currentTime = TimeOfDay.Midnight
+				rset_id(0, "currentTime", currentTime)
 			TimeOfDay.Dawn:
 				rpc_id(0,"ChangeColor", "Dawn")
-				rset_id(0, "currentTime", "TimeOfDay.Dawn")
+				currentTime = TimeOfDay.Dawn
+				rset_id(0, "currentTime", currentTime)
+				
+func SyncTime(playerID: int):
+	rset_id(playerID, "currentTime", currentTime)
+	rpc_id(playerID, "ChangeColor", currentTime)
 
 func _on_timer_timeout():
 	match currentTime:
