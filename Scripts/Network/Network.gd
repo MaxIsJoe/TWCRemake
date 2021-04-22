@@ -32,6 +32,7 @@ func create_server():
 	world_state["T"] = OS.get_system_time_msecs() #(Max): I don't remember why I needed to set a timestamp this early but the game throws an error randomly if I don't so I'm leaving this here.
 	set_physics_process(true)
 	Engine.set_iterations_per_second(30) #This is to make the server send calls at a rate that both the server and client and handle
+	DayAndNightV2.StartCycle()
 
 func connect_to_server():
 	get_tree().connect('connected_to_server', self, '_connected_to_server')

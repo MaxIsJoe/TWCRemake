@@ -22,13 +22,13 @@ enum TimeOfDay  {
 var TimeLong  : float = 120
 var TimeShort : float = 60
 
-var currentTime = TimeOfDay.Day
+sync var currentTime = TimeOfDay.Day
 
 var timer
 
 var allowOldSystem : bool = false
 
-func _ready():
+func StartCycle():
 	timer = Timer.new()
 	timer.connect("timeout",self,"_on_timer_timeout") 
 	add_child(timer)
@@ -37,17 +37,9 @@ func _ready():
 	timer.start()
 	print_debug("[WORLD] : Day And Night is ready!")
 	print_debug("[WORLD] : Timer wait_time = " + str(timer.wait_time))
-	
-func OLD_UpdateAllNodes(Time):
-	if(allowOldSystem):
-		var DNN_Nodes = get_tree().get_nodes_in_group("DNN")
-		for node in DNN_Nodes:
-			node.ChangeColor(Time)
-		print_debug("[DayAndNight/warning] - Deprycated system that will be removed in the future has been called, please remove any traces of the old system.")
-	else:
-		print_debug("[DayAndNight/warning] - Deprycated system called while functionality is disabled.")
 
-func ChangeColor(color):
+
+remote func ChangeColor(color):
 	match color:
 		"Day":
 			$Tween.interpolate_property(self, "color", self.color, DayColor, ShortDuration,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
@@ -66,27 +58,23 @@ func ChangeColor(color):
 			$Tween.start()
 
 func ChangeTime(Time):
-	match Time:
-		TimeOfDay.Day:
-			OLD_UpdateAllNodes("Day")
-			ChangeColor("Day")
-			currentTime = TimeOfDay.Day
-		TimeOfDay.Dusk:
-			OLD_UpdateAllNodes("Dawn")
-			ChangeColor("Dawn")
-			currentTime = TimeOfDay.Dusk
-		TimeOfDay.Night:
-			OLD_UpdateAllNodes("Night")
-			ChangeColor("Night")
-			currentTime = TimeOfDay.Night
-		TimeOfDay.Midnight:
-			OLD_UpdateAllNodes("Midnight")
-			ChangeColor("Midnight")
-			currentTime = TimeOfDay.Midnight
-		TimeOfDay.Dawn:
-			OLD_UpdateAllNodes("Dawn")
-			ChangeColor("Dawn")
-			currentTime = TimeOfDay.Dawn
+	if(get_network_master() == 1):
+		match Time:
+			TimeOfDay.Day:
+				rpc_id(0,"ChangeColor", "Day")
+				rset_id(0, "currentTime", "TimeOfDay.Day")
+			TimeOfDay.Dusk:
+				rpc_id(0,"ChangeColor", "Dawn")
+				rset_id(0, "currentTime", "TimeOfDay.Dusk")
+			TimeOfDay.Night:
+				rpc_id(0,"ChangeColor", "Night")
+				rset_id(0, "currentTime", "TimeOfDay.Night")
+			TimeOfDay.Midnight:
+				rpc_id(0,"ChangeColor", "Midnight")
+				rset_id(0, "currentTime", "TimeOfDay.Midnight")
+			TimeOfDay.Dawn:
+				rpc_id(0,"ChangeColor", "Dawn")
+				rset_id(0, "currentTime", "TimeOfDay.Dawn")
 
 func _on_timer_timeout():
 	match currentTime:
