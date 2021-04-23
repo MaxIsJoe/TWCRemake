@@ -137,16 +137,6 @@ WindowDialog/styles/panel = SubResource( 7 )
 "Players",
 ]]
 script = ExtResource( 1 )
-health = 100
-maxHealth = 100
-mana = 100
-maxMana = 100
-damage = 25
-defense = 3
-gold = 250
-EXP = 1
-MaxEXP = 100
-level = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 

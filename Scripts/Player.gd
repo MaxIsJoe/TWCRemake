@@ -1,21 +1,19 @@
 extends KinematicBody2D
 
-export (String) var PlayerName
-export (String) var PlayerTitle #Ranks are earned via completing quests, earing achivements or becoming a teacher/moderator/admin
-export (int) var PlayerYear = 1 #What year is the player in? This is tied to player and content progression and leveling up
-export (int) var health
-export (int) var maxHealth
-export (int) var mana
-export (int) var maxMana
-export (int) var damage #The player's base damage
-export (int) var defense #The player's base defense
-export (int) var gold #How much money does the player have?
-export (int) var EXP #How much XP points does he have currently?
-export (int) var MaxEXP #How much XP is required before he can level up?
-export (int) var level #Player level
-#export (float) var speed
-export (bool) var CanDrawWand #Used for spell checks, dueling and more
-#A bunch of variables that define's the player, this should be updated later to something more.. cleaner.. but this will do for now.
+var PlayerName : String
+var PlayerTitle: String      #Ranks are earned via completing quests, earing achivements or becoming a teacher/moderator/admin
+var PlayerYear : int   = 1   #What year is the player in? This is tied to player and content progression and leveling up
+var health     : int   = 100
+var maxHealth  : int   = 100
+var mana       : int   = 100
+var maxMana    : int   = 100
+var damage     : int   = 25  #The player's base damage
+var defense    : int   = 0   #The player's base defense
+var gold       : int   = 100 #How much money does the player have?
+var EXP        : int   = 0   #How much XP points does he have currently?
+var MaxEXP     : int   = 200 #How much XP is required before he can level up?
+var level      : int   = 1#Player level
+var CanDrawWand: bool  = true #Used for spell checks, dueling and more
 export (int, "Male", "Female") var Gender
 export (int, "Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin") var House
 
