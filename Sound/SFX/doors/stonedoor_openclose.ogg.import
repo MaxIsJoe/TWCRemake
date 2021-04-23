@@ -11,5 +11,5 @@ dest_files=[ "res://.import/stonedoor_openclose.ogg-a4078520fac04c2269017fde05ca
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
