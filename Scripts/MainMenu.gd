@@ -52,8 +52,10 @@ func _on_StartButton_pressed():
 	$MainPage/StartButton.disabled = true
 	$MainPage/StartButton.text = "Loading.."
 	hascharacter = false
-	
-	rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_network_unique_id())
+	if not(get_tree().is_network_server()):
+		rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_network_unique_id())
+	else:
+		DoesHeAlreadyHaveACharacter(Data.main_node.key, get_tree().get_network_unique_id())
 	
 	while hascharacter == false:
 		if(timeout_counter >= 10):
@@ -68,7 +70,11 @@ func _on_StartButton_pressed():
 			
 	if(hascharacter):
 		saveddata = {}
-		NetworkManager.Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_network_unique_id())
+		
+		if not(get_tree().is_network_server()): 
+			NetworkManager.Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_network_unique_id())
+		else:
+			NetworkManager.Network.GetSavedPlayerData(Data.main_node.key, get_tree().get_network_unique_id())
 		
 		while saveddata.size() == 0:
 			if(timeout_counter >= 10):
@@ -82,7 +88,10 @@ func _on_StartButton_pressed():
 				timeout_counter += 1
 				
 		NetworkManager.Functions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_network_unique_id())
-		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+		if not(get_tree().is_network_server()): 
+			NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+		else:
+			NetworkManager.Network.CreateActivePlayers(get_tree().get_network_unique_id())
 		Data.main_node.UI_Chat.SendText(0, str(saveddata["N"] + " logged in."), "")
 		Data.main_node.CanOpenPauseMenu = true
 		Data.main_node.PauseScreen.BuildPlayerWhoList()
@@ -98,10 +107,13 @@ remote func DoesHeAlreadyHaveACharacter(key, id):
 		dir.list_dir_begin(true, true)
 		while file != "": #(Max): I have no idea what's going on here but it works so I'm not messing with it.
 			if(file != null):
-				if(file.begins_with(str(key))): 
-					rset_id(id, "hascharacter", true) #Tell the client that his account does exist
-					print("Setting hascharacter to true")
-					break #(Max): Does this even stop the loop?
+				if(file.begins_with(str(key))):
+					if not(get_tree().is_network_server()): 
+						rset_id(id, "hascharacter", true) #Tell the client that his account does exist
+					else:
+						print("Setting hascharacter to true")
+						hascharacter = true
+					break
 			file = dir.get_next()
 	else:
 		print("Failed to open user://saves/")
@@ -157,8 +169,14 @@ func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
 func CreateThePlayer(charname):
-	NetworkManager.Network.rpc_id(1, "GetActiveKeys")
+	if not(get_tree().is_network_server()):
+		NetworkManager.Network.rpc_id(1, "GetActiveKeys")
+	else:
+		NetworkManager.Network.GetActiveKeys()
 	NetworkManager.Functions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
 	Data.main_node.UI_Chat.SendText(0, str(charname + " logged in."), "")
-	NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+	if not(get_tree().is_network_server()):
+		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+	else:
+		NetworkManager.Network.CreateActivePlayers(get_tree().get_network_unique_id())
 	HideStartingPage()

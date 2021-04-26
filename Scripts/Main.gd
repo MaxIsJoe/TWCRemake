@@ -55,7 +55,8 @@ func _input(event):
 		if($MainUI/FirstLoad.visible == true): #Mainly used for debugging the server from the editor.
 			NetworkManager.Network.create_server()
 			print("Created LAN server.")
-			FirstLoadUI.queue_free()
+			ShowLoginScreen()
+			
 	if(Input.is_action_just_pressed("pause") and CanOpenPauseMenu):
 		if(PauseScreen.visible):
 			PauseScreen.visible = false

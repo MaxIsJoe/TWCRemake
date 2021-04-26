@@ -50,12 +50,10 @@ func _connected_to_server():
 
 func _on_player_disconnected(id):
 	print(str("[Networking]: " + str(id) + " disconnected."))
-	if(get_tree().get_network_unique_id() != 1): 
-		if(PlayerContainer.get_child_count() > 0): 
-			Data.main_node.UI_Chat.SendText(0, PlayerContainer.get_node(str(id)).PlayerName + " logged off.", "") #If there is at least one other player on the server, tell them who logged off
-			Data.main_node.PauseScreen.BuildPlayerWhoList()
-	else:
-		RemovePlayerID(id)
+	if(PlayerContainer.get_child_count() > 0): 
+		Data.main_node.UI_Chat.SendText(0, PlayerContainer.get_node(str(id)).PlayerName + " logged off.", "") #If there is at least one other player on the server, tell them who logged off
+		Data.main_node.PauseScreen.BuildPlayerWhoList()
+	RemovePlayerID(id)
 	world_state.erase(id)
 	world_data.erase(id)
 	NetworkManager.Functions.rpc("RemovePlayerFromWorld", id) #Remove the player id from all clients and server
@@ -70,6 +68,8 @@ func _on_player_connected(connected_player_id):
 		print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
 	if not(get_tree().is_network_server()):
 		rpc_id(1, 'GetWorldState', world_state)
+	else:
+		GetWorldState(world_state)
 
 remotesync func SendData(state):
 	var playerID = get_tree().get_rpc_sender_id()
@@ -90,7 +90,7 @@ remotesync func GetWorldState(state):
 		if state["T"] > last_world_state:
 			last_world_state = state["T"]
 			state.erase("T")
-			state.erase(1) #This prevents the server from creating an empty player
+			#state.erase(1) #This prevents the server from creating an empty player
 			state.erase(get_tree().get_network_unique_id()) #This removes the client from the list so we can focus on the other players
 			for player in state.keys():
 				if(PlayerContainer.has_node(str(player))): #Checks if the player exists on the client side
@@ -103,7 +103,10 @@ remote func CreateActivePlayers(id): #Creates all players on the server on the c
 		file.open(str("user://saves/" + player + ".json"), File.READ)
 		var dfile = file.get_as_text()
 		var data = parse_json(dfile)
-		NetworkManager.Functions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"])) #Tell the client to create this player with their correct data
+		if not(get_tree().is_network_server()): 
+			NetworkManager.Functions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"])) #Tell the client to create this player with their correct data
+		else:
+			NetworkManager.Functions.CreateThePlayer(data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"]))
 		file.close()
 		
 remote func GetSavedPlayerData(key, id): #Sends the player's savefile to him, the savefile *should* only exist on the server.
@@ -111,7 +114,10 @@ remote func GetSavedPlayerData(key, id): #Sends the player's savefile to him, th
 	file.open(str("user://saves/" + key + ".json"), File.READ)
 	var dfile = file.get_as_text()
 	var data = parse_json(dfile)
-	Data.main_node.MainMenu.rset_id(id, "saveddata", data)
+	if(id != 1): 
+		Data.main_node.MainMenu.rset_id(id, "saveddata", data)
+	else:
+		Data.main_node.MainMenu.saveddata = data
 	file.close()
 
 remote func SetSpellState():
@@ -125,7 +131,6 @@ func RemovePlayerID(id): #Responisble for erasing the player key and making sure
 	SavePlayer(id)
 	RemoveActiveKey(PlayerContainer.get_node(str(id)).playerkey)
 	if(world_state.has(id)): world_state.erase(id)
-	if(Global.DEBUG_Mode): print("Removed player ID")
 	
 remotesync func GetActiveKeys(): #Tell all clients what clients are online and playing right now.
 	rset_id(0, "ActiveKeys", ActiveKeys)
@@ -150,4 +155,4 @@ func _physics_process(delta):
 func SavePlayer(id):
 	var playerdata = PlayerContainer.get_node(str(id)).GetSavePlayerInfo()
 	JsonLoader.SaveJSON(playerdata, str("user://saves/" + str(playerdata.get("key")) + ".json"))
-	if(Global.DEBUG_Mode): print(str("Hey shitass, I'm saving " + playerdata["N"] + " under key -> " + str(playerdata.get("key"))))
+	print_debug(str("Hey shitass, I'm saving " + playerdata["N"] + " under key -> " + str(playerdata.get("key"))))

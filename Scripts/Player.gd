@@ -68,7 +68,10 @@ func _ready():
 				$Light2D.shadow_enabled = true
 			else:
 				$Light2D.shadow_enabled = false
-			rpc_id(1, "SendKeyToServer", playerkey)
+			if not(get_tree().is_network_server()):
+				rpc_id(1, "SendKeyToServer", playerkey)
+			else:
+				SendKeyToServer(playerkey)
 			NetworkManager.Network.rpc("AddActiveKey", playerkey)
 	
 	Send_PlayerState()

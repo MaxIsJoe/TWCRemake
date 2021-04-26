@@ -33,14 +33,23 @@ remote func login(savefile, password, id): #Gets the password from a savefile
 	var pw = passwordhasing(password)
 	file.close()
 	if(data.get("password") == pw):
-		rpc_id(id, "startgame", savefile)
+		if not(get_tree().is_network_server()):
+			rpc_id(id, "startgame", savefile)
+		else:
+			startgame(savefile)
 	else:
-		rpc_id(id, "UpdateLabelRemotly", "Incorrect key or password.")
+		if not(get_tree().is_network_server()):
+			rpc_id(id, "UpdateLabelRemotly", "Incorrect key or password.")
+		else:
+			UpdateLabelRemotly("Incorrect key or password.")
 
 remote func createaccount(key, password, id):
 	var pw = {"password": passwordhasing(password)}
 	JsonLoader.SaveJSON(pw, str("user://accounts/" + key + ".json"))
-	rpc_id(id, "startgame", key)
+	if not(get_tree().is_network_server()):
+		rpc_id(id, "startgame", key)
+	else:
+		startgame(key)
 
 remote func startgame(key):
 	Data.main_node.LoadGame()
@@ -63,12 +72,18 @@ func _on_Button_button_down():
 	if(keyinput.text == "" or str(passwordinput.text).length() < MiniumPasswordLength):
 		warninglabel.text = "Invalid data entered."
 		return
-	rpc_id(1, "DoesThisKeyExist", keyinput.text, get_tree().get_network_unique_id())
+	if not(get_tree().is_network_server()):
+		rpc_id(1, "DoesThisKeyExist", keyinput.text, get_tree().get_network_unique_id())
+	else:
+		DoesThisKeyExist(keyinput.text, get_tree().get_network_unique_id())
 	var await = get_tree().create_timer(0.3)
 	warninglabel.text = "Loading.."
 	yield(await, "timeout")
 	if(keyexists):
-		rpc_id(1, "login", keyinput.text, passwordinput.text, get_tree().get_network_unique_id())
+		if not(get_tree().is_network_server()):
+			rpc_id(1, "login", keyinput.text, passwordinput.text, get_tree().get_network_unique_id())
+		else:
+			login(keyinput.text, passwordinput.text, get_tree().get_network_unique_id())
 	else:
 		warninglabel.text = "Incorrect key or password."
 
@@ -77,14 +92,20 @@ func _on_Button2_button_down():
 	if(keyinput.text == "" or str(passwordinput.text).length() < MiniumPasswordLength):
 		warninglabel.text = "Invalid data entered."
 		return
-	rpc_id(1, "DoesThisKeyExist", keyinput.text,  get_tree().get_network_unique_id())
+	if not(get_tree().is_network_server()):
+		rpc_id(1, "DoesThisKeyExist", keyinput.text,  get_tree().get_network_unique_id())
+	else:
+		DoesThisKeyExist(keyinput.text, get_tree().get_network_unique_id())
 	var await = get_tree().create_timer(0.3)
 	warninglabel.text = "Loading.."
 	yield(await, "timeout")
 	if(keyexists):
 		warninglabel.text = "Key already exists."
 	else:
-		rpc_id(1, "createaccount", keyinput.text, passwordinput.text, get_tree().get_network_unique_id())
+		if not(get_tree().is_network_server()):
+			rpc_id(1, "createaccount", keyinput.text, passwordinput.text, get_tree().get_network_unique_id())
+		else:
+			createaccount(keyinput.text, passwordinput.text, get_tree().get_network_unique_id())
 		
 
 func _on_Button3_button_down():
