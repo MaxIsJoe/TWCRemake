@@ -7,6 +7,7 @@
 [ext_resource path="res://Resources/AnimatedTextures/PlayerBases/Female/FemaleStaff.tres" type="SpriteFrames" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
+radius = 7.85158
 
 [node name="CharacterEntity" type="KinematicBody2D"]
 script = ExtResource( 2 )

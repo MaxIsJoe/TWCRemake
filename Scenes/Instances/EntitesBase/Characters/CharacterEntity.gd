@@ -49,6 +49,16 @@ func _physics_process(delta):
 
 func free_movement():
 	var velocity = moveDir
+	if(moveDir.y == -1):
+		SpriteHandler.PlayDirectionalAnimAll(13)
+	if(moveDir.y == 1):
+		SpriteHandler.PlayDirectionalAnimAll(10)
+	if(moveDir.x == -1):
+		SpriteHandler.PlayDirectionalAnimAll(11)
+	if(moveDir.x == 1):
+		SpriteHandler.PlayDirectionalAnimAll(12)
+	if(moveDir == Vector2.ZERO):
+		SpriteHandler.PlayIdleOnAllBasedOnDirection()
 	velocity = velocity.normalized() * stats.movement_speed
 	move_and_slide(velocity)
 
