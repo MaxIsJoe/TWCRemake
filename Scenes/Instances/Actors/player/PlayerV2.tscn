@@ -79,6 +79,9 @@ tileSize = 64
 [node name="Stats" parent="Systems" index="0"]
 script = ExtResource( 20 )
 
+[node name="Collision" parent="." index="2"]
+position = Vector2( 0, 2.24492 )
+
 [node name="PlayerName" type="Label" parent="." index="4"]
 light_mask = 524288
 material = SubResource( 1 )
