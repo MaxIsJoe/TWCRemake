@@ -1,6 +1,6 @@
 extends Node
 
-const DEFAULT_PORT   = 31416
+const DEFAULT_PORT   = 7777
 const DEFAULT_IP     = '127.0.0.1'
 const MAX_PLAYERS    = 127
 
@@ -34,16 +34,19 @@ func create_server():
 	Engine.set_iterations_per_second(30) #This is to make the server send calls at a rate that both the server and client and handle
 	DayAndNightV2.StartCycle()
 
-func connect_to_server():
+func connect_to_server(ip : String):
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
+	if(ip == ""):
+		peer.create_client(DEFAULT_IP, DEFAULT_PORT)
+	else:
+		peer.create_client(ip, DEFAULT_PORT)
 	get_tree().set_network_peer(peer)
 	world_state["T"] = OS.get_system_time_msecs()
 
 func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
-	print("[Networking]: Connected to server as", local_player_id ,". Loading game..")
+	print_debug("[Networking]: Connected to server as", local_player_id ,". Loading game..")
 	world_state["T"] = OS.get_system_time_msecs()
 	Data.main_node.ShowLoginScreen()
 	DayAndNightV2.SyncTime(local_player_id)

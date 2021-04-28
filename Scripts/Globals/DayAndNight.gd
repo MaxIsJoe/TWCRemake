@@ -82,8 +82,9 @@ func ChangeTime(Time):
 				rset_id(0, "currentTime", currentTime)
 				
 func SyncTime(playerID: int):
-	rset_id(playerID, "currentTime", currentTime)
-	rpc_id(playerID, "ChangeColor", currentTime)
+	if(playerID != 1):
+		rset_id(playerID, "currentTime", currentTime)
+		rpc_id(playerID, "ChangeColor", currentTime)
 
 func _on_timer_timeout():
 	match currentTime:

@@ -60,7 +60,7 @@ func _ready():
 	emit_signal("mpupdate", mana)
 	
 	if(is_network_master()):
-		if(get_tree().get_network_unique_id() != 1 or get_tree().get_network_unique_id() != 0):
+		if(get_tree().get_network_unique_id() != 1):
 			$Cam.current = true
 			$Cam/CanvasLayer/UI.visible = true
 			Data.Player = self
@@ -68,7 +68,7 @@ func _ready():
 				$Light2D.shadow_enabled = true
 			else:
 				$Light2D.shadow_enabled = false
-			if not(get_tree().is_network_server()):
+			if(get_tree().get_network_unique_id() != 1):
 				rpc_id(1, "SendKeyToServer", playerkey)
 			else:
 				SendKeyToServer(playerkey)
