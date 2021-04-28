@@ -40,14 +40,17 @@ func _ready():
 
 
 func _physics_process(delta):
-	match(current_movement_type):
-		movement_type.FREE:
-			free_movement()
-		movement_type.GRID:
-			grid_movement(delta)
+	if(canMove):
+		match(current_movement_type):
+			movement_type.FREE:
+				free_movement()
+			movement_type.GRID:
+				grid_movement(delta)
 
 func free_movement():
-	pass
+	var velocity = moveDir
+	velocity = velocity.normalized() * stats.movement_speed
+	move_and_slide(velocity)
 
 func grid_movement(delta):
 	if($GridMovement_CollisionDetection.is_colliding()):

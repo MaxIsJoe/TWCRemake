@@ -44,7 +44,7 @@ var Inflamri = load("res://Scenes/Instances/Actors/Spells/Projectiles/Inflamri.t
 var Episkey = load("res://Scenes/Instances/Actors/Spells/Target/Episkey.tscn")
 
 #Scenes
-var PlayerBase = preload("res://Scenes/Instances/Actors/player/Player.tscn")
+var PlayerBase = preload("res://Scenes/Instances/Actors/player/PlayerV2.tscn")
 
 ##Images##
 var UI_Icon_Shop = "res://Sprites/UI/BagOSnow_Converted.png"
