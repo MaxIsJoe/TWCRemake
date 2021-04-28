@@ -7,7 +7,6 @@ enum movement_type {
 
 onready var stats = $Systems/Stats
 onready var health = $Systems/Health
-onready var movement = $Systems/Movement
 onready var SpriteHandler = $SpriteHandler
 onready var BodySprites = $SpriteHandler/Body
 
