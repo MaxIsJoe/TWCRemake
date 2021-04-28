@@ -30,6 +30,11 @@ onready var TargertPoint = $Spell_Pointers/TargetPoint
 func _ready():
 	playerkey = Data.main_node.key
 	
+	if(get_tree().get_network_unique_id() == 1):
+		#This fixes the issue where players jitter during single player
+		#LAN games should be much smoother as well because the server is sending data every 60 physics frames
+		Engine.set_iterations_per_second(60)
+	
 	if(is_network_master()):
 		$Cam.current = true
 		$Cam/CanvasLayer/UI.visible = true
@@ -100,6 +105,26 @@ func _physics_process(delta):
 		getDir()
 	Send_PlayerState()
 
+func _input(event):
+	if(Input.is_action_just_pressed("OpenTabs")):
+		if(tabs == null): tabs = get_node("Cam/CanvasLayer/UI/TabContainer") #Use get_node() because holy fuck does Godot never make sense sometimes
+		#Always check if tabs exist because for some reason tabs become null for new connections without any reason
+		if tabs.visible == true:
+			tabs.visible = false
+		else:
+			tabs.visible = true
+	#DEBUG
+	if(Global.DEBUG_Mode):
+		if(Input.is_action_just_pressed("ui_page_down")):
+			health.TakeDamage(5)
+		if(Input.is_action_just_pressed("ui_page_up")):
+			stats.gainXP(50)
+		if(Input.is_action_just_pressed("DEBUG_DisableShadows")):
+			if($Light2D.shadow_enabled):
+				$Light2D.shadow_enabled = false
+			else:
+				$Light2D.shadow_enabled = true
+
 func SetupBodySprites():
 	match Gender:
 		0:
@@ -127,3 +152,46 @@ func SetupBodySprites():
 func getDir():
 	moveDir.x = -int(Input.is_action_pressed("move_left")) + int(Input.is_action_pressed("move_right"))
 	moveDir.y = -int(Input.is_action_pressed("move_up")) + int(Input.is_action_pressed("move_down"))
+	
+	
+func AddSpellForHotkey(hotkey, action, ActionArguments, ActionCooldown,icon):
+	var Hotkeys = get_tree().get_nodes_in_group("UI_HotkeyButton")
+	for key in Hotkeys:
+		if(key.ButtonHotkey == hotkey):
+			key.AddAction(action, ActionArguments, ActionCooldown, icon)
+
+func ShowShopUI(Items, ShopID):
+	$Cam/CanvasLayer/UI/ShopUI.OpenShop(Items, ShopID)
+
+func ShowScroll(ID):
+	var file = File.new()
+	if file.file_exists("res://debug/Scrolls/" + str(ID) + ".txt"):
+		var error = file.open("res://debug/Scrolls/" + str(ID) + ".txt", file.READ_WRITE)
+		if error == OK:
+			print("Showing file [" + str(ID) + "]")
+			var content = file.get_as_text()
+			ScrollUI.LoadText(content, ID)
+			ScrollUI.visible = true
+		else:
+			print("Error opening the file")
+		file.close()
+	else:
+		print("No scroll files found.. creating a new one")
+		file.open("res://debug/Scrolls/" + str(ID) + ".txt", File.WRITE)
+		file.store_string("")
+		file.close()
+
+func ShowSign(Title, Content):
+	PopUpUI.window_title = Title
+	PopUpUI.dialog_text = Content
+	PopUpUI.popup_centered()
+
+remote func ShootSpell(Spell, Argument):
+	if(Argument == "player"):
+		Argument = Data.Player
+	SpellManager.rpc_id(0, "ShootSpell" ,Spell, get_tree().get_network_unique_id())
+	SpellManager.rpc_id(0, "TargetSpell", Spell, Argument)
+
+func ShowHotkeyAsign(ID):
+	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true
+	$Cam/CanvasLayer/UI/SetHotkeyUI.ID = ID
