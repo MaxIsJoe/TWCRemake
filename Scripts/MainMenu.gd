@@ -27,6 +27,8 @@ remote var saveddata : Dictionary = {}
 
 var timeout_counter = -1
 
+var playeruniqueID : int
+
 func _ready():
 	versionlabel.text = version
 	add_items() #Adds items to the drop down menu to be used
@@ -47,12 +49,13 @@ func HideStartingPage():
 	charactersetup.queue_free()
 
 func _on_StartButton_pressed():
+	playeruniqueID = get_tree().get_network_unique_id()
 	Data.main_node.Map.visible = true
 	NetworkManager.Network.rpc_id(1, "GetActiveKeys")
 	$MainPage/StartButton.disabled = true
 	$MainPage/StartButton.text = "Loading.."
 	hascharacter = false
-	if not(get_tree().is_network_server()):
+	if(playeruniqueID != 1):
 		rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_network_unique_id())
 	else:
 		DoesHeAlreadyHaveACharacter(Data.main_node.key, get_tree().get_network_unique_id())
@@ -71,7 +74,7 @@ func _on_StartButton_pressed():
 	if(hascharacter):
 		saveddata = {}
 		
-		if not(get_tree().is_network_server()): 
+		if(playeruniqueID != 1):
 			NetworkManager.Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_network_unique_id())
 		else:
 			NetworkManager.Network.GetSavedPlayerData(Data.main_node.key, get_tree().get_network_unique_id())
@@ -88,7 +91,7 @@ func _on_StartButton_pressed():
 				timeout_counter += 1
 				
 		NetworkManager.Functions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_network_unique_id())
-		if not(get_tree().is_network_server()): 
+		if(playeruniqueID != 1):
 			NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
 		else:
 			NetworkManager.Network.CreateActivePlayers(get_tree().get_network_unique_id())
@@ -108,7 +111,7 @@ remote func DoesHeAlreadyHaveACharacter(key, id):
 		while file != "": #(Max): I have no idea what's going on here but it works so I'm not messing with it.
 			if(file != null):
 				if(file.begins_with(str(key))):
-					if not(get_tree().is_network_server()): 
+					if(playeruniqueID != 1):
 						rset_id(id, "hascharacter", true) #Tell the client that his account does exist
 					else:
 						print("Setting hascharacter to true")
@@ -169,13 +172,13 @@ func _on_SelectHouse_item_selected(ID):
 	selectitemH = ID
 	
 func CreateThePlayer(charname):
-	if not(get_tree().is_network_server()):
+	if(playeruniqueID != 1):
 		NetworkManager.Network.rpc_id(1, "GetActiveKeys")
 	else:
 		NetworkManager.Network.GetActiveKeys()
 	NetworkManager.Functions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
 	Data.main_node.UI_Chat.SendText(0, str(charname + " logged in."), "")
-	if not(get_tree().is_network_server()):
+	if(playeruniqueID != 1):
 		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
 	else:
 		NetworkManager.Network.CreateActivePlayers(get_tree().get_network_unique_id())

@@ -33,12 +33,12 @@ remote func login(savefile, password, id): #Gets the password from a savefile
 	var pw = passwordhasing(password)
 	file.close()
 	if(data.get("password") == pw):
-		if not(get_tree().is_network_server()):
+		if(id != 1):
 			rpc_id(id, "startgame", savefile)
 		else:
 			startgame(savefile)
 	else:
-		if not(get_tree().is_network_server()):
+		if(id != 1):
 			rpc_id(id, "UpdateLabelRemotly", "Incorrect key or password.")
 		else:
 			UpdateLabelRemotly("Incorrect key or password.")
@@ -46,7 +46,7 @@ remote func login(savefile, password, id): #Gets the password from a savefile
 remote func createaccount(key, password, id):
 	var pw = {"password": passwordhasing(password)}
 	JsonLoader.SaveJSON(pw, str("user://accounts/" + key + ".json"))
-	if not(get_tree().is_network_server()):
+	if(id != 1):
 		rpc_id(id, "startgame", key)
 	else:
 		startgame(key)
