@@ -26,8 +26,6 @@ sync var currentTime = TimeOfDay.Day
 
 var timer
 
-var allowOldSystem : bool = false
-
 func StartCycle():
 	timer = Timer.new()
 	timer.connect("timeout",self,"_on_timer_timeout") 
@@ -58,26 +56,31 @@ remote func ChangeColor(color):
 			$Tween.start()
 
 func ChangeTime(Time):
-	if(get_network_master() == 1):
+	if(get_tree().get_network_unique_id() == 1):
 		match Time:
 			TimeOfDay.Day:
 				rpc_id(0,"ChangeColor", "Day")
+				ChangeColor("Day")
 				currentTime = TimeOfDay.Day
 				rset_id(0, "currentTime", currentTime)
 			TimeOfDay.Dusk:
 				rpc_id(0,"ChangeColor", "Dawn")
+				ChangeColor("Dawn")
 				currentTime = TimeOfDay.Dusk
 				rset_id(0, "currentTime", currentTime)
 			TimeOfDay.Night:
 				rpc_id(0,"ChangeColor", "Night")
+				ChangeColor("Night")
 				currentTime = TimeOfDay.Night
 				rset_id(0, "currentTime", currentTime)
 			TimeOfDay.Midnight:
 				rpc_id(0,"ChangeColor", "Midnight")
+				ChangeColor("Midnight")
 				currentTime = TimeOfDay.Midnight
 				rset_id(0, "currentTime", currentTime)
 			TimeOfDay.Dawn:
 				rpc_id(0,"ChangeColor", "Dawn")
+				ChangeColor("Dawn")
 				currentTime = TimeOfDay.Dawn
 				rset_id(0, "currentTime", currentTime)
 				
