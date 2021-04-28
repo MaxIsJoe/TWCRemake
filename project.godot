@@ -10,7 +10,6 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
@@ -137,10 +136,11 @@ common/physics_fps=45
 quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
-quality/2d/use_pixel_snap=true
+2d/snapping/use_gpu_pixel_snap=true
 threads/thread_model=2
 quality/shadows/filter_mode=0
 quality/depth_prepass/enable=false
+quality/filters/anisotropic_filter_level=1
 environment/default_clear_color=Color( 0, 0, 0, 1 )
 quality/depth/hdr=false
-quality/filters/anisotropic_filter_level=1
+quality/2d/use_pixel_snap=true
