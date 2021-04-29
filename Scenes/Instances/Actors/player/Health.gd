@@ -28,6 +28,8 @@ func BecomeAlivent():
 func BecomeAlive():
 	currentState = HealthState.ALIVE
 	parent.canMove = true
+	HP = HP_MAX
+	HealthBar._on_Player_hpupdate(HP, HP_MAX)
 	
 	var sprites = parent.SpriteHandler
 	sprites.rotation_degrees = 0
