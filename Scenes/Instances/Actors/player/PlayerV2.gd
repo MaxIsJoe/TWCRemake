@@ -218,3 +218,6 @@ remote func ShootSpell(Spell, Argument):
 func ShowHotkeyAsign(ID):
 	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true
 	$Cam/CanvasLayer/UI/SetHotkeyUI.ID = ID
+	
+remotesync func takedamage(dmg):
+	health.TakeDamage(dmg)

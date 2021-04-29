@@ -79,14 +79,13 @@ remotesync func init_spell_target(direction_animation, casterName, effect, value
 			$AnimatedSprite.play("right")
 	if(get_tree().get_network_unique_id() != 1): self.set_physics_process(true)
 
-remotesync func RemoveSpellFromWorld(): #This should avoid some RPC cache errors when a spell runs out of time or hits something
-	queue_free()
-
-
 func _on_Area2D_body_entered(body):
 	if(!TargetSpell):
 		if(body.is_in_group("Players")):
-			body.rpc_id(int(body.name), "takedamage", dmg)
+			if(body.name != 1):
+				body.rpc_id(int(body.name), "takedamage", dmg)
+			else:
+				body.health.TakeDamage(dmg)
 			queue_free()
 		if(body.is_in_group("Enemies")):
 			body.rpc("takedamage", dmg)
