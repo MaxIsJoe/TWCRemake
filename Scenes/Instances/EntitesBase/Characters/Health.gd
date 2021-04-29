@@ -1,10 +1,16 @@
 extends Node
 
+export(NodePath) var parent
+export(NodePath) var HealthTween
 export(int) var HP = 100
 export(int) var HP_MAX = 100
 export(bool) var CanBeDamaged = false
+export(bool) var EntityCanRespawn = true
+export(float) var TimeToRespawn = 4.0
 
 var currentState = HealthState.ALIVE
+
+onready var RespawnTimer = $Timer
 
 enum HealthState {
 	ALIVE,
@@ -45,3 +51,10 @@ func SyncData(PlayerID: int):
 	rset_id(PlayerID, "HP_MAX", HP_MAX)
 	rset_id(PlayerID, "currentState", currentState)
 	rset_id(PlayerID, "CanBeDamaged", CanBeDamaged)
+
+
+func _on_Timer_timeout():
+	if(EntityCanRespawn):
+		BecomeAlive()
+	else:
+		parent.queue_free()

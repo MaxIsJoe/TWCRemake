@@ -78,6 +78,7 @@ func grid_movement(delta):
 func Respawn():
 	if(RespawnPoints.size() == 0):
 		push_error("[Health] : No respawn points avaliable for " + get_parent().get_parent().name)
+		return
 	randomize()
 	var point = RespawnPoints[rand_range(0,RespawnPoints.size())]
 	Teleport.TeleportPos(self, point, null)

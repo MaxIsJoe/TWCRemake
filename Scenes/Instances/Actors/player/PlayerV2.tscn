@@ -82,6 +82,7 @@ script = ExtResource( 20 )
 
 [node name="Health" parent="Systems" index="1"]
 script = ExtResource( 21 )
+HealthTween = NodePath("../Tween")
 
 [node name="Collision" parent="." index="2"]
 position = Vector2( 0, 2.24492 )
