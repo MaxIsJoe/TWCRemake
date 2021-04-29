@@ -26,6 +26,7 @@ script = ExtResource( 3 )
 script = ExtResource( 4 )
 parent_PATH = NodePath("../..")
 HealthTween_PATH = NodePath("../Tween")
+Collision_PATH = NodePath("../../Collision")
 CanBeDamaged = true
 
 [node name="Timer" type="Timer" parent="Systems/Health"]

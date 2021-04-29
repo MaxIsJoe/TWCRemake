@@ -4,6 +4,8 @@ export(NodePath) var parent_PATH
 onready var parent = get_node(parent_PATH)
 export(NodePath) var HealthTween_PATH
 onready var HealthTween = get_node(HealthTween_PATH)
+export(NodePath) var Collision_PATH
+onready var Collision = get_node(Collision_PATH)
 export(int) var HP = 100
 export(int) var HP_MAX = 100
 export(bool) var CanBeDamaged = false
@@ -52,6 +54,7 @@ func BecomeAlive():
 	var sprites = parent.SpriteHandler
 	sprites.rotation_degrees = 0
 	parent.Respawn()
+	Collision.set_deferred("disabled", false)
 
 func BecomeAlivent():
 	currentState = HealthState.DEAD
@@ -63,6 +66,7 @@ func BecomeAlivent():
 		HealthTween.start()
 	RespawnTimer.wait_time = TimeToRespawn
 	RespawnTimer.start()
+	Collision.set_deferred("disabled", true)
 	
 func SyncData(PlayerID: int):
 	rset_id(PlayerID, "HP", HP)
