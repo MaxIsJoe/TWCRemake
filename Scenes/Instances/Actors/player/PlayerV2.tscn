@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="DynamicFontData" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scenes/Instances/Actors/UI/ShopUI.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Sprites/PNGs/lightv2.png" type="Texture" id=19]
 [ext_resource path="res://Scenes/Instances/Actors/player/PlayerStats.gd" type="Script" id=20]
+[ext_resource path="res://Scenes/Instances/Actors/player/Health.gd" type="Script" id=21]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -29,7 +30,7 @@ size = 13
 use_mipmaps = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_colors/font_color")
@@ -56,7 +57,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 0.945098 )
 border_width_left = 1
 border_width_top = 1
@@ -65,8 +66,8 @@ border_width_bottom = 1
 border_color = Color( 0.513726, 0.513726, 0.513726, 1 )
 border_blend = true
 
-[sub_resource type="Theme" id=9]
-WindowDialog/styles/panel = SubResource( 7 )
+[sub_resource type="Theme" id=5]
+WindowDialog/styles/panel = SubResource( 4 )
 
 [node name="PlayerV2" groups=[
 "Players",
@@ -78,6 +79,9 @@ tileSize = 64
 
 [node name="Stats" parent="Systems" index="0"]
 script = ExtResource( 20 )
+
+[node name="Health" parent="Systems" index="1"]
+script = ExtResource( 21 )
 
 [node name="Collision" parent="." index="2"]
 position = Vector2( 0, 2.24492 )
@@ -99,7 +103,6 @@ __meta__ = {
 
 [node name="Cam" type="Camera2D" parent="." index="5"]
 process_mode = 0
-smoothing_enabled = true
 smoothing_speed = 6.0
 drag_margin_left = 0.0
 drag_margin_top = 0.0
@@ -202,7 +205,7 @@ __meta__ = {
 }
 
 [node name="LevelUpAnim" type="AnimationPlayer" parent="Cam/CanvasLayer/UI/Leveup" index="1"]
-anims/FadeInFadeOut = SubResource( 8 )
+anims/FadeInFadeOut = SubResource( 3 )
 
 [node name="TabContainer" type="TabContainer" parent="Cam/CanvasLayer/UI" index="4"]
 visible = false
@@ -477,7 +480,7 @@ margin_left = 492.0
 margin_top = 355.0
 margin_right = 818.0
 margin_bottom = 438.0
-theme = SubResource( 9 )
+theme = SubResource( 5 )
 popup_exclusive = true
 window_title = "Info"
 dialog_text = "text"
