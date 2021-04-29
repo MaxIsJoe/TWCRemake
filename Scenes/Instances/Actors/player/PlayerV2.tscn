@@ -86,6 +86,7 @@ ManaBar_PATH = NodePath("../../Cam/CanvasLayer/UI/MPProgress")
 
 [node name="Health" parent="Systems" index="1"]
 script = ExtResource( 21 )
+TimeToRespawn = 6.0
 HealthBar_PATH = NodePath("../../Cam/CanvasLayer/UI/HPProgress")
 
 [node name="Collision" parent="." index="2"]

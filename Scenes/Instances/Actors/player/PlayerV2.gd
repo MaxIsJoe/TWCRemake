@@ -152,6 +152,29 @@ func SetupBodySprites():
 func getDir():
 	moveDir.x = -int(Input.is_action_pressed("move_left")) + int(Input.is_action_pressed("move_right"))
 	moveDir.y = -int(Input.is_action_pressed("move_up")) + int(Input.is_action_pressed("move_down"))
+	if(moveDir.x == -1):
+		UpdateShootingPostion("left")
+	if(moveDir.x == 1):
+		UpdateShootingPostion("right")
+	if(moveDir.y == -1):
+		UpdateShootingPostion("up")
+	if(moveDir.y == 1):
+		UpdateShootingPostion("down")
+		
+func UpdateShootingPostion(pos):
+	match pos:
+		"up":
+			Shootpoint.position = Vector2(0, -31.702)
+			LookingDirection = LookDirections.UP
+		"down":
+			Shootpoint.position = Vector2(0, 31.702)
+			LookingDirection = LookDirections.DOWN
+		"left":
+			Shootpoint.position = Vector2(-25, 0)
+			LookingDirection = LookDirections.LEFT
+		"right":
+			Shootpoint.position = Vector2(25, 0)
+			LookingDirection = LookDirections.RIGHT
 	
 	
 func AddSpellForHotkey(hotkey, action, ActionArguments, ActionCooldown,icon):
