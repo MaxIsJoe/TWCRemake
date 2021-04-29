@@ -7,6 +7,7 @@ onready var HealthTween = get_node(HealthTween_PATH)
 export(int) var HP = 100
 export(int) var HP_MAX = 100
 export(bool) var CanBeDamaged = false
+export(bool) var EntityRotatesOnDeath = true
 export(bool) var EntityCanRespawn = true
 export(float) var TimeToRespawn = 4.0
 
@@ -45,10 +46,23 @@ func Heal(HealType: int, points_to_heal: int):
 	
 func BecomeAlive():
 	currentState = HealthState.ALIVE
+	parent.canMove = true
 	HP = HP_MAX
+	
+	var sprites = parent.SpriteHandler
+	sprites.rotation_degrees = 0
+	parent.Respawn()
 
 func BecomeAlivent():
 	currentState = HealthState.DEAD
+	parent.canMove = false
+	
+	var sprites = parent.SpriteHandler
+	if(EntityRotatesOnDeath):
+		HealthTween.interpolate_property(sprites, "rotation_degrees", sprites.rotation_degrees, 90.0, 0.4 ,Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+		HealthTween.start()
+	RespawnTimer.wait_time = TimeToRespawn
+	RespawnTimer.start()
 	
 func SyncData(PlayerID: int):
 	rset_id(PlayerID, "HP", HP)
