@@ -80,6 +80,7 @@ tileSize = 64
 
 [node name="Stats" parent="Systems" index="0"]
 script = ExtResource( 20 )
+movement_speed = 225.0
 parent_PATH = NodePath("../..")
 ManaBar_PATH = NodePath("../../Cam/CanvasLayer/UI/MPProgress")
 
