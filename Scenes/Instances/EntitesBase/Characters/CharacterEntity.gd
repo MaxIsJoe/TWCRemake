@@ -32,11 +32,9 @@ func _ready():
 		1:
 			current_movement_type = movement_type.GRID
 			$GridMovement_CollisionDetection.enabled = true
-			
-	if(current_movement_type == movement_type.GRID):
-		position = position.snapped(Vector2(tileSize, tileSize))
-		lastpos  = position
-		targetpos= position
+			position = position.snapped(Vector2(tileSize, tileSize))
+			lastpos  = position
+			targetpos= position
 
 
 func _physics_process(delta):
