@@ -3,7 +3,7 @@ extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 var Gender
 var House
 var PlayerName
-var PlayerYear: int
+var PlayerYear: int = 1
 var gold: int
 
 var CanDrawWand: bool  = true #Used dueling
