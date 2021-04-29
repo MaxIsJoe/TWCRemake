@@ -10,7 +10,7 @@ var CanDrawWand: bool  = true #Used dueling
 var WandDrawn  : bool  = false #Used to check if they can cast a spell or not
 
 enum LookDirections {UP,LEFT,RIGHT,DOWN}
-var LookingDirection
+var LookingDirection = LookDirections.DOWN
 
 var ItemsArray = []
 
