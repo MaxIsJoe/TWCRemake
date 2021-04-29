@@ -1,10 +1,10 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 
-var Gender
-var House
-var PlayerName
-var PlayerYear: int = 1
-var gold: int
+var Gender     : int
+var House      : int
+var PlayerName : String = "Cuban Pete"
+var PlayerYear : int = 1
+var gold       : int
 
 var CanDrawWand: bool  = true #Used dueling
 var WandDrawn  : bool  = false #Used to check if they can cast a spell or not
