@@ -33,9 +33,13 @@ func _ready():
 
 func TakeDamage(damage: int):
 	if(CanBeDamaged):
-		HP -= damage
-		if(HP <= 0):
-			BecomeAlivent()
+		match currentState:
+			HealthState.ALIVE:
+				HP -= damage
+			HealthState.UNCONSCIOUS:
+				HP -= damage * 2
+	if(HP <= 0 and currentState != HealthState.DEAD):
+		BecomeAlivent()
 
 func Heal(HealType: int, points_to_heal: int):
 	match(HealType):
