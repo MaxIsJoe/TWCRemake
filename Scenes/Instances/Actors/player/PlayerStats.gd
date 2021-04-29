@@ -11,6 +11,8 @@ var XP_MAX : int = 100
 var statpoints   : int = 0
 var spellppoints : int = 0
 
+func _ready():
+	ManaBar._on_Player_mpupdate(mana, mana_max)
 
 func gainXP(XP_to_gain: int):
 	XP = XP_to_gain
