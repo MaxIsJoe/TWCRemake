@@ -74,6 +74,7 @@ WindowDialog/styles/panel = SubResource( 4 )
 ] instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 CharacterType = 0
+faction = 3
 MovementType = 0
 tileSize = 64
 
@@ -82,7 +83,7 @@ script = ExtResource( 20 )
 
 [node name="Health" parent="Systems" index="1"]
 script = ExtResource( 21 )
-HealthTween = NodePath("../Tween")
+HealthBar_PATH = NodePath("../../Cam/CanvasLayer/UI/HPProgress")
 
 [node name="Collision" parent="." index="2"]
 position = Vector2( 0, 2.24492 )

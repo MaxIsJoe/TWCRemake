@@ -1,5 +1,20 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/Health.gd"
 
+export(NodePath) var HealthBar_PATH
+onready var HealthBar = get_node(HealthBar_PATH)
+	
+	
+func _ready():
+	HealthBar._on_Player_hpupdate(HP, HP_MAX)
+
+func TakeDamage(damage: int):
+	if(CanBeDamaged):
+		HP -= damage
+		if(HP <= 0):
+			BecomeAlivent()
+	HealthBar._on_Player_hpupdate(HP, HP_MAX)
+
+
 func BecomeAlivent():
 	currentState = HealthState.DEAD
 	parent.canMove = false

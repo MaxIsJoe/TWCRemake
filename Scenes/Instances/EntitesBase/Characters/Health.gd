@@ -1,7 +1,9 @@
 extends Node
 
-export(NodePath) var parent
-export(NodePath) var HealthTween
+export(NodePath) var parent_PATH
+onready var parent = get_node(parent_PATH)
+export(NodePath) var HealthTween_PATH
+onready var HealthTween = get_node(HealthTween_PATH)
 export(int) var HP = 100
 export(int) var HP_MAX = 100
 export(bool) var CanBeDamaged = false
@@ -11,6 +13,8 @@ export(float) var TimeToRespawn = 4.0
 var currentState = HealthState.ALIVE
 
 onready var RespawnTimer = $Timer
+
+var this_class = load("res://Scenes/Instances/EntitesBase/Characters/Health.gd")    
 
 enum HealthState {
 	ALIVE,
