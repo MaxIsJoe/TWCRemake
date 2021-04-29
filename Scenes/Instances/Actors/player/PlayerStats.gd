@@ -1,10 +1,15 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/Stats.gd"
 
-var XP = 0
-var XP_MAX = 100
+export(NodePath) var parent_PATH
+onready var parent = get_node(parent_PATH)
+export(NodePath) var ManaBar_PATH
+onready var ManaBar = get_node(ManaBar_PATH)
 
-var statpoints = 0
-var spellppoints = 0
+var XP     : int = 0
+var XP_MAX : int = 100
+
+var statpoints   : int = 0
+var spellppoints : int = 0
 
 
 func gainXP(XP_to_gain: int):
@@ -17,4 +22,9 @@ func levelupcheck():
 		XP_MAX *= level / 2 #This is temporary. Change later.
 		XP = 0
 		statpoints += 1
-		#LevelUpAnim.play("FadeInFadeOut")
+		parent.LevelUpAnim.play("FadeInFadeOut")
+
+func UseMana(manapoints : int):
+	if(mana >= mana_max):
+		mana -= manapoints
+		ManaBar._on_Player_mpupdate(mana, mana_max)
