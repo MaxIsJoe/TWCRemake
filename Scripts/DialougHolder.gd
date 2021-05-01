@@ -11,10 +11,11 @@ func _ready():
 		loaded_quickdia = JsonLoader.LoadJSON_Retrun(QuickDialougFile)
 
 func StartDialogue():
+	#We already have a way to start dialouge so wtf is this?
 	pass #Add in later
 
 func GetQuickDia():
 	randomize()
-	var token = int(rand_range(0, loaded_quickdia.values().size())) #idk if this actually gets the correct size but let's try
+	var token = int(rand_range(0, loaded_quickdia.values().size()))
 	var given_text = loaded_quickdia[str(token)].get("text")
 	return given_text
