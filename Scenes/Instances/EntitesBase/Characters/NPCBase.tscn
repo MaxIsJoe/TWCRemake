@@ -28,6 +28,9 @@ script = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Acknowledgement_area" index="0"]
 shape = SubResource( 1 )
 
+[node name="Health" parent="Systems" index="1"]
+CanBeDamaged = false
+
 [node name="Quick_Dia" type="RichTextLabel" parent="." index="5"]
 margin_left = -168.0
 margin_top = -67.0

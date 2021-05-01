@@ -1,39 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/Instances/Actors/NPCs/NPCBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/tammie_0.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/NPCBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/AnimatedTextures/NPCs/Shops/Tammie.tres" type="SpriteFrames" id=2]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "IdleFront",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "IdleUp",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "IdelRight",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "IdleLeft",
-"speed": 5.0
-} ]
-
-[node name="Tammie" instance=ExtResource( 1 )]
-NPC_Name = "Ttammie"
+[node name="NPCBase" instance=ExtResource( 1 )]
+Gender = 1
+faction = 17
+NPC_Name = "Tammie"
 Desc = "The owner and cook of the restraunt/bar that's in the village that's near hogwarts."
-ID = 4
 HasShop = true
 
-[node name="AnimatedSprite" parent="." index="2"]
-frames = SubResource( 1 )
+[node name="Body" parent="SpriteHandler" index="0"]
+frames = ExtResource( 2 )
+animation = "IdleFront"
 
 [node name="ShopHolder" parent="Holders" index="0"]
 ShopID = 4
