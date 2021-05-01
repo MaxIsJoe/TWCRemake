@@ -7,16 +7,16 @@
 [ext_resource path="res://Scenes/Instances/EntitesBase/Characters/NPCBase.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Instances/Actors/UI/RadialMenu.tscn" type="PackedScene" id=6]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 163.15, 122.502 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 14
 outline_size = 1
 outline_color = Color( 0.109804, 0.109804, 0.109804, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 12
 font_data = ExtResource( 2 )
 
@@ -26,7 +26,7 @@ script = ExtResource( 5 )
 [node name="Acknowledgement_area" type="Area2D" parent="." index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Acknowledgement_area" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Quick_Dia" type="RichTextLabel" parent="." index="5"]
 margin_left = -168.0
@@ -34,7 +34,7 @@ margin_top = -67.0
 margin_right = 169.0
 margin_bottom = -16.0
 mouse_filter = 2
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0.211765, 1, 0.631373, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Quick Dialouge"
@@ -51,7 +51,7 @@ margin_left = -68.0
 margin_top = -45.2474
 margin_right = 70.0
 margin_bottom = -17.8474
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "NPC Name"
 align = 1
 valign = 1

@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Levels/Tilesets/Props.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Instances/World/Teleport/TeleportNode.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Tom.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/Ollivander.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/OllivanderV2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Instances/Actors/NPCs/Shop/BoomStoreOwner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sound/SFX/footsteps/footsteps_concret_m.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Scenes/Instances/World/Teleport/FlooFire.tscn" type="PackedScene" id=9]
@@ -201,7 +201,7 @@ position = Vector2( 624, 1099 )
 HasShop = true
 
 [node name="Ollivander" parent="NPCs" instance=ExtResource( 6 )]
-position = Vector2( 947, -180 )
+position = Vector2( 946.638, -175.605 )
 
 [node name="BoomStoreOwner" parent="NPCs" instance=ExtResource( 7 )]
 position = Vector2( 2182, -1042 )
@@ -214,6 +214,9 @@ texture = ExtResource( 12 )
 texture_scale = 15.0
 energy = 0.85
 mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="WarmLights" type="Node2D" parent="Lights"]
 
