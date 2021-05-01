@@ -20,17 +20,17 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdleLeft",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
 "name": "IdelRight",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
 "name": "IdleFront",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "IdleLeft",
 "speed": 5.0
 } ]
 
@@ -119,6 +119,7 @@ script = ExtResource( 5 )
 script = ExtResource( 3 )
 
 [node name="RadialMenu" parent="." instance=ExtResource( 4 )]
+
 [connection signal="input_event" from="." to="." method="_on_NPCBase_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_NPCBase_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_NPCBase_mouse_exited"]

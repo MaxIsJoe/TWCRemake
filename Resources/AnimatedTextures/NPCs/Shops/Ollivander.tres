@@ -1,0 +1,29 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/ollivander_3/0.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/ollivander_0/0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/ollivander_1/0.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons4/NPCs/ollivander_2/0.png" type="Texture" id=4]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "IdleUp",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "IdleLeft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "IdelRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "IdleFront",
+"speed": 5.0
+} ]

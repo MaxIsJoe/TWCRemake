@@ -1,6 +1,5 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 
-var Gender     : int
 var House      : int
 var PlayerName : String = "Cuban Pete"
 var PlayerYear : int = 1
