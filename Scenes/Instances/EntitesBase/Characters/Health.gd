@@ -72,7 +72,7 @@ func BecomeAlivent():
 	RespawnTimer.start()
 	Collision.set_deferred("disabled", true)
 	
-func SyncData(PlayerID: int):
+remote func SyncData(PlayerID: int):
 	rset_id(PlayerID, "HP", HP)
 	rset_id(PlayerID, "HP_MAX", HP_MAX)
 	rset_id(PlayerID, "currentState", currentState)
