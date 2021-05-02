@@ -11,6 +11,7 @@ radius = 7.99975
 height = 11.7382
 
 [node name="CharacterEntity" type="KinematicBody2D"]
+input_pickable = true
 script = ExtResource( 2 )
 
 [node name="GridMovement_CollisionDetection" type="RayCast2D" parent="."]
