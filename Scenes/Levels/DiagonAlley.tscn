@@ -198,10 +198,12 @@ position = Vector2( 790, 174 )
 
 [node name="Tom" parent="NPCs" instance=ExtResource( 5 )]
 position = Vector2( 624, 1099 )
+MovementType = 1
 HasShop = true
 
 [node name="Ollivander" parent="NPCs" instance=ExtResource( 6 )]
-position = Vector2( 946.638, -175.605 )
+position = Vector2( 946.638, -182.722 )
+MovementType = 1
 
 [node name="BoomStoreOwner" parent="NPCs" instance=ExtResource( 7 )]
 position = Vector2( 2182, -1042 )
