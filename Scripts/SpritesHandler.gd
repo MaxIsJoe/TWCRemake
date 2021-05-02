@@ -36,3 +36,20 @@ func PlayDirectionalAnimAll(Dir: int):
 				13:
 					anim.play("walkup")
 					currentDir = 13
+
+func PlayIdleOnAllBasedOnDirection():
+	for anim in get_children():
+		if(anim.frames != null):
+			match currentDir:
+				10:
+					anim.play("idledown")
+					currentDir = 0
+				11:
+					anim.play("idleleft")
+					currentDir = 1
+				12:
+					anim.play("idleright")
+					currentDir = 2
+				13:
+					anim.play("idleup")
+					currentDir = 3

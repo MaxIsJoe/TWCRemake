@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/SpritesHandler.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/Stats.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/Health.gd" type="Script" id=4]
+[ext_resource path="res://Resources/AnimatedTextures/PlayerBases/Female/FemaleStaff.tres" type="SpriteFrames" id=5]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.99975
+height = 11.7382
+
+[node name="CharacterEntity" type="KinematicBody2D"]
+input_pickable = true
+script = ExtResource( 2 )
+MovementType = 0
+
+[node name="GridMovement_CollisionDetection" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 25 )
+
+[node name="Systems" type="Node" parent="."]
+
+[node name="Stats" type="Node" parent="Systems"]
+script = ExtResource( 3 )
+
+[node name="Health" type="Node" parent="Systems"]
+script = ExtResource( 4 )
+parent_PATH = NodePath("../..")
+HealthTween_PATH = NodePath("../Tween")
+Collision_PATH = NodePath("../../Collision")
+CanBeDamaged = true
+
+[node name="Timer" type="Timer" parent="Systems/Health"]
+
+[node name="Tween" type="Tween" parent="Systems"]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="SpriteHandler" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Body" type="AnimatedSprite" parent="SpriteHandler"]
+frames = ExtResource( 5 )
+animation = "idledown"
+
+[connection signal="timeout" from="Systems/Health/Timer" to="Systems/Health" method="_on_Timer_timeout"]

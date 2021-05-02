@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/NPCBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/AnimatedTextures/NPCs/Shops/Ollivander.tres" type="SpriteFrames" id=2]
+
+[node name="Ollivander" instance=ExtResource( 1 )]
+faction = 1
+NPC_Name = "Ollivander"
+Desc = "Ollivander is an intelligent man, with a perfect memory when it comes to his work; he rememberes the details of every wand he ever sold. He seemed to become happier the more difficult the challenge to find exactly the right wand for a difficult customer was. He used a magical tape measure to help assess customers for their wand."
+ID = 1
+HasQuickDialouge = true
+
+[node name="Body" parent="SpriteHandler" index="0"]
+frames = ExtResource( 2 )
+animation = "IdleFront"
+
+[node name="ShopHolder" parent="Holders" index="0"]
+ShopID = 1
+
+[node name="DialougHolder" parent="Holders" index="2"]
+QuickDialougFile = "res://Resources/dialogue/Olivander/QuickDialouge.JSON"

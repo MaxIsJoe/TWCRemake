@@ -49,6 +49,16 @@ animations = [ {
 "name": "idleleft",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "walkright",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "idleup",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "idledown",
@@ -59,6 +69,11 @@ animations = [ {
 "name": "walkleft",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "idleright",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walkdown",
@@ -67,21 +82,6 @@ animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "walkup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "idleright",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "walkright",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "idleup",
 "speed": 5.0
 } ]
 
@@ -120,7 +120,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 0.945098 )
 border_width_left = 1
 border_width_top = 1
@@ -130,7 +130,7 @@ border_color = Color( 0.513726, 0.513726, 0.513726, 1 )
 border_blend = true
 
 [sub_resource type="Theme" id=8]
-WindowDialog/styles/panel = SubResource( 7 )
+WindowDialog/styles/panel = SubResource( 9 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "DNNInt",

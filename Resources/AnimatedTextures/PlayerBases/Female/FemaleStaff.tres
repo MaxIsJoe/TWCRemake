@@ -24,9 +24,14 @@ animations = [ {
 "name": "idleleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "idleright",
+"name": "walkright",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "idleup",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
@@ -39,14 +44,9 @@ animations = [ {
 "name": "walkleft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "walkup",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "walkright",
+"name": "idleright",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 3 ) ],
@@ -54,8 +54,8 @@ animations = [ {
 "name": "walkdown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "idleup",
+"name": "walkup",
 "speed": 5.0
 } ]

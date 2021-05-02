@@ -39,7 +39,7 @@ enum LookDirections {UP,LEFT,RIGHT,DOWN}
 var LookingDirection
 
 
-var ItemsArray = [] #Will be used for the save system
+var ItemsArray = []
 
 var PlayerState = {} #For networking
 var playerkey #For saving and account mangement
@@ -54,6 +54,7 @@ func _ready():
 	playerkey = Data.main_node.key
 	
 	#For now, always make sure that the player HP = MaxHP until we add a save system
+	#this getting deprcyted lol
 	health = maxHealth
 	mana = maxMana
 	emit_signal("hpupdate", health)

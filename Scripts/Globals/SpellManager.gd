@@ -12,7 +12,10 @@ func PutSpellOnCoolDown(spell, cooldown):
 remotesync func ShootSpell(Spell, caster_network_id):
 	var b
 	NetworkManager.Network.SendSpellState()
-	ShootPoint = NetworkManager.Network.world_state[caster_network_id].get("SP")
+	if(caster_network_id != 1):
+		ShootPoint = NetworkManager.Network.world_state[caster_network_id].get("SP")
+	else:
+		ShootPoint = Data.Player.Shootpoint.global_transform
 	match Spell:
 		"inflamri":
 			b = Data.Inflamri.instance()
