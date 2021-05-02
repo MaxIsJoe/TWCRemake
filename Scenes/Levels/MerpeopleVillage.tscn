@@ -305,4 +305,5 @@ shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Teleporters/Teles/TeleportlNode"]
 bus = "Sound Effects"
+
 [connection signal="body_entered" from="Teleporters/Teles/TeleportlNode" to="Teleporters/Teles/TeleportlNode" method="_on_TeleportLocalNode_body_entered"]
