@@ -2,8 +2,8 @@ extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 
 export(int) var SpawnerID: int = 0
 export(int, "Melee", "Caster") var AttackType = 0
-export(float) var AttackRange = 15
-export(float) var AttackCooldown = 1
+export(float) var AttackRange = 35
+export(float) var AttackCooldown = 1.0
 export(float) var AlertExtraRange = 35
 export(bool) var IsLegendary = false
 
@@ -67,6 +67,7 @@ func AI_IDLE():
 func AI_ATTACK(delta):
 	match AttackType:
 		0:
+			CheckIfTargetIsAlive()
 			if(GetDistance2SpawnPosition() > 1100):
 				Retreat()
 			if(Global.GetDistance2Player(self) <= AttackRange):
@@ -74,9 +75,9 @@ func AI_ATTACK(delta):
 			navigate()
 			
 func AI_RETREAT(delta):
-	if(global_position.distance_to(spawn_position) <= rand_range(25, 55)):
-		moveDir = Vector2.ZERO
-		current_state = AI_states.IDLE
+	navigate()
+	if(global_position.distance_to(spawn_position) <= rand_range(15, 35)):
+		BecomeIdle()
 		
 func check_player_in_detection() -> bool:
 	var collider = LineOfSight.get_collider()
@@ -84,13 +85,18 @@ func check_player_in_detection() -> bool:
 		player_spotted = true
 		return true
 	return false
+
+func CheckIfTargetIsAlive():
+	if(target.health.currentState == health.HealthState.DEAD):
+		Retreat()
 		
 func MeleeAttackLogic(victim):
-	if(victim.is_in_group("Players")):
-		if(canAttack):
-			victim.rpc("takedamage", stats.damage)
-			canAttack = false
-			$AttackCooldown.start()
+	if(victim != null): #This is to prevent a bug where the game checks for a victim when they have already died or left
+		if(victim.is_in_group("Players")):
+			if(canAttack):
+				victim.rpc("takedamage", stats.damage)
+				canAttack = false
+				$AttackCooldown.start()
 		
 func SeekPlayer():
 	if(current_state == AI_states.IDLE or current_state == AI_states.SEARCH or current_state == AI_states.WANDER):
@@ -124,6 +130,7 @@ func BecomeIdle():
 	
 func Retreat():
 	target = null
+	player_spotted = false
 	generate_path_to_vector2(spawn_position)
 	navigate()
 	current_state = AI_states.RETREAT
