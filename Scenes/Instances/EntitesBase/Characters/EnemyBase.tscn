@@ -12,8 +12,9 @@ radius = 135.214
 script = ExtResource( 2 )
 
 [node name="LineOfSight" type="RayCast2D" parent="." index="1"]
+rotation = 3.14159
 enabled = true
-cast_to = Vector2( 0, 130 )
+cast_to = Vector2( 135, 0 )
 
 [node name="Health" parent="Systems" index="1"]
 EntityCanRespawn = false

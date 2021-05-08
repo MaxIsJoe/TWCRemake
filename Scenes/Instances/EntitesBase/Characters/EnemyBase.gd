@@ -96,6 +96,7 @@ func GetDistance2SpawnPosition():
 func SetAttackTarget(thevictim):
 	target = thevictim
 	generate_path_to_node(target)
+	navigate()
 	current_state = AI_states.ATTACK
 	
 func BecomeIdle():
