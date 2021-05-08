@@ -24,6 +24,7 @@ enum AI_states {
 }
 
 func _physics_process(delta):
+	SeekPlayer()
 	match current_state:
 		AI_states.IDLE:
 			AI_IDLE()
@@ -53,13 +54,8 @@ func HrdMoveTo(thing):
 
 func AI_IDLE():
 	nav_path = []
-	var player = zoneParent.GetNearestPlayer()
-	if(player != null):
-		LineOfSight.look_at(player.global_position)
-		if(check_player_in_detection() == true):
-			if(current_state == AI_states.RETREAT and GetDistance2SpawnPosition() > 1000):
-				return
-			SetAttackTarget(player)
+	
+			
 
 func AI_ATTACK(delta):
 	match AttackType:
@@ -80,6 +76,17 @@ func check_player_in_detection() -> bool:
 		return true
 	return false
 		
+		
+func SeekPlayer():
+	if(current_state == AI_states.IDLE or current_state == AI_states.SEARCH or current_state == AI_states.WANDER):
+		var player = zoneParent.GetNearestPlayer()
+		if(player != null):
+			LineOfSight.look_at(player.global_position)
+			if(check_player_in_detection() == true):
+				if(current_state == AI_states.RETREAT and GetDistance2SpawnPosition() > 1000):
+					return
+				SetAttackTarget(player)
+
 func GetDistance2ZoneParent():
 	return global_position.distance_to(zoneParent.global_position)
 	
