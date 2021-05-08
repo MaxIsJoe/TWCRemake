@@ -46,6 +46,8 @@ var Episkey = load("res://Scenes/Instances/Actors/Spells/Target/Episkey.tscn")
 #Scenes
 var PlayerBase = preload("res://Scenes/Instances/Actors/player/PlayerV2.tscn")
 
+var EntitesPath: Dictionary = {"0": "res://Scenes/Instances/Actors/Enemies/Nature/Bat.tscn"}
+
 ##Images##
 var UI_Icon_Shop = "res://Sprites/UI/BagOSnow_Converted.png"
 var UI_Icon_Dia = "res://Sprites/UI/Dia_Icon.png"
@@ -54,6 +56,8 @@ var UI_Icon_Grab = "res://Sprites/UI/grab.png"
 ##Groups##
 var Group_DiaNode
 var Group_ShopHolders
+
+var nav_world : Navigation2D
 
 ##Animated Textures##
 var Base_Female : String = "res://Resources/AnimatedTextures/PlayerBases/Female/FemaleStaff.tres"
@@ -67,7 +71,7 @@ var Huff_Male   : String = "res://Resources/AnimatedTextures/PlayerBases/Male/Ma
 var Claw_Female : String = "res://Resources/AnimatedTextures/PlayerBases/Female/FemaleClaw.tres"
 var Claw_Male   : String = "res://Resources/AnimatedTextures/PlayerBases/Male/MaleClaw.tres"
 
-#Temp#
+## Temp / client sided ##
 #Dialouge#
 var Loaded_Dialouge
 var Player
@@ -77,3 +81,6 @@ func UpdateDiaNodeVar():
 
 func Update_Group_ShopHolders():
 	Group_ShopHolders = get_tree().get_nodes_in_group("shop")
+	
+func Update_GroupSingal_WorldNav():
+	nav_world = get_tree().get_nodes_in_group("nav")[0]

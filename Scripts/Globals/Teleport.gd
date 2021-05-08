@@ -4,7 +4,7 @@ var pl
 var spawnpos
 
 func TeleportPos(target, pos, sound):
-	target.position = pos
+	target.global_position = pos
 	if(sound != null):
 		PlaySoundOnSuccsefulTeleport(sound, pos)
 

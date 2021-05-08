@@ -45,4 +45,7 @@ script = ExtResource( 1 )
 frames = ExtResource( 5 )
 animation = "idledown"
 
+[node name="Line2D" type="Line2D" parent="."]
+width = 2.0
+
 [connection signal="timeout" from="Systems/Health/Timer" to="Systems/Health" method="_on_Timer_timeout"]

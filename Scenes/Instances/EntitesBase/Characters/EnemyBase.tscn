@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/EnemyBase.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 135.214
+
+[node name="EnemyBase" groups=[
+"enemy",
+] instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="LineOfSight" type="RayCast2D" parent="." index="1"]
+enabled = true
+cast_to = Vector2( 0, 130 )
+
+[node name="Health" parent="Systems" index="1"]
+EntityCanRespawn = false
+
+[node name="DetectionZone" type="Area2D" parent="." index="5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone" index="0"]
+self_modulate = Color( 1, 1, 1, 0.117647 )
+shape = SubResource( 1 )
+
+[connection signal="body_exited" from="DetectionZone" to="." method="_on_DetectionZone_body_exited"]

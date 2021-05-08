@@ -9,12 +9,15 @@ onready var stats = $Systems/Stats
 onready var health = $Systems/Health
 onready var SpriteHandler = $SpriteHandler
 onready var BodySprites = $SpriteHandler/Body
+onready var line = $Line2D
 
 var RespawnPoints = []
 var current_movement_type = movement_type.FREE
 var lastpos   : Vector2 = Vector2()
 var targetpos : Vector2 = Vector2()
 var moveDir   : Vector2 = Vector2()
+
+var nav_path : Array
 
 export(int, "Player", "NPC") var CharacterType : int  = 1
 export(int, "Male", "Female") var Gender : int  = 0
@@ -39,6 +42,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	line.global_position = Vector2.ZERO
 	if(canMove):
 		match(current_movement_type):
 			movement_type.FREE:
@@ -74,6 +78,23 @@ func grid_movement(delta):
 	if(position == targetpos):
 		lastpos = position
 		targetpos += moveDir * tileSize
+		
+func generate_path_to_node(t):
+	nav_path = Data.nav_world.get_simple_path(global_position, t.global_position, false)
+	line.points = nav_path
+	
+func generate_path_to_vector2(vec : Vector2):
+	nav_path = Data.nav_world.get_simple_path(global_position, vec, false)
+	line.points = nav_path
+	
+func set_nav_path(path):
+	nav_path = path
+	
+func navigate():
+	if(nav_path.size() > 0):
+		moveDir = global_position.direction_to(nav_path[1]) * stats.movement_speed
+		if(global_position == nav_path[0]):
+			nav_path.pop_front()
 
 func Respawn():
 	if(RespawnPoints.size() == 0):
