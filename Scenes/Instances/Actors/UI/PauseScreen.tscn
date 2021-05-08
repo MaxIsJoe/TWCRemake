@@ -832,3 +832,5 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 22.0
+
+[connection signal="button_down" from="TabContainer/Main/Buttons/ForceSave" to="." method="_on_ForceSave_button_down"]
