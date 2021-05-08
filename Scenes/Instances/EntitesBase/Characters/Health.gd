@@ -40,7 +40,7 @@ remotesync func TakeDamage(damage: int):
 			HealthState.UNCONSCIOUS:
 				HP -= damage * 2
 	if(HP <= 0 and currentState != HealthState.DEAD):
-		BecomeAlivent()
+		rpc_id(0, "BecomeAlivent")
 
 remotesync func Heal(HealType: int, points_to_heal: int):
 	match(HealType):
@@ -82,6 +82,6 @@ remote func SyncData(PlayerID: int):
 
 func _on_Timer_timeout():
 	if(EntityCanRespawn):
-		BecomeAlive()
+		rpc_id(0, "BecomeAlive")
 	else:
 		parent.queue_free()
