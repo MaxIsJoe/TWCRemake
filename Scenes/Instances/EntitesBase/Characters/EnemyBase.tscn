@@ -14,7 +14,7 @@ script = ExtResource( 2 )
 [node name="LineOfSight" type="RayCast2D" parent="." index="1"]
 rotation = 3.14159
 enabled = true
-cast_to = Vector2( 135, 0 )
+cast_to = Vector2( 175, 0 )
 
 [node name="Health" parent="Systems" index="1"]
 EntityCanRespawn = false
@@ -25,4 +25,15 @@ EntityCanRespawn = false
 self_modulate = Color( 1, 1, 1, 0.117647 )
 shape = SubResource( 1 )
 
+[node name="RefreshNav" type="Timer" parent="." index="7"]
+autostart = true
+
+[node name="ChaseTimeout" type="Timer" parent="." index="8"]
+wait_time = 2.0
+
+[node name="AttackCooldown" type="Timer" parent="." index="9"]
+
 [connection signal="body_exited" from="DetectionZone" to="." method="_on_DetectionZone_body_exited"]
+[connection signal="timeout" from="RefreshNav" to="." method="_on_RefreshNav_timeout"]
+[connection signal="timeout" from="ChaseTimeout" to="." method="_on_ChaseTimeout_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]

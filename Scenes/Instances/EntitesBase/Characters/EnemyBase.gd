@@ -2,7 +2,9 @@ extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 
 export(int) var SpawnerID: int = 0
 export(int, "Melee", "Caster") var AttackType = 0
-export(float) var AttackRange = 35
+export(float) var AttackRange = 15
+export(float) var AttackCooldown = 1
+export(float) var AlertExtraRange = 35
 export(bool) var IsLegendary = false
 
 onready var LineOfSight = $LineOfSight
@@ -10,10 +12,12 @@ onready var LineOfSight = $LineOfSight
 var zoneParent
 
 var spawn_position : Vector2
+var default_raycast_range : float
 
 remotesync var target
 var current_state = AI_states.IDLE
 var player_spotted : bool = false
+var canAttack : bool = true
 
 enum AI_states {
 	IDLE,
@@ -23,8 +27,13 @@ enum AI_states {
 	RETREAT
 }
 
+func _ready():
+	default_raycast_range = LineOfSight.cast_to.x
+	$AttackCooldown.wait_time = AttackCooldown
+
 func _physics_process(delta):
 	SeekPlayer()
+	LookAtTarget()
 	match current_state:
 		AI_states.IDLE:
 			AI_IDLE()
@@ -54,8 +63,6 @@ func HrdMoveTo(thing):
 
 func AI_IDLE():
 	nav_path = []
-	
-			
 
 func AI_ATTACK(delta):
 	match AttackType:
@@ -63,10 +70,12 @@ func AI_ATTACK(delta):
 			if(GetDistance2SpawnPosition() > 1100):
 				Retreat()
 			if(Global.GetDistance2Player(self) <= AttackRange):
-				pass
+				MeleeAttackLogic(target)
+			navigate()
 			
 func AI_RETREAT(delta):
 	if(global_position.distance_to(spawn_position) <= rand_range(25, 55)):
+		moveDir = Vector2.ZERO
 		current_state = AI_states.IDLE
 		
 func check_player_in_detection() -> bool:
@@ -76,6 +85,12 @@ func check_player_in_detection() -> bool:
 		return true
 	return false
 		
+func MeleeAttackLogic(victim):
+	if(victim.is_in_group("Players")):
+		if(canAttack):
+			victim.rpc("takedamage", stats.damage)
+			canAttack = false
+			$AttackCooldown.start()
 		
 func SeekPlayer():
 	if(current_state == AI_states.IDLE or current_state == AI_states.SEARCH or current_state == AI_states.WANDER):
@@ -98,10 +113,14 @@ func SetAttackTarget(thevictim):
 	generate_path_to_node(target)
 	navigate()
 	current_state = AI_states.ATTACK
+	LineOfSight.cast_to.x = LineOfSight.cast_to.x + AlertExtraRange
+	$ChaseTimeout.start()
 	
 func BecomeIdle():
+	moveDir = Vector2.ZERO
 	target = null
 	current_state = AI_states.IDLE
+	LineOfSight.cast_to.x = default_raycast_range
 	
 func Retreat():
 	target = null
@@ -109,9 +128,24 @@ func Retreat():
 	navigate()
 	current_state = AI_states.RETREAT
 
-func _on_DetectionZone_body_exited(body):
-	if(target == body):
-		moveDir = Vector2.ZERO
-		BecomeIdle()
-	if(GetDistance2SpawnPosition() > 1000):
-		Retreat()
+func LookAtTarget():
+	if(target != null):
+		LineOfSight.look_at(target.global_position)
+
+func _on_RefreshNav_timeout():
+	if(player_spotted and target != null):
+		generate_path_to_node(target)
+
+
+func _on_ChaseTimeout_timeout():
+	if(check_player_in_detection() == false):
+		if(GetDistance2SpawnPosition() > 1000):
+			Retreat()
+		else:
+			BecomeIdle()
+	else:
+		$ChaseTimeout.start()
+
+
+func _on_AttackCooldown_timeout():
+	canAttack = true

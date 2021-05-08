@@ -12,6 +12,8 @@ var key #The player's token for saving and loading him
 
 var CanOpenPauseMenu : bool = false
 
+var net_thread = Thread.new()
+
 func _ready():
 	CheckForExecutableLaunchArguments()
 	var dir = Directory.new()

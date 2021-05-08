@@ -91,9 +91,9 @@ func set_nav_path(path):
 	nav_path = path
 	
 func navigate():
-	if(nav_path.size() > 0):
+	if(nav_path.size() > 1):
 		moveDir = global_position.direction_to(nav_path[1]) * stats.movement_speed
-		if(global_position == nav_path[0]):
+		if(global_position.distance_to(nav_path[0]) >= 0.50):
 			nav_path.pop_front()
 
 func Respawn():
