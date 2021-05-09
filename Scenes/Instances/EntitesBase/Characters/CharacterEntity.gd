@@ -24,7 +24,7 @@ var nav_distance
 
 export(int, "Player", "NPC") var CharacterType : int  = 1
 export(int, "Male", "Female") var Gender : int  = 0
-export(int, FLAGS, "Independent", "Hogwarts", "Death Eaters", "Auroras", "Nature", "Undead", "Vampires", "Wolfwalkers", "Clockworkers", "Water people", "Lumera Tribe") var faction = 0  
+export(int, FLAGS, "Independent", "Hogwarts", "Death Eaters", "Auroras", "Nature", "Undead", "Vampires", "Wolfwalkers", "Clockmasters", "Water people", "Lumera Tribe") var faction = 0  
 export(int, "Free", "Grid")  var MovementType  : int  = 1
 export(bool) var changeSpritesWhenMoving       : bool = true
 export(bool) var canMove                       : bool = true
