@@ -60,6 +60,9 @@ func GiveHouseCup():
 			break #stops the loop once it finds a winner
 
 func GetDistance2Player(target):
+	if(target == null):
+		push_error("[Global/GetDistance2Player] - Target is null!")
+		return null
 	var distance2player = target.global_position.distance_to(Data.Player.global_position)
 	return distance2player
 	
