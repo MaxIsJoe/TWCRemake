@@ -67,7 +67,7 @@ func AI_ATTACK(delta):
 			CheckIfTargetIsAlive()
 			if(GetDistance2SpawnPosition() > 1100):
 				Retreat()
-			if(Global.GetDistance2Player(self) <= AttackRange):
+			if(target.global_position.distance_to(self.global_position) <= AttackRange):
 				MeleeAttackLogic(target)
 			
 func AI_RETREAT(delta):
