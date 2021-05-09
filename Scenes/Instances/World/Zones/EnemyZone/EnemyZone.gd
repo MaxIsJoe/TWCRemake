@@ -10,6 +10,7 @@ var SpawnerIsOnCooldown : bool = false
 
 
 func _on_SpawnTimer_timeout():
+	randomize()
 	if(Entites.get_child_count() < max_entities and SpawnerIsOnCooldown == false):
 		var enemyToSpawn = EnemiesToSpawn[int(rand_range(0, EnemiesToSpawn.size()))]
 		var enemy = enemyToSpawn.instance()
@@ -18,7 +19,7 @@ func _on_SpawnTimer_timeout():
 		enemy.zoneParent = self
 		if(SpawnOnRadius):
 			var random_direction = Vector2.RIGHT.rotated(randf() * TAU)
-			var random_postion = random_direction * $CollisionShape2D.shape.radius
+			var random_postion = random_direction * $CollisionShape2D.shape.radius * rand_range(0, 1.0)
 			enemy.global_position = global_position + random_postion
 			enemy.spawn_position = enemy.global_position
 		else:

@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Instances/World/Zones/EnemyZone/EnemyZone.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 786.991
+radius = 857.472
 
 [node name="EnemyZone" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
