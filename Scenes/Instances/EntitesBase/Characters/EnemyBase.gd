@@ -125,10 +125,9 @@ func BecomeIdle():
 	LineOfSight.cast_to.x = default_raycast_range
 	
 func Retreat():
-	set_nav_target_vec2(spawn_position)
 	target = null
 	player_spotted = false
-	generate_path_to_vector2(nav_target_vector)
+	generate_path_to_vector2(spawn_position)
 	current_state = AI_states.RETREAT
 
 func LookAtTarget():
@@ -143,9 +142,10 @@ func _on_RefreshNav_timeout():
 func _on_ChaseTimeout_timeout():
 	if(check_player_in_detection() == false):
 		if(GetDistance2SpawnPosition() > 1000):
-			Retreat()
-		else:
-			BecomeIdle()
+			if(current_state == AI_states.IDLE or current_state == AI_states.ATTACK or current_state == AI_states.WANDER):
+				Retreat()
+			else:
+				BecomeIdle()
 	else:
 		$ChaseTimeout.start()
 

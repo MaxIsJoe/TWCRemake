@@ -104,14 +104,14 @@ func set_nav_target_node(target):
 	nav_target_node = target
 	
 func navigate():
-	var last_point = self.position
+	var last_point = self.global_position
 	for index in range(nav_path.size()):
 		var distance_between_points = last_point.distance_to(nav_path[0])
 		if nav_distance <= distance_between_points:
-			position = last_point.linear_interpolate(nav_path[0], nav_distance / distance_between_points)
+			global_position = last_point.linear_interpolate(nav_path[0], nav_distance / distance_between_points)
 			break
 		elif nav_distance < 0.0 :
-			position = nav_path[0]
+			global_position = nav_path[0]
 			nav_path = []
 			break
 		nav_distance -= distance_between_points
