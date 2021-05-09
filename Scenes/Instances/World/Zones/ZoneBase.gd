@@ -5,7 +5,7 @@ export(int) var max_entities: int = 25 # how many entites are allowed to spawn?
 var PlayersInArea  : Array  = [] # how many players exist right now inside of this zone?
 var CanSyncEntites : bool = false # do we sync EntitesState with everyone?
 
-var EntitesState: Dictionary = {} # Entity data that needs to be synced
+var EntitesState : Dictionary = {} # Entity data that needs to be synced
 var EntityIDs    : int = 0
 
 onready var Entites = $EntitesContanier
@@ -14,34 +14,38 @@ onready var Entites = $EntitesContanier
 func _physics_process(delta):
 	if(CanSyncEntites == true):
 		if(get_tree().get_network_unique_id() == 1):
+			for entity in Entites.get_children():
+				if(EntitesState.has(entity.name)):
+					EntitesState[entity.name] = entity.GetEntityData()
+			rpc_unreliable_id(0, "SyncDataDictionary", EntitesState)
 			rpc_unreliable_id(0, "SyncAllData")
 
-remote func SyncAllData():
-	if(get_tree().get_network_unique_id() != 1):
-		for entity in Entites.get_children():
-			if(EntitesState.has(str(entity.name))):
-				entity.UpdateEnemyData(EntitesState)
+remotesync func SyncAllData():
+	if(!EntitesState.empty() and get_tree().get_network_unique_id() != 1):
+		for entity in EntitesState:
+			if(Entites.has_node(str(entity))):
+				var entitynode = Entites.get_node(entity)
+				entitynode.UpdateEntityData(EntitesState)
 			else:
-				rpc_id(1, "SyncDataDictionary")
-				LateSpawnEntity()
+				LateSpawnEntity(entity)
 				
-remote func LateSpawnEntity():
-	for entity in EntitesState:
-		if(Entites.has_node(str(EntitesState[entity[str(name)]]))):
-			return
-		else:
-			var EntityToSpawn = load(Data.EntitesPath[entity["pid"]])
-			EntityToSpawn.instance()
-			EntityToSpawn.name = entity["id"]
-			add_child(EntityToSpawn)
-			EntityToSpawn.UpdateEnemyData(EntitesState)
+func LateSpawnEntity(entity):
+	var path = EntitesState[entity]["pid"]
+	var Entityspawnid = load(Data.EntitesPath[path])
+	var EntityToSpawn = Entityspawnid.instance()
+	Entites.add_child(EntityToSpawn)
+	EntityToSpawn.ourname = str(entity)
+	EntityToSpawn.name = str(entity)
+	EntityToSpawn.UpdateEntityData(EntitesState)
 
-remotesync func SyncDataDictionary():
-	rset_id(0, "EntitesState", EntitesState)
+remotesync func SyncDataDictionary(data):
+	EntitesState = data
+	
 
 func AddData(EntityData: Dictionary):
 	EntitesState[EntityData.get("id")] = EntityData
 	EntityIDs += 1
+	rpc_id(0, "SyncDataDictionary", EntitesState)
 	
 func RemoveData(EntityID):
 	EntitesState.erase(EntityID)

@@ -26,7 +26,7 @@ func _on_SpawnTimer_timeout():
 			else:
 				enemy.global_position = SpawnLocations[int(rand_range(0, SpawnLocations.size()))].position
 				enemy.spawn_position = enemy.global_position
-			AddData(enemy.GetEnemyData())
+			AddData(enemy.GetEntityData())
 			SpawnerIsOnCooldown = true
 
 

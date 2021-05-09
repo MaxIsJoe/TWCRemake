@@ -73,7 +73,7 @@ remotesync func BecomeAlivent():
 	RespawnTimer.start()
 	Collision.set_deferred("disabled", true)
 	
-remote func SyncData(PlayerID: int):
+remotesync func SyncData(PlayerID: int):
 	rset_id(PlayerID, "HP", HP)
 	rset_id(PlayerID, "HP_MAX", HP_MAX)
 	rset_id(PlayerID, "currentState", currentState)

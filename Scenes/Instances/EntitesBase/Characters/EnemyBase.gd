@@ -3,7 +3,7 @@ extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 export(int) var SpawnerID: int = 0
 export(int, "Melee", "Caster") var AttackType = 0
 export(float) var AttackRange = 35
-export(float, 0.0, 1.0) var AttackRangeLerpTime = 0.7
+export(float, 0.0, 4.0) var AttackRangeLerpTime = 0.7
 export(float) var AttackCooldown = 1.0
 export(float) var AlertExtraRange = 35
 export(bool) var IsLegendary = false
@@ -19,6 +19,7 @@ remotesync var target
 var current_state = AI_states.IDLE
 var player_spotted : bool = false
 var canAttack : bool = true
+var ourname
 
 enum AI_states {
 	IDLE,
@@ -33,17 +34,18 @@ func _ready():
 	$AttackCooldown.wait_time = AttackCooldown
 
 func _physics_process(delta):
-	LookAtTarget()
-	match current_state:
-		AI_states.IDLE:
-			AI_IDLE()
-		AI_states.ATTACK:
-			AI_ATTACK(delta)
-		AI_states.RETREAT:
-			AI_RETREAT(delta)
+	if(get_tree().get_network_unique_id() == 1):
+		LookAtTarget()
+		match current_state:
+			AI_states.IDLE:
+				AI_IDLE()
+			AI_states.ATTACK:
+				AI_ATTACK(delta)
+			AI_states.RETREAT:
+				AI_RETREAT(delta)
 			
 
-func GetEnemyData():
+func GetEntityData():
 	var data = {
 		"pid": SpawnerID,
 		"id": name,
@@ -52,9 +54,10 @@ func GetEnemyData():
 	}
 	return data
 	
-func UpdateEnemyData(data):
-	global_position = data[str(name)]["P"]
-	SpriteHandler.currentDir = data[str(name)]["A"]
+	
+func UpdateEntityData(data):
+	global_position = lerp(global_position, data[ourname]["P"], 0.4)
+	SpriteHandler.currentDir = data[ourname]["A"]
 	
 	SpriteHandler.PlayDirectionalAnimAll(SpriteHandler.currentDir)
 
@@ -111,6 +114,7 @@ func GetDistance2SpawnPosition():
 
 func SetAttackTarget(thevictim):
 	target = thevictim
+	rpc_id(0, "SyncTarget", thevictim)
 	generate_path_to_node(target)
 	current_state = AI_states.ATTACK
 	LineOfSight.cast_to.x = LineOfSight.cast_to.x + AlertExtraRange
@@ -119,11 +123,13 @@ func SetAttackTarget(thevictim):
 func BecomeIdle():
 	stop_navigating()
 	target = null
+	rpc_id(0, "SyncTarget", target)
 	current_state = AI_states.IDLE
 	LineOfSight.cast_to.x = default_raycast_range
 	
 func Retreat():
 	target = null
+	rpc_id(0, "SyncTarget", target)
 	player_spotted = false
 	generate_path_to_vector2(spawn_position)
 	current_state = AI_states.RETREAT
@@ -156,6 +162,8 @@ func GetNearestPlayer():
 			nearest_player = player
 	return nearest_player
 
+remotesync func SyncTarget(t):
+	target = t
 
 func _on_AttackCooldown_timeout():
 	canAttack = true
