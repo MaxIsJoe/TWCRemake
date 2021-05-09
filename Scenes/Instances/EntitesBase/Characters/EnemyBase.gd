@@ -71,7 +71,7 @@ func AI_ATTACK(delta):
 				MeleeAttackLogic(target)
 			
 func AI_RETREAT(delta):
-	if(global_position == spawn_position):
+	if(global_position.distance_to(spawn_position) <= rand_range(0,75)):
 		BecomeIdle()
 		
 func check_player_in_detection() -> bool:
