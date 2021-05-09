@@ -32,7 +32,6 @@ func _ready():
 	$AttackCooldown.wait_time = AttackCooldown
 
 func _physics_process(delta):
-	SeekPlayer()
 	LookAtTarget()
 	match current_state:
 		AI_states.IDLE:
@@ -62,7 +61,7 @@ func HrdMoveTo(thing):
 	lerp(self.position, thing.position, 0.8)
 
 func AI_IDLE():
-	nav_path = []
+	SeekPlayer()
 
 func AI_ATTACK(delta):
 	match AttackType:
@@ -72,11 +71,9 @@ func AI_ATTACK(delta):
 				Retreat()
 			if(Global.GetDistance2Player(self) <= AttackRange):
 				MeleeAttackLogic(target)
-			navigate()
 			
 func AI_RETREAT(delta):
-	navigate()
-	if(global_position.distance_to(spawn_position) <= rand_range(15, 35)):
+	if(global_position == spawn_position):
 		BecomeIdle()
 		
 func check_player_in_detection() -> bool:
@@ -100,7 +97,7 @@ func MeleeAttackLogic(victim):
 		
 func SeekPlayer():
 	if(current_state == AI_states.IDLE or current_state == AI_states.SEARCH or current_state == AI_states.WANDER):
-		var player = zoneParent.GetNearestPlayer()
+		var player = GetNearestPlayer()
 		if(player != null):
 			LineOfSight.look_at(player.global_position)
 			if(check_player_in_detection() == true):
@@ -117,22 +114,21 @@ func GetDistance2SpawnPosition():
 func SetAttackTarget(thevictim):
 	target = thevictim
 	generate_path_to_node(target)
-	navigate()
 	current_state = AI_states.ATTACK
 	LineOfSight.cast_to.x = LineOfSight.cast_to.x + AlertExtraRange
 	$ChaseTimeout.start()
 	
 func BecomeIdle():
-	moveDir = Vector2.ZERO
+	stop_navigating()
 	target = null
 	current_state = AI_states.IDLE
 	LineOfSight.cast_to.x = default_raycast_range
 	
 func Retreat():
+	set_nav_target_vec2(spawn_position)
 	target = null
 	player_spotted = false
-	generate_path_to_vector2(spawn_position)
-	navigate()
+	generate_path_to_vector2(nav_target_vector)
 	current_state = AI_states.RETREAT
 
 func LookAtTarget():
@@ -152,6 +148,15 @@ func _on_ChaseTimeout_timeout():
 			BecomeIdle()
 	else:
 		$ChaseTimeout.start()
+
+func GetNearestPlayer():
+	var nearest_player = null
+	for player in NetworkManager.PlayerContainer.get_children():
+		if(nearest_player == null):
+			nearest_player = player
+		if(player.global_position.distance_to(self.global_position) > nearest_player.global_position.distance_to(player.global_position)):
+			nearest_player = player
+	return nearest_player
 
 
 func _on_AttackCooldown_timeout():
