@@ -10,23 +10,24 @@ var SpawnerIsOnCooldown : bool = false
 
 
 func _on_SpawnTimer_timeout():
-	randomize()
-	if(Entites.get_child_count() < max_entities and SpawnerIsOnCooldown == false):
-		var enemyToSpawn = EnemiesToSpawn[int(rand_range(0, EnemiesToSpawn.size()))]
-		var enemy = enemyToSpawn.instance()
-		Entites.add_child(enemy)
-		enemy.name = str(EntityIDs)
-		enemy.zoneParent = self
-		if(SpawnOnRadius):
-			var random_direction = Vector2.RIGHT.rotated(randf() * TAU)
-			var random_postion = random_direction * $CollisionShape2D.shape.radius * rand_range(0, 1.0)
-			enemy.global_position = global_position + random_postion
-			enemy.spawn_position = enemy.global_position
-		else:
-			enemy.global_position = SpawnLocations[int(rand_range(0, SpawnLocations.size()))].position
-			enemy.spawn_position = enemy.global_position
-		AddData(enemy.GetEnemyData())
-		SpawnerIsOnCooldown = true
+	if(NetworkManager.PlayerContainer.get_child_count() != 0 and get_tree().get_network_unique_id() == 1):
+		randomize()
+		if(Entites.get_child_count() < max_entities and SpawnerIsOnCooldown == false):
+			var enemyToSpawn = EnemiesToSpawn[int(rand_range(0, EnemiesToSpawn.size()))]
+			var enemy = enemyToSpawn.instance()
+			Entites.add_child(enemy)
+			enemy.name = str(EntityIDs)
+			enemy.zoneParent = self
+			if(SpawnOnRadius):
+				var random_direction = Vector2.RIGHT.rotated(randf() * TAU)
+				var random_postion = random_direction * $CollisionShape2D.shape.radius * rand_range(0, 1.0)
+				enemy.global_position = global_position + random_postion
+				enemy.spawn_position = enemy.global_position
+			else:
+				enemy.global_position = SpawnLocations[int(rand_range(0, SpawnLocations.size()))].position
+				enemy.spawn_position = enemy.global_position
+			AddData(enemy.GetEnemyData())
+			SpawnerIsOnCooldown = true
 
 
 func _on_SpawnCooldown_timeout():
