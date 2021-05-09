@@ -3,6 +3,7 @@ extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 export(int) var SpawnerID: int = 0
 export(int, "Melee", "Caster") var AttackType = 0
 export(float) var AttackRange = 35
+export(float, 0.0, 1.0) var AttackRangeLerpTime = 0.7
 export(float) var AttackCooldown = 1.0
 export(float) var AlertExtraRange = 35
 export(bool) var IsLegendary = false
@@ -56,9 +57,6 @@ func UpdateEnemyData(data):
 	SpriteHandler.currentDir = data[str(name)]["A"]
 	
 	SpriteHandler.PlayDirectionalAnimAll(SpriteHandler.currentDir)
-
-func HrdMoveTo(thing):
-	lerp(self.position, thing.position, 0.8)
 
 func AI_IDLE():
 	SeekPlayer()
@@ -161,3 +159,16 @@ func GetNearestPlayer():
 
 func _on_AttackCooldown_timeout():
 	canAttack = true
+
+
+func _on_DetectionZone_body_entered(body):
+	if(body.is_in_group("Players") and current_state != AI_states.ATTACK):
+		$LineOfSight/LoSTween.interpolate_property(LineOfSight, "cast_to:x", LineOfSight.cast_to.x, LineOfSight.cast_to.x + AlertExtraRange, AttackRangeLerpTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$LineOfSight/LoSTween.start()
+
+
+
+func _on_DetectionZone_body_exited(body):
+	if(body.is_in_group("Players") and current_state != AI_states.ATTACK):
+		$LineOfSight/LoSTween.interpolate_property(LineOfSight, "cast_to:x", LineOfSight.cast_to.x, default_raycast_range, AttackRangeLerpTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$LineOfSight/LoSTween.start()

@@ -16,6 +16,8 @@ rotation = 3.14159
 enabled = true
 cast_to = Vector2( 175, 0 )
 
+[node name="LoSTween" type="Tween" parent="LineOfSight" index="0"]
+
 [node name="Health" parent="Systems" index="1"]
 EntityCanRespawn = false
 
@@ -34,6 +36,8 @@ wait_time = 2.0
 
 [node name="AttackCooldown" type="Timer" parent="." index="9"]
 
+[connection signal="body_entered" from="DetectionZone" to="." method="_on_DetectionZone_body_entered"]
+[connection signal="body_exited" from="DetectionZone" to="." method="_on_DetectionZone_body_exited"]
 [connection signal="timeout" from="RefreshNav" to="." method="_on_RefreshNav_timeout"]
 [connection signal="timeout" from="ChaseTimeout" to="." method="_on_ChaseTimeout_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]
