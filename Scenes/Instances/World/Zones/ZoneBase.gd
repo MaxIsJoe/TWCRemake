@@ -73,7 +73,7 @@ func _on_ZoneBase_body_exited(body):
 		else:
 			RemoveFromPlayersInArea(body)
 
-func GetNearestPlayer():
+func GetNearestPlayerInZone():
 	var nearest_player = null
 	for player in PlayersInArea:
 		if(nearest_player == null):
