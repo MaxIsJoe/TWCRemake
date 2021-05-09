@@ -1,12 +1,12 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 
-export(int) var SpawnerID: int = 0
-export(int, "Melee", "Caster") var AttackType = 0
-export(float) var AttackRange = 35
-export(float, 0.0, 4.0) var AttackRangeLerpTime = 0.7
-export(float) var AttackCooldown = 1.0
-export(float) var AlertExtraRange = 35
-export(bool) var IsLegendary = false
+export(int) var SpawnerID: int = 0 #This is used to allow the game to spawn entities for players who latejoin. can be used for other stuff later
+export(int, "Melee", "Caster") var AttackType = 0 #What type of logic does this entity use for attacking?
+export(float) var AttackRange = 35 #How far can they be before they can harm the player?
+export(float, 0.0, 4.0) var AttackRangeLerpTime = 0.7 #When the player is inside their detection area, how fast does the entity's detection raycast get extended?
+export(float) var AttackCooldown = 1.0 #Their attack rate
+export(float) var AlertExtraRange = 35 #How long is their alert range when a player is in their detection area?
+export(bool) var IsLegendary = false #Does this entity spawn as a legendary?
 
 onready var LineOfSight = $LineOfSight
 
@@ -34,6 +34,7 @@ func _ready():
 	$AttackCooldown.wait_time = AttackCooldown
 
 func _physics_process(delta):
+	#Only allow the server to host logic for entites.
 	if(get_tree().get_network_unique_id() == 1):
 		LookAtTarget()
 		match current_state:
@@ -46,6 +47,7 @@ func _physics_process(delta):
 			
 
 func GetEntityData():
+	#we need to find a way to make this list shorter to save on bytes
 	var data = {
 		"pid": SpawnerID,
 		"id": name,
@@ -67,7 +69,7 @@ func AI_IDLE():
 func AI_ATTACK(delta):
 	match AttackType:
 		0:
-			CheckIfTargetIsAlive()
+			CheckIfTargetIsAlive() #Ensure that the target is alive so we don't attack a dead corpse
 			if(GetDistance2SpawnPosition() > 1100):
 				Retreat()
 			if(target.global_position.distance_to(self.global_position) <= AttackRange):
@@ -90,11 +92,13 @@ func CheckIfTargetIsAlive():
 		
 func MeleeAttackLogic(victim):
 	if(victim != null): #This is to prevent a bug where the game checks for a victim when they have already died or left
-		if(victim.is_in_group("Players")):
-			if(canAttack):
+		if(canAttack):
+			if(victim.is_in_group("Players")):
 				victim.rpc("takedamage", stats.damage)
 				canAttack = false
 				$AttackCooldown.start()
+			if(victim.is_in_group("enemy")):
+				victim.health.TakeDamage(stats.damage)
 		
 func SeekPlayer():
 	if(current_state == AI_states.IDLE or current_state == AI_states.SEARCH or current_state == AI_states.WANDER):
