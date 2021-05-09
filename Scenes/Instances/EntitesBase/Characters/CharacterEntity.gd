@@ -55,22 +55,25 @@ func _physics_process(delta):
 
 func free_movement(delta):
 	var velocity = moveDir
-	if(moveDir.y == -1):
-		SpriteHandler.PlayDirectionalAnimAll(13)
-	if(moveDir.y == 1):
-		SpriteHandler.PlayDirectionalAnimAll(10)
-	if(moveDir.x == -1):
-		SpriteHandler.PlayDirectionalAnimAll(11)
-	if(moveDir.x == 1):
-		SpriteHandler.PlayDirectionalAnimAll(12)
-	if(moveDir == Vector2.ZERO):
-		SpriteHandler.PlayIdleOnAllBasedOnDirection()
+	CheckForAnimationsForMovement()
 	velocity = velocity.normalized() * stats.movement_speed
 	if(nav_path == null or nav_path == []):
 		move_and_slide(velocity)
 	else:
 		nav_distance = stats.movement_speed * delta
 		navigate()
+
+func CheckForAnimationsForMovement():
+	if(moveDir.y == -1):
+		SpriteHandler.PlayDirectionalAnimAll(13) #up
+	if(moveDir.y == 1):
+		SpriteHandler.PlayDirectionalAnimAll(10) #down
+	if(moveDir.x == -1):
+		SpriteHandler.PlayDirectionalAnimAll(11) #left
+	if(moveDir.x == 1):
+		SpriteHandler.PlayDirectionalAnimAll(12) #right
+	if(moveDir == Vector2.ZERO):
+		SpriteHandler.PlayIdleOnAllBasedOnDirection()
 
 func grid_movement(delta):
 	if($GridMovement_CollisionDetection.is_colliding()):
