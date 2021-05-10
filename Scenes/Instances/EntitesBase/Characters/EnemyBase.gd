@@ -15,7 +15,7 @@ export(float) var AI_MaxDistanceAwayFromSpawn = 1000 # How far is this entity al
 export(Array, AudioStream) var AttackSounds : Array
 export(Array, AudioStream) var AlertSounds  : Array
 
-onready var LineOfSight = $LineOfSight
+
 onready var AttackSoundPlayer = $Audio/Attack
 onready var AlertSoundPlayer = $Audio/Alerts
 
@@ -41,6 +41,7 @@ enum AI_states {
 
 
 func _ready():
+	LineOfSight.enabled = true
 	default_raycast_range = LineOfSight.cast_to.x
 	$AttackCooldown.wait_time = AttackCooldown
 
@@ -68,6 +69,7 @@ func GetEntityData():
 		"id": name,
 		"P": global_position, 
 		"A": SpriteHandler.currentDir, 
+		"R": rotation_degrees, 
 	}
 	return data
 	
@@ -75,6 +77,7 @@ func GetEntityData():
 func UpdateEntityData(data):
 	global_position = lerp(global_position, data[ourname]["P"], 0.4)
 	SpriteHandler.currentDir = data[ourname]["A"]
+	rotation_degrees = data[ourname]["R"]
 	
 	SpriteHandler.PlayDirectionalAnimAll(SpriteHandler.currentDir)
 

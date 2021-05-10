@@ -5,6 +5,7 @@ enum movement_type {
 	GRID
 }
 
+onready var LineOfSight : RayCast2D = $LineOfSight
 onready var stats = $Systems/Stats
 onready var health = $Systems/Health
 onready var SpriteHandler = $SpriteHandler
@@ -27,6 +28,7 @@ export(int, "Male", "Female") var Gender : int  = 0
 export(int, FLAGS, "Independent", "Hogwarts", "Death Eaters", "Auroras", "Nature", "Undead", "Vampires", "Wolfwalkers", "Clockmasters", "Water people", "Lumera Tribe") var faction = 0  
 export(int, "Free", "Grid")  var MovementType  : int  = 1
 export(bool) var changeSpritesWhenMoving       : bool = true
+export(bool) var rotatesSpritesTowardMovement  : bool = false
 export(bool) var canMove                       : bool = true
 export(int)  var tileSize                      : int  = 32
 
@@ -74,6 +76,15 @@ func CheckForAnimationsForMovement():
 		SpriteHandler.PlayDirectionalAnimAll(12) #right
 	if(moveDir == Vector2.ZERO):
 		SpriteHandler.PlayIdleOnAllBasedOnDirection()
+	
+	if(nav_path != [] and rotatesSpritesTowardMovement):
+		RotateSpritesTowardsVector(nav_path[0])
+		
+remotesync func RotateSpritesTowardsVector(vec : Vector2):
+	SpriteHandler.look_at(vec)
+	
+remotesync func ResetSpritesRotation():
+	SpriteHandler.rotation_degrees = 0
 
 func grid_movement(delta):
 	if($GridMovement_CollisionDetection.is_colliding()):

@@ -1,0 +1,19 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Resources/AnimatedTextures/Enemies/Rat.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/EnemyBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sound/SFX/Enemies/rat/rat_attack1.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sound/SFX/Enemies/rat/rat_attack2.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sound/SFX/Enemies/rat/rat_hiss.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sound/SFX/Enemies/rat/rat_hiss3.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sound/SFX/Enemies/rat/rat_attack3.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Sound/SFX/Enemies/rat/rat_hiss2.ogg" type="AudioStream" id=8]
+
+[node name="Rat" instance=ExtResource( 2 )]
+faction = 16
+rotatesSpritesTowardMovement = true
+AttackSounds = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 8 ) ]
+AlertSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ) ]
+
+[node name="Body" parent="SpriteHandler" index="0"]
+frames = ExtResource( 1 )

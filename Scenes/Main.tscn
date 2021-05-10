@@ -41,12 +41,12 @@ __meta__ = {
 
 [node name="HBoxContainer" type="VBoxContainer" parent="MainUI/FirstLoad/Buttons"]
 margin_top = 297.0
-margin_right = 243.0
+margin_right = 242.0
 margin_bottom = 423.0
 alignment = 1
 
 [node name="StartSinglePlayer" type="Button" parent="MainUI/FirstLoad/Buttons/HBoxContainer"]
-margin_right = 243.0
+margin_right = 242.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 text = "Play Singleplayer"
@@ -56,14 +56,14 @@ __meta__ = {
 
 [node name="Connect_LAN" type="Button" parent="MainUI/FirstLoad/Buttons/HBoxContainer"]
 margin_top = 43.0
-margin_right = 243.0
+margin_right = 242.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 120, 40 )
 text = "Connect to LAN Server"
 
 [node name="Connect_CustomIp" type="Button" parent="MainUI/FirstLoad/Buttons/HBoxContainer"]
 margin_top = 86.0
-margin_right = 243.0
+margin_right = 242.0
 margin_bottom = 126.0
 rect_min_size = Vector2( 120, 40 )
 text = "Connect to an Online server"

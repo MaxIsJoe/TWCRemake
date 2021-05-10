@@ -16,8 +16,13 @@ script = ExtResource( 2 )
 MovementType = 0
 
 [node name="GridMovement_CollisionDetection" type="RayCast2D" parent="."]
-enabled = true
 cast_to = Vector2( 0, 25 )
+
+[node name="LineOfSight" type="RayCast2D" parent="."]
+rotation = 3.14159
+cast_to = Vector2( 175, 0 )
+
+[node name="LoSTween" type="Tween" parent="LineOfSight"]
 
 [node name="Systems" type="Node" parent="."]
 

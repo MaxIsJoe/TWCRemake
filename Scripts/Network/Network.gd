@@ -11,6 +11,7 @@ var world_state = {}
 remotesync var ActiveKeys = {}
 remotesync var spells_ID = -1
 
+var server_trick_rate = 30
 
 var last_world_state = 0
 
@@ -31,7 +32,7 @@ func create_server():
 	print(str("[Networking]: Server created // Server IP -> " + DEFAULT_IP))
 	world_state["T"] = OS.get_system_time_msecs() #(Max): I don't remember why I needed to set a timestamp this early but the game throws an error randomly if I don't so I'm leaving this here.
 	set_physics_process(true)
-	Engine.set_iterations_per_second(30) #This is to make the server send calls at a rate that both the server and client and handle
+	Engine.set_iterations_per_second(server_trick_rate) #This is to make the server send calls at a rate that both the server and client and handle
 	DayAndNightV2.StartCycle()
 
 func connect_to_server(ip : String):
