@@ -50,16 +50,17 @@ func _physics_process(delta):
 	#Path finding can be expensive sometimes so it's best for the server to handle it.
 	#Plus this avoids some syncing issues where the entity does something other players can't see.
 	if(get_tree().get_network_unique_id() == 1):
-		LookAtTarget()
-		match current_state:
-			AI_states.IDLE:
-				AI_IDLE()
-			AI_states.ATTACK:
-				AI_ATTACK(delta)
-			AI_states.RETREAT:
-				AI_RETREAT(delta)
-			AI_states.WANDER:
-				AI_WANDER(delta)
+		if(OptimizationCheck_PlayersNearby()):
+			LookAtTarget()
+			match current_state:
+				AI_states.IDLE:
+					AI_IDLE()
+				AI_states.ATTACK:
+					AI_ATTACK(delta)
+				AI_states.RETREAT:
+					AI_RETREAT(delta)
+				AI_states.WANDER:
+					AI_WANDER(delta)
 			
 
 func GetEntityData():
@@ -259,3 +260,15 @@ func _on_WanderCooldown_timeout():
 	if(AI_CanWander):
 		if(current_state == AI_states.IDLE):
 			StartWandering()
+
+func OptimizationCheck_PlayersNearby():
+	var closest_player
+	for player in NetworkManager.PlayerContainer.get_children():
+		if(closest_player == null):
+			closest_player = player
+		if(player.global_position.distance_to(self.global_position) > closest_player.global_position.distance_to(player.global_position)):
+			closest_player = player
+	if(closest_player.global_position.distance_to(self.global_position) <= 1750):
+		return true
+	else:
+		return false

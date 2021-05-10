@@ -22,6 +22,7 @@ var nav_path          : Array
 var nav_target_vector : Vector2
 var nav_target_node
 var nav_distance
+var nav_antistuck_time: int = 0
 
 export(int, "Player", "NPC") var CharacterType : int  = 1
 export(int, "Male", "Female") var Gender : int  = 0
@@ -120,6 +121,11 @@ func set_nav_target_node(target):
 func navigate():
 	var last_point = self.global_position
 	for index in range(nav_path.size()):
+		nav_antistuck_time += 1
+		if(nav_antistuck_time >= 900):
+				global_position = nav_path[0]
+				nav_antistuck_time = 0
+				break
 		var distance_between_points = last_point.distance_to(nav_path[0])
 		if nav_distance <= distance_between_points:
 			global_position = last_point.linear_interpolate(nav_path[0], nav_distance / distance_between_points)
@@ -127,10 +133,12 @@ func navigate():
 		elif nav_distance < 0.0 :
 			global_position = nav_path[0]
 			nav_path = []
+			nav_antistuck_time = 0
 			break
 		nav_distance -= distance_between_points
 		last_point = nav_path[0]
 		nav_path.remove(0)
+		nav_antistuck_time = 0
 	
 	#if(nav_path.size() > 1):
 	#	moveDir = global_position.direction_to(nav_path[1]) * stats.movement_speed

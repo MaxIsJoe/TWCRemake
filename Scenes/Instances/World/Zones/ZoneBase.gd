@@ -3,7 +3,6 @@ extends Area2D
 export(int) var max_entities: int = 25 # how many entites are allowed to spawn?
 
 var PlayersInArea  : Array  = [] # how many players exist right now inside of this zone?
-var CanSyncEntites : bool = false # do we sync EntitesState with everyone?
 
 var EntitesState : Dictionary = {} # Entity data that needs to be synced
 var EntityIDs    : int = 0
@@ -14,13 +13,14 @@ onready var Entites = $EntitesContanier
 func _physics_process(delta):
 	# There's a problem where if players aren't insde the zone entities no longer sync, causing invisible enemies to attack players on their side.
 	# We need to make enemy position syncing independent from the zone but if we do it from the entity it self we run into "node not found issues" sometimes.
-	if(CanSyncEntites == true and NetworkManager.PlayerContainer.get_child_count() != 0):
+	if(NetworkManager.PlayerContainer.get_child_count() != 0):
 		if(get_tree().get_network_unique_id() == 1):
-			for entity in Entites.get_children():
-				if(EntitesState.has(entity.name)):
-					EntitesState[entity.name] = entity.GetEntityData()
-			rpc_unreliable_id(0, "SyncDataDictionary", EntitesState)
-			rpc_unreliable_id(0, "SyncAllData")
+			if(OptimizationCheck_PlayersNearby() == true):
+				for entity in Entites.get_children():
+					if(EntitesState.has(entity.name)):
+						EntitesState[entity.name] = entity.GetEntityData()
+				rpc_unreliable_id(0, "SyncDataDictionary", EntitesState)
+				rpc_unreliable_id(0, "SyncAllData")
 
 remotesync func SyncAllData():
 	if(!EntitesState.empty() and get_tree().get_network_unique_id() != 1):
@@ -90,10 +90,19 @@ func GetNearestPlayerInZone():
 
 remote func AddPlayersInArea(player):
 	PlayersInArea.append(player)
-	CanSyncEntites = true
 		
 	
 remote func RemoveFromPlayersInArea(player):
 	PlayersInArea.erase(player)
-	if(PlayersInArea.size() == 0):
-		CanSyncEntites = false
+		
+func OptimizationCheck_PlayersNearby():
+	var closest_player
+	for player in NetworkManager.PlayerContainer.get_children():
+		if(closest_player == null):
+			closest_player = player
+		if(player.global_position.distance_to(self.global_position) > closest_player.global_position.distance_to(player.global_position)):
+			closest_player = player
+	if(closest_player.global_position.distance_to(self.global_position) <= 1750):
+		return true
+	else:
+		return false
