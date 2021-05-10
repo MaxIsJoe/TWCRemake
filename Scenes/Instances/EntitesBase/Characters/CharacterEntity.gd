@@ -133,7 +133,6 @@ func stop_navigating():
 func Respawn():
 	if(RespawnPoints.size() == 0):
 		push_error("[Health] : No respawn points avaliable for " + name)
-		health.BecomeAlive()
 		return
 	randomize()
 	var point = RespawnPoints[rand_range(0,RespawnPoints.size())]
