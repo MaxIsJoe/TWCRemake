@@ -2,7 +2,7 @@ extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 
 export(int) var SpawnerID: int = 0 # This is used to allow the game to spawn entities for players who latejoin. can be used for other stuff later
 export(int, "Melee", "Caster") var AttackType = 0 # What type of logic does this entity use for attacking?
-export(float) var AttackRange = 35 # How far can they be before they can harm the player?
+export(float, 45, 500) var AttackRange = 45 # How far can they be before they can harm the player?
 export(float, 0.0, 4.0) var AttackRangeLerpTime = 0.7 # When the player is inside their detection area, how fast does the entity's detection raycast get extended?
 export(float) var AttackCooldown = 1.0 # Their attack rate
 export(float) var AlertExtraRange = 35 # How long is their alert range when a player is in their detection area?
