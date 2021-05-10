@@ -83,5 +83,6 @@ remotesync func SyncData(PlayerID: int):
 func _on_Timer_timeout():
 	if(EntityCanRespawn):
 		rpc_id(0, "BecomeAlive")
+		$Timer.stop()
 	else:
 		parent.queue_free()
