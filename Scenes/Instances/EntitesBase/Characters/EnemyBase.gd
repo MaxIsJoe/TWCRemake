@@ -1,12 +1,17 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 
-export(int) var SpawnerID: int = 0 #This is used to allow the game to spawn entities for players who latejoin. can be used for other stuff later
-export(int, "Melee", "Caster") var AttackType = 0 #What type of logic does this entity use for attacking?
-export(float) var AttackRange = 35 #How far can they be before they can harm the player?
-export(float, 0.0, 4.0) var AttackRangeLerpTime = 0.7 #When the player is inside their detection area, how fast does the entity's detection raycast get extended?
-export(float) var AttackCooldown = 1.0 #Their attack rate
-export(float) var AlertExtraRange = 35 #How long is their alert range when a player is in their detection area?
-export(bool) var IsLegendary = false #Does this entity spawn as a legendary?
+export(int) var SpawnerID: int = 0 # This is used to allow the game to spawn entities for players who latejoin. can be used for other stuff later
+export(int, "Melee", "Caster") var AttackType = 0 # What type of logic does this entity use for attacking?
+export(float) var AttackRange = 35 # How far can they be before they can harm the player?
+export(float, 0.0, 4.0) var AttackRangeLerpTime = 0.7 # When the player is inside their detection area, how fast does the entity's detection raycast get extended?
+export(float) var AttackCooldown = 1.0 # Their attack rate
+export(float) var AlertExtraRange = 35 # How long is their alert range when a player is in their detection area?
+export(bool) var IsLegendary = false # Does this entity spawn as a legendary?
+export(bool) var AI_CanWander = true # Is this entity allowed to wander around?
+export(int) var AI_WanderTime = 450 # How long until this entity can wander again?
+export(bool) var AI_UsesNavMeshForWander = true # Does this entity use nav_mesh to wander around?
+export(bool) var AI_HasNoLimitsOutsideOfSpawn= false # Can This enitity leave it's spawn area?
+export(float) var AI_MaxDistanceAwayFromSpawn = 1000 # How far is this entity allowed to go before retreating to where it spawned?
 export(Array, AudioStream) var AttackSounds : Array
 export(Array, AudioStream) var AlertSounds  : Array
 
@@ -16,13 +21,14 @@ onready var AlertSoundPlayer = $Audio/Alerts
 
 var zoneParent
 
-var spawn_position : Vector2
+var spawn_position        : Vector2
+var wander_position       : Vector2
 var default_raycast_range : float
 
 remotesync var target
-var current_state = AI_states.IDLE
-var player_spotted : bool = false
-var canAttack : bool = true
+var current_state          = AI_states.IDLE
+var player_spotted  : bool = false
+var canAttack       : bool = true
 var ourname
 
 enum AI_states {
@@ -40,6 +46,8 @@ func _ready():
 
 func _physics_process(delta):
 	#Only allow the server to host logic for entites.
+	#Path finding can be expensive sometimes so it's best for the server to handle it.
+	#Plus this avoids some syncing issues where the entity does something other players can't see.
 	if(get_tree().get_network_unique_id() == 1):
 		LookAtTarget()
 		match current_state:
@@ -49,6 +57,8 @@ func _physics_process(delta):
 				AI_ATTACK(delta)
 			AI_states.RETREAT:
 				AI_RETREAT(delta)
+			AI_states.WANDER:
+				AI_WANDER(delta)
 			
 
 func GetEntityData():
@@ -74,15 +84,40 @@ func AI_IDLE():
 func AI_ATTACK(delta):
 	match AttackType:
 		0:
-			CheckIfTargetIsAlive() #Ensure that the target is alive so we don't attack a dead corpse
-			if(GetDistance2SpawnPosition() > 1100):
-				Retreat()
-			if(target.global_position.distance_to(self.global_position) <= AttackRange):
-				MeleeAttackLogic(target)
+			if(target != null): #For some reason the game will still run AI_ATTACK() when moving to other phases
+				if(CheckIfTargetIsAlive() == false):
+					if(GetDistance2SpawnPosition() > 1100):
+						Retreat()
+					if(target.global_position.distance_to(self.global_position) <= AttackRange):
+						MeleeAttackLogic(target)
 			
 func AI_RETREAT(delta):
-	if(global_position.distance_to(spawn_position) <= rand_range(0,75)):
+	if(global_position.distance_to(spawn_position) <= rand_range(5,75)):
 		BecomeIdle()
+		
+func AI_WANDER(delta):
+	SeekPlayer()
+	randomize()
+	if(wander_position == Vector2.ZERO or wander_position == null):
+		wander_position = GetRandomWanderPosition()
+	match AI_UsesNavMeshForWander:
+		true:
+			if(nav_path == []):
+				generate_path_to_vector2(wander_position)
+		false:
+			var direction = (wander_position - global_position).normalized()
+			moveDir = moveDir.move_toward(direction * stats.movement_speed, 300 * delta)
+	if(global_position.distance_to(wander_position) <= rand_range(0.25, 3.25)):
+		BecomeIdle()
+	if(GetDistance2SpawnPosition() >= AI_MaxDistanceAwayFromSpawn):
+		Retreat()
+	
+func GetRandomWanderPosition():
+	randomize()
+	var random_direction = Vector2.RIGHT.rotated(randf() * TAU)
+	var random_postion = random_direction * $DetectionZone/CollisionShape2D.shape.radius * rand_range(0, 1.0)
+	return global_position + random_postion
+	
 		
 func check_player_in_detection() -> bool:
 	var collider = LineOfSight.get_collider()
@@ -94,6 +129,9 @@ func check_player_in_detection() -> bool:
 func CheckIfTargetIsAlive():
 	if(target.health.currentState == health.HealthState.DEAD):
 		Retreat()
+		return true
+	else:
+		return false
 		
 func MeleeAttackLogic(victim):
 	if(victim != null): #This is to prevent a bug where the game checks for a victim when they have already died or left
@@ -112,7 +150,7 @@ func SeekPlayer():
 		if(player != null):
 			LineOfSight.look_at(player.global_position)
 			if(check_player_in_detection() == true):
-				if(current_state == AI_states.RETREAT and GetDistance2SpawnPosition() > 1000):
+				if(current_state == AI_states.RETREAT and GetDistance2SpawnPosition() > AI_MaxDistanceAwayFromSpawn):
 					return
 				SetAttackTarget(player)
 
@@ -133,15 +171,21 @@ func SetAttackTarget(thevictim):
 	
 func BecomeIdle():
 	stop_navigating()
+	wander_position = Vector2.ZERO
 	target = null
-	rpc_id(0, "SyncTarget", target)
+	#rpc_id(0, "SyncTarget", target)
 	current_state = AI_states.IDLE
 	LineOfSight.cast_to.x = default_raycast_range
 	rpc_id(0, "PlayAlertSounds")
 	
+func StartWandering():
+	stop_navigating()
+	current_state = AI_states.WANDER
+
 func Retreat():
+	wander_position = Vector2.ZERO
 	target = null
-	rpc_id(0, "SyncTarget", target)
+	#rpc_id(0, "SyncTarget", target)
 	player_spotted = false
 	generate_path_to_vector2(spawn_position)
 	current_state = AI_states.RETREAT
@@ -158,7 +202,7 @@ func _on_RefreshNav_timeout():
 
 func _on_ChaseTimeout_timeout():
 	if(check_player_in_detection() == false):
-		if(GetDistance2SpawnPosition() > 1000):
+		if(GetDistance2SpawnPosition() > AI_MaxDistanceAwayFromSpawn):
 			if(current_state == AI_states.IDLE or current_state == AI_states.ATTACK or current_state == AI_states.WANDER):
 				Retreat()
 			else:
@@ -206,3 +250,9 @@ func _on_DetectionZone_body_exited(body):
 	if(body.is_in_group("Players") and current_state != AI_states.ATTACK):
 		$LineOfSight/LoSTween.interpolate_property(LineOfSight, "cast_to:x", LineOfSight.cast_to.x, default_raycast_range, AttackRangeLerpTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$LineOfSight/LoSTween.start()
+
+
+func _on_WanderCooldown_timeout():
+	if(AI_CanWander):
+		if(current_state == AI_states.IDLE):
+			StartWandering()

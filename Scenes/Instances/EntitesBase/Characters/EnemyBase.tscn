@@ -36,6 +36,10 @@ wait_time = 2.0
 
 [node name="AttackCooldown" type="Timer" parent="." index="9"]
 
+[node name="WanderCooldown" type="Timer" parent="." index="10"]
+wait_time = 4.0
+autostart = true
+
 [node name="Alerts" parent="Audio" index="0"]
 max_distance = 500.0
 
@@ -54,3 +58,4 @@ bus = "Sound Effects"
 [connection signal="timeout" from="RefreshNav" to="." method="_on_RefreshNav_timeout"]
 [connection signal="timeout" from="ChaseTimeout" to="." method="_on_ChaseTimeout_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]
+[connection signal="timeout" from="WanderCooldown" to="." method="_on_WanderCooldown_timeout"]
