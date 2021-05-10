@@ -145,7 +145,7 @@ func audio_setTrack(audionode: AudioStreamPlayer2D, audiotrack: Object):
 func audio_playCurrentTrack(audionode: AudioStreamPlayer2D, randomizePitch: bool):
 	if(randomizePitch == true):
 		randomize()
-		audionode.pitch_scale = rand_range(-0.90, 1.25)
+		audionode.pitch_scale = rand_range(0.75, 1.25)
 	else:
 		audionode.pitch_scale = 1
 		
