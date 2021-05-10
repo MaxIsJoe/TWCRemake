@@ -7,8 +7,12 @@ export(float, 0.0, 4.0) var AttackRangeLerpTime = 0.7 #When the player is inside
 export(float) var AttackCooldown = 1.0 #Their attack rate
 export(float) var AlertExtraRange = 35 #How long is their alert range when a player is in their detection area?
 export(bool) var IsLegendary = false #Does this entity spawn as a legendary?
+export(Array, AudioStream) var AttackSounds : Array
+export(Array, AudioStream) var AlertSounds  : Array
 
 onready var LineOfSight = $LineOfSight
+onready var AttackSoundPlayer = $Audio/Attack
+onready var AlertSoundPlayer = $Audio/Alerts
 
 var zoneParent
 
@@ -28,6 +32,7 @@ enum AI_states {
 	ATTACK,
 	RETREAT
 }
+
 
 func _ready():
 	default_raycast_range = LineOfSight.cast_to.x
@@ -99,6 +104,7 @@ func MeleeAttackLogic(victim):
 				$AttackCooldown.start()
 			if(victim.is_in_group("enemy")):
 				victim.health.TakeDamage(stats.damage)
+			rpc_id(0, "PlayAttackSounds")
 		
 func SeekPlayer():
 	if(current_state == AI_states.IDLE or current_state == AI_states.SEARCH or current_state == AI_states.WANDER):
@@ -123,6 +129,7 @@ func SetAttackTarget(thevictim):
 	current_state = AI_states.ATTACK
 	LineOfSight.cast_to.x = LineOfSight.cast_to.x + AlertExtraRange
 	$ChaseTimeout.start()
+	rpc_id(0, "PlayAlertSounds")
 	
 func BecomeIdle():
 	stop_navigating()
@@ -130,6 +137,7 @@ func BecomeIdle():
 	rpc_id(0, "SyncTarget", target)
 	current_state = AI_states.IDLE
 	LineOfSight.cast_to.x = default_raycast_range
+	rpc_id(0, "PlayAlertSounds")
 	
 func Retreat():
 	target = null
@@ -137,6 +145,7 @@ func Retreat():
 	player_spotted = false
 	generate_path_to_vector2(spawn_position)
 	current_state = AI_states.RETREAT
+	rpc_id(0, "PlayAlertSounds")
 
 func LookAtTarget():
 	if(target != null):
@@ -172,6 +181,19 @@ remotesync func SyncTarget(t):
 func _on_AttackCooldown_timeout():
 	canAttack = true
 
+remotesync func PlayAttackSounds():
+	if(AttackSounds.size() != 0):
+		randomize()
+		var sound_to_play = AttackSounds[int(rand_range(0, AttackSounds.size() - 1))]
+		audio_setTrack(AttackSoundPlayer, sound_to_play)
+		audio_playCurrentTrack(AttackSoundPlayer, true)
+
+remotesync func PlayAlertSounds():
+	if(AlertSounds.size() != 0):
+		randomize()
+		var sound_to_play = AlertSounds[int(rand_range(0, AttackSounds.size() - 1))]
+		audio_setTrack(AlertSoundPlayer, sound_to_play)
+		audio_playCurrentTrack(AlertSoundPlayer, true)
 
 func _on_DetectionZone_body_entered(body):
 	if(body.is_in_group("Players") and current_state != AI_states.ATTACK):

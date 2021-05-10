@@ -139,3 +139,18 @@ func Respawn():
 	var point = RespawnPoints[rand_range(0,RespawnPoints.size())]
 	Teleport.TeleportPos(self, point, null)
 	health.BecomeAlive()
+	
+func audio_setTrack(audionode: AudioStreamPlayer2D, audiotrack: Object):
+	audionode.stream = audiotrack
+
+func audio_playCurrentTrack(audionode: AudioStreamPlayer2D, randomizePitch: bool):
+	if(randomizePitch == true):
+		randomize()
+		audionode.pitch_scale = rand_range(-0.90, 1.25)
+	else:
+		audionode.pitch_scale = 1
+		
+	audionode.play()
+	
+func audio_stopTrack(audionode: AudioStreamPlayer2D):
+	audionode.stop()

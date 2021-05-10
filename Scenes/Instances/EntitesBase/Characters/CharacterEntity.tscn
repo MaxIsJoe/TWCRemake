@@ -48,4 +48,24 @@ animation = "idledown"
 [node name="Line2D" type="Line2D" parent="."]
 width = 2.0
 
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Alerts" type="AudioStreamPlayer2D" parent="Audio"]
+max_distance = 600.0
+bus = "Sound Effects"
+
+[node name="Grunts" type="AudioStreamPlayer2D" parent="Audio"]
+max_distance = 500.0
+bus = "Sound Effects"
+
+[node name="Idle" type="AudioStreamPlayer2D" parent="Audio"]
+max_distance = 500.0
+bus = "Sound Effects"
+
+[node name="Passive" type="AudioStreamPlayer2D" parent="Audio"]
+bus = "Sound Effects"
+
+[node name="SpellTarget" type="AudioStreamPlayer2D" parent="Audio"]
+bus = "Sound Effects"
+
 [connection signal="timeout" from="Systems/Health/Timer" to="Systems/Health" method="_on_Timer_timeout"]

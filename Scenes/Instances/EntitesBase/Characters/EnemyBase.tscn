@@ -36,6 +36,19 @@ wait_time = 2.0
 
 [node name="AttackCooldown" type="Timer" parent="." index="9"]
 
+[node name="Alerts" parent="Audio" index="0"]
+max_distance = 500.0
+
+[node name="Passive" parent="Audio" index="3"]
+max_distance = 500.0
+
+[node name="SpellTarget" parent="Audio" index="4"]
+max_distance = 500.0
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="Audio" index="5"]
+max_distance = 500.0
+bus = "Sound Effects"
+
 [connection signal="body_entered" from="DetectionZone" to="." method="_on_DetectionZone_body_entered"]
 [connection signal="body_exited" from="DetectionZone" to="." method="_on_DetectionZone_body_exited"]
 [connection signal="timeout" from="RefreshNav" to="." method="_on_RefreshNav_timeout"]
