@@ -87,7 +87,7 @@ func _on_Area2D_body_entered(body):
 			else:
 				body.health.TakeDamage(dmg)
 			queue_free()
-		if(body.is_in_group("Enemies")):
+		if(body.is_in_group("enemy")):
 			body.health.TakeDamage(dmg)
 			queue_free()
 		else:
