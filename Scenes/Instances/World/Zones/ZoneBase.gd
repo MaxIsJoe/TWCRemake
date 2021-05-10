@@ -11,7 +11,6 @@ onready var Entites = $EntitesContanier
 
 
 func _physics_process(delta):
-	# There's a problem where if players aren't insde the zone entities no longer sync, causing invisible enemies to attack players on their side.
 	# We need to make enemy position syncing independent from the zone but if we do it from the entity it self we run into "node not found issues" sometimes.
 	if(NetworkManager.PlayerContainer.get_child_count() != 0):
 		if(get_tree().get_network_unique_id() == 1):
