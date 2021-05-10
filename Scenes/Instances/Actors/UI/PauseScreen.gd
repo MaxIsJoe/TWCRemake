@@ -16,3 +16,7 @@ func BuildPlayerWhoList():
 func ClearPlayerWhoList():
 	for player in $TabContainer/Main/WhoArea/VBoxContainer.get_children():
 		player.queue_free()
+
+
+func _on_ForceSave_button_down():
+	NetworkManager.Network.SavePlayer(get_tree().get_network_unique_id())

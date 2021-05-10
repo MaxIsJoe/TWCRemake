@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/snake_alert.ogg-4f6f73e868dc848f55bf8b4ce57daa39.oggstr"
+
+[deps]
+
+source_file="res://Sound/SFX/Enemies/snake/snake_alert.ogg"
+dest_files=[ "res://.import/snake_alert.ogg-4f6f73e868dc848f55bf8b4ce57daa39.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

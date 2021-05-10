@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/EnemyBase.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 135.214
+
+[node name="EnemyBase" groups=[
+"enemy",
+] instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Health" parent="Systems" index="1"]
+EntityCanRespawn = false
+
+[node name="DetectionZone" type="Area2D" parent="." index="5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone" index="0"]
+self_modulate = Color( 1, 1, 1, 0.117647 )
+shape = SubResource( 1 )
+
+[node name="RefreshNav" type="Timer" parent="." index="7"]
+wait_time = 0.5
+autostart = true
+
+[node name="ChaseTimeout" type="Timer" parent="." index="8"]
+wait_time = 2.0
+
+[node name="AttackCooldown" type="Timer" parent="." index="9"]
+
+[node name="WanderCooldown" type="Timer" parent="." index="10"]
+wait_time = 4.0
+autostart = true
+
+[node name="Alerts" parent="Audio" index="0"]
+max_distance = 500.0
+
+[node name="Passive" parent="Audio" index="3"]
+max_distance = 500.0
+
+[node name="SpellTarget" parent="Audio" index="4"]
+max_distance = 500.0
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="Audio" index="5"]
+max_distance = 500.0
+bus = "Sound Effects"
+
+[connection signal="body_entered" from="DetectionZone" to="." method="_on_DetectionZone_body_entered"]
+[connection signal="body_exited" from="DetectionZone" to="." method="_on_DetectionZone_body_exited"]
+[connection signal="timeout" from="RefreshNav" to="." method="_on_RefreshNav_timeout"]
+[connection signal="timeout" from="ChaseTimeout" to="." method="_on_ChaseTimeout_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]
+[connection signal="timeout" from="WanderCooldown" to="." method="_on_WanderCooldown_timeout"]

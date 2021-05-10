@@ -25,13 +25,14 @@ enum HealthState {
 	DEAD
 }
 
+signal OnDeath
 
 func _ready():
 	if(get_tree().get_network_unique_id() != 1):
 		SyncData(get_tree().get_network_unique_id())
 
 
-func TakeDamage(damage: int):
+remotesync func TakeDamage(damage: int):
 	if(CanBeDamaged):
 		match currentState:
 			HealthState.ALIVE:
@@ -39,9 +40,9 @@ func TakeDamage(damage: int):
 			HealthState.UNCONSCIOUS:
 				HP -= damage * 2
 	if(HP <= 0 and currentState != HealthState.DEAD):
-		BecomeAlivent()
+		rpc_id(0, "BecomeAlivent")
 
-func Heal(HealType: int, points_to_heal: int):
+remotesync func Heal(HealType: int, points_to_heal: int):
 	match(HealType):
 		0: #Instant Heal
 			HP += points_to_heal
@@ -50,7 +51,7 @@ func Heal(HealType: int, points_to_heal: int):
 		1: #Heal over time
 			pass #add later
 	
-func BecomeAlive():
+remotesync func BecomeAlive():
 	currentState = HealthState.ALIVE
 	parent.canMove = true
 	HP = HP_MAX
@@ -60,7 +61,7 @@ func BecomeAlive():
 	parent.Respawn()
 	Collision.set_deferred("disabled", false)
 
-func BecomeAlivent():
+remotesync func BecomeAlivent():
 	currentState = HealthState.DEAD
 	parent.canMove = false
 	
@@ -72,7 +73,7 @@ func BecomeAlivent():
 	RespawnTimer.start()
 	Collision.set_deferred("disabled", true)
 	
-remote func SyncData(PlayerID: int):
+remotesync func SyncData(PlayerID: int):
 	rset_id(PlayerID, "HP", HP)
 	rset_id(PlayerID, "HP_MAX", HP_MAX)
 	rset_id(PlayerID, "currentState", currentState)
@@ -81,6 +82,7 @@ remote func SyncData(PlayerID: int):
 
 func _on_Timer_timeout():
 	if(EntityCanRespawn):
-		BecomeAlive()
+		rpc_id(0, "BecomeAlive")
+		$Timer.stop()
 	else:
 		parent.queue_free()

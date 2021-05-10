@@ -12,7 +12,10 @@ var key #The player's token for saving and loading him
 
 var CanOpenPauseMenu : bool = false
 
+var net_thread = Thread.new()
+
 func _ready():
+	set_physics_process(false)
 	CheckForExecutableLaunchArguments()
 	var dir = Directory.new()
 	if(dir.dir_exists("user://saves/") or dir.dir_exists("user://accounts/")):
@@ -36,6 +39,7 @@ func ShowLoginScreen():
 	LoginScreen.visible = true
 
 func LoadGame():
+	set_physics_process(true)
 	Global.DEBUG_Mode = $MainUI/FirstLoad/StartupSettings/Check_Debug.pressed
 	Global.EnableFOV = $MainUI/FirstLoad/StartupSettings/Check_fov.pressed
 	Global.EnableFPSTracker = $MainUI/FirstLoad/StartupSettings/Check_tracker.pressed

@@ -59,7 +59,7 @@ func SetupPlayer(house: int, Name: String, gender: int):
 	updatenamelabel()
 	
 func Send_PlayerState():
-	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": SpriteHandler.currentDir, "LD": LookingDirection, "D": stats.damage, "SP": Shootpoint.global_transform}
+	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": SpriteHandler.currentDir, "LD": LookingDirection, "D": stats.damage, "SP": Shootpoint}
 	NetworkManager.Network.rpc_unreliable("SendData", PlayerState)
 	
 func UpdatePlayer(pos, anim, ld, d, SP):

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sanke_hiss_long.mp3-88c571e4de3691b4e1f2963f380f4fc5.mp3str"
+
+[deps]
+
+source_file="res://Sound/SFX/Enemies/snake/sanke_hiss_long.mp3"
+dest_files=[ "res://.import/sanke_hiss_long.mp3-88c571e4de3691b4e1f2963f380f4fc5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

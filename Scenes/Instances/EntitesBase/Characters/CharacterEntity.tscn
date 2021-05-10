@@ -16,8 +16,13 @@ script = ExtResource( 2 )
 MovementType = 0
 
 [node name="GridMovement_CollisionDetection" type="RayCast2D" parent="."]
-enabled = true
 cast_to = Vector2( 0, 25 )
+
+[node name="LineOfSight" type="RayCast2D" parent="."]
+rotation = 3.14159
+cast_to = Vector2( 175, 0 )
+
+[node name="LoSTween" type="Tween" parent="LineOfSight"]
 
 [node name="Systems" type="Node" parent="."]
 
@@ -44,5 +49,28 @@ script = ExtResource( 1 )
 [node name="Body" type="AnimatedSprite" parent="SpriteHandler"]
 frames = ExtResource( 5 )
 animation = "idledown"
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 2.0
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Alerts" type="AudioStreamPlayer2D" parent="Audio"]
+max_distance = 600.0
+bus = "Sound Effects"
+
+[node name="Grunts" type="AudioStreamPlayer2D" parent="Audio"]
+max_distance = 500.0
+bus = "Sound Effects"
+
+[node name="Idle" type="AudioStreamPlayer2D" parent="Audio"]
+max_distance = 500.0
+bus = "Sound Effects"
+
+[node name="Passive" type="AudioStreamPlayer2D" parent="Audio"]
+bus = "Sound Effects"
+
+[node name="SpellTarget" type="AudioStreamPlayer2D" parent="Audio"]
+bus = "Sound Effects"
 
 [connection signal="timeout" from="Systems/Health/Timer" to="Systems/Health" method="_on_Timer_timeout"]

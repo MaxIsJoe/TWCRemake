@@ -6,7 +6,7 @@
 animations = [ {
 "frames": [  ],
 "loop": true,
-"name": "IdleLeft",
+"name": "IdelRight",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -16,7 +16,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "IdelRight",
+"name": "IdleLeft",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ) ],

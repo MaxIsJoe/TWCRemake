@@ -1,0 +1,22 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/EnemyBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/AnimatedTextures/Enemies/Snake.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://Sound/SFX/Enemies/snake/snake_alert.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sound/SFX/Enemies/snake/snake_rattle_1.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sound/SFX/Enemies/snake/snake_rattle_2.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sound/SFX/Enemies/snake/snake_rattle_3.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sound/SFX/Enemies/melee_1.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Sound/SFX/Enemies/melee_3.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Sound/SFX/Enemies/melee_2.ogg" type="AudioStream" id=10]
+
+[node name="Snake" instance=ExtResource( 1 )]
+faction = 16
+changeSpritesWhenMoving = false
+rotatesSpritesTowardMovement = true
+AttackSounds = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 3 ) ]
+AlertSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+
+[node name="Body" parent="SpriteHandler" index="0"]
+frames = ExtResource( 2 )
+playing = true
