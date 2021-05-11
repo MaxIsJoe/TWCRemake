@@ -14,6 +14,7 @@
 faction = 16
 changeSpritesWhenMoving = false
 rotatesSpritesTowardMovement = true
+SpawnerID = 2
 AttackSounds = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 3 ) ]
 AlertSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 

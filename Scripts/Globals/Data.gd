@@ -46,7 +46,9 @@ var Episkey = load("res://Scenes/Instances/Actors/Spells/Target/Episkey.tscn")
 #Scenes
 var PlayerBase = preload("res://Scenes/Instances/Actors/player/PlayerV2.tscn")
 
-var EntitesPath: Array = ["res://Scenes/Instances/Actors/Enemies/Nature/Bat.tscn"]
+var EntitesPath: Array = ["res://Scenes/Instances/Actors/Enemies/Nature/Bat.tscn", 
+"res://Scenes/Instances/Actors/Enemies/Nature/Rat.tscn", 
+"res://Scenes/Instances/Actors/Enemies/Nature/Snake.tscn"]
 
 ##Images##
 var UI_Icon_Shop = "res://Sprites/UI/BagOSnow_Converted.png"
