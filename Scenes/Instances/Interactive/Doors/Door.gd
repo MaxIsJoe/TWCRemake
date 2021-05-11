@@ -1,18 +1,16 @@
 extends Node2D
 
-#onready var Colider = $Collision
 onready var AreaCollision = $Area2D/AreaCollision
+onready var StaticcCollision = $CollisionShape2D
 onready var spriteanim = $AnimatedSprite
 onready var timer = $Timer
 onready var Occluder = $Occluder
 
-#export(bool) var CanBeBroken = false
 
 var IsOpen
 
 export(bool) var IsLocked = false
-#var playerlist
-#var DoorHealth = 3000
+
 
 
 func _ready():
@@ -28,7 +26,8 @@ func _on_Area2D_body_entered(body):
 			if IsOpen == false :
 				IsOpen = true
 				#Colider.set_disabled(true)
-				AreaCollision.set_disabled(true)
+				AreaCollision.call_deferred("set_disabled", true)
+				StaticcCollision.call_deferred("set_disabled", true)
 				spriteanim.play("Opening")
 				Occluder.hide()
 				timer.start()
@@ -37,7 +36,8 @@ func _on_Area2D_body_entered(body):
 func _on_Timer_timeout():
 	spriteanim.play("Closing")
 	IsOpen = false
-	AreaCollision.set_disabled(false)
+	AreaCollision.call_deferred("set_disabled", false)
+	StaticcCollision.call_deferred("set_disabled", false)
 	Occluder.show()
 	
 	
