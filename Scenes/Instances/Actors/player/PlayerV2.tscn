@@ -292,7 +292,6 @@ __meta__ = {
 }
 
 [node name="Spells" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="3"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -304,12 +303,17 @@ script = ExtResource( 13 )
 [node name="SpellsContainer" type="Control" parent="Cam/CanvasLayer/UI/TabContainer/Spells" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 3.36743
+margin_right = 3.36743
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer" index="0"]
-margin_left = -2.0
-margin_top = 17.0
-margin_right = 401.0
-margin_bottom = 691.0
+margin_left = 1.0
+margin_top = 4.0
+margin_right = 404.0
+margin_bottom = 686.0
 rect_min_size = Vector2( 403, 674 )
 scroll_horizontal_enabled = false
 __meta__ = {
