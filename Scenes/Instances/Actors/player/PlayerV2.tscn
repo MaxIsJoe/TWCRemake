@@ -214,6 +214,7 @@ __meta__ = {
 anims/FadeInFadeOut = SubResource( 3 )
 
 [node name="TabContainer" type="TabContainer" parent="Cam/CanvasLayer/UI" index="4"]
+visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -441,3 +442,5 @@ position = Vector2( 0, 31.7025 )
 [node name="Audio_Pos" type="AudioStreamPlayer2D" parent="Audio" index="0"]
 
 [node name="Audio" type="AudioStreamPlayer" parent="Audio" index="1"]
+
+[connection signal="GrabbedAnItem" from="." to="Cam/CanvasLayer/UI/TabContainer/Inventory" method="_on_PlayerV2_GrabbedAnItem"]

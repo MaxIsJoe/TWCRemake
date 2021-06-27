@@ -30,6 +30,8 @@ onready var TargertPoint = $Spell_Pointers/TargetPoint
 onready var Cam = $Cam
 onready var CamTween = $Cam/CamTween
 
+signal GrabbedAnItem(item)
+
 func _ready():
 	playerkey = Data.main_node.key
 	
@@ -135,6 +137,8 @@ func _input(event):
 				$Light2D.shadow_enabled = false
 			else:
 				$Light2D.shadow_enabled = true
+		if(Input.is_action_just_pressed("ui_end")):
+			gold += 100
 
 func SetupBodySprites():
 	match Gender:

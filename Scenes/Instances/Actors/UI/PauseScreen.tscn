@@ -33,7 +33,7 @@ __meta__ = {
 [node name="Main" type="Tabs" parent="TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 22.0
+margin_top = 16.0
 
 [node name="Buttons" type="VBoxContainer" parent="TabContainer/Main"]
 margin_left = 2.0
@@ -46,16 +46,16 @@ __meta__ = {
 }
 
 [node name="ManagePartyFriends" type="Button" parent="TabContainer/Main/Buttons"]
-margin_top = 267.0
+margin_top = 265.0
 margin_right = 311.0
-margin_bottom = 297.0
+margin_bottom = 295.0
 rect_min_size = Vector2( 0, 30 )
 text = "Manage Party"
 
 [node name="CallAdminTeacher" type="Button" parent="TabContainer/Main/Buttons"]
-margin_top = 300.0
+margin_top = 299.0
 margin_right = 311.0
-margin_bottom = 330.0
+margin_bottom = 329.0
 rect_min_size = Vector2( 0, 30 )
 text = "Call Admin/Teacher"
 
@@ -67,16 +67,16 @@ rect_min_size = Vector2( 0, 30 )
 text = "Report a bug"
 
 [node name="ForceSave" type="Button" parent="TabContainer/Main/Buttons"]
-margin_top = 366.0
+margin_top = 367.0
 margin_right = 311.0
-margin_bottom = 396.0
+margin_bottom = 397.0
 rect_min_size = Vector2( 0, 30 )
 text = "Force Save"
 
 [node name="ExitGame" type="Button" parent="TabContainer/Main/Buttons"]
-margin_top = 399.0
+margin_top = 401.0
 margin_right = 311.0
-margin_bottom = 429.0
+margin_bottom = 431.0
 rect_min_size = Vector2( 0, 30 )
 text = "Quit Game"
 
@@ -166,7 +166,7 @@ __meta__ = {
 
 [node name="ActivePlayersNumber" type="RichTextLabel" parent="TabContainer/Main/Events/VBoxContainer"]
 margin_right = 329.0
-margin_bottom = 21.0
+margin_bottom = 15.0
 bbcode_enabled = true
 bbcode_text = "[i]There are active events at the moment."
 text = "There are active events at the moment."
@@ -180,7 +180,7 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 22.0
+margin_top = 16.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings"]
 margin_right = 280.0
@@ -825,12 +825,18 @@ text = "Rune-Rune - Spelling/Grammer checker, Contributor"
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 22.0
+margin_top = 16.0
 
 [node name="Classes" type="Tabs" parent="TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 22.0
+margin_top = 16.0
 
 [connection signal="button_down" from="TabContainer/Main/Buttons/ForceSave" to="." method="_on_ForceSave_button_down"]
+[connection signal="pressed" from="TabContainer/Settings/VBoxContainer/General" to="." method="_on_General_pressed"]
+[connection signal="pressed" from="TabContainer/Settings/VBoxContainer/Visuals" to="." method="_on_Visuals_pressed"]
+[connection signal="pressed" from="TabContainer/Settings/VBoxContainer/Audio" to="." method="_on_Audio_pressed"]
+[connection signal="pressed" from="TabContainer/Settings/VBoxContainer/Debugstuff" to="." method="_on_Debugstuff_pressed"]
+[connection signal="pressed" from="TabContainer/Settings/VBoxContainer/About" to="." method="_on_About_pressed"]
+[connection signal="toggled" from="TabContainer/Settings/Pages/DEBUG/VBoxContainer/EnableDEBUGMode" to="." method="_on_EnableDEBUGMode_toggled"]
