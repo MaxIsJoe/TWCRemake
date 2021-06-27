@@ -27,7 +27,7 @@ func PageSwitcher(page: int):
 	match page:
 		0:
 			hideAllPages()
-			$TabContainer/Settings/VBoxContainer/General.visible = true
+			$TabContainer/Settings/Pages/General.visible = true
 		1:
 			hideAllPages()
 			$TabContainer/Settings/Pages/Visuals.visible = true
@@ -36,7 +36,7 @@ func PageSwitcher(page: int):
 			$TabContainer/Settings/Pages/DEBUG.visible = true
 		3:
 			hideAllPages()
-			$TabContainer/Settings/VBoxContainer/About.visible = true
+			$TabContainer/Settings/Pages/About.visible = true
 		4:
 			hideAllPages()
 			$TabContainer/Settings/Pages/Audio.visible = true
