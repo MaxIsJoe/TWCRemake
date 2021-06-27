@@ -9,9 +9,9 @@
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -834.0
+margin_right = -880.0
 margin_bottom = -659.0
-rect_min_size = Vector2( 446, 61 )
+rect_min_size = Vector2( 400, 61 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -30,5 +30,5 @@ light_mask = 524288
 position = Vector2( 32.133, 31.0249 )
 scale = Vector2( 0.82687, 0.792244 )
 texture = ExtResource( 2 )
+
 [connection signal="button_down" from="." to="." method="_on_ItemButton_button_down"]
-[connection signal="mouse_entered" from="." to="." method="_on_ItemButton_mouse_entered"]

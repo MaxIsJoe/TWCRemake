@@ -16,5 +16,5 @@ func create_item_button(item):
 	item_button.UpdateButton(item, ButtonIDs)
 	return item_button
 
-func _on_Player_GrabbedAnItem(item):
+func _on_PlayerV2_GrabbedAnItem(item):
 	create_item_button(item)

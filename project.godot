@@ -52,7 +52,7 @@ enabled=PoolStringArray( "KOBUGE-games.CircularContainer" )
 
 [gui]
 
-theme/custom="res://Resources/Themes/DarkTheme/DarkTheme/Dark.theme"
+theme/custom="res://Resources/Themes/MinimalUI/MinimalUI.tres"
 
 [importer_defaults]
 

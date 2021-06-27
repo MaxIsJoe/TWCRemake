@@ -1,5 +1,7 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 
+export(Vector2) var CamZoomOnPlayer = Vector2(0.5,0.5)
+
 var House      : int
 var PlayerName : String = "Cuban Pete"
 var PlayerYear : int = 1
@@ -25,6 +27,10 @@ onready var AudioLocal = $Audio/Audio_Pos
 onready var Audio = $Audio/Audio
 onready var Shootpoint = $Spell_Pointers/ShootPoint
 onready var TargertPoint = $Spell_Pointers/TargetPoint
+onready var Cam = $Cam
+onready var CamTween = $Cam/CamTween
+
+signal GrabbedAnItem(item)
 
 func _ready():
 	playerkey = Data.main_node.key
@@ -35,7 +41,7 @@ func _ready():
 		Engine.set_iterations_per_second(60)
 	
 	if(is_network_master()):
-		$Cam.current = true
+		Cam.current = true
 		$Cam/CanvasLayer/UI.visible = true
 		Data.Player = self
 		if(Global.EnableFOV):
@@ -110,8 +116,16 @@ func _input(event):
 		#Always check if tabs exist because for some reason tabs become null for new connections without any reason
 		if tabs.visible == true:
 			tabs.visible = false
+			canMove = true
+			CamTween.interpolate_property(Cam, "zoom", Cam.zoom, Vector2(1,1), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			CamTween.interpolate_property(tabs, "rect_position", tabs.rect_position, Vector2(-440,6), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			CamTween.start()
 		else:
 			tabs.visible = true
+			canMove = false
+			CamTween.interpolate_property(Cam, "zoom", Cam.zoom, CamZoomOnPlayer, 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			CamTween.interpolate_property(tabs, "rect_position", tabs.rect_position, Vector2(8,6), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			CamTween.start()
 	#DEBUG
 	if(Global.DEBUG_Mode):
 		if(Input.is_action_just_pressed("ui_page_down")):
@@ -123,6 +137,8 @@ func _input(event):
 				$Light2D.shadow_enabled = false
 			else:
 				$Light2D.shadow_enabled = true
+		if(Input.is_action_just_pressed("ui_end")):
+			gold += 100
 
 func SetupBodySprites():
 	match Gender:
@@ -174,7 +190,11 @@ func UpdateShootingPostion(pos):
 		"right":
 			Shootpoint.position = Vector2(25, 0)
 			LookingDirection = LookDirections.RIGHT
-	
+
+func grab(item):
+	ItemsArray.append(item)
+	emit_signal("GrabbedAnItem", item)
+
 	
 func AddSpellForHotkey(hotkey, action, ActionArguments, ActionCooldown,icon):
 	var Hotkeys = get_tree().get_nodes_in_group("UI_HotkeyButton")

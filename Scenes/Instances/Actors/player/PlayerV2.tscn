@@ -75,7 +75,6 @@ WindowDialog/styles/panel = SubResource( 4 )
 script = ExtResource( 3 )
 CharacterType = 0
 faction = 3
-MovementType = 0
 tileSize = 64
 
 [node name="Stats" parent="Systems" index="0"]
@@ -89,7 +88,7 @@ script = ExtResource( 21 )
 TimeToRespawn = 6.0
 HealthBar_PATH = NodePath("../../Cam/CanvasLayer/UI/HPProgress")
 
-[node name="Collision" parent="." index="2"]
+[node name="Collision" parent="." index="3"]
 position = Vector2( 0, 2.24492 )
 
 [node name="PlayerName" type="Label" parent="." index="4"]
@@ -120,7 +119,6 @@ editor_draw_drag_margin = true
 [node name="CanvasLayer" type="CanvasLayer" parent="Cam" index="0"]
 
 [node name="UI" type="Control" parent="Cam/CanvasLayer" index="0"]
-visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -128,6 +126,7 @@ margin_top = -1.12247
 margin_bottom = -1.12244
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -187,6 +186,7 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="Cam/CanvasLayer/UI/MPProgress" index="0"]
 
 [node name="Leveup" type="Label" parent="Cam/CanvasLayer/UI" index="3"]
+visible = false
 light_mask = 524288
 anchor_left = 0.5
 anchor_top = 0.5
@@ -218,10 +218,11 @@ visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 69.0
-margin_right = -13.0
-margin_bottom = -79.0
+margin_left = -440.0
+margin_top = 8.0
+margin_right = -1309.0
+margin_bottom = -3.00006
+rect_min_size = Vector2( 411, 709 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -230,175 +231,100 @@ __meta__ = {
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
-
-[node name="Info_Status" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Status" index="0"]
-light_mask = 524288
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Here the player should see all of his stats and important information on his character"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = 1.0
+margin_top = 17.0
+margin_right = -1.0
+margin_bottom = -1.0
 
 [node name="Inventory" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="1"]
 visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 1.0
+margin_top = 17.0
+margin_right = -1.0
+margin_bottom = -1.0
 script = ExtResource( 9 )
 ItemButton = ExtResource( 7 )
 
-[node name="Info_Inventory" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Inventory" index="0"]
-visible = false
+[node name="Panel" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory" index="0"]
 light_mask = 524288
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Here the player can accses his full inventory. Still unsure if we should stick to the list inventory or move on to a grid based inventory"
-
-[node name="Panel" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory" index="1"]
-light_mask = 524288
-margin_left = 642.466
-margin_top = 3.0
-margin_right = 1244.47
-margin_bottom = 548.0
-
-[node name="VScrollBar" type="VScrollBar" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel" index="0"]
-light_mask = 524288
-margin_left = 590.0
-margin_right = 602.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 12, 550 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel" index="1"]
-light_mask = 524288
-margin_right = 593.0
-margin_bottom = 539.0
-rect_min_size = Vector2( 593, 593 )
-
-[node name="ItemSpriteShowcase" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory" index="2"]
-light_mask = 524288
-margin_left = -1.0
-margin_top = -3.0
-margin_right = 637.0
-margin_bottom = 298.0
-rect_min_size = Vector2( 523, 301 )
-
-[node name="ItemSprite" type="TextureRect" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/ItemSpriteShowcase" index="0" groups=[
-"UI_ItemIconPanel",
-]]
-light_mask = 524288
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-stretch_mode = 6
+margin_left = 5.0
+margin_top = 8.0
+margin_right = 405.0
+margin_bottom = 689.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DescPanel" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory" index="3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel" index="0"]
 light_mask = 524288
-margin_left = -1.0
-margin_top = 302.0
-margin_right = 637.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 524, 248 )
+margin_right = 379.0
+margin_bottom = 682.0
+rect_min_size = Vector2( 379, 682 )
 
-[node name="ItemName" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/DescPanel" index="0" groups=[
-"UI_ItemNamePanel",
-]]
+[node name="VScrollBar" type="VScrollBar" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel" index="1"]
 light_mask = 524288
-margin_left = 229.728
-margin_top = -0.334839
-margin_right = 406.728
-margin_bottom = 29.0652
-text = "Item Name"
-align = 1
-
-[node name="ItemDesc" type="RichTextLabel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/DescPanel" index="1" groups=[
-"UI_ItemDescPanel",
-]]
-light_mask = 524288
-margin_left = 1.0
-margin_top = 37.0
-margin_right = 636.0
-margin_bottom = 239.0
-rect_min_size = Vector2( 522, 202 )
-bbcode_enabled = true
-bbcode_text = "This is an Item and this is all you need to know about it
-
-1+ emptiness
-50% more empty
-90% more debug
-
-Value : 0 Gold"
-text = "This is an Item and this is all you need to know about it
-
-1+ emptiness
-50% more empty
-90% more debug
-
-Value : 0 Gold"
+margin_left = 382.0
+margin_top = 9.0
+margin_right = 396.0
+margin_bottom = 679.0
+rect_min_size = Vector2( 12, 550 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Quests" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="2"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 1.0
+margin_top = 17.0
+margin_right = -1.0
+margin_bottom = -1.0
 
 [node name="Info_Quests" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Quests" index="0"]
 margin_right = 40.0
 margin_bottom = 14.0
-text = "After optaining the quest book this tab should be open for all players to use just like the orginal game."
+text = "Work In Progress. Not added in yet."
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Map" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="3"]
-visible = false
+[node name="Spells" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
-
-[node name="Info_Maps" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Map" index="0"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Maps are there to help the player navigate the game with a little bit of help, this tab can be only used of the player buys/crafts a map item which can be only used on ONE scene only."
-
-[node name="Spells" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="4"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 1.0
+margin_top = 17.0
+margin_right = -1.0
+margin_bottom = -1.0
 script = ExtResource( 13 )
 
 [node name="SpellsContainer" type="Control" parent="Cam/CanvasLayer/UI/TabContainer/Spells" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer" index="0"]
-margin_right = 1244.0
-margin_bottom = 541.0
-scroll_vertical_enabled = false
+margin_left = 3.36743
+margin_right = 3.36743
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer/ScrollContainer" index="0"]
-columns = 7
+[node name="ScrollContainer" type="ScrollContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer" index="0"]
+margin_left = 1.0
+margin_top = 4.0
+margin_right = 404.0
+margin_bottom = 686.0
+rect_min_size = Vector2( 403, 674 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="VBoxContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer/ScrollContainer" index="0"]
+margin_right = 403.0
+margin_bottom = 674.0
+rect_min_size = Vector2( 403, 674 )
 
 [node name="Hotkeys" type="Control" parent="Cam/CanvasLayer/UI" index="5"]
 anchor_right = 1.0
@@ -429,48 +355,48 @@ __meta__ = {
 [node name="HotkeyButton" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="0" instance=ExtResource( 17 )]
 
 [node name="HotkeyButton2" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="1" instance=ExtResource( 17 )]
-margin_left = 43.0
-margin_right = 83.0
+margin_left = 44.0
+margin_right = 84.0
 ButtonHotkey = 1
 
 [node name="HotkeyButton3" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="2" instance=ExtResource( 17 )]
-margin_left = 86.0
-margin_right = 126.0
+margin_left = 88.0
+margin_right = 128.0
 ButtonHotkey = 2
 
 [node name="HotkeyButton4" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="3" instance=ExtResource( 17 )]
-margin_left = 129.0
-margin_right = 169.0
+margin_left = 132.0
+margin_right = 172.0
 ButtonHotkey = 3
 
 [node name="HotkeyButton5" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="4" instance=ExtResource( 17 )]
-margin_left = 172.0
-margin_right = 212.0
+margin_left = 176.0
+margin_right = 216.0
 ButtonHotkey = 4
 
 [node name="HotkeyButton6" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="5" instance=ExtResource( 17 )]
-margin_left = 215.0
-margin_right = 255.0
+margin_left = 220.0
+margin_right = 260.0
 ButtonHotkey = 5
 
 [node name="HotkeyButton7" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="6" instance=ExtResource( 17 )]
-margin_left = 258.0
-margin_right = 298.0
+margin_left = 264.0
+margin_right = 304.0
 ButtonHotkey = 6
 
 [node name="HotkeyButton8" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="7" instance=ExtResource( 17 )]
-margin_left = 301.0
-margin_right = 341.0
+margin_left = 308.0
+margin_right = 348.0
 ButtonHotkey = 7
 
 [node name="HotkeyButton9" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="8" instance=ExtResource( 17 )]
-margin_left = 344.0
-margin_right = 384.0
+margin_left = 352.0
+margin_right = 392.0
 ButtonHotkey = 8
 
 [node name="HotkeyButton10" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="9" instance=ExtResource( 17 )]
-margin_left = 387.0
-margin_right = 427.0
+margin_left = 396.0
+margin_right = 436.0
 ButtonHotkey = 9
 
 [node name="DiaUI" parent="Cam/CanvasLayer/UI" index="6" instance=ExtResource( 14 )]
@@ -494,6 +420,8 @@ dialog_text = "text"
 [node name="SetHotkeyUI" parent="Cam/CanvasLayer/UI" index="10" instance=ExtResource( 16 )]
 visible = false
 
+[node name="CamTween" type="Tween" parent="Cam" index="1"]
+
 [node name="Light2D" type="Light2D" parent="." index="6"]
 texture = ExtResource( 19 )
 texture_scale = 0.5
@@ -504,15 +432,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Audio" type="Node2D" parent="." index="7"]
-
-[node name="Audio_Pos" type="AudioStreamPlayer2D" parent="Audio" index="0"]
-
-[node name="Audio" type="AudioStreamPlayer" parent="Audio" index="1"]
-
 [node name="Spell_Pointers" type="Node2D" parent="." index="8"]
 
 [node name="ShootPoint" type="Position2D" parent="Spell_Pointers" index="0"]
 position = Vector2( 0, 31.7025 )
 
 [node name="TargetPoint" type="Position2D" parent="Spell_Pointers" index="1"]
+
+[node name="Audio_Pos" type="AudioStreamPlayer2D" parent="Audio" index="0"]
+
+[node name="Audio" type="AudioStreamPlayer" parent="Audio" index="1"]
+
+[connection signal="GrabbedAnItem" from="." to="Cam/CanvasLayer/UI/TabContainer/Inventory" method="_on_PlayerV2_GrabbedAnItem"]
