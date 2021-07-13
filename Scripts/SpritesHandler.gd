@@ -2,6 +2,8 @@ extends Node2D
 
 var currentDir : int
 
+onready var BodySprites = $Body
+
 func LoadAnimatedSprites(sprites: String, target: AnimatedSprite):
 	target.frames = load(sprites)
 	

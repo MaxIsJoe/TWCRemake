@@ -8,8 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "MobEntity",
+"class": "MobEnity_NPC",
+"language": "GDScript",
+"path": "res://Scenes/Instances/EntitesBase/Characters/NPCBase.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "MobEntity",
+"language": "GDScript",
+"path": "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
+} ]
 _global_script_class_icons={
+"MobEnity_NPC": "",
+"MobEntity": ""
 }
 
 [application]
@@ -148,6 +160,11 @@ move_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shift={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
 }
 

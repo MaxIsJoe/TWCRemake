@@ -82,7 +82,7 @@ remotesync func init_spell_target(direction_animation, casterName, effect, value
 func _on_Area2D_body_entered(body):
 	if(!TargetSpell):
 		if(body.is_in_group("Players")):
-			if(body.name != 1):
+			if(body.name != "1"):
 				body.rpc_id(int(body.name), "takedamage", dmg)
 			else:
 				body.health.TakeDamage(dmg)

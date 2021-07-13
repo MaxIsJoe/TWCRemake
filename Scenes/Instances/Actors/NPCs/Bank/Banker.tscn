@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/NPCBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/NPCs/Bank/Banker.gd" type="Script" id=2]
+[ext_resource path="res://Resources/AnimatedTextures/NPCs/Bank/BankerSprites.tres" type="SpriteFrames" id=3]
+
+[node name="Banker" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+faction = 8
+canMove = false
+NPC_Name = "Banker"
+ID = 8
+
+[node name="Body" parent="SpriteHandler" index="0"]
+frames = ExtResource( 3 )
+animation = "3"
