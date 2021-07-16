@@ -1,9 +1,6 @@
 extends Node
 
-signal send_text(text)
-export(String) var DialougFile
 export(String) var QuickDialougFile
-
 export(String) var Dialogic_Timeline
 
 var loaded_quickdia
