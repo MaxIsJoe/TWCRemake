@@ -33,6 +33,8 @@ func CheckForExecutableLaunchArguments():
 	if "--singleplayer" in OS.get_cmdline_args():
 		NetworkManager.Network.create_server()
 		ShowLoginScreen()
+	if "--debug" in OS.get_cmdline_args(): #In case we want to access debug mode while --singleplayer is active
+		Global.DEBUG_Mode = true
 
 func ShowLoginScreen():
 	FirstLoadUI.visible = false

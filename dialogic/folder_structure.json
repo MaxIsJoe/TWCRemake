@@ -1,0 +1,100 @@
+{
+	"files": [
+
+	],
+	"folders": {
+		"Characters": {
+			"files": [
+
+			],
+			"folders": {
+				"Shops": {
+					"files": [
+						"character-1626463366.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": true
+					}
+				}
+			},
+			"metadata": {
+				"color": null,
+				"folded": false
+			}
+		},
+		"Definitions": {
+			"files": [
+
+			],
+			"folders": {
+				"Info": {
+					"files": [
+
+					],
+					"folders": {
+						"Player": {
+							"files": [
+								"1626463528-150",
+								"1626464578-826"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						}
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				}
+			},
+			"metadata": {
+				"color": null,
+				"folded": false
+			}
+		},
+		"Themes": {
+			"files": [
+				"theme-1626463098.cfg"
+			],
+			"folders": {
+
+			},
+			"metadata": {
+				"color": null,
+				"folded": true
+			}
+		},
+		"Timelines": {
+			"files": [
+
+			],
+			"folders": {
+				"Shops": {
+					"files": [
+						"timeline-1626463398.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				}
+			},
+			"metadata": {
+				"color": null,
+				"folded": false
+			}
+		}
+	}
+}

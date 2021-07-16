@@ -1,0 +1,20 @@
+{
+	"color": "#ffffffff",
+	"description": "The bartender",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1626463366.json",
+	"mirror_portraits": false,
+	"name": "Tom",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": ""
+		}
+	],
+	"scale": 100
+}

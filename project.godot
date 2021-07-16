@@ -9,6 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Dialogic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicClass.gd"
+}, {
+"base": "Control",
+"class": "DialogicBackgroundMusic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/BackgroundMusic.gd"
+}, {
+"base": "Node",
+"class": "DialogicDefinitionsUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicDefinitionsUtil.gd"
+}, {
+"base": "Reference",
+"class": "DialogicResources",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicResources.gd"
+}, {
+"base": "Reference",
+"class": "DialogicUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicUtil.gd"
+}, {
 "base": "MobEntity",
 "class": "MobEnity_NPC",
 "language": "GDScript",
@@ -18,10 +43,21 @@ _global_script_classes=[ {
 "class": "MobEntity",
 "language": "GDScript",
 "path": "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
+}, {
+"base": "MobEntity",
+"class": "PlayerEntity",
+"language": "GDScript",
+"path": "res://Scenes/Instances/Actors/player/PlayerV2.gd"
 } ]
 _global_script_class_icons={
+"Dialogic": "",
+"DialogicBackgroundMusic": "",
+"DialogicDefinitionsUtil": "",
+"DialogicResources": "",
+"DialogicUtil": "",
 "MobEnity_NPC": "",
-"MobEntity": ""
+"MobEntity": "",
+"PlayerEntity": ""
 }
 
 [application]
@@ -44,6 +80,8 @@ SpellManager="*res://Scripts/Globals/SpellManager.gd"
 NetworkManager="*res://Scenes/NetworkManager.tscn"
 AudioManager="*res://Scenes/AudioManager.tscn"
 DayAndNightV2="*res://Scenes/Instances/World/DayAndNightV2.tscn"
+Bank="*res://Scripts/Network/Database/Bank.gd"
+DialogicSingleton="*res://addons/dialogic/Other/DialogicSingleton.gd"
 
 [debug]
 
@@ -60,7 +98,7 @@ window/stretch/aspect="keep_width"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "KOBUGE-games.CircularContainer" )
+enabled=PoolStringArray( "res://addons/KOBUGE-games.CircularContainer/plugin.cfg", "res://addons/dialogic/plugin.cfg" )
 
 [gui]
 

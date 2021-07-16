@@ -59,6 +59,9 @@ func _on_NPCBase_input_event(viewport, event, shape_idx):
 		if(distance2player <= InteractionDistance):
 			if event.button_index == BUTTON_RIGHT and event.pressed:
 				$RadialMenu.ToggleButtonVisbility(true)
+		if event.button_index == BUTTON_LEFT and event.pressed and HasDialouge:
+			Dialoug.StartDialogue()
+			return
 		if event.button_index == BUTTON_LEFT and event.pressed and Input.is_action_pressed("shift"):
 			if(distance2player <= InteractionDistance * 1.5):
 				Data.main_node.UI_Chat.SendText(3, Desc, "")

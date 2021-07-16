@@ -10,6 +10,7 @@ faction = 8
 canMove = false
 NPC_Name = "Banker"
 ID = 8
+HasDialouge = true
 
 [node name="Body" parent="SpriteHandler" index="0"]
 frames = ExtResource( 3 )
