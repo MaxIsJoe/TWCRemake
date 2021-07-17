@@ -13,6 +13,7 @@ radius = 254.542
 
 [node name="Bat" instance=ExtResource( 17 )]
 faction = 16
+EnemyName = "Bat"
 AttackSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ]
 AlertSounds = [ ExtResource( 2 ), ExtResource( 5 ) ]
 

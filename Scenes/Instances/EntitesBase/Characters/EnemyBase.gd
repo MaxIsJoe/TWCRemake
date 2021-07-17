@@ -1,5 +1,6 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 
+export(String) var EnemyName = "Enemy"
 export(int) var SpawnerID: int = 0 # This is used to allow the game to spawn entities for players who latejoin. can be used for other stuff later
 export(int, "Melee", "Caster") var AttackType = 0 # What type of logic does this entity use for attacking?
 export(float, 45, 500) var AttackRange = 45 # How far can they be before they can harm the player?
@@ -10,8 +11,10 @@ export(bool) var IsLegendary = false # Does this entity spawn as a legendary?
 export(bool) var AI_CanWander = true # Is this entity allowed to wander around?
 export(int) var AI_WanderTime = 450 # How long until this entity can wander again?
 export(bool) var AI_UsesNavMeshForWander = true # Does this entity use nav_mesh to wander around?
+export(bool) var AI_DisablesNavMeshWhenMeleeAttackingInNearRange = true # Does this entity stop using A* pathfinding when very close to the player?
 export(bool) var AI_HasNoLimitsOutsideOfSpawn= false # Can This enitity leave it's spawn area?
 export(float) var AI_MaxDistanceAwayFromSpawn = 1000 # How far is this entity allowed to go before retreating to where it spawned?
+export(float) var AI_MinDistanceBeforeDisabalingNavMesh = 200 # How far does this entity need to be before switching off A* pathfinding?
 export(Array, AudioStream) var AttackSounds : Array
 export(Array, AudioStream) var AlertSounds  : Array
 
@@ -92,6 +95,10 @@ func AI_ATTACK(delta):
 				if(CheckIfTargetIsAlive() == false):
 					if(GetDistance2SpawnPosition() > 1100):
 						Retreat()
+					if(AI_DisablesNavMeshWhenMeleeAttackingInNearRange):
+						if(global_position.distance_to(target.global_position) <= AI_MinDistanceBeforeDisabalingNavMesh):
+							var direction = (target.global_position - global_position).normalized()
+							moveDir = moveDir.move_toward(direction * stats.movement_speed, 300 * delta)
 					if(target.global_position.distance_to(self.global_position) <= AttackRange):
 						MeleeAttackLogic(target)
 			
@@ -141,7 +148,7 @@ func MeleeAttackLogic(victim):
 	if(victim != null): #This is to prevent a bug where the game checks for a victim when they have already died or left
 		if(canAttack):
 			if(victim.is_in_group("Players")):
-				victim.rpc("takedamage", stats.damage)
+				victim.rpc("takedamage", stats.damage, EnemyName)
 				canAttack = false
 				$AttackCooldown.start()
 			if(victim.is_in_group("enemy")):
@@ -176,6 +183,7 @@ func SetAttackTarget(thevictim):
 func BecomeIdle():
 	stop_navigating()
 	wander_position = Vector2.ZERO
+	moveDir = Vector2(0,0)
 	target = null
 	#rpc_id(0, "SyncTarget", target)
 	current_state = AI_states.IDLE
@@ -188,6 +196,7 @@ func StartWandering():
 
 func Retreat():
 	wander_position = Vector2.ZERO
+	moveDir = Vector2(0,0)
 	target = null
 	#rpc_id(0, "SyncTarget", target)
 	player_spotted = false
@@ -201,6 +210,9 @@ func LookAtTarget():
 
 func _on_RefreshNav_timeout():
 	if(player_spotted and target != null):
+		if(AI_DisablesNavMeshWhenMeleeAttackingInNearRange):
+			if(global_position.distance_to(target.global_position) <= AI_MinDistanceBeforeDisabalingNavMesh):
+				return
 		generate_path_to_node(target)
 
 
@@ -254,6 +266,8 @@ func _on_DetectionZone_body_exited(body):
 	if(body.is_in_group("Players") and current_state != AI_states.ATTACK):
 		$LineOfSight/LoSTween.interpolate_property(LineOfSight, "cast_to:x", LineOfSight.cast_to.x, default_raycast_range, AttackRangeLerpTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$LineOfSight/LoSTween.start()
+	if(body == target and $RefreshNav.is_stopped() and current_state == AI_states.ATTACK):
+		$RefreshNav.start()
 
 
 func _on_WanderCooldown_timeout():
