@@ -22,6 +22,7 @@ func ShowUI(newMode: int):
 			label.text = depositText
 			$Panel/SpinBox.max_value = Data.Player.gold
 			$Panel/SpinBox.value = Data.Player.gold
+	Data.Player.canMove = false
 
 
 
@@ -37,6 +38,7 @@ func _on_Confirm_button_down():
 				Bank.desposit(Data.main_node.key, $Panel/SpinBox.value, Data.Player)
 			else:
 				Bank.rpc("desposit", Data.main_node.key, $Panel/SpinBox.value, Data.Player)
+	Data.Player.canMove = true
 	queue_free()
 
 
