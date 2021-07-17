@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name MobEntity
 
 enum movement_type {
 	FREE,
@@ -120,7 +121,7 @@ func set_nav_target_node(target):
 	
 func navigate():
 	var last_point = self.global_position
-	for index in range(nav_path.size()):
+	for _index in range(nav_path.size()):
 		nav_antistuck_time += 1
 		if(nav_antistuck_time >= 900):
 				global_position = nav_path[0]
@@ -157,7 +158,8 @@ func Respawn():
 	var point = RespawnPoints[rand_range(0,RespawnPoints.size())]
 	Teleport.TeleportPos(self, point, null)
 	health.BecomeAlive()
-	
+
+###Audio
 func audio_setTrack(audionode: AudioStreamPlayer2D, audiotrack: Object):
 	audionode.stream = audiotrack
 
@@ -172,3 +174,4 @@ func audio_playCurrentTrack(audionode: AudioStreamPlayer2D, randomizePitch: bool
 	
 func audio_stopTrack(audionode: AudioStreamPlayer2D):
 	audionode.stop()
+

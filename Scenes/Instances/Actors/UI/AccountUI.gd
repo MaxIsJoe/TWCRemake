@@ -20,7 +20,7 @@ remote func DoesThisKeyExist(key, id): #Loops through all files in /saves/ to fi
 			if(file != null):
 				if(file.begins_with(str(key))): 
 					rset_id(id, "keyexists", true) #Tell the client that his account does exist
-					break #(Max): Does this even stop the loop?
+					break
 			file = dir.get_next()
 	else:
 		print("Failed to open user://accounts/")

@@ -1,4 +1,5 @@
-extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
+extends MobEntity
+class_name MobEnity_NPC
 
 export(String) var NPC_Name = "NPC" #NPC Name, used for various things.
 export(String) var Desc = "No description" #NPC description, will be used later.
@@ -38,11 +39,15 @@ func _ready():
 		
 func _on_Acknowledgement_area_body_entered(body):
 	if(body.is_in_group("Players")):
-		acknowleged_player_names.append(body.PlayerName)
+		#disable untill fix
+		#acknowleged_player_names.append(str(body.PlayerName))
+		pass
 
 func _on_Acknowledgement_area_body_exited(body):
 	if(body.is_in_group("Players")):
-		acknowleged_player_names.remove(body.PlayerName)
+		#disable untill fix
+		#acknowleged_player_names.remove(str(body.PlayerName))
+		pass
 		
 func _on_QuickDiaCooldown_timeout():
 	quicktext = Dialoug.GetQuickDia()
@@ -53,13 +58,24 @@ func _on_QuickDiaCooldown_timeout():
 
 
 func _on_NPCBase_input_event(viewport, event, shape_idx):
-	var distance2player = Global.GetDistance2Player(self)
-	if(distance2player <= InteractionDistance):
-		if event is InputEventMouseButton:
+	if event is InputEventMouseButton:
+		var distance2player = Global.GetDistance2Player(self)
+		if(distance2player <= InteractionDistance):
 			if event.button_index == BUTTON_RIGHT and event.pressed:
 				$RadialMenu.ToggleButtonVisbility(true)
-				print("it's working")
+		if event.button_index == BUTTON_LEFT and event.pressed and HasDialouge:
+			Dialoug.StartDialogue("")
+			return
+		if event.button_index == BUTTON_LEFT and event.pressed and Input.is_action_pressed("shift"):
+			if(distance2player <= InteractionDistance * 1.5):
+				Data.main_node.UI_Chat.SendText(3, Desc, "")
+			else:
+				Data.main_node.UI_Chat.SendText(3, "You're too far to inspect this!", "")
 				
+
+func TalkToNPC():
+	if(Dialoug.Dialogic_Timeline != ""):
+		Dialoug.StartDialogue()
 
 func _on_QuickDiaVisibiltyCooldown_timeout():
 	$Quick_Dia/Tween.interpolate_property(Quick_Dia, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.8, Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)

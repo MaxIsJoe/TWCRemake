@@ -5,7 +5,7 @@ signal update_self(id)
 
 var ID
 
-func UpdateData(PlayerName: String, PlayerYear: int, PlayerHouse: int, PlayerID):
+func UpdateData(PlayerName: String, PlayerYear: int, _PlayerHouse: int, PlayerID):
 	$PlayerName.bbcode_text = PlayerName
 	$PlayerYear.bbcode_text = str(PlayerYear)
 	ID = PlayerID

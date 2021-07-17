@@ -1,4 +1,5 @@
-extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
+extends MobEntity
+class_name PlayerEntity
 
 export(Vector2) var CamZoomOnPlayer = Vector2(0.5,0.5)
 
@@ -64,6 +65,8 @@ func SetupPlayer(house: int, Name: String, gender: int):
 	SetupBodySprites()
 	updatenamelabel()
 	
+	Global.UpdateDialogicPlayerDataVariables()
+	
 func Send_PlayerState():
 	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": SpriteHandler.currentDir, "LD": LookingDirection, "D": stats.damage, "SP": Shootpoint}
 	NetworkManager.Network.rpc_unreliable("SendData", PlayerState)
@@ -105,7 +108,7 @@ remote func updatenamelabel():
 	if(House == 2):
 		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_network_master():
 		getDir()
 	Send_PlayerState()

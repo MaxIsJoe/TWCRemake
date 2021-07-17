@@ -64,10 +64,10 @@ func Dia_SetText(ID):
 	DiaText.bbcode_text = str(Data.Loaded_Dialouge[ID].get("text"))
 	
 	if("[gender]" in DiaText.bbcode_text):
-		if(Data.Player.IsFemale):
+		if(Data.Player.Gender == 1):
 			var newtext = DiaText.bbcode_text.replace("[gender]", "Madam")
 			DiaText.bbcode_text = str(newtext)
-		if(Data.Player.IsMale):
+		else:
 			var newtext = DiaText.bbcode_text.replace("[gender]", "Sir")
 			DiaText.bbcode_text = str(newtext)
 	if("[playername]" in DiaText.bbcode_text):

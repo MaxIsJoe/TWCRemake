@@ -24,6 +24,8 @@ font_data = ExtResource( 2 )
 script = ExtResource( 5 )
 
 [node name="Acknowledgement_area" type="Area2D" parent="." index="0"]
+modulate = Color( 1, 1, 1, 0.129412 )
+show_behind_parent = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Acknowledgement_area" index="0"]
 shape = SubResource( 1 )

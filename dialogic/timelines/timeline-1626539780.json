@@ -1,0 +1,77 @@
+{
+	"events": [
+		{
+			"character": "character-1626539651.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Your account currently holds [PlayerBankMoney] total in gold. What would you like to do?"
+		},
+		{
+			"choice": "Withdraw",
+			"condition": ">",
+			"definition": "1626540210-564",
+			"event_id": "dialogic_011",
+			"value": "1"
+		},
+		{
+			"character": "character-1626539651.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "How much would you like to withdraw?"
+		},
+		{
+			"emit_signal": "withdraw",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"choice": "Deposit",
+			"condition": ">=",
+			"definition": "1626540201-374",
+			"event_id": "dialogic_011",
+			"value": "1"
+		},
+		{
+			"character": "character-1626539651.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "How much would you like to deposit?"
+		},
+		{
+			"emit_signal": "deposit",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.1
+		},
+		{
+			"choice": "Nothing",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1626539651.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Have a good day. [PlayerName]."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.2.4",
+		"file": "timeline-1626539780.json",
+		"name": "Banker_Talk"
+	}
+}

@@ -13,7 +13,7 @@ func _on_RadialButton_button_down():
 			Data.Player.grab(ID) #Used for picking items off the ground
 			get_parent().get_parent().get_parent().queue_free()
 		Data.UI_Icon_Dia: #Used for starting dialouge, will always start at ID 000
-			Global.LoadDialouge(get_parent().get_parent().get_parent().Dialoug.DialougFile, "000")
+			get_parent().get_parent().get_parent().Dialoug.StartDialouge("")
 		Data.UI_Icon_Shop: #Load up a show
 			Data.Player.ShowShopUI(get_parent().get_parent().get_parent().shop.ItemIDs, get_parent().get_parent().get_parent().shop.ShopID)
 	get_parent().get_parent().ToggleButtonVisbility(false) #Hide after we interacted with you

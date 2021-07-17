@@ -1,0 +1,44 @@
+{
+	"glossary": [
+		{
+			"extra": "",
+			"id": "1626539969-431",
+			"name": "Gold",
+			"text": "The regular currency of the wizarding world.",
+			"title": "Gold",
+			"type": 1
+		}
+	],
+	"variables": [
+		{
+			"id": "1626540183-520",
+			"name": "PlayerGender",
+			"type": 0,
+			"value": "0"
+		},
+		{
+			"id": "1626540193-595",
+			"name": "PlayerYear",
+			"type": 0,
+			"value": "1"
+		},
+		{
+			"id": "1626540201-374",
+			"name": "PlayerMoney",
+			"type": 0,
+			"value": "0"
+		},
+		{
+			"id": "1626540210-564",
+			"name": "PlayerBankMoney",
+			"type": 0,
+			"value": "100"
+		},
+		{
+			"id": "1626540941-819",
+			"name": "PlayerName",
+			"type": 0,
+			"value": "DEFAULT"
+		}
+	]
+}

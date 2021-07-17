@@ -8,8 +8,56 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "Dialogic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicClass.gd"
+}, {
+"base": "Control",
+"class": "DialogicBackgroundMusic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/BackgroundMusic.gd"
+}, {
+"base": "Node",
+"class": "DialogicDefinitionsUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicDefinitionsUtil.gd"
+}, {
+"base": "Reference",
+"class": "DialogicResources",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicResources.gd"
+}, {
+"base": "Reference",
+"class": "DialogicUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicUtil.gd"
+}, {
+"base": "MobEntity",
+"class": "MobEnity_NPC",
+"language": "GDScript",
+"path": "res://Scenes/Instances/EntitesBase/Characters/NPCBase.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "MobEntity",
+"language": "GDScript",
+"path": "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
+}, {
+"base": "MobEntity",
+"class": "PlayerEntity",
+"language": "GDScript",
+"path": "res://Scenes/Instances/Actors/player/PlayerV2.gd"
+} ]
 _global_script_class_icons={
+"Dialogic": "",
+"DialogicBackgroundMusic": "",
+"DialogicDefinitionsUtil": "",
+"DialogicResources": "",
+"DialogicUtil": "",
+"MobEnity_NPC": "",
+"MobEntity": "",
+"PlayerEntity": ""
 }
 
 [application]
@@ -32,6 +80,8 @@ SpellManager="*res://Scripts/Globals/SpellManager.gd"
 NetworkManager="*res://Scenes/NetworkManager.tscn"
 AudioManager="*res://Scenes/AudioManager.tscn"
 DayAndNightV2="*res://Scenes/Instances/World/DayAndNightV2.tscn"
+Bank="*res://Scripts/Network/Database/Bank.gd"
+DialogicSingleton="*res://addons/dialogic/Other/DialogicSingleton.gd"
 
 [debug]
 
@@ -48,7 +98,7 @@ window/stretch/aspect="keep_width"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "KOBUGE-games.CircularContainer" )
+enabled=PoolStringArray( "res://addons/KOBUGE-games.CircularContainer/plugin.cfg", "res://addons/dialogic/plugin.cfg" )
 
 [gui]
 
@@ -148,6 +198,11 @@ move_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shift={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -98,3 +98,9 @@ func ConditionCheck(ID):
 			LoadDialouge(null, result)
 			return false
 		
+
+func UpdateDialogicPlayerDataVariables():
+	Dialogic.set_variable("PlayerGender", Data.Player.Gender)
+	Dialogic.set_variable("PlayerYear", Data.Player.PlayerYear)
+	Dialogic.set_variable("PlayerMoney", Data.Player.gold)
+	Dialogic.set_variable("PlayerName", Data.Player.PlayerName)

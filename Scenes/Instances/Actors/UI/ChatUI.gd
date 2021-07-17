@@ -37,6 +37,8 @@ func SendText(Mode:int, txt:String, sender:String):
 			var TxtToBeSent =  str("[color=]<OOC>" + sender + "[/color]: " + txt + "\n")
 			var TxtSent = ReplaceColor(TxtToBeSent, OOC_Color)
 			rpc("receive_message", TxtSent)
+		3: #Client, no networking.
+			receive_message(str(txt + "\n"))
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/Levels/Tilesets/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/Instances/World/Objects/MovingStones.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Instances/Actors/Enemies/Nature/Rat.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Instances/World/Zones/EnemyZone/EnemyZone.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Instances/Actors/NPCs/Bank/Banker.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 18 )
@@ -206,14 +207,61 @@ position = Vector2( 790, 174 )
 
 [node name="Tom" parent="NPCs" instance=ExtResource( 5 )]
 position = Vector2( 624, 1099 )
+input_pickable = true
+MovementType = 0
 HasShop = true
 
 [node name="Ollivander" parent="NPCs" instance=ExtResource( 6 )]
 position = Vector2( 946.638, -182.722 )
-MovementType = 1
+input_pickable = true
+MovementType = 0
 
 [node name="BoomStoreOwner" parent="NPCs" instance=ExtResource( 7 )]
 position = Vector2( 2182, -1042 )
+input_pickable = true
+MovementType = 0
+
+[node name="Bank" type="Node2D" parent="NPCs"]
+
+[node name="Banker" parent="NPCs/Bank" instance=ExtResource( 16 )]
+position = Vector2( -3632.78, -722.734 )
+input_pickable = true
+MovementType = 0
+
+[node name="Banker2" parent="NPCs/Bank" instance=ExtResource( 16 )]
+position = Vector2( -3377.14, -720.211 )
+input_pickable = true
+MovementType = 0
+
+[node name="Banker3" parent="NPCs/Bank" instance=ExtResource( 16 )]
+position = Vector2( -3375.88, -879.982 )
+input_pickable = true
+MovementType = 0
+
+[node name="Banker4" parent="NPCs/Bank" instance=ExtResource( 16 )]
+position = Vector2( -3632.78, -879.141 )
+input_pickable = true
+MovementType = 0
+
+[node name="Banker5" parent="NPCs/Bank" instance=ExtResource( 16 )]
+position = Vector2( -3504.54, -1103.24 )
+input_pickable = true
+MovementType = 0
+
+[node name="Banker6" parent="NPCs/Bank" instance=ExtResource( 16 )]
+position = Vector2( -3504.54, -1103.24 )
+input_pickable = true
+MovementType = 0
+
+[node name="Banker7" parent="NPCs/Bank" instance=ExtResource( 16 )]
+position = Vector2( -3531.78, -1103.24 )
+input_pickable = true
+MovementType = 0
+
+[node name="Banker8" parent="NPCs/Bank" instance=ExtResource( 16 )]
+position = Vector2( -3475.88, -1103.24 )
+input_pickable = true
+MovementType = 0
 
 [node name="RatsInBasment" parent="NPCs" instance=ExtResource( 15 )]
 position = Vector2( 69.8175, 2620.61 )

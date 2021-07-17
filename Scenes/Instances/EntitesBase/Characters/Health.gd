@@ -25,12 +25,6 @@ enum HealthState {
 	DEAD
 }
 
-signal OnDeath
-
-func _ready():
-	if(get_tree().get_network_unique_id() != 1):
-		SyncData(get_tree().get_network_unique_id())
-
 
 remotesync func TakeDamage(damage: int):
 	if(CanBeDamaged):
