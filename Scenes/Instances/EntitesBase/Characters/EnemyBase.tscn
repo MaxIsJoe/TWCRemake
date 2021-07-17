@@ -10,6 +10,7 @@ radius = 135.214
 "enemy",
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+AI_UsesNavMeshForWander = false
 
 [node name="Health" parent="Systems" index="1"]
 EntityCanRespawn = false
