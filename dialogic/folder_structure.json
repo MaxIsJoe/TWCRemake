@@ -8,6 +8,18 @@
 
 			],
 			"folders": {
+				"Bank": {
+					"files": [
+						"character-1626539651.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
 				"Shops": {
 					"files": [
 						"character-1626463366.json"
@@ -17,7 +29,7 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": true
+						"folded": false
 					}
 				}
 			},
@@ -31,15 +43,53 @@
 
 			],
 			"folders": {
-				"Info": {
+				"Data": {
 					"files": [
 
 					],
 					"folders": {
 						"Player": {
 							"files": [
-								"1626463528-150",
-								"1626464578-826"
+								"1626540183-520",
+								"1626540193-595",
+								"1626540201-374",
+								"1626540210-564",
+								"1626540941-819"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						}
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"Info": {
+					"files": [
+						"1626539969-431"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"Tracker": {
+					"files": [
+
+					],
+					"folders": {
+						"Quests": {
+							"files": [
+
 							],
 							"folders": {
 
@@ -70,7 +120,7 @@
 			},
 			"metadata": {
 				"color": null,
-				"folded": true
+				"folded": false
 			}
 		},
 		"Timelines": {
@@ -78,6 +128,19 @@
 
 			],
 			"folders": {
+				"Bank": {
+					"files": [
+						"timeline-1626539611.json",
+						"timeline-1626539780.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
 				"Shops": {
 					"files": [
 						"timeline-1626463398.json"

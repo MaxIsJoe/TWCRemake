@@ -24,4 +24,14 @@ func _on_NPCBase_input_event(viewport, event, shape_idx):
 				talkToBanker()
 
 func talkToBanker():
-	pass
+	if(Bank.doesThisPlayerHaveABankAccount(Data.main_node.key)):
+		var new_dialog = Dialogic.start('Banker_Talk')
+		add_child(new_dialog)
+		Bank.registerPlayerAccount(Data.main_node.key)
+		Bank.UpdateDialogicBankStatus(Data.main_node.key)
+	else:
+		var new_dialog = Dialogic.start('Banker_FirstMeet')
+		add_child(new_dialog)
+		Bank.UpdateDialogicBankStatus(Data.main_node.key)
+	Global.UpdateDialogicPlayerDataVariables()
+	
