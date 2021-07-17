@@ -85,7 +85,7 @@ func _on_Area2D_body_entered(body):
 			if(body.name != "1"):
 				body.rpc_id(int(body.name), "takedamage", dmg)
 			else:
-				body.health.TakeDamage(dmg)
+				body.health.TakeDamage(dmg, caster)
 			queue_free()
 		if(body.is_in_group("enemy")):
 			body.health.TakeDamage(dmg)

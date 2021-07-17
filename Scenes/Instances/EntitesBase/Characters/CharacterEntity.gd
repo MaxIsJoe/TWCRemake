@@ -33,6 +33,8 @@ export(bool) var changeSpritesWhenMoving       : bool = true
 export(bool) var rotatesSpritesTowardMovement  : bool = false
 export(bool) var canMove                       : bool = true
 export(int)  var tileSize                      : int  = 32
+export(int)  var EXPGivenOnDeath               : int  = 100
+export(int)  var GoldGivenOnDeath              : int  = 100
 
 func _ready():
 	#Movement setup

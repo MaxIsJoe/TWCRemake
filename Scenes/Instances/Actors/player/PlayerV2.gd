@@ -241,5 +241,5 @@ func ShowHotkeyAsign(ID):
 	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true
 	$Cam/CanvasLayer/UI/SetHotkeyUI.ID = ID
 	
-remotesync func takedamage(dmg):
-	health.TakeDamage(dmg)
+remotesync func takedamage(dmg, dmgBy):
+	health.TakeDamage(dmg, dmgBy)

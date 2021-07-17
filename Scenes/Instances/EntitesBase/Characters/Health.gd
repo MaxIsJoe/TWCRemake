@@ -14,6 +14,7 @@ export(bool) var EntityCanRespawn = true
 export(float) var TimeToRespawn = 4.0
 
 var currentState = HealthState.ALIVE
+var lastDamagedBy : String
 
 onready var RespawnTimer = $Timer
 
@@ -26,13 +27,14 @@ enum HealthState {
 }
 
 
-remotesync func TakeDamage(damage: int):
+remotesync func TakeDamage(damage: int, damagedBy: String = "unkown"):
 	if(CanBeDamaged):
 		match currentState:
 			HealthState.ALIVE:
 				HP -= damage
 			HealthState.UNCONSCIOUS:
 				HP -= damage * 2
+		lastDamagedBy = damagedBy
 	if(HP <= 0 and currentState != HealthState.DEAD):
 		rpc_id(0, "BecomeAlivent")
 
