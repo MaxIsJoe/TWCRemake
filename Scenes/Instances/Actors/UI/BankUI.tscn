@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Instances/Actors/UI/BankUI.gd" type="Script" id=1]
+
+[sub_resource type="InputEventAction" id=1]
+action = "ui_cancel"
+pressed = true
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[node name="BankUI" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -173.0
+margin_top = -53.0
+margin_right = 170.0
+margin_bottom = 58.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -170.5
+margin_right = 171.5
+margin_bottom = 18.0
+text = "How much would you like to deposit?"
+align = 1
+valign = 1
+
+[node name="SpinBox" type="SpinBox" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -37.0
+margin_top = -12.0
+margin_right = 37.0
+margin_bottom = 12.0
+align = 1
+
+[node name="Confirm" type="Button" parent="Panel"]
+margin_left = 84.757
+margin_top = 90.0544
+margin_right = 124.757
+margin_bottom = 106.054
+text = "Confirm"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="Panel"]
+margin_left = 205.006
+margin_top = 90.0544
+margin_right = 257.006
+margin_bottom = 106.054
+shortcut = SubResource( 2 )
+text = "Cancel"
+
+[connection signal="button_down" from="Panel/Confirm" to="." method="_on_Confirm_button_down"]
+[connection signal="button_down" from="Panel/Cancel" to="." method="_on_Cancel_button_down"]

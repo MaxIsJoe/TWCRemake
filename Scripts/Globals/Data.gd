@@ -76,7 +76,7 @@ var Claw_Male   : String = "res://Resources/AnimatedTextures/PlayerBases/Male/Ma
 ## Temp / client sided ##
 #Dialouge#
 var Loaded_Dialouge
-var Player
+var Player : PlayerEntity
 
 func UpdateDiaNodeVar():
 	Group_DiaNode = get_tree().get_nodes_in_group("DiaUI")

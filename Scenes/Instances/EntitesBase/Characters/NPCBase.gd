@@ -39,11 +39,15 @@ func _ready():
 		
 func _on_Acknowledgement_area_body_entered(body):
 	if(body.is_in_group("Players")):
-		acknowleged_player_names.append(body.PlayerName)
+		#disable untill fix
+		#acknowleged_player_names.append(str(body.PlayerName))
+		pass
 
 func _on_Acknowledgement_area_body_exited(body):
 	if(body.is_in_group("Players")):
-		acknowleged_player_names.remove(body.PlayerName)
+		#disable untill fix
+		#acknowleged_player_names.remove(str(body.PlayerName))
+		pass
 		
 func _on_QuickDiaCooldown_timeout():
 	quicktext = Dialoug.GetQuickDia()
@@ -60,7 +64,7 @@ func _on_NPCBase_input_event(viewport, event, shape_idx):
 			if event.button_index == BUTTON_RIGHT and event.pressed:
 				$RadialMenu.ToggleButtonVisbility(true)
 		if event.button_index == BUTTON_LEFT and event.pressed and HasDialouge:
-			Dialoug.StartDialogue()
+			Dialoug.StartDialogue("")
 			return
 		if event.button_index == BUTTON_LEFT and event.pressed and Input.is_action_pressed("shift"):
 			if(distance2player <= InteractionDistance * 1.5):
@@ -68,6 +72,10 @@ func _on_NPCBase_input_event(viewport, event, shape_idx):
 			else:
 				Data.main_node.UI_Chat.SendText(3, "You're too far to inspect this!", "")
 				
+
+func TalkToNPC():
+	if(Dialoug.Dialogic_Timeline != ""):
+		Dialoug.StartDialogue()
 
 func _on_QuickDiaVisibiltyCooldown_timeout():
 	$Quick_Dia/Tween.interpolate_property(Quick_Dia, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.8, Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)

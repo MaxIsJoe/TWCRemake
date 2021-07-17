@@ -108,7 +108,7 @@ remote func updatenamelabel():
 	if(House == 2):
 		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_network_master():
 		getDir()
 	Send_PlayerState()

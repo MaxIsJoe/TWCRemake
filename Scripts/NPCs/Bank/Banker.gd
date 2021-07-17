@@ -21,17 +21,15 @@ func _on_NPCBase_input_event(viewport, event, shape_idx):
 		var distance2player = Global.GetDistance2Player(self)
 		if(distance2player <= InteractionDistance):
 			if event.button_index == BUTTON_LEFT and event.pressed:
-				talkToBanker()
+				TalkToNPC()
 
-func talkToBanker():
+func TalkToNPC():
 	if(Bank.doesThisPlayerHaveABankAccount(Data.main_node.key)):
-		var new_dialog = Dialogic.start('Banker_Talk')
-		add_child(new_dialog)
-		Bank.registerPlayerAccount(Data.main_node.key)
+		Dialoug.StartDialogue('Banker_Talk')
 		Bank.UpdateDialogicBankStatus(Data.main_node.key)
 	else:
-		var new_dialog = Dialogic.start('Banker_FirstMeet')
-		add_child(new_dialog)
+		Dialoug.StartDialogue('Banker_FirstMeet')
+		Bank.registerPlayerAccount(Data.main_node.key)
 		Bank.UpdateDialogicBankStatus(Data.main_node.key)
 	Global.UpdateDialogicPlayerDataVariables()
 	

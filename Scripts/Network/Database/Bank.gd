@@ -1,7 +1,8 @@
 extends Node
 
-var banksPath : String = "user://database/BanksAndVaults/"
+var banksPath : String = "user://accounts/BanksAndVaults/"
 
+var bankUI : PackedScene = load("res://Scenes/Instances/Actors/UI/BankUI.tscn")
 
 func _ready():
 	var dir = Directory.new()
@@ -10,7 +11,7 @@ func _ready():
 	else:
 		dir.make_dir(banksPath)
 
-func desposit(playerKey: String, amount: int):
+func desposit(playerKey: String, amount: int, playerNode : PlayerEntity):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
 		var dir : Directory = Directory.new()
@@ -18,16 +19,55 @@ func desposit(playerKey: String, amount: int):
 			dir.list_dir_begin(true, true)
 			while file != "":
 				if(file != null):
-					if(file.begins_with(str(playerKey))): 
-						var data = {"amount": amount}
-						JsonLoader.SaveJSON(data, str(banksPath + playerKey + ".json"))
+					if(file.begins_with(str(playerKey))):
+						var dataInFile = JsonLoader.LoadJSON_Retrun(str(banksPath + playerKey + ".json"))
+						var dataNewData = {"amount": amount + dataInFile["amount"]}
+						playerNode.gold -= amount
+						JsonLoader.SaveJSON(dataNewData, str(banksPath + playerKey + ".json"))
 						break
 				file = dir.get_next()
 		else:
 			print("[Banks] - Player account not found!")
 			
-func withdraw(playerKey: String, amount: int, playerNode):
-	pass
+func howMuchMoneyDoesThisPlayerHave(playerKey: String):
+	if(doesThisPlayerHaveABankAccount(playerKey)):
+		var file
+		var dir : Directory = Directory.new()
+		if dir.open(banksPath) == OK:
+			dir.list_dir_begin(true, true)
+			while file != "":
+				if(file != null):
+					if(file.begins_with(str(playerKey))):
+						var dataInFile = JsonLoader.LoadJSON_Retrun(str(banksPath + playerKey + ".json"))
+						return dataInFile["amount"]
+						break
+				file = dir.get_next()
+		else:
+			print("[Banks] - Player account not found!")
+			return null
+			
+func withdraw(playerKey: String, amountToWithdraw: int, playerNode: PlayerEntity):
+	if(doesThisPlayerHaveABankAccount(playerKey)):
+		var file
+		var dir : Directory = Directory.new()
+		if dir.open(banksPath) == OK:
+			dir.list_dir_begin(true, true)
+			while file != "":
+				if(file != null):
+					if(file.begins_with(str(playerKey))):
+						var dataInFile = JsonLoader.LoadJSON_Retrun(str(banksPath + playerKey + ".json"))
+						if(amountToWithdraw > dataInFile["amount"]):
+							return false
+						else:
+							playerNode.gold += amountToWithdraw
+							var dataNewData = {"amount": (dataInFile["amount"] - amountToWithdraw)}
+							JsonLoader.SaveJSON(dataNewData, str(banksPath + playerKey + ".json"))
+							return true
+						break
+				file = dir.get_next()
+		else:
+			print("[Banks] - Player account not found!")
+			return false
 	
 func UpdateDialogicBankStatus(playerKey: String):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
@@ -52,23 +92,19 @@ func UpdateDialogicBankStatus(playerKey: String):
 func registerPlayerAccount(playerKey):
 	if(doesThisPlayerHaveABankAccount(playerKey) == false):
 		var data = {"amount": 100}
-		JsonLoader.SaveJSON(data, str(banksPath + playerKey))
-		return true
+		JsonLoader.SaveJSON(data, str(banksPath + playerKey + ".json"))
 	else:
 		print("[Banks] - User already has a registered account.")
-		return false
 	
 func doesThisPlayerHaveABankAccount(key):
-	var file
-	var dir : Directory = Directory.new()
-	if dir.open(banksPath) == OK:
-		dir.list_dir_begin(true, true)
-		while file != "":
-			if(file != null):
-				if(file.begins_with(str(key))): 
-					return true
-			file = dir.get_next()
-		return false
+	var _file : File = File.new()
+	if _file.open(str(banksPath + key + ".json"), File.READ) == OK:
+		return true
 	else:
-		print("Failed to open " + banksPath)
+		print("Failed to find " + banksPath + key + ".json")
 		return false
+
+func showUI(mode: int):
+	var ui = bankUI.instance()
+	add_child(ui)
+	ui.ShowUI(mode)

@@ -23,6 +23,14 @@
 			"text": "How much would you like to withdraw?"
 		},
 		{
+			"emit_signal": "withdraw",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
 			"choice": "Deposit",
 			"condition": ">=",
 			"definition": "1626540201-374",
@@ -36,6 +44,14 @@
 			"text": "How much would you like to deposit?"
 		},
 		{
+			"emit_signal": "deposit",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.1
+		},
+		{
 			"choice": "Nothing",
 			"condition": "",
 			"definition": "",
@@ -47,6 +63,10 @@
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Have a good day. [PlayerName]."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
 		}
 	],
 	"metadata": {

@@ -25,8 +25,6 @@ enum HealthState {
 	DEAD
 }
 
-signal OnDeath
-
 
 remotesync func TakeDamage(damage: int):
 	if(CanBeDamaged):

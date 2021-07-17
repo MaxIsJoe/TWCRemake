@@ -54,7 +54,7 @@ func RemoveData(EntityID):
 		Entites.get_node(str(EntityID)).queue_free()
 		
 remotesync func RemoveAllEntites():
-	EntitesState.empty()
+	EntitesState.clear()
 	rset_id(0, "EntitesState", EntitesState)
 	
 	for entity in Entites.get_children():
