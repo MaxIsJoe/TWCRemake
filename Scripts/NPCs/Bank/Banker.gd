@@ -26,10 +26,17 @@ func _on_NPCBase_input_event(viewport, event, shape_idx):
 func TalkToNPC():
 	if(Bank.doesThisPlayerHaveABankAccount(Data.main_node.key)):
 		Dialoug.StartDialogue('Banker_Talk')
-		Bank.UpdateDialogicBankStatus(Data.main_node.key)
+		if(get_tree().get_network_unique_id() == 1):
+			Bank.UpdateDialogicBankStatus(Data.main_node.key)
+		else:
+			Bank.rpc("UpdateDialogicBankStatus",Data.main_node.key)
 	else:
 		Dialoug.StartDialogue('Banker_FirstMeet')
-		Bank.registerPlayerAccount(Data.main_node.key)
-		Bank.UpdateDialogicBankStatus(Data.main_node.key)
+		if(get_tree().get_network_unique_id() == 1):
+			Bank.registerPlayerAccount(Data.main_node.key)
+			Bank.UpdateDialogicBankStatus(Data.main_node.key)
+		else:
+			Bank.rpc("registerPlayerAccount", Data.main_node.key)
+			Bank.rpc("UpdateDialogicBankStatus", Data.main_node.key)
 	Global.UpdateDialogicPlayerDataVariables()
 	

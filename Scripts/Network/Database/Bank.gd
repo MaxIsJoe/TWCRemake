@@ -11,7 +11,7 @@ func _ready():
 	else:
 		dir.make_dir(banksPath)
 
-func desposit(playerKey: String, amount: int, playerNode : PlayerEntity):
+remotesync func desposit(playerKey: String, amount: int, playerNode : PlayerEntity):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
 		var dir : Directory = Directory.new()
@@ -29,7 +29,7 @@ func desposit(playerKey: String, amount: int, playerNode : PlayerEntity):
 		else:
 			print("[Banks] - Player account not found!")
 			
-func howMuchMoneyDoesThisPlayerHave(playerKey: String):
+remotesync func howMuchMoneyDoesThisPlayerHave(playerKey: String):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
 		var dir : Directory = Directory.new()
@@ -46,7 +46,7 @@ func howMuchMoneyDoesThisPlayerHave(playerKey: String):
 			print("[Banks] - Player account not found!")
 			return null
 			
-func withdraw(playerKey: String, amountToWithdraw: int, playerNode: PlayerEntity):
+remotesync func withdraw(playerKey: String, amountToWithdraw: int, playerNode: PlayerEntity):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
 		var dir : Directory = Directory.new()
@@ -69,7 +69,7 @@ func withdraw(playerKey: String, amountToWithdraw: int, playerNode: PlayerEntity
 			print("[Banks] - Player account not found!")
 			return false
 	
-func UpdateDialogicBankStatus(playerKey: String):
+remotesync func UpdateDialogicBankStatus(playerKey: String):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
 		var dir : Directory = Directory.new()
@@ -89,14 +89,14 @@ func UpdateDialogicBankStatus(playerKey: String):
 		else:
 			print("[Banks] - Player account not found!")
 
-func registerPlayerAccount(playerKey):
+remotesync func registerPlayerAccount(playerKey):
 	if(doesThisPlayerHaveABankAccount(playerKey) == false):
 		var data = {"amount": 100}
 		JsonLoader.SaveJSON(data, str(banksPath + playerKey + ".json"))
 	else:
 		print("[Banks] - User already has a registered account.")
 	
-func doesThisPlayerHaveABankAccount(key):
+remotesync func doesThisPlayerHaveABankAccount(key):
 	var _file : File = File.new()
 	if _file.open(str(banksPath + key + ".json"), File.READ) == OK:
 		return true

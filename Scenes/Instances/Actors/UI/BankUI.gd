@@ -12,7 +12,10 @@ func ShowUI(newMode: int):
 		0:
 			mode = 0
 			label.text = withdrawText
-			$Panel/SpinBox.max_value = Bank.howMuchMoneyDoesThisPlayerHave(Data.main_node.key)
+			if(get_tree().get_network_unique_id() == 1):
+				$Panel/SpinBox.max_value = Bank.howMuchMoneyDoesThisPlayerHave(Data.main_node.key)
+			else:
+				$Panel/SpinBox.max_value = Bank.rpc("howMuchMoneyDoesThisPlayerHave", Data.main_node.key)
 			$Panel/SpinBox.value = $Panel/SpinBox.max_value
 		1:
 			mode = 1
@@ -25,9 +28,15 @@ func ShowUI(newMode: int):
 func _on_Confirm_button_down():
 	match mode:
 		0:
-			Bank.withdraw(Data.main_node.key, $Panel/SpinBox.value, Data.Player)
+			if(get_tree().get_network_unique_id() == 1):
+				Bank.withdraw(Data.main_node.key, $Panel/SpinBox.value, Data.Player)
+			else:
+				Bank.rpc("withdraw", Data.main_node.key, $Panel/SpinBox.value, Data.Player)
 		1:
-			Bank.desposit(Data.main_node.key, $Panel/SpinBox.value, Data.Player)
+			if(get_tree().get_network_unique_id() == 1):
+				Bank.desposit(Data.main_node.key, $Panel/SpinBox.value, Data.Player)
+			else:
+				Bank.rpc("desposit", Data.main_node.key, $Panel/SpinBox.value, Data.Player)
 	queue_free()
 
 
