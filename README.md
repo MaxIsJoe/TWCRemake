@@ -1,7 +1,7 @@
 # TWCRemake
 The Wizards Chronicles remake inside the Godot engine.
 
-<img src="https://img.shields.io/github/issues/MaxIsJoe/TWCRemake"><img src="https://img.shields.io/github/last-commit/MaxIsJoe/TWCRemake"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"><img src=https://img.shields.io/badge/Made%20In-Godot-blue><img src=https://img.shields.io/badge/Proudly%20Hosted%20By-localhost-green">
+<img src="https://img.shields.io/github/issues/MaxIsJoe/TWCRemake"><img src="https://img.shields.io/github/last-commit/MaxIsJoe/TWCRemake"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"><img src=https://img.shields.io/badge/Made%20In-Godot-blue><img src="https://img.shields.io/badge/Proudly%20Hosted%20By-localhost-green">
 
 
 
