@@ -27,11 +27,17 @@ func SendText(Mode:int, txt:String, sender:String):
 			var TxtToBeSent = str("[color=][System] - " + txt + "[/color]\n")
 			var TxtSent = ReplaceColor(TxtToBeSent, System_Color)
 			rpc("receive_message", TxtSent)
-		1: #Talk to players in your view only (Will work on that functionality later, for now it will act like OOC)
-			$Background/VBoxContainer/Write/HBoxContainer/LineEdit.text = ""
+		1: #Talk to players in your view only (Needs to be updated to add muffling and better ray sends)
+			var space_state = get_world_2d().direct_space_state
 			var TxtToBeSent =  str("[color=]" +sender + "[/color]: " + txt + "\n")
 			var TxtSent = ReplaceColor(TxtToBeSent, Player_InView_Color)
-			rpc("receive_message", TxtSent)
+			for player in NetworkManager.Network.PlayerContainer.get_children():
+				var result = space_state.intersect_ray(Data.Player.global_position, player.global_position, 
+				[self], Data.Player.collision_mask)
+				if result:
+					rpc_id(int(player.name), "receive_message", TxtSent)
+			$Background/VBoxContainer/Write/HBoxContainer/LineEdit.text = ""
+			receive_message(TxtSent)
 		2: #ooc
 			$Background/VBoxContainer/Write/HBoxContainer/LineEdit.text = ""
 			var TxtToBeSent =  str("[color=]<OOC>" + sender + "[/color]: " + txt + "\n")
