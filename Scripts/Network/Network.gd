@@ -70,10 +70,6 @@ func _on_player_connected(connected_player_id):
 	if(Global.DEBUG_Mode):
 		print("\n[Networking] - Check Wolrd_State ->", world_state)
 		print("\n[Networking] - World State Size ->", str(world_state.size())) #Server side debugging
-	if not(get_tree().is_network_server()):
-		rpc_id(1, 'GetWorldState', world_state)
-	else:
-		GetWorldState(world_state)
 
 remotesync func SendData(state):
 	var playerID = get_tree().get_rpc_sender_id()
@@ -101,17 +97,11 @@ remotesync func GetWorldState(state):
 					PlayerContainer.get_node(str(player)).UpdatePlayer(state[player]["P"], state[player]["A"], state[player]["LD"], state[player]["D"], state[player]["SP"])
 
 remote func CreateActivePlayers(id): #Creates all players on the server on the client
-	for player in ActiveKeys:
-		if(player == PlayerContainer.get_node(str(id)).playerkey): return #So we don't create doubles of the player
-		var file = File.new()
-		file.open(str("user://saves/" + player + ".json"), File.READ)
-		var dfile = file.get_as_text()
-		var data = parse_json(dfile)
-		if not(get_tree().is_network_server()): 
-			NetworkManager.Functions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"])) #Tell the client to create this player with their correct data
-		else:
-			NetworkManager.Functions.CreateThePlayer(data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(ActiveKeys[player]["ID"]))
-		file.close()
+	for player in PlayerContainer.get_children():
+		if(str(player.name) == str(id)): return
+		var data : Dictionary = player.GetSavePlayerInfo()
+		#Tell the client to create this player with their correct data
+		NetworkManager.Functions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(player.name))
 		
 remote func GetSavedPlayerData(key, id): #Sends the player's savefile to him, the savefile *should* only exist on the server.
 	var file = File.new()
