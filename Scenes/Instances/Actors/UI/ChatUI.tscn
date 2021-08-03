@@ -17,7 +17,7 @@ Player_InView_Color = Color( 0.670588, 0.117647, 0.117647, 1 )
 OOC_Color = Color( 0.176471, 0.368627, 1, 1 )
 NPC_Color = Color( 0.945098, 0.611765, 0, 1 )
 Event_Color = Color( 0.290196, 0.776471, 0.560784, 1 )
-System_Color = Color( 0.494118, 0.298039, 0.588235, 1 )
+System_Color = Color( 0.74902, 0.368627, 0.933333, 1 )
 
 [node name="ShowChatButton" type="Button" parent="."]
 margin_left = -13.0
@@ -27,7 +27,7 @@ text = "C"
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.121569, 0.101961, 0.101961, 0.231373 )
+color = Color( 0.121569, 0.101961, 0.101961, 0.368627 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -41,9 +41,9 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Background/VBoxContainer"]
-margin_top = 656.0
+margin_top = 661.0
 margin_right = 400.0
-margin_bottom = 677.0
+margin_bottom = 676.0
 focus_mode = 2
 bbcode_enabled = true
 fit_content_height = true
@@ -70,8 +70,8 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 65, 30 )
 
 [node name="LineEdit" type="LineEdit" parent="Background/VBoxContainer/Write/HBoxContainer"]
-margin_left = 68.0
-margin_right = 398.0
+margin_left = 69.0
+margin_right = 399.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 330, 30 )
 placeholder_text = "Enter what you'd like to say here."
@@ -79,6 +79,7 @@ placeholder_text = "Enter what you'd like to say here."
 [node name="T" type="Node" parent="."]
 
 [node name="T_Background" type="Tween" parent="T"]
+
 [connection signal="button_down" from="ShowChatButton" to="." method="_on_ShowChatButton_button_down"]
 [connection signal="item_selected" from="Background/VBoxContainer/Write/HBoxContainer/SayOption" to="." method="_on_SayOption_item_selected"]
 [connection signal="text_entered" from="Background/VBoxContainer/Write/HBoxContainer/LineEdit" to="." method="_on_LineEdit_text_entered"]
