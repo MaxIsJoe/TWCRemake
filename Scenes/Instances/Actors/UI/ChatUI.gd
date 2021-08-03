@@ -27,7 +27,7 @@ func SendText(Mode:int, txt:String, sender:String):
 			var TxtToBeSent = str("[color=][System] - " + txt + "[/color]\n")
 			var TxtSent = ReplaceColor(TxtToBeSent, System_Color)
 			rpc("receive_message", TxtSent)
-		1: #Talk to players in your view only (Will work on that functionality later, for now it will act like OOC)
+		1: #Talk to players in your view only (Needs to be updated to add muffling and better ray sends)
 			var space_state = get_world_2d().direct_space_state
 			var TxtToBeSent =  str("[color=]" +sender + "[/color]: " + txt + "\n")
 			var TxtSent = ReplaceColor(TxtToBeSent, Player_InView_Color)
