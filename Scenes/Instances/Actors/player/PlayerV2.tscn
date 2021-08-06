@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="DynamicFontData" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Sprites/PNGs/lightv2.png" type="Texture" id=19]
 [ext_resource path="res://Scenes/Instances/Actors/player/PlayerStats.gd" type="Script" id=20]
 [ext_resource path="res://Scenes/Instances/Actors/player/Health.gd" type="Script" id=21]
+[ext_resource path="res://shaders/Grayscale.shader" type="Shader" id=22]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -29,6 +30,11 @@ blend_mode = 1
 size = 13
 use_mipmaps = true
 font_data = ExtResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 22 )
+shader_param/scale = 0.0
+shader_param/grayscale = 3.0
 
 [sub_resource type="Animation" id=3]
 length = 6.0
@@ -118,7 +124,15 @@ editor_draw_drag_margin = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Cam" index="0"]
 
-[node name="UI" type="Control" parent="Cam/CanvasLayer" index="0"]
+[node name="HealthOverlay" type="ColorRect" parent="Cam/CanvasLayer" index="0"]
+material = SubResource( 7 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="Control" parent="Cam/CanvasLayer" index="1"]
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -159,6 +173,8 @@ script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+HealthOverlayPath = NodePath("../../HealthOverlay")
+HealthPath = NodePath("../../../../Systems/Health")
 
 [node name="Tween" type="Tween" parent="Cam/CanvasLayer/UI/HPProgress" index="0"]
 
@@ -169,9 +185,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 15.0
+margin_left = 23.909
 margin_top = -60.0001
-margin_right = 515.0
+margin_right = 523.909
 margin_bottom = -10.0001
 rect_scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 5 )
@@ -293,6 +309,7 @@ __meta__ = {
 }
 
 [node name="Spells" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="3"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
