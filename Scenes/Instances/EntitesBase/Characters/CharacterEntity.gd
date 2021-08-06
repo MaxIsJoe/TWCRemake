@@ -24,6 +24,7 @@ var nav_target_vector : Vector2
 var nav_target_node
 var nav_distance
 var nav_antistuck_time: int = 0
+var navAreaParent
 
 export(int, "Player", "NPC") var CharacterType : int  = 1
 export(int, "Male", "Female") var Gender : int  = 0
@@ -48,7 +49,8 @@ func _ready():
 			position = position.snapped(Vector2(tileSize, tileSize))
 			lastpos  = position
 			targetpos= position
-			
+	if(navAreaParent == null):
+		navAreaParent = Data.nav_world
 
 func _physics_process(delta):
 	line.global_position = Vector2.ZERO
@@ -105,11 +107,11 @@ func grid_movement(delta):
 		targetpos += moveDir * tileSize
 		
 func generate_path_to_node(t):
-	nav_path = Data.nav_world.get_simple_path(global_position, t.global_position, false)
+	nav_path = navAreaParent.get_simple_path(global_position, t.global_position, false)
 	line.points = nav_path
 	
 func generate_path_to_vector2(vec : Vector2):
-	nav_path = Data.nav_world.get_simple_path(global_position, vec, false)
+	nav_path = navAreaParent.get_simple_path(global_position, vec, false)
 	line.points = nav_path
 	
 func set_nav_path(path):
