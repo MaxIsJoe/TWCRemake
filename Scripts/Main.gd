@@ -24,6 +24,8 @@ func _ready():
 		dir.make_dir("user://saves/")
 		dir.make_dir("user://accounts/")
 	Data.main_node = self
+	if(OS.is_debug_build() or OS.has_feature("editor")):
+		$MainUI/FirstLoad/StartupSettings/Check_Debug.pressed = true
 
 
 func CheckForExecutableLaunchArguments():
@@ -35,6 +37,8 @@ func CheckForExecutableLaunchArguments():
 		ShowLoginScreen()
 	if "--debug" in OS.get_cmdline_args(): #In case we want to access debug mode while --singleplayer is active
 		Global.DEBUG_Mode = true
+		$MainUI/FirstLoad/StartupSettings/Check_Debug.pressed = true
+		
 
 func ShowLoginScreen():
 	FirstLoadUI.visible = false
