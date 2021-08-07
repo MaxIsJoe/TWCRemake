@@ -15,11 +15,7 @@ AI_UsesNavMeshForWander = false
 
 [node name="Health" parent="Systems" index="1"]
 script = ExtResource( 3 )
-parent_PATH = NodePath("")
-HealthTween_PATH = NodePath("")
-Collision_PATH = NodePath("")
 CanBeDamaged = false
-enemyBasePath = NodePath("../..")
 
 [node name="DetectionZone" type="Area2D" parent="." index="5"]
 
