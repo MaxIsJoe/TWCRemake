@@ -59,7 +59,42 @@ shape = SubResource( 3 )
 position = Vector2( 7936, 0 )
 z_index = 0
 
+[node name="FlooFire" parent="Navigation2D/MerpeopleVillage/Navigation2D/Teleporters/Floos" index="0"]
+position = Vector2( 14.0543, -51.3915 )
+UsesNodeToTeleport = true
+TeleportLocationNode = NodePath("../../../../../Positions/Enter_DiagonAlley_From_MVillage")
+
+[node name="FlooFire2" parent="Navigation2D/MerpeopleVillage/Navigation2D/Teleporters/Floos" index="1"]
+position = Vector2( 47.1694, -51.3915 )
+UsesNodeToTeleport = true
+TeleportLocationNode = NodePath("../../../../../Positions/Enter_DiagonAlley_From_MVillage")
+
+[node name="FlooFire3" parent="Navigation2D/MerpeopleVillage/Navigation2D/Teleporters/Floos" index="2"]
+position = Vector2( 83.1096, -51.0942 )
+UsesNodeToTeleport = true
+TeleportLocationNode = NodePath("../../../../../Positions/Enter_DiagonAlley_From_MVillage")
+
 [node name="DiagonAlley" parent="Navigation2D" instance=ExtResource( 3 )]
+
+[node name="ToHogwarts" parent="Navigation2D/DiagonAlley/Navigation2D/Teleports/Pathways" index="2"]
+position = Vector2( 1357.39, -1150.28 )
+UsesNodeToTeleport = true
+TeleportLocationNode = NodePath("../../../../../Positions/Enter_MVillage_From_Alley")
+
+[node name="ToHogwarts2" parent="Navigation2D/DiagonAlley/Navigation2D/Teleports/Pathways" index="3"]
+position = Vector2( 1327.39, -1150.28 )
+UsesNodeToTeleport = true
+TeleportLocationNode = NodePath("../../../../../Positions/Enter_MVillage_From_Alley")
+
+[node name="ToHogwarts3" parent="Navigation2D/DiagonAlley/Navigation2D/Teleports/Pathways" index="4"]
+position = Vector2( 1298.39, -1150.28 )
+UsesNodeToTeleport = true
+TeleportLocationNode = NodePath("../../../../../Positions/Enter_MVillage_From_Alley")
+
+[node name="ToHogwarts4" parent="Navigation2D/DiagonAlley/Navigation2D/Teleports/Pathways" index="5"]
+position = Vector2( 1388.24, -1149.96 )
+UsesNodeToTeleport = true
+TeleportLocationNode = NodePath("../../../../../Positions/Enter_MVillage_From_Alley")
 
 [node name="Positions" type="Node2D" parent="Navigation2D"]
 
@@ -121,154 +156,154 @@ position = Vector2( 9200.68, -983.458 )
 position = Vector2( 8989.54, -3896.7 )
 
 [node name="Enter_DiagonAlley_From_MVillage" type="Position2D" parent="Navigation2D/Positions"]
-position = Vector2( 1596.7, -1632.02 )
+position = Vector2( 1342.81, -1077.52 )
 
 [node name="Hogwarts" parent="Navigation2D" instance=ExtResource( 4 )]
 position = Vector2( 15140, 10440 )
 
 [node name="Candle" parent="Navigation2D/Hogwarts/Layout/Lights" index="73"]
-frame = 7
+frame = 4
 
 [node name="Candle3" parent="Navigation2D/Hogwarts/Layout/Lights" index="74"]
-frame = 5
+frame = 2
 
 [node name="Candle4" parent="Navigation2D/Hogwarts/Layout/Lights" index="75"]
-frame = 5
+frame = 2
 
 [node name="Candle5" parent="Navigation2D/Hogwarts/Layout/Lights" index="76"]
-frame = 5
+frame = 2
 
 [node name="Candle6" parent="Navigation2D/Hogwarts/Layout/Lights" index="77"]
-frame = 5
+frame = 2
 
 [node name="Candle7" parent="Navigation2D/Hogwarts/Layout/Lights" index="78"]
-frame = 4
+frame = 1
 
 [node name="Candle9" parent="Navigation2D/Hogwarts/Layout/Lights" index="79"]
-frame = 2
+frame = 9
 
 [node name="Candle10" parent="Navigation2D/Hogwarts/Layout/Lights" index="80"]
-frame = 2
+frame = 9
 
 [node name="Candle11" parent="Navigation2D/Hogwarts/Layout/Lights" index="81"]
-frame = 2
+frame = 9
 
 [node name="Candle12" parent="Navigation2D/Hogwarts/Layout/Lights" index="82"]
-frame = 1
+frame = 8
 
 [node name="Candle13" parent="Navigation2D/Hogwarts/Layout/Lights" index="83"]
-frame = 1
+frame = 8
 
 [node name="Candle14" parent="Navigation2D/Hogwarts/Layout/Lights" index="84"]
-frame = 8
+frame = 5
 
 [node name="Candle15" parent="Navigation2D/Hogwarts/Layout/Lights" index="85"]
-frame = 8
+frame = 5
 
 [node name="Candle16" parent="Navigation2D/Hogwarts/Layout/Lights" index="86"]
-frame = 9
+frame = 6
 
 [node name="Candle17" parent="Navigation2D/Hogwarts/Layout/Lights" index="87"]
-frame = 9
+frame = 6
 
 [node name="Candle18" parent="Navigation2D/Hogwarts/Layout/Lights" index="88"]
-frame = 9
+frame = 6
 
 [node name="Candle19" parent="Navigation2D/Hogwarts/Layout/Lights" index="89"]
-frame = 8
+frame = 5
 
 [node name="Candle20" parent="Navigation2D/Hogwarts/Layout/Lights" index="90"]
-frame = 7
+frame = 4
 
 [node name="Candle21" parent="Navigation2D/Hogwarts/Layout/Lights" index="91"]
-frame = 5
+frame = 2
 
 [node name="Candle22" parent="Navigation2D/Hogwarts/Layout/Lights" index="92"]
-frame = 5
+frame = 2
 
 [node name="Candle23" parent="Navigation2D/Hogwarts/Layout/Lights" index="93"]
-frame = 5
+frame = 2
 
 [node name="Candle24" parent="Navigation2D/Hogwarts/Layout/Lights" index="94"]
-frame = 5
+frame = 2
 
 [node name="Candle25" parent="Navigation2D/Hogwarts/Layout/Lights" index="95"]
-frame = 5
+frame = 2
 
 [node name="Candle26" parent="Navigation2D/Hogwarts/Layout/Lights" index="96"]
-frame = 4
+frame = 1
 
 [node name="Candle27" parent="Navigation2D/Hogwarts/Layout/Lights" index="97"]
-frame = 3
+frame = 0
 
 [node name="Candle28" parent="Navigation2D/Hogwarts/Layout/Lights" index="98"]
-frame = 3
+frame = 0
 
 [node name="Candle29" parent="Navigation2D/Hogwarts/Layout/Lights" index="99"]
-frame = 3
+frame = 0
 
 [node name="Candle30" parent="Navigation2D/Hogwarts/Layout/Lights" index="100"]
-frame = 6
+frame = 3
 
 [node name="Candle31" parent="Navigation2D/Hogwarts/Layout/Lights" index="101"]
-frame = 2
-
-[node name="Candle32" parent="Navigation2D/Hogwarts/Layout/Lights" index="102"]
-frame = 2
-
-[node name="Candle33" parent="Navigation2D/Hogwarts/Layout/Lights" index="103"]
-frame = 5
-
-[node name="Candle34" parent="Navigation2D/Hogwarts/Layout/Lights" index="104"]
-frame = 1
-
-[node name="Candle35" parent="Navigation2D/Hogwarts/Layout/Lights" index="105"]
-frame = 1
-
-[node name="Candle36" parent="Navigation2D/Hogwarts/Layout/Lights" index="106"]
-frame = 1
-
-[node name="Candle37" parent="Navigation2D/Hogwarts/Layout/Lights" index="107"]
-frame = 1
-
-[node name="Candle38" parent="Navigation2D/Hogwarts/Layout/Lights" index="108"]
-frame = 4
-
-[node name="Candle39" parent="Navigation2D/Hogwarts/Layout/Lights" index="109"]
-frame = 3
-
-[node name="Candle40" parent="Navigation2D/Hogwarts/Layout/Lights" index="110"]
-frame = 3
-
-[node name="Candle41" parent="Navigation2D/Hogwarts/Layout/Lights" index="111"]
 frame = 9
 
-[node name="Candle42" parent="Navigation2D/Hogwarts/Layout/Lights" index="112"]
+[node name="Candle32" parent="Navigation2D/Hogwarts/Layout/Lights" index="102"]
+frame = 9
+
+[node name="Candle33" parent="Navigation2D/Hogwarts/Layout/Lights" index="103"]
+frame = 2
+
+[node name="Candle34" parent="Navigation2D/Hogwarts/Layout/Lights" index="104"]
 frame = 8
 
-[node name="Candle43" parent="Navigation2D/Hogwarts/Layout/Lights" index="113"]
+[node name="Candle35" parent="Navigation2D/Hogwarts/Layout/Lights" index="105"]
 frame = 8
 
-[node name="Candle44" parent="Navigation2D/Hogwarts/Layout/Lights" index="114"]
-frame = 7
+[node name="Candle36" parent="Navigation2D/Hogwarts/Layout/Lights" index="106"]
+frame = 8
 
-[node name="Candle45" parent="Navigation2D/Hogwarts/Layout/Lights" index="115"]
-frame = 7
+[node name="Candle37" parent="Navigation2D/Hogwarts/Layout/Lights" index="107"]
+frame = 8
 
-[node name="Candle46" parent="Navigation2D/Hogwarts/Layout/Lights" index="116"]
-frame = 7
+[node name="Candle38" parent="Navigation2D/Hogwarts/Layout/Lights" index="108"]
+frame = 1
 
-[node name="Candle47" parent="Navigation2D/Hogwarts/Layout/Lights" index="117"]
+[node name="Candle39" parent="Navigation2D/Hogwarts/Layout/Lights" index="109"]
+frame = 0
+
+[node name="Candle40" parent="Navigation2D/Hogwarts/Layout/Lights" index="110"]
+frame = 0
+
+[node name="Candle41" parent="Navigation2D/Hogwarts/Layout/Lights" index="111"]
 frame = 6
 
-[node name="Candle48" parent="Navigation2D/Hogwarts/Layout/Lights" index="118"]
+[node name="Candle42" parent="Navigation2D/Hogwarts/Layout/Lights" index="112"]
 frame = 5
 
+[node name="Candle43" parent="Navigation2D/Hogwarts/Layout/Lights" index="113"]
+frame = 5
+
+[node name="Candle44" parent="Navigation2D/Hogwarts/Layout/Lights" index="114"]
+frame = 4
+
+[node name="Candle45" parent="Navigation2D/Hogwarts/Layout/Lights" index="115"]
+frame = 4
+
+[node name="Candle46" parent="Navigation2D/Hogwarts/Layout/Lights" index="116"]
+frame = 4
+
+[node name="Candle47" parent="Navigation2D/Hogwarts/Layout/Lights" index="117"]
+frame = 3
+
+[node name="Candle48" parent="Navigation2D/Hogwarts/Layout/Lights" index="118"]
+frame = 2
+
 [node name="Candle49" parent="Navigation2D/Hogwarts/Layout/Lights" index="119"]
-frame = 8
+frame = 5
 
 [node name="Candle50" parent="Navigation2D/Hogwarts/Layout/Lights" index="120"]
-frame = 4
+frame = 1
 
 [node name="TeleportlNode" parent="Navigation2D/Hogwarts/Teleports/TeleporterNodes" index="0"]
 TeleportLocation = NodePath("../../../../Positions/Exit_Hogwarts2")
