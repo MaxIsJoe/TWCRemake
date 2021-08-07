@@ -68,12 +68,6 @@ remotesync func BecomeAlivent():
 	RespawnTimer.wait_time = TimeToRespawn
 	RespawnTimer.start()
 	Collision.set_deferred("disabled", true)
-	
-remotesync func SyncData(PlayerID: int):
-	rset_id(PlayerID, "HP", HP)
-	rset_id(PlayerID, "HP_MAX", HP_MAX)
-	rset_id(PlayerID, "currentState", currentState)
-	rset_id(PlayerID, "CanBeDamaged", CanBeDamaged)
 
 
 func _on_Timer_timeout():
