@@ -17,7 +17,7 @@
 [ext_resource path="res://Scenes/Instances/World/Zones/EnemyZone/EnemyZone.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Instances/Actors/Enemies/Nature/Rat.tscn" type="PackedScene" id=16]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=3]
 radius = 340.724
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -280,19 +280,21 @@ position = Vector2( 750.148, -529.146 )
 position = Vector2( 716.197, 1568.01 )
 max_entities = 5
 EnemiesToSpawn = [ ExtResource( 14 ), ExtResource( 16 ) ]
+useAreaNavForEntities = false
 AreaNavForEntities = NodePath("../../..")
 
 [node name="CollisionShape2D" parent="Navigation2D/NPCs/Enemies/EnemyZone2" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="EnemyZone" parent="Navigation2D/NPCs/Enemies" instance=ExtResource( 15 )]
 position = Vector2( -169.514, 1387.9 )
 max_entities = 5
 EnemiesToSpawn = [ ExtResource( 14 ), ExtResource( 16 ) ]
+useAreaNavForEntities = false
 AreaNavForEntities = NodePath("../../..")
 
 [node name="CollisionShape2D" parent="Navigation2D/NPCs/Enemies/EnemyZone" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="Teleporters" type="Node2D" parent="Navigation2D"]
 

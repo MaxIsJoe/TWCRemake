@@ -8,6 +8,7 @@ radius = 857.472
 
 [node name="EnemyZone" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+useAreaNavForEntities = true
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
