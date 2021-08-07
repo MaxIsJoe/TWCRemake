@@ -5,7 +5,6 @@ export(bool)        var CanLeaveZoneRadius        = false
 export(bool)        var SpawnOnRadius             = true
 export(Array, PackedScene) var EnemiesToSpawn : Array
 export(Array, NodePath)    var SpawnLocations : Array
-export(bool) var useAreaNavForEntities
 export(NodePath) var AreaNavForEntities
 
 var SpawnerIsOnCooldown : bool = false
@@ -17,8 +16,7 @@ func _on_SpawnTimer_timeout():
 		if(Entites.get_child_count() < max_entities and SpawnerIsOnCooldown == false):
 			var enemyToSpawn = EnemiesToSpawn[int(rand_range(0, EnemiesToSpawn.size()))]
 			var enemy = enemyToSpawn.instance()
-			if(useAreaNavForEntities):
-				enemy.navAreaParent = get_node(AreaNavForEntities)
+			enemy.navAreaParent = get_node(AreaNavForEntities)
 			Entites.add_child(enemy)
 			enemy.name = str(EntityIDs)
 			enemy.zoneParent = self

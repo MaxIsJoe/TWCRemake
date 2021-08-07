@@ -29,7 +29,6 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	JsonLoader.LoadJSON_General(Data.ItemJSON, 1)
 	JsonLoader.LoadJSON_General(Data.SpellsJSON, 2)
-	Data.Update_GroupSingal_WorldNav()
 
 func givepoints(points, to_house):
 	if(to_house == "Grif"):

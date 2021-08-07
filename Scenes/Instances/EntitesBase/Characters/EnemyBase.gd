@@ -12,10 +12,8 @@ export(bool) var IsLegendary = false # Does this entity spawn as a legendary?
 export(bool) var AI_CanWander = true # Is this entity allowed to wander around?
 export(int) var AI_WanderTime = 450 # How long until this entity can wander again?
 export(bool) var AI_UsesNavMeshForWander = true # Does this entity use nav_mesh to wander around?
-export(bool) var AI_DisablesNavMeshWhenMeleeAttackingInNearRange = true # Does this entity stop using A* pathfinding when very close to the player?
 export(bool) var AI_HasNoLimitsOutsideOfSpawn= false # Can This enitity leave it's spawn area?
 export(float) var AI_MaxDistanceAwayFromSpawn = 1000 # How far is this entity allowed to go before retreating to where it spawned?
-export(float) var AI_MinDistanceBeforeDisabalingNavMesh = 200 # How far does this entity need to be before switching off A* pathfinding?
 export(Array, AudioStream) var AttackSounds : Array
 export(Array, AudioStream) var AlertSounds  : Array
 
@@ -96,10 +94,6 @@ func AI_ATTACK(delta):
 				if(CheckIfTargetIsAlive() == false):
 					if(GetDistance2SpawnPosition() > 1100):
 						Retreat()
-					if(AI_DisablesNavMeshWhenMeleeAttackingInNearRange):
-						if(global_position.distance_to(target.global_position) <= AI_MinDistanceBeforeDisabalingNavMesh):
-							var direction = (target.global_position - global_position).normalized()
-							moveDir = moveDir.move_toward(direction * stats.movement_speed, 300 * delta)
 					if(target.global_position.distance_to(self.global_position) <= AttackRange):
 						MeleeAttackLogic(target)
 			
@@ -185,7 +179,6 @@ func BecomeIdle():
 	stop_navigating()
 	wander_position = Vector2.ZERO
 	moveDir = Vector2(0,0)
-	target = null
 	#rpc_id(0, "SyncTarget", target)
 	current_state = AI_states.IDLE
 	LineOfSight.cast_to.x = default_raycast_range
@@ -198,7 +191,6 @@ func StartWandering():
 func Retreat():
 	wander_position = Vector2.ZERO
 	moveDir = Vector2(0,0)
-	target = null
 	#rpc_id(0, "SyncTarget", target)
 	player_spotted = false
 	generate_path_to_vector2(spawn_position)
@@ -211,9 +203,6 @@ func LookAtTarget():
 
 func _on_RefreshNav_timeout():
 	if(player_spotted and target != null):
-		if(AI_DisablesNavMeshWhenMeleeAttackingInNearRange):
-			if(global_position.distance_to(target.global_position) <= AI_MinDistanceBeforeDisabalingNavMesh):
-				return
 		generate_path_to_node(target)
 
 

@@ -83,6 +83,3 @@ func UpdateDiaNodeVar():
 
 func Update_Group_ShopHolders():
 	Group_ShopHolders = get_tree().get_nodes_in_group("shop")
-	
-func Update_GroupSingal_WorldNav():
-	nav_world = get_tree().get_nodes_in_group("nav")[0]
