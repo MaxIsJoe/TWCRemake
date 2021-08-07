@@ -1,5 +1,9 @@
 extends Node2D
 
+###This entire script.. no.. this entire system requires a full rework###
+###It is disgusting to look at and is not modular enough###
+
+
 export(int) var SpellDamage = 10
 export(float) var SpellSpeed = 240.0
 export(float) var SpellTime = 2 #Max time allowed for it to travel in a scene
@@ -32,16 +36,15 @@ func UpdateSpellPosition(delta):
 
 remotesync func init_spell_shoot(caster_network_id):
 	var direction_animation
-	var CasterName
 	var final_dmg
 	if(caster_network_id != 1):
 		direction_animation = NetworkManager.Network.world_state[caster_network_id].get("LD")
-		CasterName = NetworkManager.Network.world_state[caster_network_id].get("N")#For damage logging and death messages
 		final_dmg  = NetworkManager.Network.world_state[caster_network_id].get("D") + SpellDamage #Combine the base damage of the spell with the player's damage
+		caster = NetworkManager.Network.PlayerContainer.get_node(str(caster_network_id))
 	else:
 		direction_animation = Data.Player.LookingDirection
-		CasterName = Data.Player.PlayerName
 		final_dmg = Data.Player.stats.damage
+		caster = Data.Player
 	match direction_animation: #What animation and direction the spell go to?
 		0:
 			$AnimatedSprite.play("up")
@@ -83,12 +86,12 @@ func _on_Area2D_body_entered(body):
 	if(!TargetSpell):
 		if(body.is_in_group("Players")):
 			if(body.name != "1"):
-				body.rpc_id(int(body.name), "takedamage", dmg)
+				body.rpc_id(int(body.name), "takedamage", dmg, caster)
 			else:
 				body.health.TakeDamage(dmg, caster)
 			queue_free()
 		if(body.is_in_group("enemy")):
-			body.health.TakeDamage(dmg)
+			body.health.TakeDamage(dmg, caster)
 			queue_free()
 		else:
 			queue_free()

@@ -1,4 +1,5 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
+class_name Enemy_Entity
 
 export(String) var EnemyName = "Enemy"
 export(int) var SpawnerID: int = 0 # This is used to allow the game to spawn entities for players who latejoin. can be used for other stuff later
@@ -148,11 +149,11 @@ func MeleeAttackLogic(victim):
 	if(victim != null): #This is to prevent a bug where the game checks for a victim when they have already died or left
 		if(canAttack):
 			if(victim.is_in_group("Players")):
-				victim.rpc("takedamage", stats.damage, EnemyName)
+				victim.rpc("takedamage", stats.damage, self)
 				canAttack = false
 				$AttackCooldown.start()
 			if(victim.is_in_group("enemy")):
-				victim.health.TakeDamage(stats.damage)
+				victim.health.TakeDamage(stats.damage, self)
 			rpc_id(0, "PlayAttackSounds")
 		
 func SeekPlayer():

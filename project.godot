@@ -34,6 +34,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Other/DialogicUtil.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Enemy_Entity",
+"language": "GDScript",
+"path": "res://Scenes/Instances/EntitesBase/Characters/EnemyBase.gd"
+}, {
+"base": "Node",
+"class": "Entity_Health",
+"language": "GDScript",
+"path": "res://Scenes/Instances/EntitesBase/Characters/Health.gd"
+}, {
 "base": "MobEntity",
 "class": "MobEnity_NPC",
 "language": "GDScript",
@@ -43,6 +53,11 @@ _global_script_classes=[ {
 "class": "MobEntity",
 "language": "GDScript",
 "path": "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
+}, {
+"base": "Node",
+"class": "Network",
+"language": "GDScript",
+"path": "res://Scripts/Network/Network.gd"
 }, {
 "base": "MobEntity",
 "class": "PlayerEntity",
@@ -55,8 +70,11 @@ _global_script_class_icons={
 "DialogicDefinitionsUtil": "",
 "DialogicResources": "",
 "DialogicUtil": "",
+"Enemy_Entity": "",
+"Entity_Health": "",
 "MobEnity_NPC": "",
 "MobEntity": "",
+"Network": "",
 "PlayerEntity": ""
 }
 

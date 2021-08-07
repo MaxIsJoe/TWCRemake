@@ -1,4 +1,5 @@
 extends Node
+class_name Network
 
 const DEFAULT_PORT   = 7777
 const DEFAULT_IP     = '127.0.0.1'

@@ -1,4 +1,5 @@
 extends Node
+class_name Entity_Health
 
 export(NodePath) var parent_PATH
 onready var parent = get_node(parent_PATH)
@@ -27,14 +28,17 @@ enum HealthState {
 }
 
 
-remotesync func TakeDamage(damage: int, damagedBy: String = "unkown"):
+remotesync func TakeDamage(damage: int, damagedBy):
 	if(CanBeDamaged):
 		match currentState:
 			HealthState.ALIVE:
 				HP -= damage
 			HealthState.UNCONSCIOUS:
 				HP -= damage * 2
-		lastDamagedBy = damagedBy
+		if(damagedBy is PlayerEntity):
+			lastDamagedBy = damagedBy.PlayerName
+		else:
+			lastDamagedBy = str(damagedBy.name)
 	if(HP <= 0 and currentState != HealthState.DEAD):
 		rpc_id(0, "BecomeAlivent")
 
