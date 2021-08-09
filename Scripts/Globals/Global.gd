@@ -20,10 +20,11 @@ var NightColor = Color(0, 0.06, 0.45, 0.35)
 var DayColor = Color(7, 33, 203, 0)
 
 #Misc variables
-var DEBUG_Mode = true
-var version = "0.0.1"
-var EnableFOV = false
-var EnableFPSTracker = true
+var DEBUG_Mode      : bool = true
+var version         : String= "0.0.1"
+var EnableFOV       : bool = false
+var EnableFPSTracker: bool = true
+var PeacefulMode    : bool = false
 
 func _ready():
 	yield(get_tree(), "idle_frame")

@@ -49,6 +49,7 @@ func LoadGame():
 	Global.DEBUG_Mode = $MainUI/FirstLoad/StartupSettings/Check_Debug.pressed
 	Global.EnableFOV = $MainUI/FirstLoad/StartupSettings/Check_fov.pressed
 	Global.EnableFPSTracker = $MainUI/FirstLoad/StartupSettings/Check_tracker.pressed
+	Global.PeacefulMode = $MainUI/FirstLoad/StartupSettings/Check_Peace.pressed
 	MainMenu.ShowStartingPage()
 	$OpeningEyeCandy.visible = false
 	$OpeningEyeCandy.emitting = false
