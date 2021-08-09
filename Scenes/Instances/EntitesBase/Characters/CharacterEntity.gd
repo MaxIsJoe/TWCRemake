@@ -44,13 +44,14 @@ func _physics_process(delta):
 
 func movement(delta):
 	var velocity = moveDir
-	CheckForAnimationsForMovement()
 	velocity = velocity.normalized() * stats.movement_speed
 	if(nav_path == null or nav_path == []):
 		move_and_slide(velocity)
 	else:
 		nav_distance = stats.movement_speed * delta
-		navigate()
+		navigate(delta)
+	if(changeSpritesWhenMoving):
+		CheckForAnimationsForMovement()
 
 func CheckForAnimationsForMovement():
 	if(moveDir.y < -0.1):
@@ -93,7 +94,7 @@ func set_nav_target_vec2(target):
 func set_nav_target_node(target):
 	nav_target_node = target
 	
-func navigate():
+func navigate(delta):
 	var last_point = self.global_position
 	for _index in range(nav_path.size()):
 		nav_antistuck_time += 1

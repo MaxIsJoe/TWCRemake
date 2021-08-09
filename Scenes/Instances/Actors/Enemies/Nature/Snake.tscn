@@ -12,8 +12,6 @@
 
 [node name="Snake" instance=ExtResource( 1 )]
 faction = 16
-changeSpritesWhenMoving = false
-rotatesSpritesTowardMovement = true
 EnemyName = "Snake"
 SpawnerID = 2
 AttackSounds = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 3 ) ]
@@ -21,5 +19,4 @@ AlertSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResourc
 
 [node name="Body" parent="SpriteHandler" index="0"]
 frames = ExtResource( 2 )
-frame = 1
 playing = true

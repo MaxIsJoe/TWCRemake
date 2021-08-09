@@ -17,11 +17,6 @@ EnemyName = "Bat"
 AttackSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ]
 AlertSounds = [ ExtResource( 2 ), ExtResource( 5 ) ]
 
-[node name="Health" parent="Systems" index="1"]
-parent_PATH = NodePath("../..")
-HealthTween_PATH = NodePath("../Tween")
-Collision_PATH = NodePath("../../Collision")
-
 [node name="Body" parent="SpriteHandler" index="0"]
 frames = ExtResource( 1 )
 

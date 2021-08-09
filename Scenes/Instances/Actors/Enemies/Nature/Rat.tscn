@@ -11,8 +11,6 @@
 
 [node name="Rat" instance=ExtResource( 2 )]
 faction = 16
-changeSpritesWhenMoving = false
-rotatesSpritesTowardMovement = true
 EnemyName = "Rat"
 SpawnerID = 1
 AttackSounds = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 8 ) ]
