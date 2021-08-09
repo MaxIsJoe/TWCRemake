@@ -5,8 +5,43 @@
 
 [resource]
 animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "idleleft",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idleright",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkdown",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkup",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "idleup",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkright",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "idledown",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walkleft",
 "speed": 5.0
 } ]

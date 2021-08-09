@@ -21,4 +21,5 @@ AlertSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResourc
 
 [node name="Body" parent="SpriteHandler" index="0"]
 frames = ExtResource( 2 )
+frame = 1
 playing = true

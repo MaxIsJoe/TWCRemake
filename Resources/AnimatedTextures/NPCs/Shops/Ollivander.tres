@@ -7,6 +7,16 @@
 
 [resource]
 animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "IdelRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "IdleLeft",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "IdleUp",
@@ -15,15 +25,5 @@ animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "IdleFront",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "IdleLeft",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "IdelRight",
 "speed": 5.0
 } ]
