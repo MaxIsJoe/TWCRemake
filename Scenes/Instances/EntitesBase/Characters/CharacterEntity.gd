@@ -1,11 +1,6 @@
 extends KinematicBody2D
 class_name MobEntity
 
-enum movement_type {
-	FREE,
-	GRID
-}
-
 onready var LineOfSight : RayCast2D = $LineOfSight
 onready var stats = $Systems/Stats
 onready var health = $Systems/Health
@@ -14,7 +9,6 @@ onready var BodySprites = $SpriteHandler/Body
 onready var line = $Line2D
 
 var RespawnPoints = []
-var current_movement_type = movement_type.FREE
 var lastpos   : Vector2 = Vector2()
 var targetpos : Vector2 = Vector2()
 var moveDir   : Vector2 = Vector2()
@@ -38,30 +32,17 @@ export(int)  var EXPGivenOnDeath               : int  = 100
 export(int)  var GoldGivenOnDeath              : int  = 100
 
 func _ready():
-	#Movement setup
-	match(MovementType):
-		0:
-			current_movement_type = movement_type.FREE
-			$GridMovement_CollisionDetection.enabled = false
-		1:
-			current_movement_type = movement_type.GRID
-			$GridMovement_CollisionDetection.enabled = true
-			position = position.snapped(Vector2(tileSize, tileSize))
-			lastpos  = position
-			targetpos= position
 	if(navAreaParent == null):
 		navAreaParent = Data.nav_world
+	else:
+		print(navAreaParent.name)
 
 func _physics_process(delta):
 	line.global_position = Vector2.ZERO
 	if(canMove):
-		match(current_movement_type):
-			movement_type.FREE:
-				free_movement(delta)
-			movement_type.GRID:
-				grid_movement(delta)
+		movement(delta)
 
-func free_movement(delta):
+func movement(delta):
 	var velocity = moveDir
 	CheckForAnimationsForMovement()
 	velocity = velocity.normalized() * stats.movement_speed
@@ -72,13 +53,13 @@ func free_movement(delta):
 		navigate()
 
 func CheckForAnimationsForMovement():
-	if(moveDir.y == -1):
+	if(moveDir.y < -0.1):
 		SpriteHandler.PlayDirectionalAnimAll(13) #up
-	if(moveDir.y == 1):
+	if(moveDir.y > 0.1):
 		SpriteHandler.PlayDirectionalAnimAll(10) #down
-	if(moveDir.x == -1):
+	if(moveDir.x < -0.1):
 		SpriteHandler.PlayDirectionalAnimAll(11) #left
-	if(moveDir.x == 1):
+	if(moveDir.x > 0.1):
 		SpriteHandler.PlayDirectionalAnimAll(12) #right
 	if(moveDir == Vector2.ZERO):
 		SpriteHandler.PlayIdleOnAllBasedOnDirection()
@@ -92,23 +73,12 @@ remotesync func RotateSpritesTowardsVector(vec : Vector2):
 remotesync func ResetSpritesRotation():
 	SpriteHandler.rotation_degrees = 0
 
-func grid_movement(delta):
-	if($GridMovement_CollisionDetection.is_colliding()):
-		position = lastpos
-		targetpos = lastpos
-	else:
-		position += stats.movement_speed * moveDir * delta
-		
-		if(position.distance_to(lastpos) >= tileSize - stats.movement_speed * delta):
-			position = targetpos
-		
-	if(position == targetpos):
-		lastpos = position
-		targetpos += moveDir * tileSize
-		
 func generate_path_to_node(t):
 	nav_path = navAreaParent.get_simple_path(global_position, t.global_position, false)
 	line.points = nav_path
+	if(Global.DEBUG_Mode && OS.has_feature("editor")):
+		print(t.global_position)
+		print(nav_path[0])
 	
 func generate_path_to_vector2(vec : Vector2):
 	nav_path = navAreaParent.get_simple_path(global_position, vec, false)
@@ -132,6 +102,8 @@ func navigate():
 				nav_antistuck_time = 0
 				break
 		var distance_between_points = last_point.distance_to(nav_path[0])
+		if(distance_between_points > 1500 && Global.DEBUG_Mode && OS.has_feature("editor")): #Remove this later
+			Data.Player.global_position = nav_path[0]
 		if nav_distance <= distance_between_points:
 			global_position = last_point.linear_interpolate(nav_path[0], nav_distance / distance_between_points)
 			break
