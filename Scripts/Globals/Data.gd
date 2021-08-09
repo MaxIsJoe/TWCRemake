@@ -78,8 +78,14 @@ var Claw_Male   : String = "res://Resources/AnimatedTextures/PlayerBases/Male/Ma
 var Loaded_Dialouge
 var Player : PlayerEntity
 
+func _ready():
+	Update_GroupSingal_WorldNav()
+
 func UpdateDiaNodeVar():
 	Group_DiaNode = get_tree().get_nodes_in_group("DiaUI")
 
 func Update_Group_ShopHolders():
 	Group_ShopHolders = get_tree().get_nodes_in_group("shop")
+
+func Update_GroupSingal_WorldNav():
+	nav_world = get_tree().get_nodes_in_group("nav")[0]

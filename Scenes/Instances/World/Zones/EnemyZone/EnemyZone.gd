@@ -16,7 +16,8 @@ func _on_SpawnTimer_timeout():
 		if(Entites.get_child_count() < max_entities and SpawnerIsOnCooldown == false):
 			var enemyToSpawn = EnemiesToSpawn[int(rand_range(0, EnemiesToSpawn.size()))]
 			var enemy = enemyToSpawn.instance()
-			enemy.navAreaParent = get_node(AreaNavForEntities)
+			if(AreaNavForEntities != null or ""):
+				enemy.navAreaParent = get_node(AreaNavForEntities)
 			Entites.add_child(enemy)
 			enemy.name = str(EntityIDs)
 			enemy.zoneParent = self
