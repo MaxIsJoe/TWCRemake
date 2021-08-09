@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Levels/World.tscn" type="PackedScene" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://Scenes/Instances/Actors/UI/PauseScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Instances/Particles/OpeningEyeCandy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/UI/MainNode/FirstLoad.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/statues/whitecat_0.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/statues/eye_0.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/0.png" type="Texture" id=11]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -83,51 +86,54 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="MainUI/FirstLoad/StartupSettings"]
-margin_top = 278.0
+margin_top = 258.0
 margin_right = 440.0
-margin_bottom = 292.0
+margin_bottom = 272.0
 text = "Startup Settings"
 align = 1
 
 [node name="Check_Debug" type="CheckButton" parent="MainUI/FirstLoad/StartupSettings"]
-margin_top = 296.0
+margin_top = 276.0
 margin_right = 440.0
-margin_bottom = 315.0
+margin_bottom = 308.0
 text = "DEBUG mode"
+icon = ExtResource( 10 )
 
 [node name="Check_fov" type="CheckButton" parent="MainUI/FirstLoad/StartupSettings"]
-margin_top = 319.0
+margin_top = 312.0
 margin_right = 440.0
-margin_bottom = 338.0
+margin_bottom = 344.0
 disabled = true
 text = "FOV/shadows"
+icon = ExtResource( 11 )
 
 [node name="Check_tracker" type="CheckButton" parent="MainUI/FirstLoad/StartupSettings"]
-margin_top = 342.0
+margin_top = 348.0
 margin_right = 440.0
-margin_bottom = 361.0
+margin_bottom = 367.0
 pressed = true
 text = "FPS Tracker"
 
 [node name="Check_Peace" type="CheckButton" parent="MainUI/FirstLoad/StartupSettings"]
-margin_top = 365.0
+margin_top = 371.0
 margin_right = 440.0
-margin_bottom = 384.0
+margin_bottom = 403.0
 hint_tooltip = "Enemies won't spawn"
 pressed = true
 text = "Peaceful Mode"
+icon = ExtResource( 9 )
 
 [node name="Label4" type="Label" parent="MainUI/FirstLoad/StartupSettings"]
-margin_top = 388.0
+margin_top = 407.0
 margin_right = 440.0
-margin_bottom = 402.0
+margin_bottom = 421.0
 text = "Networking"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MainUI/FirstLoad/StartupSettings"]
-margin_top = 406.0
+margin_top = 425.0
 margin_right = 440.0
-margin_bottom = 430.0
+margin_bottom = 449.0
 alignment = 1
 
 [node name="Label2" type="Label" parent="MainUI/FirstLoad/StartupSettings/HBoxContainer2"]
