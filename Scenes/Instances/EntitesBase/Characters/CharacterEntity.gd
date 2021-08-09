@@ -103,6 +103,10 @@ func navigate(delta):
 		if nav_distance <= distance_between_points:
 			var direction = (nav_path[0] - global_position).normalized()
 			moveDir = moveDir.move_toward(direction * stats.movement_speed, 300 * delta)
+			if(nav_path.size() > 1):
+				moveDir = global_position.direction_to(nav_path[1]) * stats.movement_speed
+				if(global_position.distance_to(nav_path[0]) >= 12.50):
+					nav_path.pop_front()
 			move_and_slide(moveDir)
 			#global_position = last_point.linear_interpolate(nav_path[0], nav_distance / distance_between_points)
 			break
@@ -118,7 +122,7 @@ func navigate(delta):
 	
 	#if(nav_path.size() > 1):
 	#	moveDir = global_position.direction_to(nav_path[1]) * stats.movement_speed
-	#	if(global_position.distance_to(nav_path[0]) >= 0.50):
+	#	if(global_position.distance_to(nav_path[0]) >= 2.50):
 	#		nav_path.pop_front()
 			
 func stop_navigating():

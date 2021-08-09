@@ -14,8 +14,6 @@ export(int) var AI_WanderTime = 450 # How long until this entity can wander agai
 export(bool) var AI_UsesNavMeshForWander = true # Does this entity use nav_mesh to wander around?
 export(bool) var AI_HasNoLimitsOutsideOfSpawn= false # Can This enitity leave it's spawn area?
 export(float) var AI_MaxDistanceAwayFromSpawn = 1000 # How far is this entity allowed to go before retreating to where it spawned?
-export(bool) var AI_DisablesNavMeshWhenMeleeAttackingInNearRange = true # Does this entity stop using A* pathfinding when very close to the player?
-export(float) var AI_MinDistanceBeforeDisabalingNavMesh = 400 # How far does this entity need to be before switching off A* pathfinding?
 export(Array, AudioStream) var AttackSounds : Array
 export(Array, AudioStream) var AlertSounds  : Array
 
@@ -94,10 +92,6 @@ func AI_ATTACK(delta):
 		0:
 			if(target != null): #For some reason the game will still run AI_ATTACK() when moving to other phases
 				if(CheckIfTargetIsAlive() == false):
-					if(AI_DisablesNavMeshWhenMeleeAttackingInNearRange):
-						if(global_position.distance_to(target.global_position) <= AI_MinDistanceBeforeDisabalingNavMesh):
-							var direction = (target.global_position - global_position).normalized()
-							moveDir = moveDir.move_toward(direction * stats.movement_speed, 300 * delta)
 					if(GetDistance2SpawnPosition() > 1100):
 						Retreat()
 					if(target.global_position.distance_to(self.global_position) <= AttackRange):
@@ -105,7 +99,7 @@ func AI_ATTACK(delta):
 			
 func AI_RETREAT(delta):
 	if(global_position.distance_to(spawn_position) <= rand_range(5,75)):
-		BecomeIdle()
+		Retreat()
 		
 func AI_WANDER(delta):
 	SeekPlayer()
@@ -182,9 +176,10 @@ func SetAttackTarget(thevictim):
 	rpc_id(0, "PlayAlertSounds")
 	
 func BecomeIdle():
-	stop_navigating()
+	$RefreshNav.stop()
 	wander_position = Vector2.ZERO
 	moveDir = Vector2(0,0)
+	target = null
 	#rpc_id(0, "SyncTarget", target)
 	current_state = AI_states.IDLE
 	LineOfSight.cast_to.x = default_raycast_range
@@ -192,12 +187,16 @@ func BecomeIdle():
 	
 func StartWandering():
 	stop_navigating()
+	$RefreshNav.stop()
 	current_state = AI_states.WANDER
+	$WanderCooldown.start()
 
 func Retreat():
+	stop_navigating()
+	$RefreshNav.stop()
 	wander_position = Vector2.ZERO
-	moveDir = Vector2(0,0)
 	#rpc_id(0, "SyncTarget", target)
+	target = null
 	player_spotted = false
 	generate_path_to_vector2(spawn_position)
 	current_state = AI_states.RETREAT
@@ -209,19 +208,17 @@ func LookAtTarget():
 
 func _on_RefreshNav_timeout():
 	if(player_spotted and target != null):
-		if(AI_DisablesNavMeshWhenMeleeAttackingInNearRange):
-			if(global_position.distance_to(target.global_position) <= AI_MinDistanceBeforeDisabalingNavMesh):
-				return
 		generate_path_to_node(target)
+	else:
+		StartWandering()
 
 
 func _on_ChaseTimeout_timeout():
 	if(check_player_in_detection() == false):
+		target = null
 		if(GetDistance2SpawnPosition() > AI_MaxDistanceAwayFromSpawn):
 			if(current_state == AI_states.IDLE or current_state == AI_states.ATTACK or current_state == AI_states.WANDER):
 				Retreat()
-			else:
-				BecomeIdle()
 	else:
 		$ChaseTimeout.start()
 
@@ -266,7 +263,11 @@ func _on_DetectionZone_body_exited(body):
 		$LineOfSight/LoSTween.interpolate_property(LineOfSight, "cast_to:x", LineOfSight.cast_to.x, default_raycast_range, AttackRangeLerpTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$LineOfSight/LoSTween.start()
 	if(body == target and $RefreshNav.is_stopped() and current_state == AI_states.ATTACK):
+		_on_RefreshNav_timeout()
 		$RefreshNav.start()
+	if(target == null and current_state == AI_states.ATTACK):
+		stop_navigating()
+		Retreat()
 
 
 func _on_WanderCooldown_timeout():
