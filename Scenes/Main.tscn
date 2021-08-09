@@ -10,7 +10,7 @@
 [ext_resource path="res://Scripts/UI/MainNode/FirstLoad.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/statues/whitecat_0.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/statues/eye_0.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/0.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/AnimatedTiles/General/WallTorch.tres" type="Texture" id=11]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
