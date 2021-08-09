@@ -77,9 +77,6 @@ remotesync func ResetSpritesRotation():
 func generate_path_to_node(t):
 	nav_path = navAreaParent.get_simple_path(global_position, t.global_position, false)
 	line.points = nav_path
-	if(Global.DEBUG_Mode && OS.has_feature("editor")):
-		print(t.global_position)
-		print(nav_path[0])
 	
 func generate_path_to_vector2(vec : Vector2):
 	nav_path = navAreaParent.get_simple_path(global_position, vec, false)
@@ -103,10 +100,11 @@ func navigate(delta):
 				nav_antistuck_time = 0
 				break
 		var distance_between_points = last_point.distance_to(nav_path[0])
-		if(distance_between_points > 1500 && Global.DEBUG_Mode && OS.has_feature("editor")): #Remove this later
-			Data.Player.global_position = nav_path[0]
 		if nav_distance <= distance_between_points:
-			global_position = last_point.linear_interpolate(nav_path[0], nav_distance / distance_between_points)
+			var direction = (nav_path[0] - global_position).normalized()
+			moveDir = moveDir.move_toward(direction * stats.movement_speed, 300 * delta)
+			move_and_slide(moveDir)
+			#global_position = last_point.linear_interpolate(nav_path[0], nav_distance / distance_between_points)
 			break
 		elif nav_distance < 0.0 :
 			global_position = nav_path[0]

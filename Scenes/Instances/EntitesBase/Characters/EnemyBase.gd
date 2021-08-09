@@ -14,6 +14,8 @@ export(int) var AI_WanderTime = 450 # How long until this entity can wander agai
 export(bool) var AI_UsesNavMeshForWander = true # Does this entity use nav_mesh to wander around?
 export(bool) var AI_HasNoLimitsOutsideOfSpawn= false # Can This enitity leave it's spawn area?
 export(float) var AI_MaxDistanceAwayFromSpawn = 1000 # How far is this entity allowed to go before retreating to where it spawned?
+export(bool) var AI_DisablesNavMeshWhenMeleeAttackingInNearRange = true # Does this entity stop using A* pathfinding when very close to the player?
+export(float) var AI_MinDistanceBeforeDisabalingNavMesh = 400 # How far does this entity need to be before switching off A* pathfinding?
 export(Array, AudioStream) var AttackSounds : Array
 export(Array, AudioStream) var AlertSounds  : Array
 
@@ -92,6 +94,10 @@ func AI_ATTACK(delta):
 		0:
 			if(target != null): #For some reason the game will still run AI_ATTACK() when moving to other phases
 				if(CheckIfTargetIsAlive() == false):
+					if(AI_DisablesNavMeshWhenMeleeAttackingInNearRange):
+						if(global_position.distance_to(target.global_position) <= AI_MinDistanceBeforeDisabalingNavMesh):
+							var direction = (target.global_position - global_position).normalized()
+							moveDir = moveDir.move_toward(direction * stats.movement_speed, 300 * delta)
 					if(GetDistance2SpawnPosition() > 1100):
 						Retreat()
 					if(target.global_position.distance_to(self.global_position) <= AttackRange):
@@ -203,6 +209,9 @@ func LookAtTarget():
 
 func _on_RefreshNav_timeout():
 	if(player_spotted and target != null):
+		if(AI_DisablesNavMeshWhenMeleeAttackingInNearRange):
+			if(global_position.distance_to(target.global_position) <= AI_MinDistanceBeforeDisabalingNavMesh):
+				return
 		generate_path_to_node(target)
 
 
