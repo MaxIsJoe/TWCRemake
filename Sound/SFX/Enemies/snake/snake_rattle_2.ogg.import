@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/snake_rattle_2.ogg-1db59ae1ad87cef2e7f7fb879411fba9.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d4cerv45f4bux"
+path="res://.godot/imported/snake_rattle_2.ogg-1db59ae1ad87cef2e7f7fb879411fba9.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/Enemies/snake/snake_rattle_2.ogg"
-dest_files=[ "res://.import/snake_rattle_2.ogg-1db59ae1ad87cef2e7f7fb879411fba9.oggstr" ]
+dest_files=["res://.godot/imported/snake_rattle_2.ogg-1db59ae1ad87cef2e7f7fb879411fba9.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

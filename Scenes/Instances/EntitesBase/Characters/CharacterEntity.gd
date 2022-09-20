@@ -1,12 +1,12 @@
-extends KinematicBody2D
 class_name MobEntity
+extends CharacterBody2D
 
-onready var LineOfSight : RayCast2D = $LineOfSight
-onready var stats = $Systems/Stats
-onready var health = $Systems/Health
-onready var SpriteHandler = $SpriteHandler
-onready var BodySprites = $SpriteHandler/Body
-onready var line = $Line2D
+@onready var LineOfSight : RayCast2D = $LineOfSight
+@onready var stats = $Systems/Stats
+@onready var health = $Systems/Health
+@onready var SpriteHandler = $SpriteHandler
+@onready var BodySprites = $SpriteHandler/Body
+@onready var line = $Line2D
 
 var RespawnPoints = []
 var lastpos   : Vector2 = Vector2()
@@ -20,16 +20,16 @@ var nav_distance
 var nav_antistuck_time: int = 0
 var navAreaParent
 
-export(int, "Player", "NPC") var CharacterType : int  = 1
-export(int, "Male", "Female") var Gender : int  = 0
-export(int, FLAGS, "Independent", "Hogwarts", "Death Eaters", "Auroras", "Nature", "Undead", "Vampires", "Wolfwalkers", "Clockmasters", "Water people", "Lumera Tribe") var faction = 0  
-export(int, "Free", "Grid")  var MovementType  : int  = 1
-export(bool) var changeSpritesWhenMoving       : bool = true
-export(bool) var rotatesSpritesTowardMovement  : bool = false
-export(bool) var canMove                       : bool = true
-export(int)  var tileSize                      : int  = 32
-export(int)  var EXPGivenOnDeath               : int  = 100
-export(int)  var GoldGivenOnDeath              : int  = 100
+@export var CharacterType : int  = 1 # (int, "Player", "NPC")
+@export var Gender : int  = 0 # (int, "Male", "Female")
+@export var faction = 0   # (int, FLAGS, "Independent", "Hogwarts", "Death Eaters", "Auroras", "Nature", "Undead", "Vampires", "Wolfwalkers", "Clockmasters", "Water people", "Lumera Tribe")
+@export var MovementType  : int  = 1 # (int, "Free", "Grid")
+@export var changeSpritesWhenMoving		      : bool = true
+@export var rotatesSpritesTowardMovement  : bool = false
+@export var canMove                       : bool = true
+@export var tileSize                    : int  = 32
+@export var EXPGivenOnDeath             : int  = 100
+@export var GoldGivenOnDeath           : int  = 100
 
 func _ready():
 	if(navAreaParent == null):
@@ -46,7 +46,9 @@ func movement(delta):
 	var velocity = moveDir
 	velocity = velocity.normalized() * stats.movement_speed
 	if(nav_path == null or nav_path == []):
-		move_and_slide(velocity)
+		set_velocity(velocity)
+		move_and_slide()
+		velocity
 	else:
 		nav_distance = stats.movement_speed * delta
 		navigate(delta)
@@ -68,10 +70,10 @@ func CheckForAnimationsForMovement():
 	if(nav_path != [] and rotatesSpritesTowardMovement):
 		RotateSpritesTowardsVector(nav_path[0])
 		
-remotesync func RotateSpritesTowardsVector(vec : Vector2):
+@rpc(any_peer, call_local) func RotateSpritesTowardsVector(vec : Vector2):
 	SpriteHandler.look_at(vec)
 	
-remotesync func ResetSpritesRotation():
+@rpc(any_peer, call_local) func ResetSpritesRotation():
 	SpriteHandler.rotation_degrees = 0
 
 func generate_path_to_node(t):
@@ -107,8 +109,10 @@ func navigate(delta):
 				moveDir = global_position.direction_to(nav_path[1]) * stats.movement_speed
 				if(global_position.distance_to(nav_path[0]) >= 12.50):
 					nav_path.pop_front()
-			move_and_slide(moveDir)
-			#global_position = last_point.linear_interpolate(nav_path[0], nav_distance / distance_between_points)
+			set_velocity(moveDir)
+			move_and_slide()
+			velocity
+			#global_position = last_point.lerp(nav_path[0], nav_distance / distance_between_points)
 			break
 		elif nav_distance < 0.0 :
 			global_position = nav_path[0]
@@ -117,7 +121,7 @@ func navigate(delta):
 			break
 		nav_distance -= distance_between_points
 		last_point = nav_path[0]
-		nav_path.remove(0)
+		nav_path.remove_at(0)
 		nav_antistuck_time = 0
 	
 	#if(nav_path.size() > 1):
@@ -131,10 +135,10 @@ func stop_navigating():
 
 func Respawn():
 	if(RespawnPoints.size() == 0):
-		push_error("[Health] : No respawn points avaliable for " + name)
+		push_error(str("[Health] : No respawn points avaliable for %s ", name))
 		return
 	randomize()
-	var point = RespawnPoints[rand_range(0,RespawnPoints.size())]
+	var point = RespawnPoints[randf_range(0,RespawnPoints.size())]
 	Teleport.TeleportPos(self, point, null)
 	health.BecomeAlive()
 
@@ -145,7 +149,7 @@ func audio_setTrack(audionode: AudioStreamPlayer2D, audiotrack: Object):
 func audio_playCurrentTrack(audionode: AudioStreamPlayer2D, randomizePitch: bool):
 	if(randomizePitch == true):
 		randomize()
-		audionode.pitch_scale = rand_range(0.75, 1.25)
+		audionode.pitch_scale = randf_range(0.75, 1.25)
 	else:
 		audionode.pitch_scale = 1
 		

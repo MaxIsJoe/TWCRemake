@@ -4,7 +4,7 @@ var playerinfoUI = preload("res://Scenes/Instances/Actors/UI/OnlinePlayerInfo.ts
 
 func AddPlayerToWhoScreen(id):
 	var player = NetworkManager.Network.PlayerContainer.get_node(str(id))
-	var ui = playerinfoUI.instance()
+	var ui = playerinfoUI.instantiate()
 	ui.UpdateData(player.PlayerName, player.PlayerYear, int(id), id)
 	$TabContainer/Main/WhoArea/VBoxContainer.add_child(ui)
 
@@ -19,7 +19,7 @@ func ClearPlayerWhoList():
 
 
 func _on_ForceSave_button_down():
-	NetworkManager.Network.SavePlayer(get_tree().get_network_unique_id())
+	NetworkManager.Network.SavePlayer(get_tree().get_unique_id())
 	
 	
 ###Pages Stuff###

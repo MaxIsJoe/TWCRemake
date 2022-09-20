@@ -1,9 +1,9 @@
 extends TextureButton
 
-export(int) var ButtonHotkey = 0
+@export var ButtonHotkey: int = 0
 
 
-onready var time_label = $ButtonCooldown
+@onready var time_label = $ButtonCooldown
 
 var cooldown = 1.0
 var Action
@@ -24,17 +24,17 @@ func _ready():
 	disabled = true
 	$Timer.wait_time = cooldown
 	time_label.hide()
-	$TextureProgress.texture_progress = texture_normal
-	$TextureProgress.value = 0
+	$TextureProgressBar.texture_progress = texture_normal
+	$TextureProgressBar.value = 0
 	$ButtonHotkey.text = str(ButtonHotkey)
 	set_process(false)
 	
 func _process(delta):
 	time_label.text = "%3.1f" % $Timer.time_left
-	$TextureProgress.value = int(($Timer.time_left / cooldown) * 100)
+	$TextureProgressBar.value = int(($Timer.time_left / cooldown) * 100)
 	
 func _on_Timer_timeout():
-	$TextureProgress.value = 0
+	$TextureProgressBar.value = 0
 	disabled = false
 	time_label.hide()
 	set_process(false)

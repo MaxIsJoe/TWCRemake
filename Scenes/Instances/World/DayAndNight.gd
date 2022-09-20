@@ -1,12 +1,12 @@
 extends ColorRect
 
-export(float) var ShortDuration = 1
-export(float) var LongDuration = 3
-export(Color) var DayColor
-export(Color) var NightColor
-export(Color) var DawnColor
-export(Color) var MidnightColor
-export(Color) var BloodMoon
+@export var ShortDuration: float = 1
+@export var LongDuration: float = 3
+@export var DayColor: Color
+@export var NightColor: Color
+@export var DawnColor: Color
+@export var MidnightColor: Color
+@export var BloodMoon: Color
 
 
 func ChangeColor(color):

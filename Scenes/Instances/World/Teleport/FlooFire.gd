@@ -1,14 +1,14 @@
 extends Node2D
 
-#export(String) var TeleportToScene
-export(Vector2) var TeleportLocation
-export(AudioStream) var TeleportSound = load("res://Sound/SFX/teleports/poof_simple.wav")
-export(bool) var UsesNodeToTeleport = false
-export(NodePath) var TeleportLocationNode
+#export var TeleportToScene: String
+@export var TeleportLocation: Vector2
+@export var TeleportSound: AudioStream = load("res://Sound/SFX/teleports/poof_simple.wav")
+@export var UsesNodeToTeleport: bool = false
+@export var TeleportLocationNode: NodePath
 
-var teleportNode : Position2D
+var teleportNode : Marker2D
 
-onready var audio = $Area2D/AudioStreamPlayer2D
+@onready var audio = $Area2D/AudioStreamPlayer2D
 
 func _ready():
 	if(UsesNodeToTeleport):

@@ -6,8 +6,8 @@ signal update_self(id)
 var ID
 
 func UpdateData(PlayerName: String, PlayerYear: int, _PlayerHouse: int, PlayerID):
-	$PlayerName.bbcode_text = PlayerName
-	$PlayerYear.bbcode_text = str(PlayerYear)
+	$PlayerName.text = PlayerName
+	$PlayerYear.text = str(PlayerYear)
 	ID = PlayerID
 
 

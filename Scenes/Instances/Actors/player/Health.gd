@@ -1,17 +1,17 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/Health.gd"
 
-export(NodePath) var HealthBar_PATH
-onready var HealthBar = get_node(HealthBar_PATH)
-export(bool) var CanGrayscaleVision = true
+@export var HealthBar_PATH: NodePath
+@onready var HealthBar = get_node(HealthBar_PATH)
+@export var CanGrayscaleVision: bool = true
 	
 func _ready():
 	HealthBar._on_Player_hpupdate(HP, HP_MAX)
 
-remotesync func TakeDamage(damage: int, damageBy):
-	.TakeDamage(damage, damageBy)
+@rpc(any_peer, call_local) func TakeDamage(damage: int, damageBy):
+	super.TakeDamage(damage, damageBy)
 	HealthBar._on_Player_hpupdate(HP, HP_MAX)
 
-remotesync func BecomeAlive():
-	.BecomeAlive()
+@rpc(any_peer, call_local) func BecomeAlive():
+	super.BecomeAlive()
 	HealthBar._on_Player_hpupdate(HP, HP_MAX)
 

@@ -1,7 +1,7 @@
 extends MobEntity
 class_name PlayerEntity
 
-export(Vector2) var CamZoomOnPlayer = Vector2(0.5,0.5)
+@export var CamZoomOnPlayer: Vector2 = Vector2(0.5,0.5)
 
 var House      : int
 var PlayerName : String = "Cuban Pete"
@@ -19,37 +19,37 @@ var ItemsArray = []
 var PlayerState = {} #For networking
 var playerkey #For saving and account mangement
 
-onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
-onready var PlayerNameUI = $PlayerName
-onready var tabs = $Cam/CanvasLayer/UI/TabContainer
-onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
-onready var PopUpUI = $Cam/CanvasLayer/UI/WindowDialog
-onready var AudioLocal = $Audio/Audio_Pos
-onready var Audio = $Audio/Audio
-onready var Shootpoint = $Spell_Pointers/ShootPoint
-onready var TargertPoint = $Spell_Pointers/TargetPoint
-onready var Cam = $Cam
-onready var CamTween = $Cam/CamTween
+@onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
+@onready var PlayerNameUI = $PlayerName
+@onready var tabs = $Cam/CanvasLayer/UI/TabContainer
+@onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
+@onready var PopUpUI = $Cam/CanvasLayer/UI/Window
+@onready var AudioLocal = $Audio/Audio_Pos
+@onready var Audio = $Audio/Audio
+@onready var Shootpoint = $Spell_Pointers/ShootPoint
+@onready var TargertPoint = $Spell_Pointers/TargetPoint
+@onready var Cam = $Cam
+@onready var CamTween = $Cam/CamTween
 
 signal GrabbedAnItem(item)
 
 func _ready():
 	playerkey = Data.main_node.key
 	
-	if(get_tree().get_network_unique_id() == 1):
+	if(get_tree().get_unique_id() == 1):
 		#This fixes the issue where players jitter during single player
 		#LAN games should be much smoother as well because the server is sending data every 60 physics frames
-		Engine.set_iterations_per_second(60)
+		Engine.set_physics_ticks_per_second(60)
 	
-	if(is_network_master()):
+	if(is_multiplayer_authority()):
 		Cam.current = true
 		$Cam/CanvasLayer/UI.visible = true
 		Data.Player = self
 		if(Global.EnableFOV):
-			$Light2D.shadow_enabled = true
+			$PointLight2D.shadow_enabled = true
 		else:
-			$Light2D.shadow_enabled = false
-		if(get_tree().get_network_unique_id() != 1):
+			$PointLight2D.shadow_enabled = false
+		if(get_tree().get_unique_id() != 1):
 			rpc_id(1, "SendKeyToServer", playerkey)
 		else:
 			SendKeyToServer(playerkey)
@@ -66,7 +66,7 @@ func SetupPlayer(house: int, Name: String, gender: int):
 	updatenamelabel()
 	
 func Send_PlayerState():
-	PlayerState = {"T": OS.get_system_time_msecs(), "P": global_position, "A": SpriteHandler.currentDir, "LD": LookingDirection, "D": stats.damage, "SP": Shootpoint}
+	PlayerState = {"T": Time.get_ticks_msec(), "P": global_position, "A": SpriteHandler.currentDir, "LD": LookingDirection, "D": stats.damage, "SP": Shootpoint}
 	NetworkManager.Network.rpc_unreliable("SendData", PlayerState)
 	
 func UpdatePlayer(pos, anim, ld, d, SP):
@@ -92,22 +92,22 @@ func GetSavePlayerInfo():
 	if(info.get("key") == null): push_warning("\a Warning, Key is null.")
 	return info
 
-remote func SendKeyToServer(key):
+@rpc(any_peer) func SendKeyToServer(key):
 	playerkey = key
 
-remote func updatenamelabel():
+@rpc(any_peer) func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
 	if(House == 0):
-		PlayerNameUI.add_color_override("font_color", Color(0.86,0.08,0.24,1))
+		PlayerNameUI.add_theme_color_override("font_color", Color(0.86,0.08,0.24,1))
 	if(House == 1):
-		PlayerNameUI.add_color_override("font_color", Color(1,0.84,0,1))
+		PlayerNameUI.add_theme_color_override("font_color", Color(1,0.84,0,1))
 	if(House == 3):
-		PlayerNameUI.add_color_override("font_color", Color(0,1,0,1))
+		PlayerNameUI.add_theme_color_override("font_color", Color(0,1,0,1))
 	if(House == 2):
-		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
+		PlayerNameUI.add_theme_color_override("font_color", Color(0,1,1,1))
 
 func _physics_process(_delta):
-	if is_network_master():
+	if is_multiplayer_authority():
 		getDir()
 	Send_PlayerState()
 
@@ -119,13 +119,13 @@ func _input(event):
 			tabs.visible = false
 			canMove = true
 			CamTween.interpolate_property(Cam, "zoom", Cam.zoom, Vector2(1,1), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-			CamTween.interpolate_property(tabs, "rect_position", tabs.rect_position, Vector2(-440,6), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			CamTween.interpolate_property(tabs, "position", tabs.position, Vector2(-440,6), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 			CamTween.start()
 		else:
 			tabs.visible = true
 			canMove = false
 			CamTween.interpolate_property(Cam, "zoom", Cam.zoom, CamZoomOnPlayer, 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-			CamTween.interpolate_property(tabs, "rect_position", tabs.rect_position, Vector2(8,6), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			CamTween.interpolate_property(tabs, "position", tabs.position, Vector2(8,6), 0.2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 			CamTween.start()
 	#DEBUG
 	if(Global.DEBUG_Mode):
@@ -134,10 +134,10 @@ func _input(event):
 		if(Input.is_action_just_pressed("ui_page_up")):
 			stats.gainXP(50)
 		if(Input.is_action_just_pressed("DEBUG_DisableShadows")):
-			if($Light2D.shadow_enabled):
-				$Light2D.shadow_enabled = false
+			if($PointLight2D.shadow_enabled):
+				$PointLight2D.shadow_enabled = false
 			else:
-				$Light2D.shadow_enabled = true
+				$PointLight2D.shadow_enabled = true
 		if(Input.is_action_just_pressed("ui_end")):
 			gold += 100
 
@@ -229,15 +229,15 @@ func ShowSign(Title, Content):
 	PopUpUI.dialog_text = Content
 	PopUpUI.popup_centered()
 
-remote func ShootSpell(Spell, Argument):
+@rpc(any_peer) func ShootSpell(Spell, Argument):
 	if(Argument == "player"):
 		Argument = Data.Player
-	SpellManager.rpc_id(0, "ShootSpell" ,Spell, get_tree().get_network_unique_id())
+	SpellManager.rpc_id(0, "ShootSpell" ,Spell, get_tree().get_unique_id())
 	SpellManager.rpc_id(0, "TargetSpell", Spell, Argument)
 
 func ShowHotkeyAsign(ID):
 	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true
 	$Cam/CanvasLayer/UI/SetHotkeyUI.ID = ID
 	
-remotesync func takedamage(dmg, dmgBy):
+@rpc(any_peer, call_local) func takedamage(dmg, dmgBy):
 	health.TakeDamage(dmg, dmgBy)

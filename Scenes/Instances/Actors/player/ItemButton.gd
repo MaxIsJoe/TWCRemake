@@ -1,7 +1,7 @@
 extends Button
 
-onready var ItemLabel = $ItemLabel
-onready var ItemIcon = $ItemIcon
+@onready var ItemLabel = $ItemLabel
+@onready var ItemIcon = $ItemIcon
 var ID
 var ButtonID = 0
 
@@ -24,7 +24,7 @@ func UpdateButton(ItemID, B_ID):
 	
 	ID = ItemID
 	ButtonID = B_ID
-	hint_tooltip = Data.ItemData[ID].get("desc")
+	tooltip_text = Data.ItemData[ID].get("desc")
 
 
 func _on_ItemButton_button_down():

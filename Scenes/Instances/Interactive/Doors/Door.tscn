@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Instances/Interactive/Doors/Door.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/opening_0/1.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/closing_0/1.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/closed_0.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/open_0.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/opening_0/1.png" type="Texture2D" id=2]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/closing_0/1.png" type="Texture2D" id=3]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/closed_0.png" type="Texture2D" id=4]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/Door/open_0.png" type="Texture2D" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18.5528, 18.2943 )
@@ -29,7 +29,7 @@ animations = [ {
 
 [sub_resource type="OccluderPolygon2D" id=3]
 cull_mode = 1
-polygon = PoolVector2Array( -15.5866, -14.4842, 15.7029, -14.6609, 15.3493, 15.5679, -15.5866, 15.5679 )
+polygon = PackedVector2Array( -15.5866, -14.4842, 15.7029, -14.6609, 15.3493, 15.5679, -15.5866, 15.5679 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 17.4236, 15.3908 )
@@ -44,7 +44,7 @@ script = ExtResource( 1 )
 position = Vector2( -0.185062, 0 )
 shape = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2( 1.08, 1.04 )
 frames = SubResource( 2 )
 animation = "Idle"
@@ -53,7 +53,7 @@ animation = "Idle"
 wait_time = 25.0
 one_shot = true
 
-[node name="Occluder" type="LightOccluder2D" parent="."]
+[node name="OccluderInstance3D" type="LightOccluder2D" parent="."]
 scale = Vector2( 1.10445, 1.16268 )
 occluder = SubResource( 3 )
 

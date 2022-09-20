@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Instances/Actors/UI/OnlinePlayerInfo.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/shields/hogwartsbanner_0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons2/shields/hogwartsbanner_0.png" type="Texture2D" id=2]
 
 [node name="OnlinePlayerInfo" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -908.0
-margin_bottom = -691.0
-rect_min_size = Vector2( 0, 29 )
+offset_right = -908.0
+offset_bottom = -691.0
+minimum_size = Vector2( 0, 29 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -17,30 +17,30 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -340.0
-margin_bottom = 3.0
+offset_right = -340.0
+offset_bottom = 3.0
 texture = ExtResource( 2 )
 stretch_mode = 4
 
 [node name="PlayerName" type="RichTextLabel" parent="."]
-margin_left = 35.0
-margin_top = 6.0
-margin_right = 190.0
-margin_bottom = 28.0
+offset_left = 35.0
+offset_top = 6.0
+offset_right = 190.0
+offset_bottom = 28.0
 bbcode_enabled = true
-bbcode_text = "Player Name"
+text = "Player Name"
 text = "Player Name"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayerYear" type="RichTextLabel" parent="."]
-margin_left = 193.698
-margin_top = 6.0
-margin_right = 239.698
-margin_bottom = 31.0
+offset_left = 193.698
+offset_top = 6.0
+offset_right = 239.698
+offset_bottom = 31.0
 bbcode_enabled = true
-bbcode_text = "Year"
+text = "Year"
 text = "Year"
 __meta__ = {
 "_edit_use_anchors_": false

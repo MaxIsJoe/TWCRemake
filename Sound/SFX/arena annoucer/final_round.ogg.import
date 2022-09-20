@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/final_round.ogg-f8cc891f224b375ffac0bef8c56198ee.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b1o8pdocaquvp"
+path="res://.godot/imported/final_round.ogg-f8cc891f224b375ffac0bef8c56198ee.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/arena annoucer/final_round.ogg"
-dest_files=[ "res://.import/final_round.ogg-f8cc891f224b375ffac0bef8c56198ee.oggstr" ]
+dest_files=["res://.godot/imported/final_round.ogg-f8cc891f224b375ffac0bef8c56198ee.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

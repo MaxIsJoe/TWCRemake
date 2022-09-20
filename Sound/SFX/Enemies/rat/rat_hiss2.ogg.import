@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/rat_hiss2.ogg-d18fb388b5e4b0f17faa83aaf0bd9d4b.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://vy5qdujryj4i"
+path="res://.godot/imported/rat_hiss2.ogg-d18fb388b5e4b0f17faa83aaf0bd9d4b.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/Enemies/rat/rat_hiss2.ogg"
-dest_files=[ "res://.import/rat_hiss2.ogg-d18fb388b5e4b0f17faa83aaf0bd9d4b.oggstr" ]
+dest_files=["res://.godot/imported/rat_hiss2.ogg-d18fb388b5e4b0f17faa83aaf0bd9d4b.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

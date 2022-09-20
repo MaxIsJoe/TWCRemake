@@ -11,12 +11,12 @@ func _ready():
 	else:
 		dir.make_dir(banksPath)
 
-remotesync func desposit(playerKey: String, amount: int, playerNode : PlayerEntity):
+@rpc(any_peer, call_local) func desposit(playerKey: String, amount: int, playerNode : PlayerEntity):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
 		var dir : Directory = Directory.new()
 		if dir.open(banksPath) == OK:
-			dir.list_dir_begin(true, true)
+			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 			while file != "":
 				if(file != null):
 					if(file.begins_with(str(playerKey))):
@@ -29,12 +29,12 @@ remotesync func desposit(playerKey: String, amount: int, playerNode : PlayerEnti
 		else:
 			print("[Banks] - Player account not found!")
 			
-remotesync func howMuchMoneyDoesThisPlayerHave(playerKey: String):
+@rpc(any_peer, call_local) func howMuchMoneyDoesThisPlayerHave(playerKey: String):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
 		var dir : Directory = Directory.new()
 		if dir.open(banksPath) == OK:
-			dir.list_dir_begin(true, true)
+			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 			while file != "":
 				if(file != null):
 					if(file.begins_with(str(playerKey))):
@@ -46,12 +46,12 @@ remotesync func howMuchMoneyDoesThisPlayerHave(playerKey: String):
 			print("[Banks] - Player account not found!")
 			return null
 			
-remotesync func withdraw(playerKey: String, amountToWithdraw: int, playerNode: PlayerEntity):
+@rpc(any_peer, call_local) func withdraw(playerKey: String, amountToWithdraw: int, playerNode: PlayerEntity):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
 		var dir : Directory = Directory.new()
 		if dir.open(banksPath) == OK:
-			dir.list_dir_begin(true, true)
+			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 			while file != "":
 				if(file != null):
 					if(file.begins_with(str(playerKey))):
@@ -69,19 +69,19 @@ remotesync func withdraw(playerKey: String, amountToWithdraw: int, playerNode: P
 			print("[Banks] - Player account not found!")
 			return false
 	
-remotesync func UpdateDialogicBankStatus(playerKey: String):
+@rpc(any_peer, call_local) func UpdateDialogicBankStatus(playerKey: String):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
 		var dir : Directory = Directory.new()
 		if dir.open(banksPath) == OK:
-			dir.list_dir_begin(true, true)
+			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 			while file != "":
 				if(file != null):
 					if(file.begins_with(str(playerKey))):
 						var data = JsonLoader.LoadJSON_Retrun(str(banksPath + playerKey + ".json"))
 						if(data != null):
 							print("[Bank] - Current money for " + playerKey + " is " + str(data["amount"]))
-							Dialogic.set_variable("PlayerBankMoney", data["amount"])
+							#Dialogic.set_variable("PlayerBankMoney", data["amount"])
 						else:
 							print("[Error/Bank] - JSON data failed to load correctly.")
 						return
@@ -89,14 +89,14 @@ remotesync func UpdateDialogicBankStatus(playerKey: String):
 		else:
 			print("[Banks] - Player account not found!")
 
-remotesync func registerPlayerAccount(playerKey):
+@rpc(any_peer, call_local) func registerPlayerAccount(playerKey):
 	if(doesThisPlayerHaveABankAccount(playerKey) == false):
 		var data = {"amount": 100}
 		JsonLoader.SaveJSON(data, str(banksPath + playerKey + ".json"))
 	else:
 		print("[Banks] - User already has a registered account.")
 	
-remotesync func doesThisPlayerHaveABankAccount(key):
+@rpc(any_peer, call_local) func doesThisPlayerHaveABankAccount(key):
 	var _file : File = File.new()
 	if _file.open(str(banksPath + key + ".json"), File.READ) == OK:
 		return true
@@ -105,6 +105,6 @@ remotesync func doesThisPlayerHaveABankAccount(key):
 		return false
 
 func showUI(mode: int):
-	var ui = bankUI.instance()
+	var ui = bankUI.instantiate()
 	add_child(ui)
 	ui.ShowUI(mode)

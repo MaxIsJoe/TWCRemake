@@ -10,7 +10,7 @@
 radius = 7.99975
 height = 11.7382
 
-[node name="CharacterEntity" type="KinematicBody2D"]
+[node name="CharacterEntity" type="CharacterBody2D"]
 input_pickable = true
 script = ExtResource( 2 )
 MovementType = 0
@@ -46,7 +46,7 @@ shape = SubResource( 1 )
 [node name="SpriteHandler" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
-[node name="Body" type="AnimatedSprite" parent="SpriteHandler"]
+[node name="Body" type="AnimatedSprite2D" parent="SpriteHandler"]
 frames = ExtResource( 5 )
 animation = "idledown"
 

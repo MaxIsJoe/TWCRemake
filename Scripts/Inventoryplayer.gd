@@ -2,7 +2,7 @@ extends Node
 
 var ItemsArray = []
 var OnPlayer = []
-onready var InvUI = $InventoryUI
+@onready var InvUI = $InventoryUI
 
 func has(item):
 	return true if find_item(item) else false

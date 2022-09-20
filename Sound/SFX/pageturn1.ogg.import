@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/pageturn1.ogg-ccd9f0a3c4693a2cdaf0905ef0e9b6bd.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://1alq3qu1kuss"
+path="res://.godot/imported/pageturn1.ogg-ccd9f0a3c4693a2cdaf0905ef0e9b6bd.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/pageturn1.ogg"
-dest_files=[ "res://.import/pageturn1.ogg-ccd9f0a3c4693a2cdaf0905ef0e9b6bd.oggstr" ]
+dest_files=["res://.godot/imported/pageturn1.ogg-ccd9f0a3c4693a2cdaf0905ef0e9b6bd.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

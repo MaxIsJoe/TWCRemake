@@ -14,8 +14,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 0.435275 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 0.435275 ),
 "update": 0,
 "values": [ 0.0, 1.0 ]
 }
@@ -30,10 +30,10 @@ __meta__ = {
 }
 
 [node name="CircularContainer" type="Container" parent="."]
-margin_left = -100.0
-margin_top = -78.0
-margin_right = 101.0
-margin_bottom = 77.0
+offset_left = -100.0
+offset_top = -78.0
+offset_right = 101.0
+offset_bottom = 77.0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
 script = ExtResource( 1 )

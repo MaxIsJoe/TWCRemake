@@ -17,7 +17,7 @@ func _on_JoinServer_pressed():
 	_load_game()
 	
 func _load_game():
-	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
 
 func _on_TextEdit_text_changed(new_text):

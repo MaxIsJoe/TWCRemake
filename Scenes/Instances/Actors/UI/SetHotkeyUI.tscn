@@ -15,51 +15,51 @@ anchor_left = 0.311
 anchor_top = 0.401
 anchor_right = 0.689
 anchor_bottom = 0.599
-margin_left = -0.0800171
-margin_top = -0.220032
-margin_right = 0.0799561
-margin_bottom = 0.219971
-rect_min_size = Vector2( 484, 143 )
+offset_left = -0.0800171
+offset_top = -0.220032
+offset_right = 0.0799561
+offset_bottom = 0.219971
+minimum_size = Vector2( 484, 143 )
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="PopupPanel"]
-margin_left = 129.498
-margin_top = 110.157
-margin_right = 204.498
-margin_bottom = 128.157
+offset_left = 129.498
+offset_top = 110.157
+offset_right = 204.498
+offset_bottom = 128.157
 focus_mode = 0
-enabled_focus_mode = 0
+focus_mode = 0
 text = "OK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button2" type="Button" parent="PopupPanel"]
-margin_left = 295.996
-margin_top = 110.157
-margin_right = 370.996
-margin_bottom = 128.157
+offset_left = 295.996
+offset_top = 110.157
+offset_right = 370.996
+offset_bottom = 128.157
 text = "Cancel"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SpinBox" type="SpinBox" parent="PopupPanel"]
-margin_left = 271.61
-margin_top = 52.9765
-margin_right = 345.61
-margin_bottom = 76.9765
+offset_left = 271.61
+offset_top = 52.9765
+offset_right = 345.61
+offset_bottom = 76.9765
 max_value = 9.0
 rounded = true
 
 [node name="Label" type="Label" parent="PopupPanel"]
-margin_left = 141.271
-margin_top = 53.8174
-margin_right = 231.671
-margin_bottom = 74.2174
+offset_left = 141.271
+offset_top = 53.8174
+offset_right = 231.671
+offset_bottom = 74.2174
 text = "Set hotkey to"
 [connection signal="button_down" from="PopupPanel/Button" to="." method="_on_Button_button_down"]
 [connection signal="button_down" from="PopupPanel/Button2" to="." method="_on_Button2_button_down"]

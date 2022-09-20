@@ -1,30 +1,30 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Resources/Fonts/Cabin/cabintres1.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/Fonts/Cabin/cabintres1.tres" type="FontFile" id=1]
 
 [node name="PlayerStatsInventoryAndMore" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 1.12247
-margin_bottom = 1.1225
+offset_top = 1.12247
+offset_bottom = 1.1225
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Stats" type="Control" parent="."]
-margin_left = 373.0
-margin_top = 280.0
-margin_right = 537.0
-margin_bottom = 442.0
+offset_left = 373.0
+offset_top = 280.0
+offset_right = 537.0
+offset_bottom = 442.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HP" type="Label" parent="Stats"]
-margin_left = 75.5099
-margin_top = 349.152
-margin_right = 234.51
-margin_bottom = 375.552
+offset_left = 75.5099
+offset_top = 349.152
+offset_right = 234.51
+offset_bottom = 375.552
 custom_fonts/font = ExtResource( 1 )
 text = "HP:"
 __meta__ = {
@@ -32,9 +32,9 @@ __meta__ = {
 }
 
 [node name="CurrentHP" type="Label" parent="Stats/HP"]
-margin_left = 37.4
-margin_right = 67.8
-margin_bottom = 20.4
+offset_left = 37.4
+offset_right = 67.8
+offset_bottom = 20.4
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 __meta__ = {
@@ -42,9 +42,9 @@ __meta__ = {
 }
 
 [node name="MaxHP" type="Label" parent="Stats/HP"]
-margin_left = 127.0
-margin_right = 157.4
-margin_bottom = 20.4
+offset_left = 127.0
+offset_right = 157.4
+offset_bottom = 20.4
 custom_fonts/font = ExtResource( 1 )
 text = "100"
 __meta__ = {
@@ -52,9 +52,9 @@ __meta__ = {
 }
 
 [node name="Slash" type="Label" parent="Stats/HP"]
-margin_left = 84.6273
-margin_right = 96.0273
-margin_bottom = 20.4
+offset_left = 84.6273
+offset_right = 96.0273
+offset_bottom = 20.4
 custom_fonts/font = ExtResource( 1 )
 text = "/"
 __meta__ = {
@@ -62,17 +62,17 @@ __meta__ = {
 }
 
 [node name="MP" type="Label" parent="Stats"]
-margin_left = 300.358
-margin_top = 349.752
-margin_right = 459.358
-margin_bottom = 376.152
+offset_left = 300.358
+offset_top = 349.752
+offset_right = 459.358
+offset_bottom = 376.152
 custom_fonts/font = ExtResource( 1 )
 text = "MP:"
 
 [node name="CurrentMP" type="Label" parent="Stats/MP"]
-margin_left = 37.4
-margin_right = 67.8
-margin_bottom = 20.4
+offset_left = 37.4
+offset_right = 67.8
+offset_bottom = 20.4
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 __meta__ = {
@@ -80,9 +80,9 @@ __meta__ = {
 }
 
 [node name="MaxMP" type="Label" parent="Stats/MP"]
-margin_left = 127.0
-margin_right = 157.4
-margin_bottom = 20.4
+offset_left = 127.0
+offset_right = 157.4
+offset_bottom = 20.4
 custom_fonts/font = ExtResource( 1 )
 text = "100"
 __meta__ = {
@@ -90,9 +90,9 @@ __meta__ = {
 }
 
 [node name="Slash" type="Label" parent="Stats/MP"]
-margin_left = 84.6273
-margin_right = 96.0273
-margin_bottom = 20.4
+offset_left = 84.6273
+offset_right = 96.0273
+offset_bottom = 20.4
 custom_fonts/font = ExtResource( 1 )
 text = "/"
 __meta__ = {
@@ -100,11 +100,11 @@ __meta__ = {
 }
 
 [node name="XP" type="Label" parent="Stats"]
-margin_left = 190.78
-margin_top = 304.311
-margin_right = 349.78
-margin_bottom = 330.711
-rect_min_size = Vector2( 0, 26.4 )
+offset_left = 190.78
+offset_top = 304.311
+offset_right = 349.78
+offset_bottom = 330.711
+minimum_size = Vector2( 0, 26.4 )
 custom_fonts/font = ExtResource( 1 )
 text = "XP :"
 __meta__ = {
@@ -112,9 +112,9 @@ __meta__ = {
 }
 
 [node name="CurrentMP" type="Label" parent="Stats/XP"]
-margin_left = 37.4
-margin_right = 67.8
-margin_bottom = 20.4
+offset_left = 37.4
+offset_right = 67.8
+offset_bottom = 20.4
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 __meta__ = {
@@ -122,9 +122,9 @@ __meta__ = {
 }
 
 [node name="MaxMP" type="Label" parent="Stats/XP"]
-margin_left = 127.0
-margin_right = 157.4
-margin_bottom = 20.4
+offset_left = 127.0
+offset_right = 157.4
+offset_bottom = 20.4
 custom_fonts/font = ExtResource( 1 )
 text = "100"
 __meta__ = {
@@ -132,9 +132,9 @@ __meta__ = {
 }
 
 [node name="Slash" type="Label" parent="Stats/XP"]
-margin_left = 84.6273
-margin_right = 96.0273
-margin_bottom = 20.4
+offset_left = 84.6273
+offset_right = 96.0273
+offset_bottom = 20.4
 custom_fonts/font = ExtResource( 1 )
 text = "/"
 __meta__ = {
@@ -142,106 +142,106 @@ __meta__ = {
 }
 
 [node name="AreaNearPlayer" type="Control" parent="."]
-margin_left = 2.0
-margin_top = 90.0
-margin_right = 1279.0
-margin_bottom = 583.0
+offset_left = 2.0
+offset_top = 90.0
+offset_right = 1279.0
+offset_bottom = 583.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="AreaNearPlayer"]
-margin_left = 441.319
-margin_top = 206.13
-margin_right = 566.319
-margin_bottom = 351.13
-rect_min_size = Vector2( 125, 145 )
+offset_left = 441.319
+offset_top = 206.13
+offset_right = 566.319
+offset_bottom = 351.13
+minimum_size = Vector2( 125, 145 )
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="AreaNearPlayer/ScrollContainer"]
-margin_right = 71.0
-margin_bottom = 142.0
+offset_right = 71.0
+offset_bottom = 142.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Strength" type="Label" parent="AreaNearPlayer/ScrollContainer/VBoxContainer"]
-margin_top = -1.0
-margin_right = 71.4
-margin_bottom = 25.4
-rect_min_size = Vector2( 0, 26.4 )
+offset_top = -1.0
+offset_right = 71.4
+offset_bottom = 25.4
+minimum_size = Vector2( 0, 26.4 )
 custom_fonts/font = ExtResource( 1 )
 text = "Strength :"
 
 [node name="Defense" type="Label" parent="AreaNearPlayer/ScrollContainer/VBoxContainer"]
-margin_top = 28.0
-margin_right = 71.0
-margin_bottom = 54.4
-rect_min_size = Vector2( 0, 26.4 )
+offset_top = 28.0
+offset_right = 71.0
+offset_bottom = 54.4
+minimum_size = Vector2( 0, 26.4 )
 custom_fonts/font = ExtResource( 1 )
 text = "Defense :"
 
 [node name="Intellegence" type="Label" parent="AreaNearPlayer/ScrollContainer/VBoxContainer"]
-margin_top = 57.0
-margin_right = 71.0
-margin_bottom = 83.4
-rect_min_size = Vector2( 0, 26.4 )
+offset_top = 57.0
+offset_right = 71.0
+offset_bottom = 83.4
+minimum_size = Vector2( 0, 26.4 )
 custom_fonts/font = ExtResource( 1 )
 text = "Int :"
 
 [node name="Charm" type="Label" parent="AreaNearPlayer/ScrollContainer/VBoxContainer"]
-margin_top = 86.0
-margin_right = 71.0
-margin_bottom = 112.4
-rect_min_size = Vector2( 0, 26.4 )
+offset_top = 86.0
+offset_right = 71.0
+offset_bottom = 112.4
+minimum_size = Vector2( 0, 26.4 )
 custom_fonts/font = ExtResource( 1 )
 text = "Charm :"
 
 [node name="Luck" type="Label" parent="AreaNearPlayer/ScrollContainer/VBoxContainer"]
-margin_top = 115.0
-margin_right = 71.0
-margin_bottom = 141.4
-rect_min_size = Vector2( 0, 26.4 )
+offset_top = 115.0
+offset_right = 71.0
+offset_bottom = 141.4
+minimum_size = Vector2( 0, 26.4 )
 custom_fonts/font = ExtResource( 1 )
 text = "Luck :"
 
 [node name="MenusButtons" type="VBoxContainer" parent="AreaNearPlayer"]
-margin_left = 764.0
-margin_top = 204.0
-margin_right = 892.0
-margin_bottom = 341.0
+offset_left = 764.0
+offset_top = 204.0
+offset_right = 892.0
+offset_bottom = 341.0
 alignment = 1
 
 [node name="Inventory" type="Button" parent="AreaNearPlayer/MenusButtons"]
-margin_top = 29.0
-margin_right = 128.0
-margin_bottom = 53.0
+offset_top = 29.0
+offset_right = 128.0
+offset_bottom = 53.0
 custom_fonts/font = ExtResource( 1 )
 text = "Inventory"
 
 [node name="Spells" type="Button" parent="AreaNearPlayer/MenusButtons"]
-margin_top = 56.0
-margin_right = 128.0
-margin_bottom = 80.0
+offset_top = 56.0
+offset_right = 128.0
+offset_bottom = 80.0
 custom_fonts/font = ExtResource( 1 )
 text = "Spells"
 
 [node name="Journal" type="Button" parent="AreaNearPlayer/MenusButtons"]
-margin_top = 83.0
-margin_right = 128.0
-margin_bottom = 107.0
+offset_top = 83.0
+offset_right = 128.0
+offset_bottom = 107.0
 custom_fonts/font = ExtResource( 1 )
 text = "Journal"
 
 [node name="Inventory" type="Control" parent="AreaNearPlayer"]
-margin_left = 903.0
-margin_top = 146.0
-margin_right = 1125.0
-margin_bottom = 388.0
+offset_left = 903.0
+offset_top = 146.0
+offset_right = 1125.0
+offset_bottom = 388.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

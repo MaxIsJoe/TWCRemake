@@ -1,6 +1,6 @@
 extends Control
 
-onready var RadialButton = load("res://Scenes/Instances/Actors/UI/buttons/RadialButton.tscn")
+@onready var RadialButton = load("res://Scenes/Instances/Actors/UI/buttons/RadialButton.tscn")
 var active = false
 
 
@@ -15,7 +15,7 @@ func _process(delta):
 			ToggleButtonVisbility(false)
 
 func LoadButton(Type, ID):
-	var NewButton = RadialButton.instance()
+	var NewButton = RadialButton.instantiate()
 	match Type:
 		"Shop":
 			NewButton.UpdateButtionUI(Data.UI_Icon_Shop)

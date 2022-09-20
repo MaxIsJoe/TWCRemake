@@ -1,34 +1,33 @@
 extends Node
 class_name Entity_Health
 
-export(NodePath) var parent_PATH
-onready var parent = get_node(parent_PATH)
-export(NodePath) var HealthTween_PATH
-onready var HealthTween = get_node(HealthTween_PATH)
-export(NodePath) var Collision_PATH
-onready var Collision = get_node(Collision_PATH)
-export(int) var HP = 100
-export(int) var HP_MAX = 100
-export(bool) var CanBeDamaged = false
-export(bool) var EntityRotatesOnDeath = true
-export(bool) var EntityCanRespawn = true
-export(float) var TimeToRespawn = 4.0
-
-var currentState = HealthState.ALIVE
-var lastDamagedBy : String
-
-onready var RespawnTimer = $Timer
-
-var this_class = load("res://Scenes/Instances/EntitesBase/Characters/Health.gd")    
-
 enum HealthState {
 	ALIVE,
 	UNCONSCIOUS,
 	DEAD
 }
 
+@export var parent_PATH: NodePath
+@onready var parent = get_node(parent_PATH)
+@export var HealthTween_PATH: NodePath
+@onready var HealthTween = get_node(HealthTween_PATH)
+@export var Collision_PATH: NodePath
+@onready var Collision = get_node(Collision_PATH)
+@export var HP: int = 100
+@export var HP_MAX: int = 100
+@export var CanBeDamaged: bool = false
+@export var EntityRotatesOnDeath: bool = true
+@export var EntityCanRespawn: bool = true
+@export var TimeToRespawn: float = 4.0
 
-remotesync func TakeDamage(damage: int, damagedBy):
+@export_enum(HealthState) var currentState
+var lastDamagedBy : String
+
+@onready var RespawnTimer = $Timer
+
+var this_class = load("res://Scenes/Instances/EntitesBase/Characters/Health.gd")    
+
+@rpc(any_peer, call_local) func TakeDamage(damage: int, damagedBy):
 	if(CanBeDamaged):
 		match currentState:
 			HealthState.ALIVE:
@@ -42,7 +41,7 @@ remotesync func TakeDamage(damage: int, damagedBy):
 	if(HP <= 0 and currentState != HealthState.DEAD):
 		rpc_id(0, "BecomeAlivent")
 
-remotesync func Heal(HealType: int, points_to_heal: int):
+@rpc(any_peer, call_local) func Heal(HealType: int, points_to_heal: int):
 	match(HealType):
 		0: #Instant Heal
 			HP += points_to_heal
@@ -51,7 +50,7 @@ remotesync func Heal(HealType: int, points_to_heal: int):
 		1: #Heal over time
 			pass #add later
 	
-remotesync func BecomeAlive():
+@rpc(any_peer, call_local) func BecomeAlive():
 	currentState = HealthState.ALIVE
 	parent.canMove = true
 	HP = HP_MAX
@@ -61,7 +60,7 @@ remotesync func BecomeAlive():
 	parent.Respawn()
 	Collision.set_deferred("disabled", false)
 
-remotesync func BecomeAlivent():
+@rpc(any_peer, call_local) func BecomeAlivent():
 	currentState = HealthState.DEAD
 	parent.canMove = false
 	

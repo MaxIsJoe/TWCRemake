@@ -1,8 +1,8 @@
 extends Control
 
-onready var ItemButton = load("res://Scenes/Instances/Actors/UI/buttons/SellItemButton.tscn")
+@onready var ItemButton = load("res://Scenes/Instances/Actors/UI/buttons/SellItemButton.tscn")
 
-export(float) var interpolateTime = 0.8
+@export var interpolateTime: float = 0.8
 var IsVisible = false
 
 
@@ -34,7 +34,7 @@ func ShowUI(check:bool):
 
 func LoadItems(ItemsList:Array):
 	for item in ItemsList:
-		var button = ItemButton.instance()
+		var button = ItemButton.instantiate()
 		button.LoadData(item)
 		$Background/ItemShowcase/ScrollContainer/VBoxContainer.add_child(button)
 		

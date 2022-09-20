@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/ambicha1.ogg-e6fa56af8c1555913cbab92ef275ffa8.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cvtfgt7ih6y8v"
+path="res://.godot/imported/ambicha1.ogg-e6fa56af8c1555913cbab92ef275ffa8.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/amb/ambicha1.ogg"
-dest_files=[ "res://.import/ambicha1.ogg-e6fa56af8c1555913cbab92ef275ffa8.oggstr" ]
+dest_files=["res://.godot/imported/ambicha1.ogg-e6fa56af8c1555913cbab92ef275ffa8.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

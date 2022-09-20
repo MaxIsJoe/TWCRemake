@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Instances/World/Teleport/TeleportNode.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Instances/World3D/Teleport/TeleportNode.gd" type="Script" id=1]
 [ext_resource path="res://Sound/SFX/footsteps/footsteps_concret_m.ogg" type="AudioStream" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]

@@ -1,7 +1,7 @@
 extends Node
 
-export(String) var QuickDialougFile
-export(String) var Dialogic_Timeline
+@export var QuickDialougFile: String
+@export var Dialogic_Timeline: String
 
 var loaded_quickdia
 
@@ -19,8 +19,8 @@ func StartDialogue(timeline):
 	else:
 		new_dialog = Dialogic.start(timeline)
 	add_child(new_dialog)
-	new_dialog.connect("dialogic_signal", self, 'dialogic_Signals')
-	new_dialog.connect('timeline_end', self, 'after_dialog')
+	new_dialog.connect("dialogic_signal",Callable(self,'dialogic_Signals'))
+	new_dialog.connect('timeline_end',Callable(self,'after_dialog'))
 	Data.Player.canMove = false
 	
 func dialogic_Signals(value: String):
@@ -38,6 +38,6 @@ func after_dialog(timeline_name):
 
 func GetQuickDia():
 	randomize()
-	var token = int(rand_range(0, loaded_quickdia.values().size()))
+	var token = int(randf_range(0, loaded_quickdia.values().size()))
 	var given_text = loaded_quickdia[str(token)].get("text")
 	return given_text

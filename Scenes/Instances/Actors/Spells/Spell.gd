@@ -4,10 +4,10 @@ extends Node2D
 ###It is disgusting to look at and is not modular enough###
 
 
-export(int) var SpellDamage = 10
-export(float) var SpellSpeed = 240.0
-export(float) var SpellTime = 2 #Max time allowed for it to travel in a scene
-export(bool) var TargetSpell = false
+@export var SpellDamage: int = 10
+@export var SpellSpeed: float = 240.0
+@export var SpellTime: float = 2 #Max time allowed for it to travel in a scene
+@export var TargetSpell: bool = false
 
 var dmg
 var caster
@@ -20,7 +20,7 @@ func _init():
 	add_child(timer)
 	timer.autostart = true
 	timer.wait_time = SpellTime
-	timer.connect("timeout", self, "_timeout")
+	timer.connect("timeout",Callable(self,"_timeout"))
 	self.set_physics_process(false)
 
 func _timeout():
@@ -34,7 +34,7 @@ func UpdateSpellPosition(delta):
 	var smooth_mov = position + (dir * SpellSpeed * delta)
 	position = lerp(position, smooth_mov, 0.5)
 
-remotesync func init_spell_shoot(caster_network_id):
+@rpc(any_peer, call_local) func init_spell_shoot(caster_network_id):
 	var direction_animation
 	var final_dmg
 	if(caster_network_id != 1):
@@ -47,40 +47,40 @@ remotesync func init_spell_shoot(caster_network_id):
 		caster = Data.Player
 	match direction_animation: #What animation and direction the spell go to?
 		0:
-			$AnimatedSprite.play("up")
+			$AnimatedSprite2D.play("up")
 			dir = -transform.y
 		3:
-			$AnimatedSprite.play("down")
+			$AnimatedSprite2D.play("down")
 			dir = transform.y
 		1:
-			$AnimatedSprite.play("left")
+			$AnimatedSprite2D.play("left")
 			dir = -transform.x
 		2:
-			$AnimatedSprite.play("right")
+			$AnimatedSprite2D.play("right")
 			dir = transform.x
 	dmg = final_dmg
-	if(get_tree().get_network_unique_id() != 1): self.set_physics_process(true)
+	if(get_tree().get_unique_id() != 1): self.set_physics_process(true)
 	
-remotesync func init_spell_target(direction_animation, casterName, effect, value, target):
+@rpc(any_peer, call_local) func init_spell_target(direction_animation, casterName, effect, value, target):
 	match direction_animation:
 		0:
-			$AnimatedSprite.play("up")
+			$AnimatedSprite2D.play("up")
 			dir = -transform.y
 		3:
-			$AnimatedSprite.play("down")
+			$AnimatedSprite2D.play("down")
 			dir = transform.y
 		1:
-			$AnimatedSprite.play("left")
+			$AnimatedSprite2D.play("left")
 			dir = -transform.x
 		2:
-			$AnimatedSprite.play("right")
+			$AnimatedSprite2D.play("right")
 			dir = transform.x
 	caster = casterName
 	match effect:
 		"heal":
 			target.healthregen(value)
-			$AnimatedSprite.play("right")
-	if(get_tree().get_network_unique_id() != 1): self.set_physics_process(true)
+			$AnimatedSprite2D.play("right")
+	if(get_tree().get_unique_id() != 1): self.set_physics_process(true)
 
 func _on_Area2D_body_entered(body):
 	if(!TargetSpell):

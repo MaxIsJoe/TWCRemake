@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 var PlayerName : String
 var PlayerTitle: String      #Ranks are earned via completing quests, earing achivements or becoming a teacher/moderator/admin
@@ -14,24 +14,24 @@ var EXP        : int   = 0   #How much XP points does he have currently?
 var MaxEXP     : int   = 200 #How much XP is required before he can level up?
 var level      : int   = 1#Player level
 var CanDrawWand: bool  = true #Used for spell checks, dueling and more
-export (int, "Male", "Female") var Gender
-export (int, "Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin") var House
+@export (int, "Male", "Female") var Gender
+@export (int, "Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin") var House
 
-onready var SpriteHandler = $SpritesHandler
-onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
-onready var PlayerNameUI = $PlayerName
-onready var tabs = $Cam/CanvasLayer/UI/TabContainer
-onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
-onready var PopUpUI = $Cam/CanvasLayer/UI/WindowDialog
-onready var AudioLocal = $Audio/Audio_Pos
-onready var Audio = $Audio/Audio
-onready var Shootpoint = $Spell_Pointers/ShootPoint
-onready var TargertPoint = $Spell_Pointers/TargetPoint
+@onready var SpriteHandler = $SpritesHandler
+@onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
+@onready var PlayerNameUI = $PlayerName
+@onready var tabs = $Cam/CanvasLayer/UI/TabContainer
+@onready var ScrollUI = $Cam/CanvasLayer/UI/Scroll
+@onready var PopUpUI = $Cam/CanvasLayer/UI/Window
+@onready var AudioLocal = $Audio/Audio_Pos
+@onready var Audio = $Audio/Audio
+@onready var Shootpoint = $Spell_Pointers/ShootPoint
+@onready var TargertPoint = $Spell_Pointers/TargetPoint
 
 #var velocity = Vector2()
 var alive = true #Used for handling how everything around the player behaves
 puppet var canmove = true #Can the player move?
-var Karma = 100 #Used for quests, NPC behavior, clans and applying damage reduction on player's who aren't fighting and have higher karma points.
+var Karma = 100 #Used for quests, NPC behavior, clans and applying damage reduction checked player's who aren't fighting and have higher karma points.
 var statpoints = 0 #Used for upgrading the player's stats
 var spellppoints = 0 #Used for learning new spells without having to go to a teacher
 
@@ -60,16 +60,16 @@ func _ready():
 	emit_signal("hpupdate", health)
 	emit_signal("mpupdate", mana)
 	
-	if(is_network_master()):
-		if(get_tree().get_network_unique_id() != 1):
+	if(is_multiplayer_authority()):
+		if(get_tree().get_unique_id() != 1):
 			$Cam.current = true
 			$Cam/CanvasLayer/UI.visible = true
 			Data.Player = self
 			if(Global.EnableFOV):
-				$Light2D.shadow_enabled = true
+				$PointLight2D.shadow_enabled = true
 			else:
-				$Light2D.shadow_enabled = false
-			if(get_tree().get_network_unique_id() != 1):
+				$PointLight2D.shadow_enabled = false
+			if(get_tree().get_unique_id() != 1):
 				rpc_id(1, "SendKeyToServer", playerkey)
 			else:
 				SendKeyToServer(playerkey)
@@ -109,7 +109,7 @@ func SetupBodySprites():
 					SpriteHandler.LoadAnimatedSprites(Data.Slyth_Female, $SpritesHandler/Body)
 	
 func _physics_process(delta):
-	if is_network_master():
+	if is_multiplayer_authority():
 		if canmove == false: #Can the player move?
 			return
 		var velocity = Vector2()
@@ -141,7 +141,9 @@ func _physics_process(delta):
 		velocity = velocity.normalized() * SPEED
 		
 		if velocity != Vector2():
-			move_and_slide(velocity)
+			set_velocity(velocity)
+			move_and_slide()
+			velocity
 		Send_PlayerState()
 
 func Send_PlayerState():
@@ -171,7 +173,7 @@ func GetSavePlayerInfo():
 	if(info.get("key") == null): push_warning("\a Warning, Key is null.")
 	return info
 
-remote func SendKeyToServer(key):
+@rpc(any_peer) func SendKeyToServer(key):
 	playerkey = key
 
 func _input(event):
@@ -190,10 +192,10 @@ func _input(event):
 			expgain(50)
 			print("Your level is ", level," Your EXP is ",EXP," and your MaxEXP = ",MaxEXP)
 		if(Input.is_action_just_pressed("DEBUG_DisableShadows")):
-			if($Light2D.shadow_enabled):
-				$Light2D.shadow_enabled = false
+			if($PointLight2D.shadow_enabled):
+				$PointLight2D.shadow_enabled = false
 			else:
-				$Light2D.shadow_enabled = true
+				$PointLight2D.shadow_enabled = true
 
 func UpdateShootingPostion(pos):
 	match pos:
@@ -210,22 +212,22 @@ func UpdateShootingPostion(pos):
 			Shootpoint.position = Vector2(25, 0)
 			LookingDirection = LookDirections.RIGHT
 
-remote func updatenamelabel():
+@rpc(any_peer) func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
 	if(House == 0):
-		PlayerNameUI.add_color_override("font_color", Color(0.86,0.08,0.24,1))
+		PlayerNameUI.add_theme_color_override("font_color", Color(0.86,0.08,0.24,1))
 	if(House == 1):
-		PlayerNameUI.add_color_override("font_color", Color(1,0.84,0,1))
+		PlayerNameUI.add_theme_color_override("font_color", Color(1,0.84,0,1))
 	if(House == 3):
-		PlayerNameUI.add_color_override("font_color", Color(0,1,0,1))
+		PlayerNameUI.add_theme_color_override("font_color", Color(0,1,0,1))
 	if(House == 2):
-		PlayerNameUI.add_color_override("font_color", Color(0,1,1,1))
+		PlayerNameUI.add_theme_color_override("font_color", Color(0,1,1,1))
 
-remotesync func takedamage(dmg):
+@rpc(any_peer, call_local) func takedamage(dmg):
 	health -= dmg
 	emit_signal("hpupdate", health)
 	
-remotesync func healthregen(amount):
+@rpc(any_peer, call_local) func healthregen(amount):
 	health += amount
 	emit_signal("hpupdate", health)
 	
@@ -282,10 +284,10 @@ func ShowSign(Title, Content):
 	PopUpUI.dialog_text = Content
 	PopUpUI.popup_centered()
 
-remote func ShootSpell(Spell, Argument):
+@rpc(any_peer) func ShootSpell(Spell, Argument):
 	if(Argument == "player"):
 		Argument = Data.Player
-	SpellManager.rpc_id(0, "ShootSpell" ,Spell, get_tree().get_network_unique_id())
+	SpellManager.rpc_id(0, "ShootSpell" ,Spell, get_tree().get_unique_id())
 	SpellManager.rpc_id(0, "TargetSpell", Spell, Argument)
 
 func ShowHotkeyAsign(ID):

@@ -15,85 +15,85 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -170.0
-margin_top = -360.0
-margin_right = 171.0
-margin_bottom = 363.0
+offset_left = -170.0
+offset_top = -360.0
+offset_right = 171.0
+offset_bottom = 363.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 283.0
-margin_right = 341.0
-margin_bottom = 303.4
+offset_top = 283.0
+offset_right = 341.0
+offset_bottom = 303.4
 text = "Key"
 align = 1
 valign = 1
 
 [node name="KeyInput" type="LineEdit" parent="VBoxContainer"]
-margin_top = 307.0
-margin_right = 341.0
-margin_bottom = 331.0
+offset_top = 307.0
+offset_right = 341.0
+offset_bottom = 331.0
 align = 1
 max_length = 32
 secret = true
 placeholder_text = "Enter a unique key"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
-margin_top = 333.0
-margin_right = 341.0
-margin_bottom = 353.4
+offset_top = 333.0
+offset_right = 341.0
+offset_bottom = 353.4
 text = "Password"
 align = 1
 valign = 1
 
 [node name="PasswordInput" type="LineEdit" parent="VBoxContainer"]
-margin_top = 357.0
-margin_right = 341.0
-margin_bottom = 381.0
+offset_top = 357.0
+offset_right = 341.0
+offset_bottom = 381.0
 align = 1
 secret = true
 clear_button_enabled = true
 placeholder_text = "Type your password here"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 384.0
-margin_right = 341.0
-margin_bottom = 388.0
+offset_top = 384.0
+offset_right = 341.0
+offset_bottom = 388.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 391.0
-margin_right = 341.0
-margin_bottom = 416.0
+offset_top = 391.0
+offset_right = 341.0
+offset_bottom = 416.0
 alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 19.0
-margin_right = 94.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 75, 25 )
+offset_left = 19.0
+offset_right = 94.0
+offset_bottom = 25.0
+minimum_size = Vector2( 75, 25 )
 text = "Login"
 
 [node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 97.0
-margin_right = 172.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 75, 25 )
+offset_left = 97.0
+offset_right = 172.0
+offset_bottom = 25.0
+minimum_size = Vector2( 75, 25 )
 text = "Sign up"
 
 [node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 175.0
-margin_right = 321.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 75, 25 )
+offset_left = 175.0
+offset_right = 321.0
+offset_bottom = 25.0
+minimum_size = Vector2( 75, 25 )
 text = "Generate Random Key"
 
 [node name="WarningLabel" type="Label" parent="VBoxContainer"]
-margin_top = 418.0
-margin_right = 341.0
-margin_bottom = 438.4
+offset_top = 418.0
+offset_right = 341.0
+offset_bottom = 438.4
 text = "Never share your key or password with anyone."
 align = 1
 valign = 1

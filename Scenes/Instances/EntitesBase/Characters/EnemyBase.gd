@@ -1,25 +1,25 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
 class_name Enemy_Entity
 
-export(String) var EnemyName = "Enemy"
-export(int) var SpawnerID: int = 0 # This is used to allow the game to spawn entities for players who latejoin. can be used for other stuff later
-export(int, "Melee", "Caster") var AttackType = 0 # What type of logic does this entity use for attacking?
-export(float, 45, 500) var AttackRange = 45 # How far can they be before they can harm the player?
-export(float, 0.0, 4.0) var AttackRangeLerpTime = 0.7 # When the player is inside their detection area, how fast does the entity's detection raycast get extended?
-export(float) var AttackCooldown = 1.0 # Their attack rate
-export(float) var AlertExtraRange = 35 # How long is their alert range when a player is in their detection area?
-export(bool) var IsLegendary = false # Does this entity spawn as a legendary?
-export(bool) var AI_CanWander = true # Is this entity allowed to wander around?
-export(int) var AI_WanderTime = 450 # How long until this entity can wander again?
-export(bool) var AI_UsesNavMeshForWander = true # Does this entity use nav_mesh to wander around?
-export(bool) var AI_HasNoLimitsOutsideOfSpawn= false # Can This enitity leave it's spawn area?
-export(float) var AI_MaxDistanceAwayFromSpawn = 1000 # How far is this entity allowed to go before retreating to where it spawned?
-export(Array, AudioStream) var AttackSounds : Array
-export(Array, AudioStream) var AlertSounds  : Array
+@export var EnemyName: String = "Enemy"
+@export var SpawnerID: int = 0 # This is used to allow the game to spawn entities for players who latejoin. can be used for other stuff later
+@export var AttackType = 0 # What type of logic does this entity use for attacking? # (int, "Melee", "Caster")
+@export var AttackRange = 45 # How far can they be before they can harm the player? # (float, 45, 500)
+@export var AttackRangeLerpTime = 0.7 # When the player is inside their detection area, how fast does the entity's detection raycast get extended? # (float, 0.0, 4.0)
+@export var AttackCooldown: float = 1.0 # Their attack rate
+@export var AlertExtraRange: float = 35 # How long is their alert range when a player is in their detection area?
+@export var IsLegendary: bool = false # Does this entity spawn as a legendary?
+@export var AI_CanWander: bool = true # Is this entity allowed to wander around?
+@export var AI_WanderTime: int = 450 # How long until this entity can wander again?
+@export var AI_UsesNavMeshForWander: bool = true # Does this entity use nav_mesh to wander around?
+@export var AI_HasNoLimitsOutsideOfSpawn: bool= false # Can This enitity leave it's spawn area?
+@export var AI_MaxDistanceAwayFromSpawn: float = 1000 # How far is this entity allowed to go before retreating to where it spawned?
+@export var AttackSounds : Array # (Array, AudioStream)
+@export var AlertSounds  : Array # (Array, AudioStream)
 
 
-onready var AttackSoundPlayer = $Audio/Attack
-onready var AlertSoundPlayer = $Audio/Alerts
+@onready var AttackSoundPlayer = $Audio/Attack
+@onready var AlertSoundPlayer = $Audio/Alerts
 
 var zoneParent
 
@@ -27,7 +27,7 @@ var spawn_position        : Vector2
 var wander_position       : Vector2
 var default_raycast_range : float
 
-remotesync var target
+var target
 var current_state          = AI_states.IDLE
 var player_spotted  : bool = false
 var canAttack       : bool = true
@@ -49,9 +49,9 @@ func _ready():
 
 func _physics_process(delta):
 	#Only allow the server to host logic for entites.
-	#Path finding can be expensive sometimes so it's best for the server to handle it.
+	#Path3D finding can be expensive sometimes so it's best for the server to handle it.
 	#Plus this avoids some syncing issues where the entity does something other players can't see.
-	if(get_tree().get_network_unique_id() == 1):
+	if(get_tree().get_unique_id() == 1):
 		if(OptimizationCheck_PlayersNearby()):
 			LookAtTarget()
 			match current_state:
@@ -66,7 +66,7 @@ func _physics_process(delta):
 			
 
 func GetEntityData():
-	#we need to find a way to make this list shorter to save on bytes
+	#we need to find a way to make this list shorter to save checked bytes
 	var data = {
 		"pid": SpawnerID,
 		"id": name,
@@ -98,7 +98,7 @@ func AI_ATTACK(delta):
 						MeleeAttackLogic(target)
 			
 func AI_RETREAT(delta):
-	if(global_position.distance_to(spawn_position) <= rand_range(5,75)):
+	if(global_position.distance_to(spawn_position) <= randf_range(5,75)):
 		Retreat()
 		
 func AI_WANDER(delta):
@@ -113,7 +113,7 @@ func AI_WANDER(delta):
 		false:
 			var direction = (wander_position - global_position).normalized()
 			moveDir = moveDir.move_toward(direction * stats.movement_speed, 300 * delta)
-	if(global_position.distance_to(wander_position) <= rand_range(0.25, 3.25)):
+	if(global_position.distance_to(wander_position) <= randf_range(0.25, 3.25)):
 		BecomeIdle()
 	if(GetDistance2SpawnPosition() >= AI_MaxDistanceAwayFromSpawn):
 		Retreat()
@@ -121,7 +121,7 @@ func AI_WANDER(delta):
 func GetRandomWanderPosition():
 	randomize()
 	var random_direction = Vector2.RIGHT.rotated(randf() * TAU)
-	var random_postion = random_direction * $DetectionZone/CollisionShape2D.shape.radius * rand_range(0, 1.0)
+	var random_postion = random_direction * $DetectionZone/CollisionShape2D.shape.radius * randf_range(0, 1.0)
 	return global_position + random_postion
 	
 		
@@ -231,23 +231,23 @@ func GetNearestPlayer():
 			nearest_player = player
 	return nearest_player
 
-remotesync func SyncTarget(t):
+@rpc(any_peer, call_local) func SyncTarget(t):
 	target = t
 
 func _on_AttackCooldown_timeout():
 	canAttack = true
 
-remotesync func PlayAttackSounds():
+@rpc(any_peer, call_local) func PlayAttackSounds():
 	if(AttackSounds.size() != 0):
 		randomize()
-		var sound_to_play = AttackSounds[int(rand_range(0, AttackSounds.size() - 1))]
+		var sound_to_play = AttackSounds[int(randf_range(0, AttackSounds.size() - 1))]
 		audio_setTrack(AttackSoundPlayer, sound_to_play)
 		audio_playCurrentTrack(AttackSoundPlayer, true)
 
-remotesync func PlayAlertSounds():
+@rpc(any_peer, call_local) func PlayAlertSounds():
 	if(AlertSounds.size() != 0):
 		randomize()
-		var sound_to_play = AlertSounds[int(rand_range(0, AttackSounds.size() - 1))]
+		var sound_to_play = AlertSounds[int(randf_range(0, AttackSounds.size() - 1))]
 		audio_setTrack(AlertSoundPlayer, sound_to_play)
 		audio_playCurrentTrack(AlertSoundPlayer, true)
 

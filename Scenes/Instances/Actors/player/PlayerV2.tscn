@@ -1,32 +1,32 @@
 [gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="FontFile" id=2]
 [ext_resource path="res://Scenes/Instances/Actors/player/PlayerV2.gd" type="Script" id=3]
-[ext_resource path="res://Sprites/UI/Style_3.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/UI/Border_Style_2.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/UI/Border_Style_5.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/UI/Style_3.png" type="Texture2D" id=4]
+[ext_resource path="res://Sprites/UI/Border_Style_2.png" type="Texture2D" id=5]
+[ext_resource path="res://Sprites/UI/Border_Style_5.png" type="Texture2D" id=6]
 [ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/FPSLabel.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Inventory.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/HPProgress.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/MPProgress.gd" type="Script" id=11]
-[ext_resource path="res://Sprites/UI/whitebar.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/UI/whitebar.png" type="Texture2D" id=12]
 [ext_resource path="res://Scenes/Instances/Actors/player/Spells.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/Instances/Actors/UI/DiaUI.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Instances/Actors/UI/Scroll.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Instances/Actors/UI/SetHotkeyUI.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Instances/Actors/UI/buttons/HotkeyButton.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Instances/Actors/UI/ShopUI.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Sprites/PNGs/lightv2.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/PNGs/lightv2.png" type="Texture2D" id=19]
 [ext_resource path="res://Scenes/Instances/Actors/player/PlayerStats.gd" type="Script" id=20]
 [ext_resource path="res://Scenes/Instances/Actors/player/Health.gd" type="Script" id=21]
-[ext_resource path="res://shaders/Grayscale.shader" type="Shader" id=22]
+[ext_resource path="res://shaders/Grayscale.gdshader" type="Shader" id=22]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 13
 use_mipmaps = true
 font_data = ExtResource( 2 )
@@ -45,8 +45,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 5, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.6, 5, 6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.329412, 1, 0.584314, 0 ), Color( 0.329412, 1, 0.584314, 1 ), Color( 0.329412, 1, 0.584314, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -57,8 +57,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.6, 1, 5, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0.6, 1, 5, 6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -73,7 +73,7 @@ border_color = Color( 0.513726, 0.513726, 0.513726, 1 )
 border_blend = true
 
 [sub_resource type="Theme" id=5]
-WindowDialog/styles/panel = SubResource( 4 )
+Window/styles/panel = SubResource( 4 )
 
 [node name="PlayerV2" groups=[
 "Players",
@@ -100,10 +100,10 @@ position = Vector2( 0, 2.24492 )
 [node name="PlayerName" type="Label" parent="." index="4"]
 light_mask = 524288
 material = SubResource( 1 )
-margin_left = -50.0
-margin_top = -39.0
-margin_right = 50.0
-margin_bottom = -15.6
+offset_left = -50.0
+offset_top = -39.0
+offset_right = 50.0
+offset_bottom = -15.6
 custom_fonts/font = SubResource( 2 )
 text = "Player"
 align = 1
@@ -115,10 +115,10 @@ __meta__ = {
 [node name="Cam" type="Camera2D" parent="." index="5"]
 process_mode = 0
 smoothing_speed = 6.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
@@ -136,8 +136,8 @@ __meta__ = {
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.12247
-margin_bottom = -1.12244
+offset_top = -1.12247
+offset_bottom = -1.12244
 mouse_filter = 2
 __meta__ = {
 "_edit_lock_": true,
@@ -148,25 +148,25 @@ __meta__ = {
 light_mask = 524288
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -75.5
-margin_top = 0.75
-margin_right = -1.5
-margin_bottom = 21.15
+offset_left = -75.5
+offset_top = 0.75
+offset_right = -1.5
+offset_bottom = 21.15
 align = 1
 valign = 1
 script = ExtResource( 8 )
 
-[node name="HPProgress" type="TextureProgress" parent="Cam/CanvasLayer/UI" index="1"]
+[node name="HPProgress" type="TextureProgressBar" parent="Cam/CanvasLayer/UI" index="1"]
 light_mask = 524288
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -212.397
-margin_top = -60.1022
-margin_right = 287.603
-margin_bottom = -10.1022
-rect_scale = Vector2( 0.4, 0.4 )
+offset_left = -212.397
+offset_top = -60.1022
+offset_right = 287.603
+offset_bottom = -10.1022
+scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 4 )
 script = ExtResource( 10 )
@@ -178,18 +178,18 @@ HealthPath = NodePath("../../../../Systems/Health")
 
 [node name="Tween" type="Tween" parent="Cam/CanvasLayer/UI/HPProgress" index="0"]
 
-[node name="MPProgress" type="TextureProgress" parent="Cam/CanvasLayer/UI" index="2"]
+[node name="MPProgress" type="TextureProgressBar" parent="Cam/CanvasLayer/UI" index="2"]
 show_behind_parent = true
 light_mask = 524288
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 23.909
-margin_top = -60.0001
-margin_right = 523.909
-margin_bottom = -10.0001
-rect_scale = Vector2( 0.4, 0.4 )
+offset_left = 23.909
+offset_top = -60.0001
+offset_right = 523.909
+offset_bottom = -10.0001
+scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 12 )
 tint_progress = Color( 0.00392157, 0.427451, 0.94902, 1 )
@@ -208,18 +208,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -33.2
-margin_top = -10.2
-margin_right = 33.2
-margin_bottom = 10.2
+offset_left = -33.2
+offset_top = -10.2
+offset_right = 33.2
+offset_bottom = 10.2
 custom_colors/font_color = Color( 0.329412, 1, 0.584314, 0 )
 text = "Level Up!"
 
 [node name="Label" type="Label" parent="Cam/CanvasLayer/UI/Leveup" index="0"]
-margin_left = -85.6197
-margin_top = 14.9685
-margin_right = 156.38
-margin_bottom = 28.9685
+offset_left = -85.6197
+offset_top = 14.9685
+offset_right = 156.38
+offset_bottom = 28.9685
 custom_colors/font_color = Color( 1, 1, 1, 0 )
 text = "You earned a statpoint for leveling up!"
 __meta__ = {
@@ -234,120 +234,120 @@ visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -440.0
-margin_top = 8.0
-margin_right = -1309.0
-margin_bottom = -3.00006
-rect_min_size = Vector2( 411, 709 )
+offset_left = -440.0
+offset_top = 8.0
+offset_right = -1309.0
+offset_bottom = -3.00006
+minimum_size = Vector2( 411, 709 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Status" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="0"]
+[node name="Status" type="TabBar" parent="Cam/CanvasLayer/UI/TabContainer" index="0"]
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 17.0
-margin_right = -1.0
-margin_bottom = -1.0
+offset_left = 1.0
+offset_top = 17.0
+offset_right = -1.0
+offset_bottom = -1.0
 
-[node name="Inventory" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="1"]
+[node name="Inventory" type="TabBar" parent="Cam/CanvasLayer/UI/TabContainer" index="1"]
 visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 17.0
-margin_right = -1.0
-margin_bottom = -1.0
+offset_left = 1.0
+offset_top = 17.0
+offset_right = -1.0
+offset_bottom = -1.0
 script = ExtResource( 9 )
 ItemButton = ExtResource( 7 )
 
 [node name="Panel" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory" index="0"]
 light_mask = 524288
-margin_left = 5.0
-margin_top = 8.0
-margin_right = 405.0
-margin_bottom = 689.0
+offset_left = 5.0
+offset_top = 8.0
+offset_right = 405.0
+offset_bottom = 689.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel" index="0"]
 light_mask = 524288
-margin_right = 379.0
-margin_bottom = 682.0
-rect_min_size = Vector2( 379, 682 )
+offset_right = 379.0
+offset_bottom = 682.0
+minimum_size = Vector2( 379, 682 )
 
 [node name="VScrollBar" type="VScrollBar" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel" index="1"]
 light_mask = 524288
-margin_left = 382.0
-margin_top = 9.0
-margin_right = 396.0
-margin_bottom = 679.0
-rect_min_size = Vector2( 12, 550 )
+offset_left = 382.0
+offset_top = 9.0
+offset_right = 396.0
+offset_bottom = 679.0
+minimum_size = Vector2( 12, 550 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Quests" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="2"]
+[node name="Quests" type="TabBar" parent="Cam/CanvasLayer/UI/TabContainer" index="2"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 17.0
-margin_right = -1.0
-margin_bottom = -1.0
+offset_left = 1.0
+offset_top = 17.0
+offset_right = -1.0
+offset_bottom = -1.0
 
 [node name="Info_Quests" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Quests" index="0"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "Work In Progress. Not added in yet."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spells" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer" index="3"]
+[node name="Spells" type="TabBar" parent="Cam/CanvasLayer/UI/TabContainer" index="3"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 17.0
-margin_right = -1.0
-margin_bottom = -1.0
+offset_left = 1.0
+offset_top = 17.0
+offset_right = -1.0
+offset_bottom = -1.0
 script = ExtResource( 13 )
 
 [node name="SpellsContainer" type="Control" parent="Cam/CanvasLayer/UI/TabContainer/Spells" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 3.36743
-margin_right = 3.36743
+offset_left = 3.36743
+offset_right = 3.36743
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer" index="0"]
-margin_left = 1.0
-margin_top = 4.0
-margin_right = 404.0
-margin_bottom = 686.0
-rect_min_size = Vector2( 403, 674 )
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 404.0
+offset_bottom = 686.0
+minimum_size = Vector2( 403, 674 )
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GridContainer" type="VBoxContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer/ScrollContainer" index="0"]
-margin_right = 403.0
-margin_bottom = 674.0
-rect_min_size = Vector2( 403, 674 )
+offset_right = 403.0
+offset_bottom = 674.0
+minimum_size = Vector2( 403, 674 )
 
 [node name="Hotkeys" type="Control" parent="Cam/CanvasLayer/UI" index="5"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 676.0
-margin_bottom = -6.10352e-05
+offset_top = 676.0
+offset_bottom = -6.10352e-05
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -357,13 +357,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -212.5
-margin_top = -40.0
-margin_right = 212.5
+offset_left = -212.5
+offset_top = -40.0
+offset_right = 212.5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer" index="0"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -372,48 +372,48 @@ __meta__ = {
 [node name="HotkeyButton" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="0" instance=ExtResource( 17 )]
 
 [node name="HotkeyButton2" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="1" instance=ExtResource( 17 )]
-margin_left = 44.0
-margin_right = 84.0
+offset_left = 44.0
+offset_right = 84.0
 ButtonHotkey = 1
 
 [node name="HotkeyButton3" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="2" instance=ExtResource( 17 )]
-margin_left = 88.0
-margin_right = 128.0
+offset_left = 88.0
+offset_right = 128.0
 ButtonHotkey = 2
 
 [node name="HotkeyButton4" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="3" instance=ExtResource( 17 )]
-margin_left = 132.0
-margin_right = 172.0
+offset_left = 132.0
+offset_right = 172.0
 ButtonHotkey = 3
 
 [node name="HotkeyButton5" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="4" instance=ExtResource( 17 )]
-margin_left = 176.0
-margin_right = 216.0
+offset_left = 176.0
+offset_right = 216.0
 ButtonHotkey = 4
 
 [node name="HotkeyButton6" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="5" instance=ExtResource( 17 )]
-margin_left = 220.0
-margin_right = 260.0
+offset_left = 220.0
+offset_right = 260.0
 ButtonHotkey = 5
 
 [node name="HotkeyButton7" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="6" instance=ExtResource( 17 )]
-margin_left = 264.0
-margin_right = 304.0
+offset_left = 264.0
+offset_right = 304.0
 ButtonHotkey = 6
 
 [node name="HotkeyButton8" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="7" instance=ExtResource( 17 )]
-margin_left = 308.0
-margin_right = 348.0
+offset_left = 308.0
+offset_right = 348.0
 ButtonHotkey = 7
 
 [node name="HotkeyButton9" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="8" instance=ExtResource( 17 )]
-margin_left = 352.0
-margin_right = 392.0
+offset_left = 352.0
+offset_right = 392.0
 ButtonHotkey = 8
 
 [node name="HotkeyButton10" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" index="9" instance=ExtResource( 17 )]
-margin_left = 396.0
-margin_right = 436.0
+offset_left = 396.0
+offset_right = 436.0
 ButtonHotkey = 9
 
 [node name="DiaUI" parent="Cam/CanvasLayer/UI" index="6" instance=ExtResource( 14 )]
@@ -424,13 +424,13 @@ visible = false
 [node name="Scroll" parent="Cam/CanvasLayer/UI" index="8" instance=ExtResource( 15 )]
 visible = false
 
-[node name="WindowDialog" type="AcceptDialog" parent="Cam/CanvasLayer/UI" index="9"]
-margin_left = 492.0
-margin_top = 355.0
-margin_right = 818.0
-margin_bottom = 438.0
+[node name="Window" type="AcceptDialog" parent="Cam/CanvasLayer/UI" index="9"]
+offset_left = 492.0
+offset_top = 355.0
+offset_right = 818.0
+offset_bottom = 438.0
 theme = SubResource( 5 )
-popup_exclusive = true
+exclusive = true
 window_title = "Info"
 dialog_text = "text"
 
@@ -439,7 +439,7 @@ visible = false
 
 [node name="CamTween" type="Tween" parent="Cam" index="1"]
 
-[node name="Light2D" type="Light2D" parent="." index="6"]
+[node name="PointLight2D" type="PointLight2D" parent="." index="6"]
 texture = ExtResource( 19 )
 texture_scale = 0.5
 energy = 0.2
@@ -451,10 +451,10 @@ __meta__ = {
 
 [node name="Spell_Pointers" type="Node2D" parent="." index="8"]
 
-[node name="ShootPoint" type="Position2D" parent="Spell_Pointers" index="0"]
+[node name="ShootPoint" type="Marker2D" parent="Spell_Pointers" index="0"]
 position = Vector2( 0, 31.7025 )
 
-[node name="TargetPoint" type="Position2D" parent="Spell_Pointers" index="1"]
+[node name="TargetPoint" type="Marker2D" parent="Spell_Pointers" index="1"]
 
 [node name="Audio_Pos" type="AudioStreamPlayer2D" parent="Audio" index="0"]
 

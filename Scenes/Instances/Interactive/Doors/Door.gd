@@ -1,15 +1,15 @@
 extends Node2D
 
-onready var AreaCollision = $Area2D/AreaCollision
-onready var StaticcCollision = $CollisionShape2D
-onready var spriteanim = $AnimatedSprite
-onready var timer = $Timer
-onready var Occluder = $Occluder
+@onready var AreaCollision = $Area2D/AreaCollision
+@onready var StaticcCollision = $CollisionShape2D
+@onready var spriteanim = $AnimatedSprite2D
+@onready var timer = $Timer
+@onready var OccluderInstance3D = $OccluderInstance3D
 
 
 var IsOpen
 
-export(bool) var IsLocked = false
+@export var IsLocked: bool = false
 
 
 
@@ -29,7 +29,7 @@ func _on_Area2D_body_entered(body):
 				AreaCollision.call_deferred("set_disabled", true)
 				StaticcCollision.call_deferred("set_disabled", true)
 				spriteanim.play("Opening")
-				Occluder.hide()
+				OccluderInstance3D.hide()
 				timer.start()
 		
 
@@ -38,6 +38,6 @@ func _on_Timer_timeout():
 	IsOpen = false
 	AreaCollision.call_deferred("set_disabled", false)
 	StaticcCollision.call_deferred("set_disabled", false)
-	Occluder.show()
+	OccluderInstance3D.show()
 	
 	

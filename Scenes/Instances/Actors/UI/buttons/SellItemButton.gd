@@ -6,9 +6,9 @@ var ID
 
 func LoadData(item):
 	$ItemIcon.texture = load(Data.ItemData[item].get("icon"))
-	$RichTextLabel.bbcode_text = Data.ItemData[item].get("name")
+	$RichTextLabel.text = Data.ItemData[item].get("name")
 	price = Data.ItemData[item].get("baseprice") #Get the item's price
-	hint_tooltip = str(Data.ItemData[item].get("desc") + "\n \n" + "Price : " + str(price)) #Shows a description of the item as well as the item's price
+	tooltip_text = str(Data.ItemData[item].get("desc") + "\n \n" + "Price : " + str(price)) #Shows a description of the item as well as the item's price
 	ID = item
 
 

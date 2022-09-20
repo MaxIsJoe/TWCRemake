@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/f_coughb.ogg-8a349ee341a7f2c705d657981afbbaff.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cras5q0trk1fb"
+path="res://.godot/imported/f_coughb.ogg-8a349ee341a7f2c705d657981afbbaff.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/emotes/f_coughb.ogg"
-dest_files=[ "res://.import/f_coughb.ogg-8a349ee341a7f2c705d657981afbbaff.oggstr" ]
+dest_files=["res://.godot/imported/f_coughb.ogg-8a349ee341a7f2c705d657981afbbaff.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -30,106 +30,106 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Main" type="Tabs" parent="TabContainer"]
+[node name="Main" type="TabBar" parent="TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 16.0
+offset_top = 16.0
 
 [node name="Buttons" type="VBoxContainer" parent="TabContainer/Main"]
-margin_left = 2.0
-margin_top = 1.0
-margin_right = 313.0
-margin_bottom = 697.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 313.0
+offset_bottom = 697.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ManagePartyFriends" type="Button" parent="TabContainer/Main/Buttons"]
-margin_top = 265.0
-margin_right = 311.0
-margin_bottom = 295.0
-rect_min_size = Vector2( 0, 30 )
+offset_top = 265.0
+offset_right = 311.0
+offset_bottom = 295.0
+minimum_size = Vector2( 0, 30 )
 text = "Manage Party"
 
 [node name="CallAdminTeacher" type="Button" parent="TabContainer/Main/Buttons"]
-margin_top = 299.0
-margin_right = 311.0
-margin_bottom = 329.0
-rect_min_size = Vector2( 0, 30 )
+offset_top = 299.0
+offset_right = 311.0
+offset_bottom = 329.0
+minimum_size = Vector2( 0, 30 )
 text = "Call Admin/Teacher"
 
 [node name="OpenGithub" type="Button" parent="TabContainer/Main/Buttons"]
-margin_top = 333.0
-margin_right = 311.0
-margin_bottom = 363.0
-rect_min_size = Vector2( 0, 30 )
+offset_top = 333.0
+offset_right = 311.0
+offset_bottom = 363.0
+minimum_size = Vector2( 0, 30 )
 text = "Report a bug"
 
 [node name="ForceSave" type="Button" parent="TabContainer/Main/Buttons"]
-margin_top = 367.0
-margin_right = 311.0
-margin_bottom = 397.0
-rect_min_size = Vector2( 0, 30 )
+offset_top = 367.0
+offset_right = 311.0
+offset_bottom = 397.0
+minimum_size = Vector2( 0, 30 )
 text = "Force Save"
 
 [node name="ExitGame" type="Button" parent="TabContainer/Main/Buttons"]
-margin_top = 401.0
-margin_right = 311.0
-margin_bottom = 431.0
-rect_min_size = Vector2( 0, 30 )
+offset_top = 401.0
+offset_right = 311.0
+offset_bottom = 431.0
+minimum_size = Vector2( 0, 30 )
 text = "Quit Game"
 
 [node name="WhoArea" type="ColorRect" parent="TabContainer/Main"]
-margin_left = 1013.0
-margin_top = 13.0
-margin_right = 1271.0
-margin_bottom = 655.0
+offset_left = 1013.0
+offset_top = 13.0
+offset_right = 1271.0
+offset_bottom = 655.0
 color = Color( 0.109804, 0.109804, 0.109804, 0.847059 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="TabContainer/Main/WhoArea"]
-margin_right = 6.4
-margin_bottom = 20.4
+offset_right = 6.4
+offset_bottom = 20.4
 text = "House"
 
 [node name="Label2" type="Label" parent="TabContainer/Main/WhoArea"]
-margin_left = 66.0712
-margin_right = 160.471
-margin_bottom = 20.4
+offset_left = 66.0712
+offset_right = 160.471
+offset_bottom = 20.4
 text = "Player Names"
 
 [node name="Label3" type="Label" parent="TabContainer/Main/WhoArea"]
-margin_left = 164.234
-margin_right = 258.634
-margin_bottom = 20.4
+offset_left = 164.234
+offset_right = 258.634
+offset_bottom = 20.4
 text = "Year"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Main/WhoArea"]
-margin_top = 22.0
-margin_right = 256.0
-margin_bottom = 640.0
+offset_top = 22.0
+offset_right = 256.0
+offset_bottom = 640.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ActivePlayersStatic" type="Label" parent="TabContainer/Main"]
-margin_left = 1116.29
-margin_top = 672.798
-margin_right = 1219.69
-margin_bottom = 693.198
+offset_left = 1116.29
+offset_top = 672.798
+offset_right = 1219.69
+offset_bottom = 693.198
 text = "Online Players :"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ActivePlayersNumber" type="Label" parent="TabContainer/Main/ActivePlayersStatic"]
-margin_left = 108.353
-margin_right = 114.753
-margin_bottom = 20.4
+offset_left = 108.353
+offset_right = 114.753
+offset_bottom = 20.4
 text = "123"
 
 [node name="Events" type="Control" parent="TabContainer/Main"]
@@ -137,20 +137,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 26.9353
-margin_top = -318.0
-margin_right = 356.935
-margin_bottom = 308.0
+offset_left = 26.9353
+offset_top = -318.0
+offset_right = 356.935
+offset_bottom = 308.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EventsStaticLabel" type="RichTextLabel" parent="TabContainer/Main/Events"]
-margin_top = -19.1203
-margin_right = 191.0
-margin_bottom = -1.12035
+offset_top = -19.1203
+offset_right = 191.0
+offset_bottom = -1.12035
 bbcode_enabled = true
-bbcode_text = "[u]Current Events:"
+text = "[u]Current Events:"
 text = "Current Events:"
 scroll_active = false
 __meta__ = {
@@ -165,10 +165,10 @@ __meta__ = {
 }
 
 [node name="ActivePlayersNumber" type="RichTextLabel" parent="TabContainer/Main/Events/VBoxContainer"]
-margin_right = 329.0
-margin_bottom = 15.0
+offset_right = 329.0
+offset_bottom = 15.0
 bbcode_enabled = true
-bbcode_text = "[i]There are active events at the moment."
+text = "[i]There are active events at the moment."
 text = "There are active events at the moment."
 fit_content_height = true
 scroll_active = false
@@ -176,68 +176,68 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings" type="Tabs" parent="TabContainer"]
+[node name="Settings" type="TabBar" parent="TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 16.0
+offset_top = 16.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings"]
-margin_right = 280.0
-margin_bottom = 693.0
+offset_right = 280.0
+offset_bottom = 693.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="General" type="Button" parent="TabContainer/Settings/VBoxContainer"]
-margin_top = 273.0
-margin_right = 280.0
-margin_bottom = 299.0
-rect_min_size = Vector2( 0, 26 )
+offset_top = 273.0
+offset_right = 280.0
+offset_bottom = 299.0
+minimum_size = Vector2( 0, 26 )
 text = "General"
 
 [node name="Visuals" type="Button" parent="TabContainer/Settings/VBoxContainer"]
-margin_top = 303.0
-margin_right = 280.0
-margin_bottom = 329.0
-rect_min_size = Vector2( 0, 26 )
+offset_top = 303.0
+offset_right = 280.0
+offset_bottom = 329.0
+minimum_size = Vector2( 0, 26 )
 text = "Visuals"
 
 [node name="Audio" type="Button" parent="TabContainer/Settings/VBoxContainer"]
-margin_top = 333.0
-margin_right = 280.0
-margin_bottom = 359.0
-rect_min_size = Vector2( 0, 26 )
+offset_top = 333.0
+offset_right = 280.0
+offset_bottom = 359.0
+minimum_size = Vector2( 0, 26 )
 text = "Audio"
 
 [node name="Debugstuff" type="Button" parent="TabContainer/Settings/VBoxContainer"]
-margin_top = 363.0
-margin_right = 280.0
-margin_bottom = 389.0
-rect_min_size = Vector2( 0, 26 )
+offset_top = 363.0
+offset_right = 280.0
+offset_bottom = 389.0
+minimum_size = Vector2( 0, 26 )
 text = "DEBUG/Technical"
 
 [node name="About" type="Button" parent="TabContainer/Settings/VBoxContainer"]
-margin_top = 393.0
-margin_right = 280.0
-margin_bottom = 419.0
-rect_min_size = Vector2( 0, 26 )
+offset_top = 393.0
+offset_right = 280.0
+offset_bottom = 419.0
+minimum_size = Vector2( 0, 26 )
 text = "About"
 
 [node name="Seperator" type="ColorRect" parent="TabContainer/Settings"]
-margin_left = 288.0
-margin_right = 290.0
-margin_bottom = 693.0
+offset_left = 288.0
+offset_right = 290.0
+offset_bottom = 693.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Pages" type="Control" parent="TabContainer/Settings"]
-margin_left = 295.0
-margin_right = 1272.0
-margin_bottom = 693.0
+offset_left = 295.0
+offset_right = 1272.0
+offset_bottom = 693.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -252,146 +252,146 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings/Pages/General"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 3.0
-rect_min_size = Vector2( 980, 693 )
+offset_right = 3.0
+minimum_size = Vector2( 980, 693 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 160.0
-margin_right = 980.0
-margin_bottom = 174.0
+offset_top = 160.0
+offset_right = 980.0
+offset_bottom = 174.0
 text = "Auto-Save"
 align = 1
 
 [node name="EnableAutoSave" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 178.0
-margin_right = 980.0
-margin_bottom = 197.0
+offset_top = 178.0
+offset_right = 980.0
+offset_bottom = 197.0
 pressed = true
 text = "Enable Auto-save"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 201.0
-margin_right = 980.0
-margin_bottom = 225.0
+offset_top = 201.0
+offset_right = 980.0
+offset_bottom = 225.0
 custom_constants/separation = 687
 
 [node name="Label" type="Label" parent="TabContainer/Settings/Pages/General/VBoxContainer/HBoxContainer"]
-margin_top = 5.0
-margin_right = 213.0
-margin_bottom = 19.0
+offset_top = 5.0
+offset_right = 213.0
+offset_bottom = 19.0
 text = "Auto Save Frequancy (In Minutes)"
 
 [node name="SpinBox" type="SpinBox" parent="TabContainer/Settings/Pages/General/VBoxContainer/HBoxContainer"]
-margin_left = 900.0
-margin_right = 974.0
-margin_bottom = 24.0
+offset_left = 900.0
+offset_right = 974.0
+offset_bottom = 24.0
 min_value = 3.0
 max_value = 60.0
 value = 3.0
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 229.0
-margin_right = 980.0
-margin_bottom = 233.0
+offset_top = 229.0
+offset_right = 980.0
+offset_bottom = 233.0
 
 [node name="Label2" type="Label" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 237.0
-margin_right = 980.0
-margin_bottom = 251.0
+offset_top = 237.0
+offset_right = 980.0
+offset_bottom = 251.0
 text = "Quests"
 align = 1
 
 [node name="EnbleGuideLines" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 255.0
-margin_right = 980.0
-margin_bottom = 274.0
+offset_top = 255.0
+offset_right = 980.0
+offset_bottom = 274.0
 text = "Draw guides to quest objective"
 
 [node name="EnableForceStopQuests" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 278.0
-margin_right = 980.0
-margin_bottom = 297.0
+offset_top = 278.0
+offset_right = 980.0
+offset_bottom = 297.0
 pressed = true
 text = "Always warn/stop me when I'm under-leveled"
 
 [node name="EnbleAutoAcceptQuest" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 301.0
-margin_right = 980.0
-margin_bottom = 320.0
+offset_top = 301.0
+offset_right = 980.0
+offset_bottom = 320.0
 text = "Auto-accept next quest (when avaliable)"
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 324.0
-margin_right = 980.0
-margin_bottom = 328.0
+offset_top = 324.0
+offset_right = 980.0
+offset_bottom = 328.0
 
 [node name="Label3" type="Label" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 332.0
-margin_right = 980.0
-margin_bottom = 346.0
-hint_tooltip = "Settings reverted to default in FFA, Dueling matches and similar events."
+offset_top = 332.0
+offset_right = 980.0
+offset_bottom = 346.0
+tooltip_text = "Settings reverted to default in FFA, Dueling matches and similar events."
 mouse_filter = 1
 text = "Combat"
 align = 1
 
 [node name="EnblePopupsDmg" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 350.0
-margin_right = 980.0
-margin_bottom = 369.0
+offset_top = 350.0
+offset_right = 980.0
+offset_bottom = 369.0
 pressed = true
 text = "Enable damage popups"
 
 [node name="EnableCastDelay" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 373.0
-margin_right = 980.0
-margin_bottom = 392.0
+offset_top = 373.0
+offset_right = 980.0
+offset_bottom = 392.0
 text = "Enable delayed casts"
 
 [node name="EnableAutomaticTargeting" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 396.0
-margin_right = 980.0
-margin_bottom = 415.0
+offset_top = 396.0
+offset_right = 980.0
+offset_bottom = 415.0
 text = "Enable Automatic Targeting"
 
 [node name="EnableFakeStun" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 419.0
-margin_right = 980.0
-margin_bottom = 438.0
+offset_top = 419.0
+offset_right = 980.0
+offset_bottom = 438.0
 text = "Stop me from moving after casting for 0.1 seconds"
 
 [node name="EnableCombatAlarm" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 442.0
-margin_right = 980.0
-margin_bottom = 461.0
+offset_top = 442.0
+offset_right = 980.0
+offset_bottom = 461.0
 text = "Alarm me when I enter combat while AFK"
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 465.0
-margin_right = 980.0
-margin_bottom = 469.0
+offset_top = 465.0
+offset_right = 980.0
+offset_bottom = 469.0
 
 [node name="Label4" type="Label" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 473.0
-margin_right = 980.0
-margin_bottom = 487.0
+offset_top = 473.0
+offset_right = 980.0
+offset_bottom = 487.0
 text = "Trading"
 align = 1
 
 [node name="EnableZoneSpeficTradeRequests" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 491.0
-margin_right = 980.0
-margin_bottom = 510.0
+offset_top = 491.0
+offset_right = 980.0
+offset_bottom = 510.0
 text = "Allow trade requests in shops and banks only"
 
 [node name="EnbleAutoAccepterGifts" type="CheckButton" parent="TabContainer/Settings/Pages/General/VBoxContainer"]
-margin_top = 514.0
-margin_right = 980.0
-margin_bottom = 533.0
-hint_tooltip = "Not advised unless you want dangerous items or reselling unwanted items (default : OFF)"
+offset_top = 514.0
+offset_right = 980.0
+offset_bottom = 533.0
+tooltip_text = "Not advised unless you want dangerous items or reselling unwanted items (default : OFF)"
 text = "Accept gifts from any player automatically"
 
 [node name="Visuals" type="Control" parent="TabContainer/Settings/Pages"]
@@ -405,196 +405,196 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings/Pages/Visuals"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 6.0
+offset_right = 6.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label2" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 187.0
-margin_right = 983.0
-margin_bottom = 207.4
+offset_top = 187.0
+offset_right = 983.0
+offset_bottom = 207.4
 text = "Toggle Visual Elements"
 align = 1
 
 [node name="EnableFullscreen" type="CheckButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 211.0
-margin_right = 983.0
-margin_bottom = 243.0
+offset_top = 211.0
+offset_right = 983.0
+offset_bottom = 243.0
 text = "Fullscreen"
 
 [node name="EnbleColorblindshaders" type="CheckButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 246.0
-margin_right = 983.0
-margin_bottom = 278.0
+offset_top = 246.0
+offset_right = 983.0
+offset_bottom = 278.0
 text = "Colorblind mode"
 
 [node name="DisableUIForScreenies" type="CheckButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 281.0
-margin_right = 983.0
-margin_bottom = 313.0
+offset_top = 281.0
+offset_right = 983.0
+offset_bottom = 313.0
 text = "Hide UI"
 
 [node name="EnbleAutoAcceptQuest" type="CheckButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 316.0
-margin_right = 983.0
-margin_bottom = 348.0
-text = "Smooth Camera (Not recommended)"
+offset_top = 316.0
+offset_right = 983.0
+offset_bottom = 348.0
+text = "Smooth Camera3D (Not recommended)"
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 351.0
-margin_right = 983.0
-margin_bottom = 355.0
+offset_top = 351.0
+offset_right = 983.0
+offset_bottom = 355.0
 
 [node name="Label3" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 357.0
-margin_right = 983.0
-margin_bottom = 377.4
+offset_top = 357.0
+offset_right = 983.0
+offset_bottom = 377.4
 text = "Colors"
 align = 1
 
 [node name="EnblePopupsDmg" type="CheckButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 381.0
-margin_right = 983.0
-margin_bottom = 413.0
+offset_top = 381.0
+offset_right = 983.0
+offset_bottom = 413.0
 text = "Use Custom Colors?"
 
 [node name="ChatLabel" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 415.0
-margin_right = 983.0
-margin_bottom = 435.4
+offset_top = 415.0
+offset_right = 983.0
+offset_bottom = 435.4
 text = "Chat"
 
 [node name="Chat" type="HBoxContainer" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 439.0
-margin_right = 983.0
-margin_bottom = 459.0
+offset_top = 439.0
+offset_right = 983.0
+offset_bottom = 459.0
 
 [node name="View" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_top = -1.0
-margin_right = 45.4
-margin_bottom = 19.4
+offset_top = -1.0
+offset_right = 45.4
+offset_bottom = 19.4
 text = "View -"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_left = 48.0
-margin_right = 184.0
-margin_bottom = 20.0
+offset_left = 48.0
+offset_right = 184.0
+offset_bottom = 20.0
 text = "[Chat] In View Color"
 
 [node name="View2" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_left = 187.0
-margin_top = -1.0
-margin_right = 232.4
-margin_bottom = 19.4
+offset_left = 187.0
+offset_top = -1.0
+offset_right = 232.4
+offset_bottom = 19.4
 text = "OOC -"
 
 [node name="ColorPickerButton2" type="ColorPickerButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_left = 235.0
-margin_right = 353.0
-margin_bottom = 20.0
+offset_left = 235.0
+offset_right = 353.0
+offset_bottom = 20.0
 text = "[Chat] OOC color"
 
 [node name="View3" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_left = 356.0
-margin_top = -1.0
-margin_right = 422.4
-margin_bottom = 19.4
+offset_left = 356.0
+offset_top = -1.0
+offset_right = 422.4
+offset_bottom = 19.4
 text = "System - "
 
 [node name="ColorPickerButton3" type="ColorPickerButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_left = 425.0
-margin_right = 561.0
-margin_bottom = 20.0
+offset_left = 425.0
+offset_right = 561.0
+offset_bottom = 20.0
 text = "[Chat] System Color"
 
 [node name="Emote" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_left = 564.0
-margin_top = -1.0
-margin_right = 624.4
-margin_bottom = 19.4
+offset_left = 564.0
+offset_top = -1.0
+offset_right = 624.4
+offset_bottom = 19.4
 text = "Emote - "
 
 [node name="ColorPickerButton4" type="ColorPickerButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_left = 627.0
-margin_right = 756.0
-margin_bottom = 20.0
+offset_left = 627.0
+offset_right = 756.0
+offset_bottom = 20.0
 text = "[Chat] Emote color"
 
 [node name="EventColor" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_left = 759.0
-margin_top = -1.0
-margin_right = 813.4
-margin_bottom = 19.4
+offset_left = 759.0
+offset_top = -1.0
+offset_right = 813.4
+offset_bottom = 19.4
 text = "Event - "
 
 [node name="ColorPickerButton5" type="ColorPickerButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/Chat"]
-margin_left = 816.0
-margin_right = 940.0
-margin_bottom = 20.0
+offset_left = 816.0
+offset_right = 940.0
+offset_bottom = 20.0
 text = "[Chat] Event Color"
 
 [node name="CombatLabel" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 461.0
-margin_right = 983.0
-margin_bottom = 481.4
+offset_top = 461.0
+offset_right = 983.0
+offset_bottom = 481.4
 text = "Popup damage"
 
 [node name="CombatColors" type="HBoxContainer" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer"]
-margin_top = 485.0
-margin_right = 983.0
-margin_bottom = 505.0
+offset_top = 485.0
+offset_right = 983.0
+offset_bottom = 505.0
 
 [node name="SelfLabel" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/CombatColors"]
-margin_top = -1.0
-margin_right = 38.4
-margin_bottom = 19.4
+offset_top = -1.0
+offset_right = 38.4
+offset_bottom = 19.4
 text = "You -"
 
 [node name="ColorPickerButton2" type="ColorPickerButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/CombatColors"]
-margin_left = 41.0
-margin_right = 159.0
-margin_bottom = 20.0
+offset_left = 41.0
+offset_right = 159.0
+offset_bottom = 20.0
 text = "[Chat] OOC color"
 
 [node name="View" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/CombatColors"]
-margin_left = 162.0
-margin_top = -1.0
-margin_right = 264.4
-margin_bottom = 19.4
+offset_left = 162.0
+offset_top = -1.0
+offset_right = 264.4
+offset_bottom = 19.4
 text = "Other Players -"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/CombatColors"]
-margin_left = 267.0
-margin_right = 403.0
-margin_bottom = 20.0
+offset_left = 267.0
+offset_right = 403.0
+offset_bottom = 20.0
 text = "[Chat] In View Color"
 
 [node name="View3" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/CombatColors"]
-margin_left = 406.0
-margin_top = -1.0
-margin_right = 485.4
-margin_bottom = 19.4
+offset_left = 406.0
+offset_top = -1.0
+offset_right = 485.4
+offset_bottom = 19.4
 text = "Monsters - "
 
 [node name="ColorPickerButton3" type="ColorPickerButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/CombatColors"]
-margin_left = 488.0
-margin_right = 624.0
-margin_bottom = 20.0
+offset_left = 488.0
+offset_right = 624.0
+offset_bottom = 20.0
 text = "[Chat] System Color"
 
 [node name="View4" type="Label" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/CombatColors"]
-margin_left = 627.0
-margin_top = -1.0
-margin_right = 679.4
-margin_bottom = 19.4
+offset_left = 627.0
+offset_top = -1.0
+offset_right = 679.4
+offset_bottom = 19.4
 text = "NPCs - "
 
 [node name="ColorPickerButton4" type="ColorPickerButton" parent="TabContainer/Settings/Pages/Visuals/VBoxContainer/CombatColors"]
-margin_left = 682.0
-margin_right = 818.0
-margin_bottom = 20.0
+offset_left = 682.0
+offset_right = 818.0
+offset_bottom = 20.0
 text = "[Chat] System Color"
 
 [node name="Audio" type="Control" parent="TabContainer/Settings/Pages"]
@@ -614,108 +614,108 @@ __meta__ = {
 }
 
 [node name="Volume" type="Label" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 222.0
-margin_right = 977.0
-margin_bottom = 242.4
+offset_top = 222.0
+offset_right = 977.0
+offset_bottom = 242.4
 text = "Volume"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 246.0
-margin_right = 977.0
-margin_bottom = 266.0
+offset_top = 246.0
+offset_right = 977.0
+offset_bottom = 266.0
 
 [node name="MasterLabel" type="Label" parent="TabContainer/Settings/Pages/Audio/VBoxContainer/HBoxContainer"]
-margin_top = -1.0
-margin_right = 50.4
-margin_bottom = 19.4
+offset_top = -1.0
+offset_right = 50.4
+offset_bottom = 19.4
 text = "Master"
 
 [node name="HSlider" type="HSlider" parent="TabContainer/Settings/Pages/Audio/VBoxContainer/HBoxContainer"]
-margin_left = 53.0
-margin_right = 173.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 120, 0 )
+offset_left = 53.0
+offset_right = 173.0
+offset_bottom = 16.0
+minimum_size = Vector2( 120, 0 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 269.0
-margin_right = 977.0
-margin_bottom = 289.0
+offset_top = 269.0
+offset_right = 977.0
+offset_bottom = 289.0
 
 [node name="SoundEffectsLabel" type="Label" parent="TabContainer/Settings/Pages/Audio/VBoxContainer/HBoxContainer2"]
-margin_top = -1.0
-margin_right = 91.4
-margin_bottom = 19.4
+offset_top = -1.0
+offset_right = 91.4
+offset_bottom = 19.4
 text = "Sound Effects"
 
 [node name="HSlider" type="HSlider" parent="TabContainer/Settings/Pages/Audio/VBoxContainer/HBoxContainer2"]
-margin_left = 94.0
-margin_right = 214.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 120, 0 )
+offset_left = 94.0
+offset_right = 214.0
+offset_bottom = 16.0
+minimum_size = Vector2( 120, 0 )
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 292.0
-margin_right = 977.0
-margin_bottom = 312.0
+offset_top = 292.0
+offset_right = 977.0
+offset_bottom = 312.0
 
 [node name="AmbienceLabel" type="Label" parent="TabContainer/Settings/Pages/Audio/VBoxContainer/HBoxContainer3"]
-margin_top = -1.0
-margin_right = 71.4
-margin_bottom = 19.4
+offset_top = -1.0
+offset_right = 71.4
+offset_bottom = 19.4
 text = "Ambience"
 
 [node name="HSlider" type="HSlider" parent="TabContainer/Settings/Pages/Audio/VBoxContainer/HBoxContainer3"]
-margin_left = 74.0
-margin_right = 194.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 120, 0 )
+offset_left = 74.0
+offset_right = 194.0
+offset_bottom = 16.0
+minimum_size = Vector2( 120, 0 )
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 315.0
-margin_right = 977.0
-margin_bottom = 335.0
+offset_top = 315.0
+offset_right = 977.0
+offset_bottom = 335.0
 
 [node name="MusicLabel" type="Label" parent="TabContainer/Settings/Pages/Audio/VBoxContainer/HBoxContainer4"]
-margin_top = -1.0
-margin_right = 44.4
-margin_bottom = 19.4
+offset_top = -1.0
+offset_right = 44.4
+offset_bottom = 19.4
 text = "Music"
 
 [node name="HSlider" type="HSlider" parent="TabContainer/Settings/Pages/Audio/VBoxContainer/HBoxContainer4"]
-margin_left = 47.0
-margin_right = 167.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 120, 0 )
+offset_left = 47.0
+offset_right = 167.0
+offset_bottom = 16.0
+minimum_size = Vector2( 120, 0 )
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 338.0
-margin_right = 977.0
-margin_bottom = 342.0
+offset_top = 338.0
+offset_right = 977.0
+offset_bottom = 342.0
 
 [node name="SFXULabel" type="Label" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 344.0
-margin_right = 977.0
-margin_bottom = 364.4
+offset_top = 344.0
+offset_right = 977.0
+offset_bottom = 364.4
 text = "Audio settings"
 align = 1
 
 [node name="DisableFootsteps" type="CheckButton" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 368.0
-margin_right = 977.0
-margin_bottom = 400.0
+offset_top = 368.0
+offset_right = 977.0
+offset_bottom = 400.0
 text = "Disable Footsteps"
 
 [node name="DisableEcho" type="CheckButton" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 403.0
-margin_right = 977.0
-margin_bottom = 435.0
+offset_top = 403.0
+offset_right = 977.0
+offset_bottom = 435.0
 text = "Disable Echo"
 
 [node name="DisableRandomAmbientEffects" type="CheckButton" parent="TabContainer/Settings/Pages/Audio/VBoxContainer"]
-margin_top = 438.0
-margin_right = 977.0
-margin_bottom = 470.0
+offset_top = 438.0
+offset_right = 977.0
+offset_bottom = 470.0
 text = "Disable Random Ambient Effects"
 
 [node name="DEBUG" type="Control" parent="TabContainer/Settings/Pages"]
@@ -735,34 +735,34 @@ __meta__ = {
 }
 
 [node name="DebugLabel" type="Label" parent="TabContainer/Settings/Pages/DEBUG/VBoxContainer"]
-margin_top = 283.0
-margin_right = 977.0
-margin_bottom = 303.4
+offset_top = 283.0
+offset_right = 977.0
+offset_bottom = 303.4
 text = "Debug"
 align = 1
 
 [node name="EnableDEBUGMode" type="CheckButton" parent="TabContainer/Settings/Pages/DEBUG/VBoxContainer"]
-margin_top = 307.0
-margin_right = 977.0
-margin_bottom = 339.0
-hint_tooltip = "WARNING! 
-Debug mode enables and prints a lot of things in the background which can lower perforamance on older hardware 
+offset_top = 307.0
+offset_right = 977.0
+offset_bottom = 339.0
+tooltip_text = "WARNING! 
+Debug mode enables and prints a lot of things in the background which can lower perforamance checked older hardware 
 and disconnect you from the server. 
 Enable this if you are a developer or invistgating a bug only!"
 pressed = true
 text = "Debug Mode"
 
 [node name="FOVOption" type="CheckButton" parent="TabContainer/Settings/Pages/DEBUG/VBoxContainer"]
-margin_top = 342.0
-margin_right = 977.0
-margin_bottom = 374.0
+offset_top = 342.0
+offset_right = 977.0
+offset_bottom = 374.0
 pressed = true
 text = "Disable FOV"
 
 [node name="EnableExternalFPSTracker" type="CheckButton" parent="TabContainer/Settings/Pages/DEBUG/VBoxContainer"]
-margin_top = 377.0
-margin_right = 977.0
-margin_bottom = 409.0
+offset_top = 377.0
+offset_right = 977.0
+offset_bottom = 409.0
 text = "Enable Detailed Performance Tracking"
 
 [node name="About" type="Control" parent="TabContainer/Settings/Pages"]
@@ -773,38 +773,38 @@ anchor_bottom = 1.0
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings/Pages/About"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 977, 693 )
+minimum_size = Vector2( 977, 693 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="About" type="RichTextLabel" parent="TabContainer/Settings/Pages/About/VBoxContainer"]
-margin_top = 236.0
-margin_right = 977.0
-margin_bottom = 386.0
+offset_top = 236.0
+offset_right = 977.0
+offset_bottom = 386.0
 bbcode_enabled = true
-bbcode_text = "[center][u]The Wizards Chronicles Remake[/u][/center]
+text = "[center][u]The Wizards Chronicles Remake[/u][/center]
 
 TWCRemake is an open source recreation of the 2005 BYOND game \"Harry Potter: The Wizards Chronicles\" inside the Godot Engine, TWCRemake is a non-profit project led by MaxIsJoe and is not affiliated with J.K Rowling or any private entity or group or owned by anyone. You can do anything you want with the source code.
 
-TWCRemake's goals are to take the original game made by Ragnarok HGM and Duncan Fairley and create it from scratch inside the open source game engine 'Godot' with dozens of improvements and new content and features. Godot allows developers working on this project to not worry about any limitations the BYOND platform/engine had and allows the game to be more accessible on more platforms.
+TWCRemake's goals are to take the original game made by Ragnarok HGM and Duncan Fairley and create it from scratch inside the open source game engine 'Godot' with dozens of improvements and new content and features. Godot allows developers working checked this project to not worry about any limitations the BYOND platform/engine had and allows the game to be more accessible checked more platforms.
 "
 text = "The Wizards Chronicles Remake
 
 TWCRemake is an open source recreation of the 2005 BYOND game \"Harry Potter: The Wizards Chronicles\" inside the Godot Engine, TWCRemake is a non-profit project led by MaxIsJoe and is not affiliated with J.K Rowling or any private entity or group or owned by anyone. You can do whatever you want with the source code.
 
-TWCRemake's goals are to take the original game made by Ragnarok HGM and Duncan Fairley and create it from scratch inside the open source game engine 'Godot' with dozens of improvements and new content and features. Godot allows developers working on this project to not worry about any limitations the BYOND platform/engine had and allows the game to be more accessible on more platforms.
+TWCRemake's goals are to take the original game made by Ragnarok HGM and Duncan Fairley and create it from scratch inside the open source game engine 'Godot' with dozens of improvements and new content and features. Godot allows developers working checked this project to not worry about any limitations the BYOND platform/engine had and allows the game to be more accessible checked more platforms.
 "
 fit_content_height = true
 scroll_active = false
 
 [node name="CreditsHead" type="RichTextLabel" parent="TabContainer/Settings/Pages/About/VBoxContainer"]
-margin_top = 390.0
-margin_right = 977.0
-margin_bottom = 420.0
+offset_top = 390.0
+offset_right = 977.0
+offset_bottom = 420.0
 bbcode_enabled = true
-bbcode_text = "[center][u]Credits[/u][/center]
+text = "[center][u]Credits[/u][/center]
 "
 text = "Credits
 "
@@ -812,28 +812,28 @@ fit_content_height = true
 scroll_active = false
 
 [node name="Label" type="Label" parent="TabContainer/Settings/Pages/About/VBoxContainer"]
-margin_top = 424.0
-margin_right = 977.0
-margin_bottom = 438.0
+offset_top = 424.0
+offset_right = 977.0
+offset_bottom = 438.0
 text = "MaxIsJoe - Lead developer, Programmer, Mapper"
 
 [node name="Label2" type="Label" parent="TabContainer/Settings/Pages/About/VBoxContainer"]
-margin_top = 442.0
-margin_right = 977.0
-margin_bottom = 456.0
+offset_top = 442.0
+offset_right = 977.0
+offset_bottom = 456.0
 text = "Rune-Rune - Spelling/Grammer checker, Contributor"
 
-[node name="Achievments" type="Tabs" parent="TabContainer"]
+[node name="Achievments" type="TabBar" parent="TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 16.0
+offset_top = 16.0
 
-[node name="Classes" type="Tabs" parent="TabContainer"]
+[node name="Classes" type="TabBar" parent="TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 16.0
+offset_top = 16.0
 
 [connection signal="button_down" from="TabContainer/Main/Buttons/ForceSave" to="." method="_on_ForceSave_button_down"]
 [connection signal="pressed" from="TabContainer/Settings/VBoxContainer/General" to="." method="_on_General_pressed"]

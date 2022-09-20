@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[sub_resource type="OccluderPolygon2D" id=1]
-
-polygon = PoolVector2Array( -4.1084, 31.3798, 128.018, 32.6342, 128.018, 0.020752, -4.1084, 0.020752, -4.52649, 16.3275 )
-
-[node name="LightOclloder" type="LightOccluder2D"]
-occluder = SubResource( 1 )
-

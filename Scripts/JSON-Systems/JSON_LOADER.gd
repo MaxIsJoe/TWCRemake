@@ -9,7 +9,9 @@ func LoadJSON_General(JSONFile, WhereToStore): #Used to pass data to variables t
 	if(dfile == OK):
 		print("[SUCCSUES] file : [%s] does exist and is loaded." % JSONFile)
 		dfile = file.get_as_text()
-		var data = parse_json(dfile)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(dfile)
+		var data = test_json_conv.get_data()
 		match WhereToStore:
 			0: #Dialouge
 				Data.Loaded_Dialouge = data
@@ -32,11 +34,13 @@ func LoadJSON_Retrun(JSONFile) -> Dictionary:
 		file.close()
 		print("[ERROR] file : [%s] does not exist or is empty" % JSONFile)
 	dfile = file.get_as_text()
-	var data = parse_json(dfile)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(dfile)
+	var data = test_json_conv.get_data()
 	return data
 
 func SaveJSON(data, path):
 	var file = File.new()
 	file.open(path, File.WRITE_READ)
-	file.store_line(to_json(data))
+	file.store_line(JSON.new().stringify(data))
 	file.close()

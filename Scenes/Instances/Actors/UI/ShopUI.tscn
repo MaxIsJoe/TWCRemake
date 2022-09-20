@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Sprites/UI/Shop_UI_Background.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sprites/UI/Shop_UI_Background.png" type="Texture2D" id=1]
+[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent.png" type="Texture2D" id=2]
+[ext_resource path="res://Resources/Fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" type="FontFile" id=3]
 [ext_resource path="res://Scenes/Instances/Actors/UI/ShopUI.gd" type="Script" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 18
 font_data = ExtResource( 3 )
 
@@ -27,10 +27,10 @@ expand = true
 anchor_left = 0.606
 anchor_right = 1.0
 anchor_bottom = 0.993
-margin_left = -8.16522
-margin_right = -8.48523
-margin_bottom = 0.0400391
-rect_min_size = Vector2( 504, 715 )
+offset_left = -8.16522
+offset_right = -8.48523
+offset_bottom = 0.0400391
+minimum_size = Vector2( 504, 715 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -50,10 +50,10 @@ __meta__ = {
 }
 
 [node name="ControlsInfo" type="TextureRect" parent="."]
-margin_left = 2.0
-margin_top = 684.0
-margin_right = 729.0
-margin_bottom = 716.0
+offset_left = 2.0
+offset_top = 684.0
+offset_right = 729.0
+offset_bottom = 716.0
 texture = ExtResource( 2 )
 expand = true
 __meta__ = {
@@ -63,14 +63,14 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="ControlsInfo"]
 anchor_right = 0.927
 anchor_bottom = 1.0
-margin_right = 0.224976
+offset_right = 0.224976
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
-bbcode_text = "Click on Item to buy it, ESC to exit shop."
-text = "Click on Item to buy it, ESC to exit shop."
+text = "Click checked Item to buy it, ESC to exit shop."
+text = "Click checked Item to buy it, ESC to exit shop."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TweenVisbility" type="Tween" parent="."]
-[connection signal="tween_completed" from="TweenVisbility" to="." method="_on_TweenVisbility_tween_completed"]
+[connection signal="finished" from="TweenVisbility" to="." method="_on_TweenVisbility_tween_completed"]

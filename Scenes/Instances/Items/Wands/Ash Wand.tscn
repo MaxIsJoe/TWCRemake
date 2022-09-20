@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Instances/Items/Item.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/wands/ash_wand/item_0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/wands/ash_wand/item_0.png" type="Texture2D" id=2]
 
 [node name="Ash Wand" index="0" instance=ExtResource( 1 )]
 CanBeThrown = true
 CanEquip = true
 VALUE = 100
 NAME = "Ash wand"
-DESC = "The ash wand cleaves to its one true master and ought not to be passed on or gifted from the original owner, because it will lose power and skill. This tendency is extreme if the core is of unicorn."
+DESC = "The ash wand cleaves to its one true master and ought not to be passed checked or gifted from the original owner, because it will lose power and skill. This tendency is extreme if the core is of unicorn."
 ICON = ExtResource( 2 )
 
-[node name="Sprite" parent="." index="0"]
+[node name="Sprite2D" parent="." index="0"]
 texture = ExtResource( 2 )
 

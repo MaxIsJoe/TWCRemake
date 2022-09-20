@@ -44,7 +44,7 @@ var Inflamri = load("res://Scenes/Instances/Actors/Spells/Projectiles/Inflamri.t
 var Episkey = load("res://Scenes/Instances/Actors/Spells/Target/Episkey.tscn")
 
 #Scenes
-var PlayerBase = preload("res://Scenes/Instances/Actors/player/PlayerV2.tscn")
+var PlayerBase = load("res://Scenes/Instances/Actors/player/PlayerV2.tscn")
 
 var EntitesPath: Array = ["res://Scenes/Instances/Actors/Enemies/Nature/Bat.tscn", 
 "res://Scenes/Instances/Actors/Enemies/Nature/Rat.tscn", 
@@ -59,7 +59,7 @@ var UI_Icon_Grab = "res://Sprites/UI/grab.png"
 var Group_DiaNode
 var Group_ShopHolders
 
-var nav_world : Navigation2D
+var nav_world : Node2D
 
 ##Animated Textures##
 var Base_Female : String = "res://Resources/AnimatedTextures/PlayerBases/Female/FemaleStaff.tres"

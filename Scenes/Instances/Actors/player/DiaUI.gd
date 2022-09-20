@@ -1,13 +1,13 @@
 extends Control
 
-onready var DiaUI = self
-onready var DiaBackground = $Background
-onready var DiaText = $Background/DialogueText
-onready var DiaChoicesHolder = $Background/Choices/ChoicesHolder
+@onready var DiaUI = self
+@onready var DiaBackground = $Background
+@onready var DiaText = $Background/DialogueText
+@onready var DiaChoicesHolder = $Background/Choices/ChoicesHolder
 
-onready var ButtonPrefap = preload("res://Scenes/Instances/Actors/UI/buttons/ChoiceButton.tscn")
+@onready var ButtonPrefap = preload("res://Scenes/Instances/Actors/UI/buttons/ChoiceButton.tscn")
 
-export(float) var interpolateTime = 0.4
+@export var interpolateTime: float = 0.4
 var CanFlip = false
 var revealspd = 35
 var CurrentID
@@ -61,22 +61,22 @@ func Dia_SetText(ID):
 		CanFlip = false
 		ShowUI(false)
 		return
-	DiaText.bbcode_text = str(Data.Loaded_Dialouge[ID].get("text"))
+	DiaText.text = str(Data.Loaded_Dialouge[ID].get("text"))
 	
-	if("[gender]" in DiaText.bbcode_text):
+	if("[gender]" in DiaText.text):
 		if(Data.Player.Gender == 1):
-			var newtext = DiaText.bbcode_text.replace("[gender]", "Madam")
-			DiaText.bbcode_text = str(newtext)
+			var newtext = DiaText.text.replace("[gender]", "Madam")
+			DiaText.text = str(newtext)
 		else:
-			var newtext = DiaText.bbcode_text.replace("[gender]", "Sir")
-			DiaText.bbcode_text = str(newtext)
-	if("[playername]" in DiaText.bbcode_text):
-			var newtext = DiaText.bbcode_text.replace("[playername]", str("[color=cyan]" + Data.Player.PlayerName + "[/color]"))
-			DiaText.bbcode_text = str(newtext)
+			var newtext = DiaText.text.replace("[gender]", "Sir")
+			DiaText.text = str(newtext)
+	if("[playername]" in DiaText.text):
+			var newtext = DiaText.text.replace("[playername]", str("[color=cyan]" + Data.Player.PlayerName + "[/color]"))
+			DiaText.text = str(newtext)
 	
 	Dia_TypeWriter()
 	#if(Data.Loaded_Dialouge[ID].has("speaker")):
-		#DiaNamesUI.bbcode_text = str(Data.Loaded_Dialouge[ID].get("speaker"))
+		#DiaNamesUI.text = str(Data.Loaded_Dialouge[ID].get("speaker"))
 		#$DiaHolder/NamesUI.visible = true
 	#else:
 	#	$DiaHolder/NamesUI.visible = false
@@ -86,7 +86,7 @@ func Dia_SetText(ID):
 func Dia_LoadChoices(ID):
 	var keys = Data.Loaded_Dialouge[ID].get("choices")
 	for key in keys:
-		var s = ButtonPrefap.instance()
+		var s = ButtonPrefap.instantiate()
 		s.InitlizeButtonName(key)
 		s.InitlizeButtonID(keys[key].get("next"))
 		DiaChoicesHolder.add_child(s)
@@ -94,7 +94,7 @@ func Dia_LoadChoices(ID):
 	
 func Dia_TypeWriter():
 	DiaText.percent_visible = 0
-	var time = DiaText.bbcode_text.length() / revealspd
+	var time = DiaText.text.length() / revealspd
 	$Tween.interpolate_property(DiaText, "percent_visible", 0, 1, time, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 	$Tween.start()
 

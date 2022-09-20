@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/kill_him.ogg-4867842dbbbd41853d081c67da196104.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cdb14oap8l4ny"
+path="res://.godot/imported/kill_him.ogg-4867842dbbbd41853d081c67da196104.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/arena annoucer/kill_him.ogg"
-dest_files=[ "res://.import/kill_him.ogg-4867842dbbbd41853d081c67da196104.oggstr" ]
+dest_files=["res://.godot/imported/kill_him.ogg-4867842dbbbd41853d081c67da196104.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

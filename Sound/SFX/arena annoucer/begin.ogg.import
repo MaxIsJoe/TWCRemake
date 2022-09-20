@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/begin.ogg-8f989813b02ba1da6a05f66d948e1b6c.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://byw807oe202fs"
+path="res://.godot/imported/begin.ogg-8f989813b02ba1da6a05f66d948e1b6c.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/arena annoucer/begin.ogg"
-dest_files=[ "res://.import/begin.ogg-8f989813b02ba1da6a05f66d948e1b6c.oggstr" ]
+dest_files=["res://.godot/imported/begin.ogg-8f989813b02ba1da6a05f66d948e1b6c.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

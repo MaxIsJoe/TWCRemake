@@ -1,16 +1,16 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/7.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/8.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/4.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/5.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/3.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/9.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/6.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/0.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/1.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/2.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/PNGs/light.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/7.png" type="Texture2D" id=1]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/8.png" type="Texture2D" id=2]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/4.png" type="Texture2D" id=3]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/5.png" type="Texture2D" id=4]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/3.png" type="Texture2D" id=5]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/9.png" type="Texture2D" id=6]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/6.png" type="Texture2D" id=7]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/0.png" type="Texture2D" id=8]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/1.png" type="Texture2D" id=9]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/icons3/turf/candle_0/2.png" type="Texture2D" id=10]
+[ext_resource path="res://Sprites/PNGs/light.png" type="Texture2D" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -20,12 +20,12 @@ animations = [ {
 "speed": 3.0
 } ]
 
-[node name="Candle" type="AnimatedSprite"]
+[node name="Candle" type="AnimatedSprite2D"]
 frames = SubResource( 1 )
 frame = 1
 playing = true
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource( 11 )
 texture_scale = 0.4
 color = Color( 0.901961, 0.505882, 0, 1 )

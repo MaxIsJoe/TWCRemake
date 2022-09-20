@@ -1,4 +1,4 @@
-extends TextureProgress
+extends TextureProgressBar
 
 func _on_Player_mpupdate(mana, mana_max):
 	max_value = mana_max

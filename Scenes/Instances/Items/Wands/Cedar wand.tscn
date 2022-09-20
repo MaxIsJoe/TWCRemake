@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Instances/Items/Item.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/wands/cedar_wand/item_0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/wands/cedar_wand/item_0.png" type="Texture2D" id=2]
 
 [node name="Cedar wand" index="0" instance=ExtResource( 1 )]
 CanBeThrown = true
@@ -11,6 +11,6 @@ NAME = "Cedar Wand"
 DESC = "Whenever I meet one who carries a cedar wand, I find strength of character and unusual loyalty. My father, Gervaise Ollivander, used always to say, ‘you will never fool the cedar carrier,’ and I agree: the cedar wand finds its perfect home where there is perspicacity and perception. "
 ICON = ExtResource( 2 )
 
-[node name="Sprite" parent="." index="0"]
+[node name="Sprite2D" parent="." index="0"]
 texture = ExtResource( 2 )
 

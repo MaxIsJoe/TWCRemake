@@ -1,9 +1,9 @@
 extends "res://Scenes/Instances/EntitesBase/Characters/Stats.gd"
 
-export(NodePath) var parent_PATH
-onready var parent = get_node(parent_PATH)
-export(NodePath) var ManaBar_PATH
-onready var ManaBar = get_node(ManaBar_PATH)
+@export var parent_PATH: NodePath
+@onready var parent = get_node(parent_PATH)
+@export var ManaBar_PATH: NodePath
+@onready var ManaBar = get_node(ManaBar_PATH)
 
 var XP     : int = 0
 var XP_MAX : int = 100

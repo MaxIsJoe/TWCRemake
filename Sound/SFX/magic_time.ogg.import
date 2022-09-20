@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/magic_time.ogg-7f61205d6de71ed352c7af082fc4c686.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://co700w1u5nd81"
+path="res://.godot/imported/magic_time.ogg-7f61205d6de71ed352c7af082fc4c686.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/magic_time.ogg"
-dest_files=[ "res://.import/magic_time.ogg-7f61205d6de71ed352c7af082fc4c686.oggstr" ]
+dest_files=["res://.godot/imported/magic_time.ogg-7f61205d6de71ed352c7af082fc4c686.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

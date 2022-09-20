@@ -6,7 +6,7 @@
 action = "ui_cancel"
 pressed = true
 
-[sub_resource type="ShortCut" id=2]
+[sub_resource type="Shortcut" id=2]
 shortcut = SubResource( 1 )
 
 [node name="BankUI" type="CanvasLayer"]
@@ -17,10 +17,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -173.0
-margin_top = -53.0
-margin_right = 170.0
-margin_bottom = 58.0
+offset_left = -173.0
+offset_top = -53.0
+offset_right = 170.0
+offset_bottom = 58.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -28,9 +28,9 @@ __meta__ = {
 [node name="Label" type="Label" parent="Panel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -170.5
-margin_right = 171.5
-margin_bottom = 18.0
+offset_left = -170.5
+offset_right = 171.5
+offset_bottom = 18.0
 text = "How much would you like to deposit?"
 align = 1
 valign = 1
@@ -40,27 +40,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -37.0
-margin_top = -12.0
-margin_right = 37.0
-margin_bottom = 12.0
+offset_left = -37.0
+offset_top = -12.0
+offset_right = 37.0
+offset_bottom = 12.0
 align = 1
 
 [node name="Confirm" type="Button" parent="Panel"]
-margin_left = 84.757
-margin_top = 90.0544
-margin_right = 124.757
-margin_bottom = 106.054
+offset_left = 84.757
+offset_top = 90.0544
+offset_right = 124.757
+offset_bottom = 106.054
 text = "Confirm"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Cancel" type="Button" parent="Panel"]
-margin_left = 205.006
-margin_top = 90.0544
-margin_right = 257.006
-margin_bottom = 106.054
+offset_left = 205.006
+offset_top = 90.0544
+offset_right = 257.006
+offset_bottom = 106.054
 shortcut = SubResource( 2 )
 text = "Cancel"
 

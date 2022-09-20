@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/m_cougha.ogg-87bb04ecd254ecb18df0e11c957ddb04.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://btsq6fb12xv4i"
+path="res://.godot/imported/m_cougha.ogg-87bb04ecd254ecb18df0e11c957ddb04.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/emotes/m_cougha.ogg"
-dest_files=[ "res://.import/m_cougha.ogg-87bb04ecd254ecb18df0e11c957ddb04.oggstr" ]
+dest_files=["res://.godot/imported/m_cougha.ogg-87bb04ecd254ecb18df0e11c957ddb04.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

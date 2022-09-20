@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/melee_1.ogg-d648a2f9913cc24307e1809df73ef464.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://coiciwas3ys4s"
+path="res://.godot/imported/melee_1.ogg-d648a2f9913cc24307e1809df73ef464.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/Enemies/melee_1.ogg"
-dest_files=[ "res://.import/melee_1.ogg-d648a2f9913cc24307e1809df73ef464.oggstr" ]
+dest_files=["res://.godot/imported/melee_1.ogg-d648a2f9913cc24307e1809df73ef464.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

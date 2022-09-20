@@ -1,7 +1,7 @@
-extends TextureProgress
+extends TextureProgressBar
 
-export(NodePath) var HealthOverlayPath
-export(NodePath) var HealthPath
+@export var HealthOverlayPath: NodePath
+@export var HealthPath: NodePath
 
 var Health
 var HealthOverlay
@@ -28,4 +28,4 @@ func GrayScaleVision():
 	if(Health != null):
 		if(Health.CanGrayscaleVision == true):
 			var grayscale_value : float = float((Health.HP_MAX - Health.HP)) / 100
-			material_onOverlay.set_shader_param("scale",grayscale_value)
+			material_onOverlay.set_shader_parameter("scale",grayscale_value)

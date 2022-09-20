@@ -15,5 +15,5 @@ func PlaySoundOnSuccsefulTeleport(sound, pos):
 	TeleportAudio.position = pos
 	add_child(TeleportAudio)
 	TeleportAudio.play()
-	yield(TeleportAudio, "finished")
+	await TeleportAudio.finished
 	remove_child(TeleportAudio)

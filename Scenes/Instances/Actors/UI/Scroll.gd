@@ -1,6 +1,6 @@
 extends Control
 
-onready var txtField = $Scroll_Background/TextEdit
+@onready var txtField = $Scroll_Background/TextEdit
 
 var ID
 
@@ -20,7 +20,7 @@ func _on_TextEdit_text_changed():
 		var newtext = txtField.text.replace("[sign]", Data.Player.PlayerName)
 		txtField.text = newtext
 
-remotesync func ServerSaveScroll(txt):
+@rpc(any_peer, call_local) func ServerSaveScroll(txt):
 	var file = File.new()
 	print("Savening scroll : " + str(ID))
 	file.open("res://debug/Scrolls/" + str(ID) + ".txt", File.WRITE)

@@ -2,12 +2,12 @@ extends Node2D
 
 var currentDir : int
 
-onready var BodySprites = $Body
+@onready var BodySprites = $Body
 
-func LoadAnimatedSprites(sprites: String, target: AnimatedSprite):
+func LoadAnimatedSprites(sprites: String, target: AnimatedSprite2D):
 	target.frames = load(sprites)
 	
-func PlayAnim(anim: String, target: AnimatedSprite):
+func PlayAnim(anim: String, target: AnimatedSprite2D):
 	target.play(anim)
 	
 func PlayDirectionalAnimAll(Dir: int):

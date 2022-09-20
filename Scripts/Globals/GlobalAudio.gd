@@ -1,9 +1,9 @@
 extends AudioStreamPlayer
 
 ##References to which audio player will be used##
-onready var AmbiencePlayer = $Ambience
-onready var UIPlayer = $UI
-onready var FxPlayer = $FX
+@onready var AmbiencePlayer = $Ambience
+@onready var UIPlayer = $UI
+@onready var FxPlayer = $FX
 
 ##Refereneces to audio that will be used##
 var Amb_Hogwarts = {

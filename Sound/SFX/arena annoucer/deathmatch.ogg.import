@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/deathmatch.ogg-41dbe5034297bbc296453f238421cc5f.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b6wlks8q3limp"
+path="res://.godot/imported/deathmatch.ogg-41dbe5034297bbc296453f238421cc5f.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/arena annoucer/deathmatch.ogg"
-dest_files=[ "res://.import/deathmatch.ogg-41dbe5034297bbc296453f238421cc5f.oggstr" ]
+dest_files=["res://.godot/imported/deathmatch.ogg-41dbe5034297bbc296453f238421cc5f.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

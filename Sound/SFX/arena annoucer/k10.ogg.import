@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/k10.ogg-f77a812dfb7737e9b86fb73d37937fc6.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cg5lpe233klqd"
+path="res://.godot/imported/k10.ogg-f77a812dfb7737e9b86fb73d37937fc6.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/arena annoucer/k10.ogg"
-dest_files=[ "res://.import/k10.ogg-f77a812dfb7737e9b86fb73d37937fc6.oggstr" ]
+dest_files=["res://.godot/imported/k10.ogg-f77a812dfb7737e9b86fb73d37937fc6.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

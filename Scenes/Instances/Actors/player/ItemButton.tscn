@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture2D" id=2]
 
 [node name="ItemButton" type="Button" groups=[
 "ItemButtons",
@@ -9,9 +9,9 @@
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -880.0
-margin_bottom = -659.0
-rect_min_size = Vector2( 400, 61 )
+offset_right = -880.0
+offset_bottom = -659.0
+minimum_size = Vector2( 400, 61 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -19,13 +19,13 @@ __meta__ = {
 
 [node name="ItemLabel" type="Label" parent="."]
 light_mask = 524288
-margin_left = 84.0
-margin_top = 23.0
-margin_right = 184.0
-margin_bottom = 45.0
+offset_left = 84.0
+offset_top = 23.0
+offset_right = 184.0
+offset_bottom = 45.0
 text = "Item Name"
 
-[node name="ItemIcon" type="Sprite" parent="."]
+[node name="ItemIcon" type="Sprite2D" parent="."]
 light_mask = 524288
 position = Vector2( 32.133, 31.0249 )
 scale = Vector2( 0.82687, 0.792244 )

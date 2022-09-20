@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/time.ogg-e1a877066c17a1ac06b9155c51ecba6b.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cnygvvm52nt2u"
+path="res://.godot/imported/time.ogg-e1a877066c17a1ac06b9155c51ecba6b.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/arena annoucer/time.ogg"
-dest_files=[ "res://.import/time.ogg-e1a877066c17a1ac06b9155c51ecba6b.oggstr" ]
+dest_files=["res://.godot/imported/time.ogg-e1a877066c17a1ac06b9155c51ecba6b.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

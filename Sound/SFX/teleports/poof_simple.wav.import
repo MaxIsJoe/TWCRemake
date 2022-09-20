@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/poof_simple.wav-164a4c4623960ccf306faa7b7fc342cd.sample"
+type="AudioStreamWAV"
+uid="uid://bmpy533n3gmqp"
+path="res://.godot/imported/poof_simple.wav-164a4c4623960ccf306faa7b7fc342cd.sample"
 
 [deps]
 
 source_file="res://Sound/SFX/teleports/poof_simple.wav"
-dest_files=[ "res://.import/poof_simple.wav-164a4c4623960ccf306faa7b7fc342cd.sample" ]
+dest_files=["res://.godot/imported/poof_simple.wav-164a4c4623960ccf306faa7b7fc342cd.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

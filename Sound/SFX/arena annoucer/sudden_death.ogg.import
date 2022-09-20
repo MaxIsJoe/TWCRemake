@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/sudden_death.ogg-3d180fda7561d9c40497c25b8411e515.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://l1d2f881y1vo"
+path="res://.godot/imported/sudden_death.ogg-3d180fda7561d9c40497c25b8411e515.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/arena annoucer/sudden_death.ogg"
-dest_files=[ "res://.import/sudden_death.ogg-3d180fda7561d9c40497c25b8411e515.oggstr" ]
+dest_files=["res://.godot/imported/sudden_death.ogg-3d180fda7561d9c40497c25b8411e515.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

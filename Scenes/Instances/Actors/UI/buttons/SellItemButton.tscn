@@ -1,21 +1,21 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Resources/Fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" type="FontFile" id=1]
+[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent.png" type="Texture2D" id=2]
 [ext_resource path="res://Scenes/Instances/Actors/UI/buttons/SellItemButton.gd" type="Script" id=3]
-[ext_resource path="res://Sprites/AnimatedTiles/Food/FoodProp_BeerTea.tres" type="Texture" id=4]
-[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Locked.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Hover.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Pressed.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/AnimatedTiles/Food/FoodProp_BeerTea.tres" type="Texture2D" id=4]
+[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Locked.png" type="Texture2D" id=5]
+[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Hover.png" type="Texture2D" id=6]
+[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Pressed.png" type="Texture2D" id=7]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 22
 font_data = ExtResource( 1 )
 
 [node name="SellItemButton" type="TextureButton"]
-margin_right = 504.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 504, 90 )
+offset_right = 504.0
+offset_bottom = 90.0
+minimum_size = Vector2( 504, 90 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 7 )
@@ -28,8 +28,8 @@ __meta__ = {
 }
 
 [node name="ItemIcon" type="TextureRect" parent="."]
-margin_right = 103.0
-margin_bottom = 94.0
+offset_right = 103.0
+offset_bottom = 94.0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
@@ -38,14 +38,14 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 113.0
-margin_top = 25.0
-margin_right = 365.0
-margin_bottom = 60.0
+offset_left = 113.0
+offset_top = 25.0
+offset_right = 365.0
+offset_bottom = 60.0
 mouse_filter = 2
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
-bbcode_text = "Item Name "
+text = "Item Name "
 text = "Item Name "
 __meta__ = {
 "_edit_use_anchors_": false

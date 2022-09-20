@@ -5,7 +5,7 @@
 [node name="AudioManager" type="AudioStreamPlayer"]
 script = ExtResource( 1 )
 __meta__ = {
-"_editor_description_": "Mainly used for playing audio on the client's side. If it's something another player won't hear then use this manager."
+"_editor_description_": "Mainly used for playing audio checked the client's side. If it's something another player won't hear then use this manager."
 }
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]

@@ -1,37 +1,37 @@
 [gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/1.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/2.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/3.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/0.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/1.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/2.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/3.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/0.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/1.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/2.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/3.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/0.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/1.png" type="Texture" id=15]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/2.png" type="Texture" id=16]
-[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/3.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/0.png" type="Texture2D" id=2]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/1.png" type="Texture2D" id=3]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/2.png" type="Texture2D" id=4]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_0/3.png" type="Texture2D" id=5]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/0.png" type="Texture2D" id=6]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/1.png" type="Texture2D" id=7]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/2.png" type="Texture2D" id=8]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_3/3.png" type="Texture2D" id=9]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/0.png" type="Texture2D" id=10]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/1.png" type="Texture2D" id=11]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/2.png" type="Texture2D" id=12]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_2/3.png" type="Texture2D" id=13]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/0.png" type="Texture2D" id=14]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/1.png" type="Texture2D" id=15]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/2.png" type="Texture2D" id=16]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/bases/FemaleStaff/_1/3.png" type="Texture2D" id=17]
 [ext_resource path="res://Scenes/Instances/Actors/UI/Scroll.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scripts/FPSLabel.gd" type="Script" id=19]
-[ext_resource path="res://Sprites/UI/Border_Style_5.png" type="Texture" id=20]
-[ext_resource path="res://Sprites/UI/Style_3.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/UI/Border_Style_5.png" type="Texture2D" id=20]
+[ext_resource path="res://Sprites/UI/Style_3.png" type="Texture2D" id=21]
 [ext_resource path="res://Scripts/HPProgress.gd" type="Script" id=22]
-[ext_resource path="res://Sprites/UI/Border_Style_2.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/UI/Border_Style_2.png" type="Texture2D" id=23]
 [ext_resource path="res://Scripts/MPProgress.gd" type="Script" id=24]
 [ext_resource path="res://Scripts/Inventory.gd" type="Script" id=25]
 [ext_resource path="res://Scenes/Instances/Actors/player/ItemButton.tscn" type="PackedScene" id=26]
-[ext_resource path="res://Sprites/PNGs/lightv2.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/PNGs/lightv2.png" type="Texture2D" id=27]
 [ext_resource path="res://Scripts/SpritesHandler.gd" type="Script" id=28]
-[ext_resource path="res://Sprites/UI/whitebar.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/UI/whitebar.png" type="Texture2D" id=29]
 [ext_resource path="res://Scenes/Instances/Actors/UI/DiaUI.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scenes/Instances/Actors/UI/ShopUI.tscn" type="PackedScene" id=31]
-[ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="DynamicFontData" id=32]
+[ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="FontFile" id=32]
 [ext_resource path="res://Scenes/Instances/Actors/UI/buttons/HotkeyButton.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Scenes/Instances/Actors/player/Spells.gd" type="Script" id=35]
 [ext_resource path="res://Scenes/Instances/Actors/UI/SetHotkeyUI.tscn" type="PackedScene" id=36]
@@ -88,7 +88,7 @@ animations = [ {
 [sub_resource type="CanvasItemMaterial" id=4]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="FontFile" id=5]
 size = 13
 use_mipmaps = true
 font_data = ExtResource( 32 )
@@ -102,8 +102,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 5, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.6, 5, 6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.329412, 1, 0.584314, 0 ), Color( 0.329412, 1, 0.584314, 1 ), Color( 0.329412, 1, 0.584314, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -114,8 +114,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.6, 1, 5, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0.6, 1, 5, 6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -130,9 +130,9 @@ border_color = Color( 0.513726, 0.513726, 0.513726, 1 )
 border_blend = true
 
 [sub_resource type="Theme" id=8]
-WindowDialog/styles/panel = SubResource( 9 )
+Window/styles/panel = SubResource( 9 )
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="CharacterBody2D" groups=[
 "DNNInt",
 "Players",
 ]]
@@ -149,27 +149,27 @@ shape = SubResource( 2 )
 [node name="SpritesHandler" type="Node2D" parent="."]
 script = ExtResource( 28 )
 
-[node name="Body" type="AnimatedSprite" parent="SpritesHandler"]
+[node name="Body" type="AnimatedSprite2D" parent="SpritesHandler"]
 frames = SubResource( 3 )
 animation = "idledown"
 
-[node name="Wigs" type="AnimatedSprite" parent="SpritesHandler"]
+[node name="Wigs" type="AnimatedSprite2D" parent="SpritesHandler"]
 
-[node name="WandEquip" type="AnimatedSprite" parent="SpritesHandler"]
+[node name="WandEquip" type="AnimatedSprite2D" parent="SpritesHandler"]
 
-[node name="BroomRide" type="AnimatedSprite" parent="SpritesHandler"]
+[node name="BroomRide" type="AnimatedSprite2D" parent="SpritesHandler"]
 
-[node name="BloodOverlay" type="AnimatedSprite" parent="SpritesHandler"]
+[node name="BloodOverlay" type="AnimatedSprite2D" parent="SpritesHandler"]
 
 [node name="Ray" type="RayCast2D" parent="."]
 
 [node name="PlayerName" type="Label" parent="."]
 light_mask = 524288
 material = SubResource( 4 )
-margin_left = -50.0
-margin_top = -39.0
-margin_right = 50.0
-margin_bottom = -15.6
+offset_left = -50.0
+offset_top = -39.0
+offset_right = 50.0
+offset_bottom = -15.6
 custom_fonts/font = SubResource( 5 )
 text = "Player"
 align = 1
@@ -180,10 +180,10 @@ __meta__ = {
 
 [node name="Cam" type="Camera2D" parent="."]
 smoothing_speed = 4.5
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
@@ -194,8 +194,8 @@ visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.12247
-margin_bottom = -1.12244
+offset_top = -1.12247
+offset_bottom = -1.12244
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -205,25 +205,25 @@ __meta__ = {
 light_mask = 524288
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -75.5
-margin_top = 0.75
-margin_right = -1.5
-margin_bottom = 21.15
+offset_left = -75.5
+offset_top = 0.75
+offset_right = -1.5
+offset_bottom = 21.15
 align = 1
 valign = 1
 script = ExtResource( 19 )
 
-[node name="HPProgress" type="TextureProgress" parent="Cam/CanvasLayer/UI"]
+[node name="HPProgress" type="TextureProgressBar" parent="Cam/CanvasLayer/UI"]
 light_mask = 524288
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -212.397
-margin_top = -60.1022
-margin_right = 287.603
-margin_bottom = -10.1022
-rect_scale = Vector2( 0.4, 0.4 )
+offset_left = -212.397
+offset_top = -60.1022
+offset_right = 287.603
+offset_bottom = -10.1022
+scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 20 )
 texture_progress = ExtResource( 21 )
 script = ExtResource( 22 )
@@ -233,18 +233,18 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Cam/CanvasLayer/UI/HPProgress"]
 
-[node name="MPProgress" type="TextureProgress" parent="Cam/CanvasLayer/UI"]
+[node name="MPProgress" type="TextureProgressBar" parent="Cam/CanvasLayer/UI"]
 show_behind_parent = true
 light_mask = 524288
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = -60.0001
-margin_right = 515.0
-margin_bottom = -10.0001
-rect_scale = Vector2( 0.4, 0.4 )
+offset_left = 15.0
+offset_top = -60.0001
+offset_right = 515.0
+offset_bottom = -10.0001
+scale = Vector2( 0.4, 0.4 )
 texture_under = ExtResource( 23 )
 texture_progress = ExtResource( 29 )
 tint_progress = Color( 0.00392157, 0.427451, 0.94902, 1 )
@@ -262,18 +262,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -33.2
-margin_top = -10.2
-margin_right = 33.2
-margin_bottom = 10.2
+offset_left = -33.2
+offset_top = -10.2
+offset_right = 33.2
+offset_bottom = 10.2
 custom_colors/font_color = Color( 0.329412, 1, 0.584314, 0 )
 text = "Level Up!"
 
 [node name="Label" type="Label" parent="Cam/CanvasLayer/UI/Leveup"]
-margin_left = -85.6197
-margin_top = 14.9685
-margin_right = 156.38
-margin_bottom = 28.9685
+offset_left = -85.6197
+offset_top = 14.9685
+offset_right = 156.38
+offset_bottom = 28.9685
 custom_colors/font_color = Color( 1, 1, 1, 0 )
 text = "You earned a statpoint for leveling up!"
 __meta__ = {
@@ -288,78 +288,78 @@ visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 69.0
-margin_right = -13.0
-margin_bottom = -79.0
+offset_left = 16.0
+offset_top = 69.0
+offset_right = -13.0
+offset_bottom = -79.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Status" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
+[node name="Status" type="TabBar" parent="Cam/CanvasLayer/UI/TabContainer"]
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
+offset_left = 4.0
+offset_top = 26.0
+offset_right = -4.0
+offset_bottom = -4.0
 
 [node name="Info_Status" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Status"]
 light_mask = 524288
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Here the player should see all of his stats and important information on his character"
+offset_right = 40.0
+offset_bottom = 14.0
+text = "Here the player should see all of his stats and important information checked his character"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Inventory" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
+[node name="Inventory" type="TabBar" parent="Cam/CanvasLayer/UI/TabContainer"]
 visible = false
 light_mask = 524288
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
+offset_left = 4.0
+offset_top = 26.0
+offset_right = -4.0
+offset_bottom = -4.0
 script = ExtResource( 25 )
 ItemButton = ExtResource( 26 )
 
 [node name="Info_Inventory" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Inventory"]
 visible = false
 light_mask = 524288
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Here the player can accses his full inventory. Still unsure if we should stick to the list inventory or move on to a grid based inventory"
+offset_right = 40.0
+offset_bottom = 14.0
+text = "Here the player can accses his full inventory. Still unsure if we should stick to the list inventory or move checked to a grid based inventory"
 
 [node name="Panel" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory"]
 light_mask = 524288
-margin_left = 642.466
-margin_top = 3.0
-margin_right = 1244.47
-margin_bottom = 548.0
+offset_left = 642.466
+offset_top = 3.0
+offset_right = 1244.47
+offset_bottom = 548.0
 
 [node name="VScrollBar" type="VScrollBar" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel"]
 light_mask = 524288
-margin_left = 590.0
-margin_right = 602.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 12, 550 )
+offset_left = 590.0
+offset_right = 602.0
+offset_bottom = 550.0
+minimum_size = Vector2( 12, 550 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/Panel"]
 light_mask = 524288
-margin_right = 593.0
-margin_bottom = 539.0
-rect_min_size = Vector2( 593, 593 )
+offset_right = 593.0
+offset_bottom = 539.0
+minimum_size = Vector2( 593, 593 )
 
 [node name="ItemSpriteShowcase" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory"]
 light_mask = 524288
-margin_left = -1.0
-margin_top = -3.0
-margin_right = 637.0
-margin_bottom = 298.0
-rect_min_size = Vector2( 523, 301 )
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 637.0
+offset_bottom = 298.0
+minimum_size = Vector2( 523, 301 )
 
 [node name="ItemSprite" type="TextureRect" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/ItemSpriteShowcase" groups=[
 "UI_ItemIconPanel",
@@ -375,20 +375,20 @@ __meta__ = {
 
 [node name="DescPanel" type="Panel" parent="Cam/CanvasLayer/UI/TabContainer/Inventory"]
 light_mask = 524288
-margin_left = -1.0
-margin_top = 302.0
-margin_right = 637.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 524, 248 )
+offset_left = -1.0
+offset_top = 302.0
+offset_right = 637.0
+offset_bottom = 550.0
+minimum_size = Vector2( 524, 248 )
 
 [node name="ItemName" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Inventory/DescPanel" groups=[
 "UI_ItemNamePanel",
 ]]
 light_mask = 524288
-margin_left = 229.728
-margin_top = -0.334839
-margin_right = 406.728
-margin_bottom = 29.0652
+offset_left = 229.728
+offset_top = -0.334839
+offset_right = 406.728
+offset_bottom = 29.0652
 text = "Item Name"
 align = 1
 
@@ -396,13 +396,13 @@ align = 1
 "UI_ItemDescPanel",
 ]]
 light_mask = 524288
-margin_left = 1.0
-margin_top = 37.0
-margin_right = 636.0
-margin_bottom = 239.0
-rect_min_size = Vector2( 522, 202 )
+offset_left = 1.0
+offset_top = 37.0
+offset_right = 636.0
+offset_bottom = 239.0
+minimum_size = Vector2( 522, 202 )
 bbcode_enabled = true
-bbcode_text = "This is an Item and this is all you need to know about it
+text = "This is an Item and this is all you need to know about it
 
 1+ emptiness
 50% more empty
@@ -417,42 +417,42 @@ text = "This is an Item and this is all you need to know about it
 
 Value : 0 Gold"
 
-[node name="Quests" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
+[node name="Quests" type="TabBar" parent="Cam/CanvasLayer/UI/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
+offset_left = 4.0
+offset_top = 26.0
+offset_right = -4.0
+offset_bottom = -4.0
 
 [node name="Info_Quests" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Quests"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "After optaining the quest book this tab should be open for all players to use just like the orginal game."
 
-[node name="Map" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
+[node name="Map" type="TabBar" parent="Cam/CanvasLayer/UI/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
+offset_left = 4.0
+offset_top = 26.0
+offset_right = -4.0
+offset_bottom = -4.0
 
 [node name="Info_Maps" type="Label" parent="Cam/CanvasLayer/UI/TabContainer/Map"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Maps are there to help the player navigate the game with a little bit of help, this tab can be only used of the player buys/crafts a map item which can be only used on ONE scene only."
+offset_right = 40.0
+offset_bottom = 14.0
+text = "Maps are there to help the player navigate the game with a little bit of help, this tab can be only used of the player buys/crafts a map item which can be only used checked ONE scene only."
 
-[node name="Spells" type="Tabs" parent="Cam/CanvasLayer/UI/TabContainer"]
+[node name="Spells" type="TabBar" parent="Cam/CanvasLayer/UI/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 26.0
-margin_right = -4.0
-margin_bottom = -4.0
+offset_left = 4.0
+offset_top = 26.0
+offset_right = -4.0
+offset_bottom = -4.0
 script = ExtResource( 35 )
 
 [node name="SpellsContainer" type="Control" parent="Cam/CanvasLayer/UI/TabContainer/Spells"]
@@ -460,8 +460,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Cam/CanvasLayer/UI/TabContainer/Spells/SpellsContainer"]
-margin_right = 1244.0
-margin_bottom = 541.0
+offset_right = 1244.0
+offset_bottom = 541.0
 scroll_vertical_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -473,8 +473,8 @@ columns = 7
 [node name="Hotkeys" type="Control" parent="Cam/CanvasLayer/UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 676.0
-margin_bottom = -6.10352e-05
+offset_top = 676.0
+offset_bottom = -6.10352e-05
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -484,13 +484,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -212.5
-margin_top = -40.0
-margin_right = 212.5
+offset_left = -212.5
+offset_top = -40.0
+offset_right = 212.5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -499,48 +499,48 @@ __meta__ = {
 [node name="HotkeyButton" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
 
 [node name="HotkeyButton2" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
-margin_left = 43.0
-margin_right = 83.0
+offset_left = 43.0
+offset_right = 83.0
 ButtonHotkey = 1
 
 [node name="HotkeyButton3" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
-margin_left = 86.0
-margin_right = 126.0
+offset_left = 86.0
+offset_right = 126.0
 ButtonHotkey = 2
 
 [node name="HotkeyButton4" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
-margin_left = 129.0
-margin_right = 169.0
+offset_left = 129.0
+offset_right = 169.0
 ButtonHotkey = 3
 
 [node name="HotkeyButton5" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
-margin_left = 172.0
-margin_right = 212.0
+offset_left = 172.0
+offset_right = 212.0
 ButtonHotkey = 4
 
 [node name="HotkeyButton6" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
-margin_left = 215.0
-margin_right = 255.0
+offset_left = 215.0
+offset_right = 255.0
 ButtonHotkey = 5
 
 [node name="HotkeyButton7" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
-margin_left = 258.0
-margin_right = 298.0
+offset_left = 258.0
+offset_right = 298.0
 ButtonHotkey = 6
 
 [node name="HotkeyButton8" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
-margin_left = 301.0
-margin_right = 341.0
+offset_left = 301.0
+offset_right = 341.0
 ButtonHotkey = 7
 
 [node name="HotkeyButton9" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
-margin_left = 344.0
-margin_right = 384.0
+offset_left = 344.0
+offset_right = 384.0
 ButtonHotkey = 8
 
 [node name="HotkeyButton10" parent="Cam/CanvasLayer/UI/Hotkeys/HotkeysContainer/HBoxContainer" instance=ExtResource( 34 )]
-margin_left = 387.0
-margin_right = 427.0
+offset_left = 387.0
+offset_right = 427.0
 ButtonHotkey = 9
 
 [node name="DiaUI" parent="Cam/CanvasLayer/UI" instance=ExtResource( 30 )]
@@ -551,20 +551,20 @@ visible = false
 [node name="Scroll" parent="Cam/CanvasLayer/UI" instance=ExtResource( 18 )]
 visible = false
 
-[node name="WindowDialog" type="AcceptDialog" parent="Cam/CanvasLayer/UI"]
-margin_left = 492.0
-margin_top = 355.0
-margin_right = 818.0
-margin_bottom = 438.0
+[node name="Window" type="AcceptDialog" parent="Cam/CanvasLayer/UI"]
+offset_left = 492.0
+offset_top = 355.0
+offset_right = 818.0
+offset_bottom = 438.0
 theme = SubResource( 8 )
-popup_exclusive = true
+exclusive = true
 window_title = "Info"
 dialog_text = "text"
 
 [node name="SetHotkeyUI" parent="Cam/CanvasLayer/UI" instance=ExtResource( 36 )]
 visible = false
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource( 27 )
 texture_scale = 0.3
 energy = 0.2
@@ -582,10 +582,10 @@ __meta__ = {
 
 [node name="Spell_Pointers" type="Node2D" parent="."]
 
-[node name="ShootPoint" type="Position2D" parent="Spell_Pointers"]
+[node name="ShootPoint" type="Marker2D" parent="Spell_Pointers"]
 position = Vector2( 0, 31.7025 )
 
-[node name="TargetPoint" type="Position2D" parent="Spell_Pointers"]
+[node name="TargetPoint" type="Marker2D" parent="Spell_Pointers"]
 
 [connection signal="GrabbedAnItem" from="." to="Cam/CanvasLayer/UI/TabContainer/Inventory" method="_on_Player_GrabbedAnItem"]
 [connection signal="hpupdate" from="." to="Cam/CanvasLayer/UI/HPProgress" method="_on_Player_hpupdate"]

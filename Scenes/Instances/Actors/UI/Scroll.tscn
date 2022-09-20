@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Sprites/TWCSpritesCoverted/items/scroll_empty.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/TWCSpritesCoverted/items/scroll_empty.png" type="Texture2D" id=1]
 [ext_resource path="res://Scenes/Instances/Actors/UI/Scroll.gd" type="Script" id=2]
-[ext_resource path="res://Resources/Fonts/Quickhand/Quikhand.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Resources/Fonts/Quickhand/Quikhand.ttf" type="FontFile" id=3]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 1, 1, 0 )
@@ -10,7 +10,7 @@ bg_color = Color( 1, 1, 1, 0 )
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 24
 font_data = ExtResource( 3 )
 
@@ -35,13 +35,13 @@ expand = true
 stretch_mode = 7
 
 [node name="TextEdit" type="TextEdit" parent="Scroll_Background"]
-margin_left = 403.0
-margin_top = 119.0
-margin_right = 797.0
-margin_bottom = 560.0
+offset_left = 403.0
+offset_top = 119.0
+offset_right = 797.0
+offset_bottom = 560.0
 theme = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Write here"
-syntax_highlighting = true
+syntax_highlighter = true
 smooth_scrolling = true
 [connection signal="text_changed" from="Scroll_Background/TextEdit" to="." method="_on_TextEdit_text_changed"]

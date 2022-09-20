@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/Instances/World/DayAndNight.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Instances/World3D/DayAndNight.gd" type="Script" id=1]
 
 [node name="DNN_OLD" type="ColorRect" groups=[
 "DNN",
 ]]
-margin_right = 258.0
-margin_bottom = 257.0
+offset_right = 258.0
+offset_bottom = 257.0
 color = Color( 0, 0.0705882, 0.388235, 0.301961 )
 script = ExtResource( 1 )
 __meta__ = {

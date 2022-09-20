@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Sprites/UI/UI_BoxLine.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Sprites/UI/UI_BoxLine.png" type="Texture2D" id=1]
+[ext_resource path="res://Resources/Fonts/Actor-Regular.ttf" type="FontFile" id=2]
 [ext_resource path="res://Scenes/Instances/Actors/UI/buttons/HotkeyButton.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 font_data = ExtResource( 2 )
 
 [node name="HotkeyButton" type="TextureButton" groups=[
 "UI_HotkeyButton",
 ]]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+offset_right = 40.0
+offset_bottom = 40.0
+minimum_size = Vector2( 40, 40 )
 texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
@@ -21,10 +21,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="TextureProgress" parent="."]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 modulate = Color( 0.14902, 0.14902, 0.14902, 0.729412 )
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 fill_mode = 5
 nine_patch_stretch = true
 __meta__ = {
@@ -33,11 +33,11 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 1.0
-margin_bottom = 1.0
-rect_min_size = Vector2( 38, 38 )
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+minimum_size = Vector2( 38, 38 )
 expand = true
 __meta__ = {
 "_edit_lock_": true
@@ -46,10 +46,10 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 
 [node name="ButtonHotkey" type="Label" parent="."]
-margin_left = -0.530327
-margin_top = -7.77818
-margin_right = 10.8697
-margin_bottom = 19.6218
+offset_left = -0.530327
+offset_top = -7.77818
+offset_right = 10.8697
+offset_bottom = 19.6218
 custom_fonts/font = SubResource( 1 )
 text = "1"
 __meta__ = {
@@ -57,10 +57,10 @@ __meta__ = {
 }
 
 [node name="ButtonCooldown" type="Label" parent="."]
-margin_left = 15.8683
-margin_top = 18.1768
-margin_right = 41.2683
-margin_bottom = 45.5768
+offset_left = 15.8683
+offset_top = 18.1768
+offset_right = 41.2683
+offset_bottom = 45.5768
 custom_fonts/font = SubResource( 1 )
 text = "1.0"
 __meta__ = {

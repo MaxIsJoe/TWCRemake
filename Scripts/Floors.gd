@@ -9,5 +9,5 @@ func _ready():
 	#	var tile_id = self.get_cellv(pos)
 	#	var tile_name = self.get_tileset().tile_get_name(tile_id)
 	#	if(tile_name == "Roof1"):
-	#		var n = lightfov.instance()
+	#		var n = lightfov.instantiate()
 	#		add_child(n)

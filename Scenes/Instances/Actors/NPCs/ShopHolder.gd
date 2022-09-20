@@ -2,8 +2,8 @@ extends Node
 
 ##This holds all the shop can sell and what is their ID
 
-export(int) var ShopID = 0
-export(Array, String) var ItemIDs : Array
+@export var ShopID: int = 0
+@export var ItemIDs : Array # (Array, String)
 
 func _ready():
 	Data.Update_Group_ShopHolders()
@@ -15,4 +15,4 @@ func RemoveItemFromShop(item: String):
 	if(ItemIDs.has(item)):
 		ItemIDs.erase(item)
 	else:
-		print("[Shop] - No such item found to remove.")
+		print("[Shop] - No such item found to remove_at.")

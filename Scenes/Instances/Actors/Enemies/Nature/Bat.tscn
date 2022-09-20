@@ -1,24 +1,59 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://b2ys6jwt57asc"]
 
-[ext_resource path="res://Resources/AnimatedTextures/Enemies/Bat.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://Sound/SFX/Enemies/bat/bat_1.ogg" type="AudioStream" id=2]
-[ext_resource path="res://Sound/SFX/Enemies/melee_1.ogg" type="AudioStream" id=3]
-[ext_resource path="res://Sound/SFX/Enemies/melee_2.ogg" type="AudioStream" id=4]
-[ext_resource path="res://Sound/SFX/Enemies/bat/bat_2.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Sound/SFX/Enemies/melee_3.ogg" type="AudioStream" id=6]
-[ext_resource path="res://Scenes/Instances/EntitesBase/Characters/EnemyBase.tscn" type="PackedScene" id=17]
+[ext_resource type="SpriteFrames" path="res://Resources/AnimatedTextures/Enemies/Bat.tres" id="1"]
+[ext_resource type="AudioStream" uid="uid://c25jap3jp5sqv" path="res://Sound/SFX/Enemies/bat/bat_1.ogg" id="2"]
+[ext_resource type="AudioStream" uid="uid://coiciwas3ys4s" path="res://Sound/SFX/Enemies/melee_1.ogg" id="3"]
+[ext_resource type="AudioStream" uid="uid://dqk4o7gkjit2f" path="res://Sound/SFX/Enemies/melee_2.ogg" id="4"]
+[ext_resource type="AudioStream" uid="uid://cvftwvbnts3gx" path="res://Sound/SFX/Enemies/bat/bat_2.ogg" id="5"]
+[ext_resource type="AudioStream" uid="uid://dxpm5xu3vnui3" path="res://Sound/SFX/Enemies/melee_3.ogg" id="6"]
+[ext_resource type="PackedScene" path="res://Scenes/Instances/EntitesBase/Characters/EnemyBase.tscn" id="17"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 254.542
 
-[node name="Bat" instance=ExtResource( 17 )]
+[node name="Bat" instance=ExtResource("17")]
 faction = 16
 EnemyName = "Bat"
-AttackSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ]
-AlertSounds = [ ExtResource( 2 ), ExtResource( 5 ) ]
+AttackSounds = [ExtResource("3"), ExtResource("4"), ExtResource("6")]
+AlertSounds = [ExtResource("2"), ExtResource("5")]
+
+[node name="LoSTween" parent="LineOfSight" index="0"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
+
+[node name="Tween" parent="Systems" index="2"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="Body" parent="SpriteHandler" index="0"]
-frames = ExtResource( 1 )
+frames = ExtResource("1")
+animation = &"idledown"
 
 [node name="CollisionShape2D" parent="DetectionZone" index="0"]
-shape = SubResource( 1 )
+shape = SubResource("1")
+
+[node name="Alerts" parent="Audio" index="0"]
+bus = &"Sound Effects"
+
+[node name="Grunts" parent="Audio" index="1"]
+bus = &"Sound Effects"
+
+[node name="Idle" parent="Audio" index="2"]
+bus = &"Sound Effects"
+
+[node name="Passive" parent="Audio" index="3"]
+bus = &"Sound Effects"
+
+[node name="SpellTarget" parent="Audio" index="4"]
+bus = &"Sound Effects"
+
+[node name="Attack" parent="Audio" index="5"]
+bus = &"Sound Effects"

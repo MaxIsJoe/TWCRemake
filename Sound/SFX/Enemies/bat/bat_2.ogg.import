@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/bat_2.ogg-da616ba3ff225fc99ff0764ae5130011.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cvftwvbnts3gx"
+path="res://.godot/imported/bat_2.ogg-da616ba3ff225fc99ff0764ae5130011.oggvorbisstr"
 
 [deps]
 
 source_file="res://Sound/SFX/Enemies/bat/bat_2.ogg"
-dest_files=[ "res://.import/bat_2.ogg-da616ba3ff225fc99ff0764ae5130011.oggstr" ]
+dest_files=["res://.godot/imported/bat_2.ogg-da616ba3ff225fc99ff0764ae5130011.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var version = Global.version #Used to display the game's version, should be updated later to make this a variable found in a config file or something like that.
+var version = "0.0.1" #Used to display the game's version, should be updated later to make this a variable found in a config file or something like that.
 var selecteditemG
 var selectitemH
 
@@ -11,19 +11,19 @@ var PlayerID = ""
 var DiagonAlley = "res://Scenes/Levels/DiagonAlley.tscn"
 var DiagonAlleySpawnPos = Vector2(782,177)
 
-export (NodePath) var dropdown_path
+@export_node_path(OptionButton) var dropdown_path
 
 #All the importat things that needs to referenced and defined
-onready var versionlabel = $MainPage/Version
-onready var charactersetup = $CharacterPage
-onready var mainpage = $MainPage
-onready var dropdownGender = $CharacterPage/SelectGender
-onready var dropdownHouse = $CharacterPage/SelectHouse
-onready var warninglabel = $CharacterPage/Warning
-onready var timeout = $Timeout
+@onready var versionlabel = $MainPage/Version
+@onready var charactersetup = $CharacterPage
+@onready var mainpage = $MainPage
+@onready var dropdownGender = $CharacterPage/SelectGender
+@onready var dropdownHouse = $CharacterPage/SelectHouse
+@onready var warninglabel = $CharacterPage/Warning
+@onready var timeout = $Timeout
 
-remote var hascharacter : bool = false
-remote var saveddata : Dictionary = {}
+var hascharacter : bool = false
+var saveddata : Dictionary = {}
 
 var timeout_counter = -1
 
@@ -49,16 +49,16 @@ func HideStartingPage():
 	charactersetup.queue_free()
 
 func _on_StartButton_pressed():
-	playeruniqueID = get_tree().get_network_unique_id()
+	playeruniqueID = get_tree().get_unique_id()
 	Data.main_node.Map.visible = true
 	NetworkManager.Network.rpc_id(1, "GetActiveKeys")
 	$MainPage/StartButton.disabled = true
 	$MainPage/StartButton.text = "Loading.."
 	hascharacter = false
 	if(playeruniqueID != 1):
-		rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_network_unique_id())
+		rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_unique_id())
 	else:
-		DoesHeAlreadyHaveACharacter(Data.main_node.key, get_tree().get_network_unique_id())
+		DoesHeAlreadyHaveACharacter(Data.main_node.key, get_tree().get_unique_id())
 	
 	while hascharacter == false:
 		if(timeout_counter >= 10):
@@ -68,16 +68,16 @@ func _on_StartButton_pressed():
 			break
 		else:
 			timeout.start()
-			yield(timeout, "timeout")
+			await timeout.timeout
 			timeout_counter += 1
 			
 	if(hascharacter):
 		saveddata = {}
 		
 		if(playeruniqueID != 1):
-			NetworkManager.Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_network_unique_id())
+			NetworkManager.Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_unique_id())
 		else:
-			NetworkManager.Network.GetSavedPlayerData(Data.main_node.key, get_tree().get_network_unique_id())
+			NetworkManager.Network.GetSavedPlayerData(Data.main_node.key, get_tree().get_unique_id())
 		
 		while saveddata.size() == 0:
 			if(timeout_counter >= 10):
@@ -87,14 +87,14 @@ func _on_StartButton_pressed():
 				break
 			else:
 				timeout.start()
-				yield(timeout, "timeout")
+				await timeout.timeout
 				timeout_counter += 1
 				
-		NetworkManager.Functions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_network_unique_id())
+		NetworkManager.Functions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_unique_id())
 		if(playeruniqueID != 1):
-			NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+			NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_unique_id())
 		else:
-			NetworkManager.Network.CreateActivePlayers(get_tree().get_network_unique_id())
+			NetworkManager.Network.CreateActivePlayers(get_tree().get_unique_id())
 		Data.main_node.UI_Chat.SendText(0, str(saveddata["N"] + " logged in."), "")
 		Data.main_node.CanOpenPauseMenu = true
 		Data.main_node.PauseScreen.BuildPlayerWhoList()
@@ -103,16 +103,16 @@ func _on_StartButton_pressed():
 		mainpage.visible = false
 		charactersetup.visible = true
 	
-remote func DoesHeAlreadyHaveACharacter(key, id):
+@rpc(any_peer) func DoesHeAlreadyHaveACharacter(key, id):
 	var file
 	var dir = Directory.new()
 	if dir.open("user://saves/") == OK:
-		dir.list_dir_begin(true, true)
-		while file != "": #(Max): I have no idea what's going on here but it works so I'm not messing with it.
+		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
+		while file != "": #(Max): I have no idea what's going checked here but it works so I'm not messing with it.
 			if(file != null):
 				if(file.begins_with(str(key))):
 					if(playeruniqueID != 1):
-						rset_id(id, "hascharacter", true) #Tell the client that his account does exist
+						rpc_id(id, "TellClientCharacterStatus", true) #Tell the client that his account does exist
 					else:
 						print("Setting hascharacter to true")
 						hascharacter = true
@@ -120,6 +120,9 @@ remote func DoesHeAlreadyHaveACharacter(key, id):
 			file = dir.get_next()
 	else:
 		print("Failed to open user://saves/")
+		
+func TellClientCharacterStatus(status):
+	hascharacter = status
 	
 func add_items():
 	dropdownGender.add_item("Wizard")
@@ -176,10 +179,10 @@ func CreateThePlayer(charname):
 		NetworkManager.Network.rpc_id(1, "GetActiveKeys")
 	else:
 		NetworkManager.Network.GetActiveKeys()
-	NetworkManager.Functions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_network_unique_id())
+	NetworkManager.Functions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_unique_id())
 	Data.main_node.UI_Chat.SendText(0, str(charname + " logged in."), "")
 	if(playeruniqueID != 1):
-		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_network_unique_id())
+		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_unique_id())
 	else:
-		NetworkManager.Network.CreateActivePlayers(get_tree().get_network_unique_id())
+		NetworkManager.Network.CreateActivePlayers(get_tree().get_unique_id())
 	HideStartingPage()

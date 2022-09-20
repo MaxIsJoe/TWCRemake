@@ -11,7 +11,7 @@ var housewinnerofthismonth
 
 var housenames = ["Grif","Slyth","Claw","Huff"]
 
-var day = OS.get_date()["day"]
+var day = Time.get_datetime_dict_from_datetime_string("day", true)
 var Moon
 
 #Day and Night stuff
@@ -27,7 +27,7 @@ var EnableFPSTracker: bool = true
 var PeacefulMode    : bool = false
 
 func _ready():
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	JsonLoader.LoadJSON_General(Data.ItemJSON, 1)
 	JsonLoader.LoadJSON_General(Data.SpellsJSON, 2)
 
@@ -100,7 +100,8 @@ func ConditionCheck(ID):
 		
 
 func UpdateDialogicPlayerDataVariables():
-	Dialogic.set_variable("PlayerGender", Data.Player.Gender)
-	Dialogic.set_variable("PlayerYear", Data.Player.PlayerYear)
-	Dialogic.set_variable("PlayerMoney", Data.Player.gold)
-	Dialogic.set_variable("PlayerName", Data.Player.PlayerName)
+	pass
+	#Dialogic.set_variable("PlayerGender", Data.Player.Gender)
+	#Dialogic.set_variable("PlayerYear", Data.Player.PlayerYear)
+	#Dialogic.set_variable("PlayerMoney", Data.Player.gold)
+	#Dialogic.set_variable("PlayerName", Data.Player.PlayerName)

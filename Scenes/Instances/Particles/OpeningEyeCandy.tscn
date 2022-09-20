@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0, 0.321569, 0.4, 0.294118, 0, 0.35355, 0.830735, 1 )
+colors = PackedColorArray( 0, 0.321569, 0.4, 0.294118, 0, 0.35355, 0.830735, 1 )
 
 [node name="OpeningEyeCandy" type="CPUParticles2D"]
 scale = Vector2( 12, 12 )

@@ -1,12 +1,12 @@
 extends CanvasModulate
 
-export(float) var ShortDuration = 6
-export(float) var LongDuration = 12
-export(Color) var DayColor
-export(Color) var NightColor
-export(Color) var DawnColor
-export(Color) var MidnightColor
-export(Color) var BloodMoon
+@export var ShortDuration: float = 6
+@export var LongDuration: float = 12
+@export var DayColor: Color
+@export var NightColor: Color
+@export var DawnColor: Color
+@export var MidnightColor: Color
+@export var BloodMoon: Color
 
 
 enum TimeOfDay  {
@@ -18,17 +18,17 @@ enum TimeOfDay  {
 }
 
 #How long do days/nights take?
-#(Max) : Values are too low for now for testing. Night and day times should be longer on release
+#(Max) : Values are too low for now for testing. Night and day times should be longer checked release
 var TimeLong  : float = 120
 var TimeShort : float = 60
 
-sync var currentTime = TimeOfDay.Day
+var currentTime = TimeOfDay.Day
 
 var timer
 
 func StartCycle():
 	timer = Timer.new()
-	timer.connect("timeout",self,"_on_timer_timeout") 
+	timer.connect("timeout",Callable(self,"_on_timer_timeout")) 
 	add_child(timer)
 	timer.wait_time = TimeShort
 	timer.one_shot = false
@@ -37,7 +37,7 @@ func StartCycle():
 	print_debug("[WORLD] : Timer wait_time = " + str(timer.wait_time))
 
 
-remote func ChangeColor(color):
+@rpc(any_peer) func ChangeColor(color):
 	match color:
 		"Day":
 			$Tween.interpolate_property(self, "color", self.color, DayColor, ShortDuration,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
@@ -56,38 +56,41 @@ remote func ChangeColor(color):
 			$Tween.start()
 
 func ChangeTime(Time):
-	if(get_tree().get_network_unique_id() == 1):
+	if(get_tree().get_unique_id() == 1):
 		match Time:
 			TimeOfDay.Day:
 				rpc_id(0,"ChangeColor", "Day")
 				ChangeColor("Day")
 				currentTime = TimeOfDay.Day
-				rset_id(0, "currentTime", currentTime)
+				rpc_id(0, "SetCurrentTime", currentTime)
 			TimeOfDay.Dusk:
 				rpc_id(0,"ChangeColor", "Dawn")
 				ChangeColor("Dawn")
 				currentTime = TimeOfDay.Dusk
-				rset_id(0, "currentTime", currentTime)
+				rpc_id(0, "SetCurrentTime", currentTime)
 			TimeOfDay.Night:
 				rpc_id(0,"ChangeColor", "Night")
 				ChangeColor("Night")
 				currentTime = TimeOfDay.Night
-				rset_id(0, "currentTime", currentTime)
+				rpc_id(0, "SetCurrentTime", currentTime)
 			TimeOfDay.Midnight:
 				rpc_id(0,"ChangeColor", "Midnight")
 				ChangeColor("Midnight")
 				currentTime = TimeOfDay.Midnight
-				rset_id(0, "currentTime", currentTime)
+				rpc_id(0, "SetCurrentTime", currentTime)
 			TimeOfDay.Dawn:
 				rpc_id(0,"ChangeColor", "Dawn")
 				ChangeColor("Dawn")
 				currentTime = TimeOfDay.Dawn
-				rset_id(0, "currentTime", currentTime)
+				rpc_id(0, "SetCurrentTime", currentTime)
 				
 func SyncTime(playerID: int):
 	if(playerID != 1):
-		rset_id(playerID, "currentTime", currentTime)
+		rpc_id(playerID, "SetCurrentTime", currentTime)
 		rpc_id(playerID, "ChangeColor", currentTime)
+		
+@rpc(any_peer) func SetCurrentTime(time):
+	currentTime = time
 
 func _on_timer_timeout():
 	match currentTime:
