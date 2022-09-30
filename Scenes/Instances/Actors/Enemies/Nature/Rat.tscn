@@ -10,11 +10,21 @@
 [ext_resource type="AudioStream" uid="uid://vy5qdujryj4i" path="res://Sound/SFX/Enemies/rat/rat_hiss2.ogg" id="8"]
 
 [node name="Rat" instance=ExtResource("2")]
-faction = 16
 EnemyName = "Rat"
 SpawnerID = 1
+AttackType = 0
+AttackRange = 45
+AttackRangeLerpTime = 0.7
+AttackCooldown = 1.0
+AlertExtraRange = 35
+IsLegendary = false
+AI_CanWander = true
+AI_WanderTime = 450
+AI_HasNoLimitsOutsideOfSpawn = false
+AI_MaxDistanceAwayFromSpawn = 1000
 AttackSounds = [ExtResource("5"), ExtResource("6"), ExtResource("8")]
 AlertSounds = [ExtResource("3"), ExtResource("4"), ExtResource("7")]
+faction = 16
 
 [node name="LoSTween" parent="LineOfSight" index="0"]
 _import_path = NodePath("")

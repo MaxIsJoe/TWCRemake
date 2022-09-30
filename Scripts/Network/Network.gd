@@ -103,17 +103,16 @@ func SendWorldState(state):
 		NetworkManager.Functions.rpc_id(id, "CreateThePlayer", data["N"], int(data["G"]), int(data["H"]), null, Vector2(int(data["vx"]), int(data["vy"])), int(player.name))
 		
 @rpc(any_peer) func GetSavedPlayerData(key, id): #Sends the player's savefile to him, the savefile *should* only exist checked the server.
-	var file = File.new()
-	file.open(str("user://saves/" + key + ".json"), File.READ)
-	var dfile = file.get_as_text()
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(dfile)
-	var data = test_json_conv.get_data()
-	if(id != 1): 
-		Data.main_node.MainMenu.rset_id(id, "saveddata", data)
-	else:
-		Data.main_node.MainMenu.saveddata = data
-	file.close()
+	var file = FileAccess.open(str("user://saves/" + key + ".json"), FileAccess.READ)
+	if(file == OK):
+		var dfile = file.get_as_text()
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(dfile)
+		var data = test_json_conv.get_data()
+		if(id != 1): 
+			Data.main_node.MainMenu.rset_id(id, "saveddata", data)
+		else:
+			Data.main_node.MainMenu.saveddata = data
 
 @rpc(any_peer) func SetSpellState():
 	spells_ID += 1

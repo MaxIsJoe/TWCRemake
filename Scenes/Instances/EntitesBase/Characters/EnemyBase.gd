@@ -1,5 +1,13 @@
-extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd"
+extends "res://Scenes/Instances/EntitesBase/Characters/CharacterEntity.gd".MobEntity
 class_name Enemy_Entity
+
+enum AI_states {
+	IDLE,
+	WANDER,
+	SEARCH,
+	ATTACK,
+	RETREAT
+}
 
 @export var EnemyName: String = "Enemy"
 @export var SpawnerID: int = 0 # This is used to allow the game to spawn entities for players who latejoin. can be used for other stuff later
@@ -33,14 +41,6 @@ var player_spotted  : bool = false
 var canAttack       : bool = true
 var ourname
 
-enum AI_states {
-	IDLE,
-	WANDER,
-	SEARCH,
-	ATTACK,
-	RETREAT
-}
-
 
 func _ready():
 	LineOfSight.enabled = true
@@ -72,7 +72,7 @@ func GetEntityData():
 		"id": name,
 		"P": global_position, 
 		"A": SpriteHandler.currentDir, 
-		"R": rotation_degrees, 
+		"R": rotation, 
 	}
 	return data
 	
@@ -80,7 +80,7 @@ func GetEntityData():
 func UpdateEntityData(data):
 	global_position = lerp(global_position, data[ourname]["P"], 0.4)
 	SpriteHandler.currentDir = data[ourname]["A"]
-	rotation_degrees = data[ourname]["R"]
+	rotation = data[ourname]["R"]
 	
 	SpriteHandler.PlayDirectionalAnimAll(SpriteHandler.currentDir)
 

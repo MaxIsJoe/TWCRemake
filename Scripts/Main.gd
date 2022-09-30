@@ -17,7 +17,7 @@ var net_thread = Thread.new()
 func _ready():
 	set_physics_process(false)
 	CheckForExecutableLaunchArguments()
-	var dir = Directory.new()
+	var dir : FileAccess
 	if(dir.dir_exists("user://saves/") or dir.dir_exists("user://accounts/")):
 		pass
 	else:

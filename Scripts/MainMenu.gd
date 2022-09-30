@@ -105,8 +105,8 @@ func _on_StartButton_pressed():
 	
 @rpc(any_peer) func DoesHeAlreadyHaveACharacter(key, id):
 	var file
-	var dir = Directory.new()
-	if dir.open("user://saves/") == OK:
+	var dir = FileAccess.open("user://saves/", FileAccess.READ)
+	if dir == OK:
 		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		while file != "": #(Max): I have no idea what's going checked here but it works so I'm not messing with it.
 			if(file != null):

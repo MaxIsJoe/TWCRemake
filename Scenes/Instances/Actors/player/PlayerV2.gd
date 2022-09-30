@@ -1,4 +1,4 @@
-extends MobEntity
+extends MobEntity.MobEntity
 class_name PlayerEntity
 
 @export var CamZoomOnPlayer: Vector2 = Vector2(0.5,0.5)
@@ -207,23 +207,21 @@ func ShowShopUI(Items, ShopID):
 	$Cam/CanvasLayer/UI/ShopUI.OpenShop(Items, ShopID)
 
 func ShowScroll(ID):
-	var file = File.new()
-	if file.file_exists("res://debug/Scrolls/" + str(ID) + ".txt"):
-		var error = file.open("res://debug/Scrolls/" + str(ID) + ".txt", file.READ_WRITE)
+	if FileAccess.file_exists("res://debug/Scrolls/" + str(ID) + ".txt"):
+		var error = FileAccess.open("res://debug/Scrolls/" + str(ID) + ".txt", FileAccess.READ_WRITE)
 		if error == OK:
 			print("Showing file [" + str(ID) + "]")
-			var content = file.get_as_text()
+			var content = error.get_as_text()
 			ScrollUI.LoadText(content, ID)
 			ScrollUI.visible = true
 		else:
 			print("Error opening the file")
-		file.close()
 	else:
 		print("No scroll files found.. creating a new one")
-		file.open("res://debug/Scrolls/" + str(ID) + ".txt", File.WRITE)
-		file.store_string("")
-		file.close()
-
+		var newScroll = FileAccess.open("res://debug/Scrolls/" + str(ID) + ".txt", FileAccess.WRITE)
+		newScroll.store_string("")
+		
+		
 func ShowSign(Title, Content):
 	PopUpUI.window_title = Title
 	PopUpUI.dialog_text = Content

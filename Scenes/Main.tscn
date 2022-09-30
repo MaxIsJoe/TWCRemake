@@ -27,41 +27,35 @@ grow_vertical = 2
 script = ExtResource("8")
 
 [node name="Buttons" type="VBoxContainer" parent="MainUI/FirstLoad"]
-layout_mode = 0
 offset_left = 291.22
 offset_right = 534.22
 offset_bottom = 720.0
 alignment = 1
 
 [node name="HBoxContainer" type="VBoxContainer" parent="MainUI/FirstLoad/Buttons"]
-layout_mode = 2
 offset_top = 318.0
 offset_right = 242.0
 offset_bottom = 401.0
 alignment = 1
 
 [node name="StartSinglePlayer" type="Button" parent="MainUI/FirstLoad/Buttons/HBoxContainer"]
-layout_mode = 2
 offset_right = 242.0
 offset_bottom = 25.0
 text = "Play Singleplayer"
 
 [node name="Connect_LAN" type="Button" parent="MainUI/FirstLoad/Buttons/HBoxContainer"]
-layout_mode = 2
 offset_top = 29.0
 offset_right = 242.0
 offset_bottom = 54.0
 text = "Connect to LAN Server"
 
 [node name="Connect_CustomIp" type="Button" parent="MainUI/FirstLoad/Buttons/HBoxContainer"]
-layout_mode = 2
 offset_top = 58.0
 offset_right = 242.0
 offset_bottom = 83.0
 text = "Connect to an Online server"
 
 [node name="StartupSettings" type="VBoxContainer" parent="MainUI/FirstLoad"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -76,14 +70,12 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="MainUI/FirstLoad/StartupSettings"]
-layout_mode = 2
 offset_top = 295.0
 offset_right = 440.0
 offset_bottom = 321.0
 text = "Startup Settings"
 
 [node name="Check_Debug" type="CheckButton" parent="MainUI/FirstLoad/StartupSettings"]
-layout_mode = 2
 offset_top = 325.0
 offset_right = 440.0
 offset_bottom = 348.0
@@ -91,7 +83,6 @@ disabled = true
 text = "FPS Tracker"
 
 [node name="Check_Peace" type="CheckButton" parent="MainUI/FirstLoad/StartupSettings"]
-layout_mode = 2
 offset_top = 352.0
 offset_right = 440.0
 offset_bottom = 375.0
@@ -99,14 +90,12 @@ tooltip_text = "Enemies won't spawn"
 text = "Networking"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MainUI/FirstLoad/StartupSettings"]
-layout_mode = 2
 offset_top = 379.0
 offset_right = 440.0
 offset_bottom = 412.0
 alignment = 1
 
 [node name="Label2" type="Label" parent="MainUI/FirstLoad/StartupSettings/HBoxContainer2"]
-layout_mode = 2
 offset_left = 173.0
 offset_top = 3.0
 offset_right = 196.0
@@ -114,7 +103,6 @@ offset_bottom = 29.0
 text = "IP :"
 
 [node name="IP_Text" type="LineEdit" parent="MainUI/FirstLoad/StartupSettings/HBoxContainer2"]
-layout_mode = 2
 offset_left = 200.0
 offset_right = 267.0
 offset_bottom = 33.0

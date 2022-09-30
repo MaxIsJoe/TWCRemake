@@ -12,10 +12,21 @@
 radius = 254.542
 
 [node name="Bat" instance=ExtResource("17")]
-faction = 16
 EnemyName = "Bat"
+SpawnerID = 0
+AttackType = 0
+AttackRange = 45
+AttackRangeLerpTime = 0.7
+AttackCooldown = 1.0
+AlertExtraRange = 35
+IsLegendary = false
+AI_CanWander = true
+AI_WanderTime = 450
+AI_HasNoLimitsOutsideOfSpawn = false
+AI_MaxDistanceAwayFromSpawn = 1000
 AttackSounds = [ExtResource("3"), ExtResource("4"), ExtResource("6")]
 AlertSounds = [ExtResource("2"), ExtResource("5")]
+faction = 16
 
 [node name="LoSTween" parent="LineOfSight" index="0"]
 _import_path = NodePath("")

@@ -5,17 +5,17 @@ var banksPath : String = "user://accounts/BanksAndVaults/"
 var bankUI : PackedScene = load("res://Scenes/Instances/Actors/UI/BankUI.tscn")
 
 func _ready():
-	var dir = Directory.new()
-	if(dir.dir_exists(banksPath)):
+	var dir = FileAccess.open(banksPath, FileAccess.READ)
+	if(dir is OK):
 		pass
 	else:
 		dir.make_dir(banksPath)
 
-@rpc(any_peer, call_local) func desposit(playerKey: String, amount: int, playerNode : PlayerEntity):
+@rpc(any_peer, call_local) func desposit(playerKey: String, amount: int, playerNode):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
-		var dir : Directory = Directory.new()
-		if dir.open(banksPath) == OK:
+		var dir = FileAccess.open(banksPath, FileAccess.READ)
+		if dir == OK:
 			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 			while file != "":
 				if(file != null):
@@ -32,8 +32,8 @@ func _ready():
 @rpc(any_peer, call_local) func howMuchMoneyDoesThisPlayerHave(playerKey: String):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
-		var dir : Directory = Directory.new()
-		if dir.open(banksPath) == OK:
+		var dir = FileAccess.open(banksPath, FileAccess.READ)
+		if dir == OK:
 			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 			while file != "":
 				if(file != null):
@@ -46,11 +46,11 @@ func _ready():
 			print("[Banks] - Player account not found!")
 			return null
 			
-@rpc(any_peer, call_local) func withdraw(playerKey: String, amountToWithdraw: int, playerNode: PlayerEntity):
+@rpc(any_peer, call_local) func withdraw(playerKey: String, amountToWithdraw: int, playerNode):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
-		var dir : Directory = Directory.new()
-		if dir.open(banksPath) == OK:
+		var dir = FileAccess.open(banksPath, FileAccess.READ)
+		if dir == OK:
 			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 			while file != "":
 				if(file != null):
@@ -72,8 +72,8 @@ func _ready():
 @rpc(any_peer, call_local) func UpdateDialogicBankStatus(playerKey: String):
 	if(doesThisPlayerHaveABankAccount(playerKey)):
 		var file
-		var dir : Directory = Directory.new()
-		if dir.open(banksPath) == OK:
+		var dir = FileAccess.open(banksPath, FileAccess.READ)
+		if dir == OK:
 			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 			while file != "":
 				if(file != null):
@@ -97,8 +97,8 @@ func _ready():
 		print("[Banks] - User already has a registered account.")
 	
 @rpc(any_peer, call_local) func doesThisPlayerHaveABankAccount(key):
-	var _file : File = File.new()
-	if _file.open(str(banksPath + key + ".json"), File.READ) == OK:
+	var file = FileAccess.open(str(banksPath + key + ".json"), FileAccess.READ)
+	if file == OK:
 		return true
 	else:
 		print("Failed to find " + banksPath + key + ".json")
