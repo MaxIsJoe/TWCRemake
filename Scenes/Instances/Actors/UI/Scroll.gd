@@ -20,12 +20,13 @@ func _on_TextEdit_text_changed():
 		var newtext = txtField.text.replace("[sign]", Data.Player.PlayerName)
 		txtField.text = newtext
 
-@rpc(any_peer, call_local) func ServerSaveScroll(txt):
-	var file = File.new()
+@rpc("any_peer", "call_local") func ServerSaveScroll(txt):
+	#var file = File.new()
 	print("Savening scroll : " + str(ID))
-	file.open("res://debug/Scrolls/" + str(ID) + ".txt", File.WRITE)
-	file.store_string(txt)
-	file.close()
+	var file = FileAccess.open("res://debug/Scrolls/" + str(ID) + ".txt", FileAccess.WRITE)
+	if file:
+		file.store_string(txt)
+		file.close()
 	#if(txtField.text != ""):
 	#	var buttons = get_tree().get_nodes_in_group("ItemButtons")
 	#	for button in buttons:

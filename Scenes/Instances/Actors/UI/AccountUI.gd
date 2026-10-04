@@ -9,25 +9,26 @@ extends Control
 @onready var keyinput = $VBoxContainer/KeyInput
 @onready var passwordinput = $VBoxContainer/PasswordInput
 
-remotesync var keyexists : bool = false
+var keyexists : bool = false # remotesync
 
-@rpc(any_peer) func DoesThisKeyExist(key, id): #Loops through all files in /saves/ to find a filename with the inserted key.
+@rpc("any_peer") func DoesThisKeyExist(key, id): #Loops through all files in /saves/ to find a filename with the inserted key.
 	var file
-	var dir = Directory.new()
-	if dir.open("user://accounts/") == OK:
+	var dir = DirAccess.open("user://accounts/")
+	if dir:
 		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		while file != "": #(Max): I have no idea what's going checked here but it works so I'm not messing with it.
 			if(file != null):
 				if(file.begins_with(str(key))): 
-					rset_id(id, "keyexists", true) #Tell the client that his account does exist
+					#rset_id(id, "keyexists", true) #Tell the client that his account does exist
+					keyexists = true
 					break
 			file = dir.get_next()
 	else:
 		print("Failed to open user://accounts/")
 
-@rpc(any_peer) func login(savefile, password, id): #Gets the password from a savefile
-	var file = File.new()
-	file.open(str("user://accounts/" + savefile + ".json"), File.READ)
+@rpc("any_peer") func login(savefile, password, id): #Gets the password from a savefile
+	
+	var file = FileAccess.open(str("user://accounts/" + savefile + ".json"), FileAccess.READ)
 	var dfile = file.get_as_text()
 	var test_json_conv = JSON.new()
 	test_json_conv.parse(dfile) #store it in a dictionary so we can call data.get("password")
@@ -45,7 +46,7 @@ remotesync var keyexists : bool = false
 		else:
 			UpdateLabelRemotly("Incorrect key or password.")
 
-@rpc(any_peer) func createaccount(key, password, id):
+@rpc("any_peer") func createaccount(key, password, id):
 	var pw = {"password": passwordhasing(password)}
 	JsonLoader.SaveJSON(pw, str("user://accounts/" + key + ".json"))
 	if(id != 1):
@@ -53,14 +54,14 @@ remotesync var keyexists : bool = false
 	else:
 		startgame(key)
 
-@rpc(any_peer) func startgame(key):
+@rpc("any_peer") func startgame(key):
 	Data.main_node.LoadGame()
 	GiveUserHisKey(key)
 
-@rpc(any_peer) func UpdateLabelRemotly(txt): #Updates the warning label remotely
+@rpc("any_peer") func UpdateLabelRemotly(txt): #Updates the warning label remotely
 	warninglabel.text = txt
 
-@rpc(any_peer) func GiveUserHisKey(k):
+@rpc("any_peer") func GiveUserHisKey(k):
 	Data.main_node.key = k
 
 func passwordhasing(password:String):
@@ -74,18 +75,18 @@ func _on_Button_button_down():
 	if(keyinput.text == "" or str(passwordinput.text).length() < MiniumPasswordLength):
 		warninglabel.text = "Invalid data entered."
 		return
-	if not(get_tree().is_server()):
-		rpc_id(1, "DoesThisKeyExist", keyinput.text, get_tree().get_unique_id())
+	if not(get_tree().get_multiplayer().is_server()):
+		rpc_id(1, "DoesThisKeyExist", keyinput.text, get_tree().get_multiplayer().get_unique_id())
 	else:
-		DoesThisKeyExist(keyinput.text, get_tree().get_unique_id())
-	var await = get_tree().create_timer(0.3)
+		DoesThisKeyExist(keyinput.text, get_tree().get_multiplayer().get_unique_id())
+	var _await = get_tree().create_timer(0.3)
 	warninglabel.text = "Loading.."
-	await await.timeout
+	await _await.timeout
 	if(keyexists):
-		if not(get_tree().is_server()):
-			rpc_id(1, "login", keyinput.text, passwordinput.text, get_tree().get_unique_id())
+		if not(get_tree().get_multiplayer().is_server()):
+			rpc_id(1, "login", keyinput.text, passwordinput.text, get_tree().get_multiplayer().get_unique_id())
 		else:
-			login(keyinput.text, passwordinput.text, get_tree().get_unique_id())
+			login(keyinput.text, passwordinput.text, get_tree().get_multiplayer().get_unique_id())
 	else:
 		warninglabel.text = "Incorrect key or password."
 
@@ -94,20 +95,20 @@ func _on_Button2_button_down():
 	if(keyinput.text == "" or str(passwordinput.text).length() < MiniumPasswordLength):
 		warninglabel.text = "Invalid data entered."
 		return
-	if not(get_tree().is_server()):
-		rpc_id(1, "DoesThisKeyExist", keyinput.text,  get_tree().get_unique_id())
+	if not(get_tree().get_multiplayer().is_server()):
+		rpc_id(1, "DoesThisKeyExist", keyinput.text,  get_tree().get_multiplayer().get_unique_id())
 	else:
-		DoesThisKeyExist(keyinput.text, get_tree().get_unique_id())
-	var await = get_tree().create_timer(0.3)
+		DoesThisKeyExist(keyinput.text, get_tree().get_multiplayer().get_unique_id())
+	var _await = get_tree().create_timer(0.3)
 	warninglabel.text = "Loading.."
-	await await.timeout
+	await _await.timeout
 	if(keyexists):
 		warninglabel.text = "Key already exists."
 	else:
-		if not(get_tree().is_server()):
-			rpc_id(1, "createaccount", keyinput.text, passwordinput.text, get_tree().get_unique_id())
+		if not(get_tree().get_multiplayer().is_server()):
+			rpc_id(1, "createaccount", keyinput.text, passwordinput.text, get_tree().get_multiplayer().get_unique_id())
 		else:
-			createaccount(keyinput.text, passwordinput.text, get_tree().get_unique_id())
+			createaccount(keyinput.text, passwordinput.text, get_tree().get_multiplayer().get_unique_id())
 		
 
 func _on_Button3_button_down():

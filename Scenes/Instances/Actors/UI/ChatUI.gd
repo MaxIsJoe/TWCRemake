@@ -61,7 +61,7 @@ func ShowUI(): #Moves the UI smoothly unchecked and back checked screen
 		is_visible = false
 	vis_tween.start()
 
-@rpc(any_peer, call_local) func receive_message(text):
+@rpc("any_peer", "call_local") func receive_message(text):
 	TextDisplay.text += text
 
 func _on_SayOption_item_selected(index):

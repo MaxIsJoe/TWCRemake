@@ -17,12 +17,12 @@ var net_thread = Thread.new()
 func _ready():
 	set_physics_process(false)
 	CheckForExecutableLaunchArguments()
-	var dir : FileAccess
-	if(dir.dir_exists("user://saves/") or dir.dir_exists("user://accounts/")):
+	#var dir : DirAccess
+	if(DirAccess.dir_exists_absolute("user://saves/") or DirAccess.dir_exists_absolute("user://accounts/")):
 		pass
 	else:
-		dir.make_dir("user://saves/")
-		dir.make_dir("user://accounts/")
+		DirAccess.make_dir_recursive_absolute("user://saves/")
+		DirAccess.make_dir_recursive_absolute("user://accounts/")
 	Data.main_node = self
 	if(OS.is_debug_build() or OS.has_feature("editor")):
 		$MainUI/FirstLoad/StartupSettings/Check_Debug.button_pressed = true
@@ -65,4 +65,3 @@ func _input(event):
 			PauseScreen.visible = false
 		else:
 			PauseScreen.visible = true
-

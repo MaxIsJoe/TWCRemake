@@ -39,7 +39,7 @@ func LateSpawnEntity(entity):
 	EntityToSpawn.name = str(entity)
 	EntityToSpawn.UpdateEntityData(EntitesState)
 
-@rpc(any_peer, call_local) func SyncDataDictionary(data):
+@rpc("any_peer", "call_local") func SyncDataDictionary(data):
 	EntitesState = data
 	
 
@@ -53,14 +53,14 @@ func RemoveData(EntityID):
 	if($EntitesContanier.has_node(str(EntityID))):
 		Entites.get_node(str(EntityID)).queue_free()
 		
-@rpc(any_peer, call_local) func RemoveAllEntites():
+@rpc("any_peer", "call_local") func RemoveAllEntites():
 	EntitesState.clear()
 	rset_id(0, "EntitesState", EntitesState)
 	
 	for entity in Entites.get_children():
 		rpc_id(0, "RemoveEntity", entity)
 
-@rpc(any_peer, call_local) func RemoveEntity(entity):
+@rpc("any_peer", "call_local") func RemoveEntity(entity):
 	if(Entites.has_node(entity)):
 		entity.queue_free()
 
@@ -87,11 +87,11 @@ func GetNearestPlayerInZone():
 			nearest_player = player
 	return nearest_player
 
-@rpc(any_peer) func AddPlayersInArea(player):
+@rpc("any_peer") func AddPlayersInArea(player):
 	PlayersInArea.append(player)
 		
 	
-@rpc(any_peer) func RemoveFromPlayersInArea(player):
+@rpc("any_peer") func RemoveFromPlayersInArea(player):
 	PlayersInArea.erase(player)
 		
 func OptimizationCheck_PlayersNearby():

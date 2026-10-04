@@ -37,7 +37,7 @@ func StartCycle():
 	print_debug("[WORLD] : Timer wait_time = " + str(timer.wait_time))
 
 
-@rpc(any_peer) func ChangeColor(color):
+@rpc("any_peer") func ChangeColor(color):
 	match color:
 		"Day":
 			$Tween.interpolate_property(self, "color", self.color, DayColor, ShortDuration,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
@@ -56,7 +56,7 @@ func StartCycle():
 			$Tween.start()
 
 func ChangeTime(Time):
-	if(get_tree().get_unique_id() == 1):
+	if(get_tree().get_multiplayer().get_unique_id() == 1):
 		match Time:
 			TimeOfDay.Day:
 				rpc_id(0,"ChangeColor", "Day")
@@ -89,7 +89,7 @@ func SyncTime(playerID: int):
 		rpc_id(playerID, "SetCurrentTime", currentTime)
 		rpc_id(playerID, "ChangeColor", currentTime)
 		
-@rpc(any_peer) func SetCurrentTime(time):
+@rpc("any_peer") func SetCurrentTime(time):
 	currentTime = time
 
 func _on_timer_timeout():

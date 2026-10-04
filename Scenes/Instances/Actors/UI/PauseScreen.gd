@@ -19,7 +19,7 @@ func ClearPlayerWhoList():
 
 
 func _on_ForceSave_button_down():
-	NetworkManager.Network.SavePlayer(get_tree().get_unique_id())
+	NetworkManager.Network.SavePlayer(get_tree().get_multiplayer().get_unique_id())
 	
 	
 ###Pages Stuff###

@@ -34,7 +34,7 @@ func UpdateSpellPosition(delta):
 	var smooth_mov = position + (dir * SpellSpeed * delta)
 	position = lerp(position, smooth_mov, 0.5)
 
-@rpc(any_peer, call_local) func init_spell_shoot(caster_network_id):
+@rpc("any_peer", "call_local") func init_spell_shoot(caster_network_id):
 	var direction_animation
 	var final_dmg
 	if(caster_network_id != 1):
@@ -61,7 +61,7 @@ func UpdateSpellPosition(delta):
 	dmg = final_dmg
 	if(get_tree().get_unique_id() != 1): self.set_physics_process(true)
 	
-@rpc(any_peer, call_local) func init_spell_target(direction_animation, casterName, effect, value, target):
+@rpc("any_peer", "call_local") func init_spell_target(direction_animation, casterName, effect, value, target):
 	match direction_animation:
 		0:
 			$AnimatedSprite2D.play("up")

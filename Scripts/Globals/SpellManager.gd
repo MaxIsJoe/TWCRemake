@@ -9,7 +9,7 @@ func PutSpellOnCoolDown(spell, cooldown):
 			SpellsOnCoolDown.append(spell)
 			
 
-@rpc(any_peer, call_local) func ShootSpell(Spell, caster_network_id):
+@rpc("any_peer", "call_local") func ShootSpell(Spell, caster_network_id):
 	var b
 	NetworkManager.Network.SendSpellState()
 	if(caster_network_id != 1):
@@ -25,7 +25,7 @@ func PutSpellOnCoolDown(spell, cooldown):
 		add_child(b)
 		b.rpc("init_spell_shoot", caster_network_id)
 	
-@rpc(any_peer, call_local) func TargetSpell(Spell, Target):
+@rpc("any_peer", "call_local") func TargetSpell(Spell, Target):
 	var b
 	match Spell:
 		"Episkey":

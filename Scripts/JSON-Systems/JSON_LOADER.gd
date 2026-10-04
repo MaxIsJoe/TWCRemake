@@ -4,7 +4,7 @@ extends Node
 
 func LoadJSON_General(JSONFile, WhereToStore): #Used to pass data to variables that can be accsed globally
 	print("[LOAD] file : looking for [%s]..." % JSONFile)
-	if FileAccess.file_exists(WhereToStore + JSONFile):
+	if FileAccess.file_exists(str(WhereToStore) + JSONFile):
 		print("[SUCCSUES] file : [%s] does exist and is loaded." % JSONFile)
 		var dfile = FileAccess.open(WhereToStore + JSONFile, FileAccess.READ)
 		var test_json_conv = JSON.new()

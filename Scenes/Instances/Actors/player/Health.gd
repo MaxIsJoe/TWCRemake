@@ -7,11 +7,10 @@ extends "res://Scenes/Instances/EntitesBase/Characters/Health.gd"
 func _ready():
 	HealthBar._on_Player_hpupdate(HP, HP_MAX)
 
-@rpc(any_peer, call_local) func TakeDamage(damage: int, damageBy):
+@rpc("any_peer", "call_local") func TakeDamage(damage: int, damageBy):
 	super.TakeDamage(damage, damageBy)
 	HealthBar._on_Player_hpupdate(HP, HP_MAX)
 
-@rpc(any_peer, call_local) func BecomeAlive():
+@rpc("any_peer", "call_local") func BecomeAlive():
 	super.BecomeAlive()
 	HealthBar._on_Player_hpupdate(HP, HP_MAX)
-

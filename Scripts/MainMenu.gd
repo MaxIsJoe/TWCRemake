@@ -11,7 +11,7 @@ var PlayerID = ""
 var DiagonAlley = "res://Scenes/Levels/DiagonAlley.tscn"
 var DiagonAlleySpawnPos = Vector2(782,177)
 
-@export_node_path(OptionButton) var dropdown_path
+@export_node_path("OptionButton") var dropdown_path
 
 #All the importat things that needs to referenced and defined
 @onready var versionlabel = $MainPage/Version
@@ -49,16 +49,16 @@ func HideStartingPage():
 	charactersetup.queue_free()
 
 func _on_StartButton_pressed():
-	playeruniqueID = get_tree().get_unique_id()
+	playeruniqueID = get_tree().get_multiplayer().get_unique_id()
 	Data.main_node.Map.visible = true
 	NetworkManager.Network.rpc_id(1, "GetActiveKeys")
 	$MainPage/StartButton.disabled = true
 	$MainPage/StartButton.text = "Loading.."
 	hascharacter = false
 	if(playeruniqueID != 1):
-		rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_unique_id())
+		rpc_id(1, "DoesHeAlreadyHaveACharacter", Data.main_node.key, get_tree().get_multiplayer().get_unique_id())
 	else:
-		DoesHeAlreadyHaveACharacter(Data.main_node.key, get_tree().get_unique_id())
+		DoesHeAlreadyHaveACharacter(Data.main_node.key, get_tree().get_multiplayer().get_unique_id())
 	
 	while hascharacter == false:
 		if(timeout_counter >= 10):
@@ -75,9 +75,9 @@ func _on_StartButton_pressed():
 		saveddata = {}
 		
 		if(playeruniqueID != 1):
-			NetworkManager.Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_unique_id())
+			NetworkManager.Network.rpc_id(1, "GetSavedPlayerData", Data.main_node.key, get_tree().get_multiplayer().get_unique_id())
 		else:
-			NetworkManager.Network.GetSavedPlayerData(Data.main_node.key, get_tree().get_unique_id())
+			NetworkManager.Network.GetSavedPlayerData(Data.main_node.key, get_tree().get_multiplayer().get_unique_id())
 		
 		while saveddata.size() == 0:
 			if(timeout_counter >= 10):
@@ -92,9 +92,9 @@ func _on_StartButton_pressed():
 				
 		NetworkManager.Functions.rpc_id(0, "CreateThePlayer", str(saveddata["N"]), int(saveddata["G"]), int(saveddata["H"]), null, Vector2(int(saveddata["vx"]), int(saveddata["vy"])), get_tree().get_unique_id())
 		if(playeruniqueID != 1):
-			NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_unique_id())
+			NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_multiplayer().get_unique_id())
 		else:
-			NetworkManager.Network.CreateActivePlayers(get_tree().get_unique_id())
+			NetworkManager.Network.CreateActivePlayers(get_tree().get_multiplayer().get_unique_id())
 		Data.main_node.UI_Chat.SendText(0, str(saveddata["N"] + " logged in."), "")
 		Data.main_node.CanOpenPauseMenu = true
 		Data.main_node.PauseScreen.BuildPlayerWhoList()
@@ -103,10 +103,10 @@ func _on_StartButton_pressed():
 		mainpage.visible = false
 		charactersetup.visible = true
 	
-@rpc(any_peer) func DoesHeAlreadyHaveACharacter(key, id):
+@rpc("any_peer") func DoesHeAlreadyHaveACharacter(key, id):
 	var file
 	var dir = FileAccess.open("user://saves/", FileAccess.READ)
-	if dir == OK:
+	if dir:
 		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		while file != "": #(Max): I have no idea what's going checked here but it works so I'm not messing with it.
 			if(file != null):
@@ -179,10 +179,10 @@ func CreateThePlayer(charname):
 		NetworkManager.Network.rpc_id(1, "GetActiveKeys")
 	else:
 		NetworkManager.Network.GetActiveKeys()
-	NetworkManager.Functions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_unique_id())
+	NetworkManager.Functions.rpc_id(0, "CreateThePlayer", charname, selecteditemG,selectitemH, DiagonAlley, DiagonAlleySpawnPos, get_tree().get_multiplayer().get_unique_id())
 	Data.main_node.UI_Chat.SendText(0, str(charname + " logged in."), "")
 	if(playeruniqueID != 1):
-		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_unique_id())
+		NetworkManager.Network.rpc_id(1, "CreateActivePlayers", get_tree().get_multiplayer().get_unique_id())
 	else:
-		NetworkManager.Network.CreateActivePlayers(get_tree().get_unique_id())
+		NetworkManager.Network.CreateActivePlayers(get_tree().get_multiplayer().get_unique_id())
 	HideStartingPage()

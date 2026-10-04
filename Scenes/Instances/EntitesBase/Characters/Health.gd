@@ -20,14 +20,14 @@ enum HealthState {
 @export var EntityCanRespawn: bool = true
 @export var TimeToRespawn: float = 4.0
 
-@export_enum(HealthState) var currentState
+@export_enum("ALIVE","UNCONSCIOUS","DEAD") var currentState
 var lastDamagedBy : String
 
 @onready var RespawnTimer = $Timer
 
 var this_class = load("res://Scenes/Instances/EntitesBase/Characters/Health.gd")    
 
-@rpc(any_peer, call_local) func TakeDamage(damage: int, damagedBy):
+@rpc("any_peer", "call_local") func TakeDamage(damage: int, damagedBy):
 	if(CanBeDamaged):
 		match currentState:
 			HealthState.ALIVE:
@@ -41,7 +41,7 @@ var this_class = load("res://Scenes/Instances/EntitesBase/Characters/Health.gd")
 	if(HP <= 0 and currentState != HealthState.DEAD):
 		rpc_id(0, "BecomeAlivent")
 
-@rpc(any_peer, call_local) func Heal(HealType: int, points_to_heal: int):
+@rpc("any_peer", "call_local") func Heal(HealType: int, points_to_heal: int):
 	match(HealType):
 		0: #Instant Heal
 			HP += points_to_heal
@@ -50,7 +50,7 @@ var this_class = load("res://Scenes/Instances/EntitesBase/Characters/Health.gd")
 		1: #Heal over time
 			pass #add later
 	
-@rpc(any_peer, call_local) func BecomeAlive():
+@rpc("any_peer", "call_local") func BecomeAlive():
 	currentState = HealthState.ALIVE
 	parent.canMove = true
 	HP = HP_MAX
@@ -60,7 +60,7 @@ var this_class = load("res://Scenes/Instances/EntitesBase/Characters/Health.gd")
 	parent.Respawn()
 	Collision.set_deferred("disabled", false)
 
-@rpc(any_peer, call_local) func BecomeAlivent():
+@rpc("any_peer", "call_local") func BecomeAlivent():
 	currentState = HealthState.DEAD
 	parent.canMove = false
 	

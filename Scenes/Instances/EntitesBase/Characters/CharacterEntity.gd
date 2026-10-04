@@ -70,10 +70,10 @@ func CheckForAnimationsForMovement():
 	if(nav_path != [] and rotatesSpritesTowardMovement):
 		RotateSpritesTowardsVector(nav_path[0])
 		
-@rpc(any_peer, call_local) func RotateSpritesTowardsVector(vec : Vector2):
+@rpc("any_peer", "call_local") func RotateSpritesTowardsVector(vec : Vector2):
 	SpriteHandler.look_at(vec)
 	
-@rpc(any_peer, call_local) func ResetSpritesRotation():
+@rpc("any_peer", "call_local") func ResetSpritesRotation():
 	SpriteHandler.rotation_degrees = 0
 
 func generate_path_to_node(t):
@@ -157,4 +157,3 @@ func audio_playCurrentTrack(audionode: AudioStreamPlayer2D, randomizePitch: bool
 	
 func audio_stopTrack(audionode: AudioStreamPlayer2D):
 	audionode.stop()
-

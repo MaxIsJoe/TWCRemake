@@ -27,7 +27,7 @@ var EnableFPSTracker: bool = true
 var PeacefulMode    : bool = false
 
 func _ready():
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	JsonLoader.LoadJSON_General(Data.ItemJSON, 1)
 	JsonLoader.LoadJSON_General(Data.SpellsJSON, 2)
 

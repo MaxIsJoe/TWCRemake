@@ -1,40 +1,30 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene format=3 uid="uid://d3nx40tysab8l"]
 
-[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent.png" type="Texture2D" id=1]
-[ext_resource path="res://Resources/Fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf" type="FontFile" id=2]
-[ext_resource path="res://Scenes/Instances/Actors/UI/buttons/ChoiceButton.gd" type="Script" id=3]
-[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Hover.png" type="Texture2D" id=4]
-[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Locked.png" type="Texture2D" id=5]
-[ext_resource path="res://Sprites/UI/UI_Button_BlackToTransparent_Pressed.png" type="Texture2D" id=6]
+[ext_resource type="Texture2D" uid="uid://cnlas17eyqpmh" path="res://Sprites/UI/UI_Button_BlackToTransparent.png" id="1"]
+[ext_resource type="Script" uid="uid://ml6me8f5hgvu" path="res://Scenes/Instances/Actors/UI/buttons/ChoiceButton.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://crc87cidl7lw6" path="res://Sprites/UI/UI_Button_BlackToTransparent_Hover.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://7863rek5fwlv" path="res://Sprites/UI/UI_Button_BlackToTransparent_Locked.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bxwu0kw1xesbs" path="res://Sprites/UI/UI_Button_BlackToTransparent_Pressed.png" id="6"]
 
-[sub_resource type="FontFile" id=1]
-size = 24
-font_data = ExtResource( 2 )
-
-[node name="ChoiceButton" type="TextureButton"]
+[node name="ChoiceButton" type="TextureButton" unique_id=183673006]
 offset_right = 446.0
 offset_bottom = 40.0
-minimum_size = Vector2( 0, 40 )
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 1 )
-texture_pressed = ExtResource( 6 )
-texture_hover = ExtResource( 4 )
-texture_disabled = ExtResource( 5 )
-expand = true
+texture_normal = ExtResource("1")
+texture_pressed = ExtResource("6")
+texture_hover = ExtResource("4")
+texture_disabled = ExtResource("5")
 stretch_mode = 6
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("3")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=559790104]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 text = "Choice Name"
-text = "Choice Name"
 
-[node name="Tween" type="Tween" parent="."]
+[node name="Tween" type="Tween" parent="." unique_id=110245149]
+
 [connection signal="button_up" from="." to="." method="_on_ChoiceButton_button_up"]

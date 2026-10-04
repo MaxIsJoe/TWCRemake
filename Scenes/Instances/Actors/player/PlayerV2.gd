@@ -1,4 +1,4 @@
-extends MobEntity.MobEntity
+extends MobEntity#.MobEntity
 class_name PlayerEntity
 
 @export var CamZoomOnPlayer: Vector2 = Vector2(0.5,0.5)
@@ -18,6 +18,8 @@ var ItemsArray = []
 
 var PlayerState = {} #For networking
 var playerkey #For saving and account mangement
+
+
 
 @onready var LevelUpAnim = $Cam/CanvasLayer/UI/Leveup/LevelUpAnim
 @onready var PlayerNameUI = $PlayerName
@@ -92,10 +94,10 @@ func GetSavePlayerInfo():
 	if(info.get("key") == null): push_warning("\a Warning, Key is null.")
 	return info
 
-@rpc(any_peer) func SendKeyToServer(key):
+@rpc("any_peer") func SendKeyToServer(key):
 	playerkey = key
 
-@rpc(any_peer) func updatenamelabel():
+@rpc("any_peer") func updatenamelabel():
 	PlayerNameUI.text = str(PlayerName)
 	if(House == 0):
 		PlayerNameUI.add_theme_color_override("font_color", Color(0.86,0.08,0.24,1))
@@ -227,7 +229,7 @@ func ShowSign(Title, Content):
 	PopUpUI.dialog_text = Content
 	PopUpUI.popup_centered()
 
-@rpc(any_peer) func ShootSpell(Spell, Argument):
+@rpc("any_peer") func ShootSpell(Spell, Argument):
 	if(Argument == "player"):
 		Argument = Data.Player
 	SpellManager.rpc_id(0, "ShootSpell" ,Spell, get_tree().get_unique_id())
@@ -237,5 +239,5 @@ func ShowHotkeyAsign(ID):
 	$Cam/CanvasLayer/UI/SetHotkeyUI.visible = true
 	$Cam/CanvasLayer/UI/SetHotkeyUI.ID = ID
 	
-@rpc(any_peer, call_local) func takedamage(dmg, dmgBy):
+@rpc("any_peer", "call_local") func takedamage(dmg, dmgBy):
 	health.TakeDamage(dmg, dmgBy)
